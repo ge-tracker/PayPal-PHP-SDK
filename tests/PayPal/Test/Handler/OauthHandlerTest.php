@@ -63,8 +63,19 @@ class OauthHandlerTest extends TestCase
             'http.headers.header1' => 'header1value'
         );
         $this->apiContext->setConfig($config);
+        $this->setConfig();
         $this->httpConfig = new PayPalHttpConfig(null, 'POST', $config);
         $this->handler = new OauthHandler($this->apiContext);
         $this->handler->handle($this->httpConfig, null, $this->config);
+    }
+
+    private function setConfig()
+    {
+        $config = $this->apiContext->getConfig();
+
+        $this->config = [
+            'clientId' => $config['acct1.ClientId'],
+            'clientSecret' => $config['acct1.ClientSecret'],
+        ];
     }
 }
