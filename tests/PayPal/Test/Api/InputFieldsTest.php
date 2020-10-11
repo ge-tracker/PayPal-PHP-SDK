@@ -16,7 +16,7 @@ class InputFieldsTest extends TestCase
      * Gets Json String of Object InputFields
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"allow_note":true,"no_shipping":123,"address_override":123}';
     }
@@ -25,7 +25,7 @@ class InputFieldsTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return InputFields
      */
-    public static function getObject()
+    public static function getObject(): InputFields
     {
         return new InputFields(self::getJson());
     }
@@ -35,14 +35,14 @@ class InputFieldsTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return InputFields
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): InputFields
     {
         $obj = new InputFields(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getAllowNote());
-        $this->assertNotNull($obj->getNoShipping());
-        $this->assertNotNull($obj->getAddressOverride());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getAllowNote());
+        self::assertNotNull($obj->getNoShipping());
+        self::assertNotNull($obj->getAddressOverride());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -50,11 +50,11 @@ class InputFieldsTest extends TestCase
      * @depends testSerializationDeserialization
      * @param InputFields $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getAllowNote(), true);
-        $this->assertEquals($obj->getNoShipping(), 123);
-        $this->assertEquals($obj->getAddressOverride(), 123);
+        self::assertEquals($obj->getAllowNote(), true);
+        self::assertEquals($obj->getNoShipping(), 123);
+        self::assertEquals($obj->getAddressOverride(), 123);
     }
 
 

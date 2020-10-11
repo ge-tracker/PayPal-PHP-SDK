@@ -17,7 +17,7 @@ class ErrorTest extends TestCase
      *
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"name":"TestSample","purchase_unit_reference_id":"TestSample","message":"TestSample","code":"TestSample","details":' . ErrorDetailsTest::getJson() . ',"processor_response":' . ProcessorResponseTest::getJson() . ',"fmf_details":' . FmfDetailsTest::getJson() . ',"information_link":"TestSample","debug_id":"TestSample","links":' . LinksTest::getJson() . '}';
     }
@@ -26,7 +26,7 @@ class ErrorTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return Error
      */
-    public static function getObject()
+    public static function getObject(): Error
     {
         return new Error(self::getJson());
     }
@@ -36,21 +36,21 @@ class ErrorTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return Error
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): Error
     {
         $obj = new Error(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getName());
-        $this->assertNotNull($obj->getPurchaseUnitReferenceId());
-        $this->assertNotNull($obj->getMessage());
-        $this->assertNotNull($obj->getCode());
-        $this->assertNotNull($obj->getDetails());
-        $this->assertNotNull($obj->getProcessorResponse());
-        $this->assertNotNull($obj->getFmfDetails());
-        $this->assertNotNull($obj->getInformationLink());
-        $this->assertNotNull($obj->getDebugId());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getName());
+        self::assertNotNull($obj->getPurchaseUnitReferenceId());
+        self::assertNotNull($obj->getMessage());
+        self::assertNotNull($obj->getCode());
+        self::assertNotNull($obj->getDetails());
+        self::assertNotNull($obj->getProcessorResponse());
+        self::assertNotNull($obj->getFmfDetails());
+        self::assertNotNull($obj->getInformationLink());
+        self::assertNotNull($obj->getDebugId());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -58,17 +58,17 @@ class ErrorTest extends TestCase
      * @depends testSerializationDeserialization
      * @param Error $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getName(), "TestSample");
-        $this->assertEquals($obj->getPurchaseUnitReferenceId(), "TestSample");
-        $this->assertEquals($obj->getMessage(), "TestSample");
-        $this->assertEquals($obj->getCode(), "TestSample");
-        $this->assertEquals($obj->getDetails(), ErrorDetailsTest::getObject());
-        $this->assertEquals($obj->getProcessorResponse(), ProcessorResponseTest::getObject());
-        $this->assertEquals($obj->getFmfDetails(), FmfDetailsTest::getObject());
-        $this->assertEquals($obj->getInformationLink(), "TestSample");
-        $this->assertEquals($obj->getDebugId(), "TestSample");
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals($obj->getName(), "TestSample");
+        self::assertEquals($obj->getPurchaseUnitReferenceId(), "TestSample");
+        self::assertEquals($obj->getMessage(), "TestSample");
+        self::assertEquals($obj->getCode(), "TestSample");
+        self::assertEquals($obj->getDetails(), ErrorDetailsTest::getObject());
+        self::assertEquals($obj->getProcessorResponse(), ProcessorResponseTest::getObject());
+        self::assertEquals($obj->getFmfDetails(), FmfDetailsTest::getObject());
+        self::assertEquals($obj->getInformationLink(), "TestSample");
+        self::assertEquals($obj->getDebugId(), "TestSample");
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 }

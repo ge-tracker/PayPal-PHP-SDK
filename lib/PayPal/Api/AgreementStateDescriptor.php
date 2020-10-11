@@ -20,10 +20,10 @@ class AgreementStateDescriptor extends PayPalModel
      * Reason for changing the state of the agreement.
      *
      * @param string $note
-     * 
+     *
      * @return $this
      */
-    public function setNote($note)
+    public function setNote($note): self
     {
         $this->note = $note;
         return $this;
@@ -34,7 +34,7 @@ class AgreementStateDescriptor extends PayPalModel
      *
      * @return string
      */
-    public function getNote()
+    public function getNote(): string
     {
         return $this->note;
     }
@@ -43,10 +43,10 @@ class AgreementStateDescriptor extends PayPalModel
      * The amount and currency of the agreement.
      *
      * @param \PayPal\Api\Currency $amount
-     * 
+     *
      * @return $this
      */
-    public function setAmount($amount)
+    public function setAmount($amount): self
     {
         $this->amount = $amount;
         return $this;
@@ -57,7 +57,7 @@ class AgreementStateDescriptor extends PayPalModel
      *
      * @return \PayPal\Api\Currency
      */
-    public function getAmount()
+    public function getAmount(): Currency
     {
         return $this->amount;
     }

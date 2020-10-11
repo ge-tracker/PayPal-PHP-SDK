@@ -28,10 +28,10 @@ class Template extends PayPalResourceModel
      * Unique identifier id of the template.
      *
      * @param string $template_id
-     * 
+     *
      * @return $this
      */
-    public function setTemplateId($template_id)
+    public function setTemplateId($template_id): self
     {
         $this->template_id = $template_id;
         return $this;
@@ -42,7 +42,7 @@ class Template extends PayPalResourceModel
      *
      * @return string
      */
-    public function getTemplateId()
+    public function getTemplateId(): string
     {
         return $this->template_id;
     }
@@ -51,10 +51,10 @@ class Template extends PayPalResourceModel
      * Name of the template.
      *
      * @param string $name
-     * 
+     *
      * @return $this
      */
-    public function setName($name)
+    public function setName($name): self
     {
         $this->name = $name;
         return $this;
@@ -65,7 +65,7 @@ class Template extends PayPalResourceModel
      *
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -74,10 +74,10 @@ class Template extends PayPalResourceModel
      * Indicates that this template is merchant's default. There can be only one template which can be a default.
      *
      * @param bool $default
-     * 
+     *
      * @return $this
      */
-    public function setDefault($default)
+    public function setDefault($default): self
     {
         $this->default = $default;
         return $this;
@@ -88,7 +88,7 @@ class Template extends PayPalResourceModel
      *
      * @return bool
      */
-    public function getDefault()
+    public function getDefault(): bool
     {
         return $this->default;
     }
@@ -97,10 +97,10 @@ class Template extends PayPalResourceModel
      * Customized invoice data which is saved as template
      *
      * @param \PayPal\Api\TemplateData $template_data
-     * 
+     *
      * @return $this
      */
-    public function setTemplateData($template_data)
+    public function setTemplateData($template_data): self
     {
         $this->template_data = $template_data;
         return $this;
@@ -111,7 +111,7 @@ class Template extends PayPalResourceModel
      *
      * @return \PayPal\Api\TemplateData
      */
-    public function getTemplateData()
+    public function getTemplateData(): TemplateData
     {
         return $this->template_data;
     }
@@ -120,10 +120,10 @@ class Template extends PayPalResourceModel
      * Settings for each template
      *
      * @param \PayPal\Api\TemplateSettings[] $settings
-     * 
+     *
      * @return $this
      */
-    public function setSettings($settings)
+    public function setSettings($settings): self
     {
         $this->settings = $settings;
         return $this;
@@ -134,7 +134,7 @@ class Template extends PayPalResourceModel
      *
      * @return \PayPal\Api\TemplateSettings[]
      */
-    public function getSettings()
+    public function getSettings(): array
     {
         return $this->settings;
     }
@@ -145,7 +145,7 @@ class Template extends PayPalResourceModel
      * @param \PayPal\Api\TemplateSettings $templateSettings
      * @return $this
      */
-    public function addSetting($templateSettings)
+    public function addSetting($templateSettings): ?self
     {
         if (!$this->getSettings()) {
             return $this->setSettings(array($templateSettings));
@@ -162,7 +162,7 @@ class Template extends PayPalResourceModel
      * @param \PayPal\Api\TemplateSettings $templateSettings
      * @return $this
      */
-    public function removeSetting($templateSettings)
+    public function removeSetting($templateSettings): self
     {
         return $this->setSettings(
             array_diff($this->getSettings(), array($templateSettings))
@@ -173,10 +173,10 @@ class Template extends PayPalResourceModel
      * Unit of measure for the template, possible values are Quantity, Hours, Amount.
      *
      * @param string $unit_of_measure
-     * 
+     *
      * @return $this
      */
-    public function setUnitOfMeasure($unit_of_measure)
+    public function setUnitOfMeasure($unit_of_measure): self
     {
         $this->unit_of_measure = $unit_of_measure;
         return $this;
@@ -187,7 +187,7 @@ class Template extends PayPalResourceModel
      *
      * @return string
      */
-    public function getUnitOfMeasure()
+    public function getUnitOfMeasure(): string
     {
         return $this->unit_of_measure;
     }
@@ -196,10 +196,10 @@ class Template extends PayPalResourceModel
      * Indicates whether this is a custom template created by the merchant. Non custom templates are system generated
      *
      * @param bool $custom
-     * 
+     *
      * @return $this
      */
-    public function setCustom($custom)
+    public function setCustom($custom): self
     {
         $this->custom = $custom;
         return $this;
@@ -210,7 +210,7 @@ class Template extends PayPalResourceModel
      *
      * @return bool
      */
-    public function getCustom()
+    public function getCustom(): bool
     {
         return $this->custom;
     }
@@ -223,7 +223,7 @@ class Template extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return Template
      */
-    public static function get($templateId, $apiContext = null, $restCall = null)
+    public static function get($templateId, $apiContext = null, $restCall = null): Template
     {
         ArgumentValidator::validate($templateId, 'templateId');
         $payLoad = "";
@@ -247,7 +247,7 @@ class Template extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return bool
      */
-    public function delete($apiContext = null, $restCall = null)
+    public function delete($apiContext = null, $restCall = null): bool
     {
         ArgumentValidator::validate($this->getTemplateId(), "Id");
         $payLoad = "";
@@ -269,7 +269,7 @@ class Template extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return Template
      */
-    public function create($apiContext = null, $restCall = null)
+    public function create($apiContext = null, $restCall = null): Template
     {
         $json = self::executeCall(
             "/v1/invoicing/templates",
@@ -290,7 +290,7 @@ class Template extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return Template
      */
-    public function update($apiContext = null, $restCall = null)
+    public function update($apiContext = null, $restCall = null): Template
     {
         ArgumentValidator::validate($this->getTemplateId(), "Id");
         $payLoad = $this->toJSON();

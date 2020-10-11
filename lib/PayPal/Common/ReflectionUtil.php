@@ -37,7 +37,7 @@ class ReflectionUtil
      * @return null|string
      * @throws PayPalConfigurationException
      */
-    public static function getPropertyClass($class, $propertyName)
+    public static function getPropertyClass($class, $propertyName): ?string
     {
         if ($class == get_class(new PayPalModel())) {
             // Make it generic if PayPalModel is used for generating this
@@ -69,7 +69,7 @@ class ReflectionUtil
      * @return null|boolean
      * @throws PayPalConfigurationException
      */
-    public static function isPropertyClassArray($class, $propertyName)
+    public static function isPropertyClassArray($class, $propertyName): ?bool
     {
         // If the class doesn't exist, or the method doesn't exist, return null.
         if (!class_exists($class) || !method_exists($class, self::getter($class, $propertyName))) {
@@ -133,7 +133,7 @@ class ReflectionUtil
      * @param $match
      * @return string
      */
-    private static function replace_callback($match)
+    private static function replace_callback($match): string
     {
         return ucwords($match[2]);
     }
@@ -146,7 +146,7 @@ class ReflectionUtil
      * @param string $propertyName
      * @return string getter function name
      */
-    public static function getter($class, $propertyName)
+    public static function getter($class, $propertyName): string
     {
         return method_exists($class, "get" . ucfirst($propertyName)) ?
             "get" . ucfirst($propertyName) :

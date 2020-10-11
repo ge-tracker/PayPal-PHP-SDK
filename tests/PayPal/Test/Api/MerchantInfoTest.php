@@ -16,7 +16,7 @@ class MerchantInfoTest extends TestCase
      * Gets Json String of Object MerchantInfo
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"email":"TestSample","first_name":"TestSample","last_name":"TestSample","address":' .AddressTest::getJson() . ',"business_name":"TestSample","phone":' .PhoneTest::getJson() . ',"fax":' .PhoneTest::getJson() . ',"website":"TestSample","tax_id":"TestSample","additional_info_label":"TestSample","additional_info":"TestSample"}';
     }
@@ -25,7 +25,7 @@ class MerchantInfoTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return MerchantInfo
      */
-    public static function getObject()
+    public static function getObject(): MerchantInfo
     {
         return new MerchantInfo(self::getJson());
     }
@@ -35,22 +35,22 @@ class MerchantInfoTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return MerchantInfo
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): MerchantInfo
     {
         $obj = new MerchantInfo(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getEmail());
-        $this->assertNotNull($obj->getFirstName());
-        $this->assertNotNull($obj->getLastName());
-        $this->assertNotNull($obj->getAddress());
-        $this->assertNotNull($obj->getBusinessName());
-        $this->assertNotNull($obj->getPhone());
-        $this->assertNotNull($obj->getFax());
-        $this->assertNotNull($obj->getWebsite());
-        $this->assertNotNull($obj->getTaxId());
-        $this->assertNotNull($obj->getAdditionalInfoLabel());
-        $this->assertNotNull($obj->getAdditionalInfo());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getEmail());
+        self::assertNotNull($obj->getFirstName());
+        self::assertNotNull($obj->getLastName());
+        self::assertNotNull($obj->getAddress());
+        self::assertNotNull($obj->getBusinessName());
+        self::assertNotNull($obj->getPhone());
+        self::assertNotNull($obj->getFax());
+        self::assertNotNull($obj->getWebsite());
+        self::assertNotNull($obj->getTaxId());
+        self::assertNotNull($obj->getAdditionalInfoLabel());
+        self::assertNotNull($obj->getAdditionalInfo());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -58,18 +58,18 @@ class MerchantInfoTest extends TestCase
      * @depends testSerializationDeserialization
      * @param MerchantInfo $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getEmail(), "TestSample");
-        $this->assertEquals($obj->getFirstName(), "TestSample");
-        $this->assertEquals($obj->getLastName(), "TestSample");
-        $this->assertEquals($obj->getAddress(), AddressTest::getObject());
-        $this->assertEquals($obj->getBusinessName(), "TestSample");
-        $this->assertEquals($obj->getPhone(), PhoneTest::getObject());
-        $this->assertEquals($obj->getFax(), PhoneTest::getObject());
-        $this->assertEquals($obj->getWebsite(), "TestSample");
-        $this->assertEquals($obj->getTaxId(), "TestSample");
-        $this->assertEquals($obj->getAdditionalInfoLabel(), "TestSample");
-        $this->assertEquals($obj->getAdditionalInfo(), "TestSample");
+        self::assertEquals($obj->getEmail(), "TestSample");
+        self::assertEquals($obj->getFirstName(), "TestSample");
+        self::assertEquals($obj->getLastName(), "TestSample");
+        self::assertEquals($obj->getAddress(), AddressTest::getObject());
+        self::assertEquals($obj->getBusinessName(), "TestSample");
+        self::assertEquals($obj->getPhone(), PhoneTest::getObject());
+        self::assertEquals($obj->getFax(), PhoneTest::getObject());
+        self::assertEquals($obj->getWebsite(), "TestSample");
+        self::assertEquals($obj->getTaxId(), "TestSample");
+        self::assertEquals($obj->getAdditionalInfoLabel(), "TestSample");
+        self::assertEquals($obj->getAdditionalInfo(), "TestSample");
     }
 }

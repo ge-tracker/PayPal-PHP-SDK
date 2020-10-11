@@ -16,7 +16,7 @@ class WebProfileTest extends TestCase
      * Gets Json String of Object WebProfile
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"id":"TestSample","name":"TestSample","temporary":true,"flow_config":' .FlowConfigTest::getJson() . ',"input_fields":' .InputFieldsTest::getJson() . ',"presentation":' .PresentationTest::getJson() . '}';
     }
@@ -25,7 +25,7 @@ class WebProfileTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return WebProfile
      */
-    public static function getObject()
+    public static function getObject(): WebProfile
     {
         return new WebProfile(self::getJson());
     }
@@ -35,17 +35,17 @@ class WebProfileTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return WebProfile
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): WebProfile
     {
         $obj = new WebProfile(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getName());
-        $this->assertNotNull($obj->getTemporary());
-        $this->assertNotNull($obj->getFlowConfig());
-        $this->assertNotNull($obj->getInputFields());
-        $this->assertNotNull($obj->getPresentation());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getName());
+        self::assertNotNull($obj->getTemporary());
+        self::assertNotNull($obj->getFlowConfig());
+        self::assertNotNull($obj->getInputFields());
+        self::assertNotNull($obj->getPresentation());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -53,133 +53,121 @@ class WebProfileTest extends TestCase
      * @depends testSerializationDeserialization
      * @param WebProfile $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getName(), "TestSample");
-        $this->assertEquals($obj->getTemporary(), true);
-        $this->assertEquals($obj->getFlowConfig(), FlowConfigTest::getObject());
-        $this->assertEquals($obj->getInputFields(), InputFieldsTest::getObject());
-        $this->assertEquals($obj->getPresentation(), PresentationTest::getObject());
+        self::assertEquals($obj->getId(), "TestSample");
+        self::assertEquals($obj->getName(), "TestSample");
+        self::assertEquals($obj->getTemporary(), true);
+        self::assertEquals($obj->getFlowConfig(), FlowConfigTest::getObject());
+        self::assertEquals($obj->getInputFields(), InputFieldsTest::getObject());
+        self::assertEquals($obj->getPresentation(), PresentationTest::getObject());
     }
 
     /**
      * @dataProvider mockProvider
      * @param WebProfile $obj
      */
-    public function testCreate($obj, $mockApiContext)
+    public function testCreate($obj, $mockApiContext): void
     {
         $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    self::getJson()
-            ));
+            ->willReturn(self::getJson());
 
         $result = $obj->create($mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
      * @param WebProfile $obj
      */
-    public function testUpdate($obj, $mockApiContext)
+    public function testUpdate($obj, $mockApiContext): void
     {
         $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    true
-            ));
+            ->willReturn(true);
 
         $result = $obj->update($mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
      * @param WebProfile $obj
      */
-    public function testPartialUpdate($obj, $mockApiContext)
+    public function testPartialUpdate($obj, $mockApiContext): void
     {
         $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    true
-            ));
+            ->willReturn(true);
         $patch = array(PatchTest::getObject());
 
         $result = $obj->partial_update($patch, $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
      * @param WebProfile $obj
      */
-    public function testGet($obj, $mockApiContext)
+    public function testGet($obj, $mockApiContext): void
     {
         $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    WebProfileTest::getJson()
-            ));
+            ->willReturn(WebProfileTest::getJson());
 
         $result = $obj->get("profileId", $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
      * @param WebProfile $obj
      */
-    public function testGetList($obj, $mockApiContext)
+    public function testGetList($obj, $mockApiContext): void
     {
         $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    json_encode(array(json_decode(WebProfileTest::getJson())))
-            ));
+            ->willReturn(json_encode([json_decode(WebProfileTest::getJson())]));
 
         $result = $obj->get_list($mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
      * @param WebProfile $obj
      */
-    public function testDelete($obj, $mockApiContext)
+    public function testDelete($obj, $mockApiContext): void
     {
         $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    true
-            ));
+            ->willReturn(true);
 
         $result = $obj->delete($mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
 
-    public function mockProvider()
+    public function mockProvider(): array
     {
         $obj = self::getObject();
         $mockApiContext = $this->getMockBuilder('ApiContext')

@@ -37,7 +37,7 @@ class PayPalLoggingManager
      * @param string $loggerName
      * @return $this
      */
-    public static function getInstance($loggerName = __CLASS__)
+    public static function getInstance($loggerName = __CLASS__): self
     {
         if (array_key_exists($loggerName, PayPalLoggingManager::$instances)) {
             return PayPalLoggingManager::$instances[$loggerName];
@@ -68,7 +68,7 @@ class PayPalLoggingManager
      *
      * @param string $message
      */
-    public function error($message)
+    public function error($message): void
     {
         $this->logger->error($message);
     }
@@ -78,7 +78,7 @@ class PayPalLoggingManager
      *
      * @param string $message
      */
-    public function warning($message)
+    public function warning($message): void
     {
         $this->logger->warning($message);
     }
@@ -88,7 +88,7 @@ class PayPalLoggingManager
      *
      * @param string $message
      */
-    public function info($message)
+    public function info($message): void
     {
         $this->logger->info($message);
     }
@@ -98,7 +98,7 @@ class PayPalLoggingManager
      *
      * @param string $message
      */
-    public function fine($message)
+    public function fine($message): void
     {
         $this->info($message);
     }
@@ -108,7 +108,7 @@ class PayPalLoggingManager
      *
      * @param string $message
      */
-    public function debug($message)
+    public function debug($message): void
     {
         $config = PayPalConfigManager::getInstance()->getConfigHashmap();
         // Disable debug in live mode.

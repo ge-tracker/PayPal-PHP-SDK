@@ -17,7 +17,7 @@ class CreditCardTokenTest extends TestCase
      *
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"credit_card_id":"TestSample","payer_id":"TestSample","last4":"TestSample","type":"TestSample","expire_month":123,"expire_year":123}';
     }
@@ -27,28 +27,27 @@ class CreditCardTokenTest extends TestCase
      *
      * @return CreditCardToken
      */
-    public static function getObject()
+    public static function getObject(): CreditCardToken
     {
         return new CreditCardToken(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
      *
      * @return CreditCardToken
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): CreditCardToken
     {
         $obj = new CreditCardToken(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getCreditCardId());
-        $this->assertNotNull($obj->getPayerId());
-        $this->assertNotNull($obj->getLast4());
-        $this->assertNotNull($obj->getType());
-        $this->assertNotNull($obj->getExpireMonth());
-        $this->assertNotNull($obj->getExpireYear());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getCreditCardId());
+        self::assertNotNull($obj->getPayerId());
+        self::assertNotNull($obj->getLast4());
+        self::assertNotNull($obj->getType());
+        self::assertNotNull($obj->getExpireMonth());
+        self::assertNotNull($obj->getExpireYear());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -56,13 +55,13 @@ class CreditCardTokenTest extends TestCase
      * @depends testSerializationDeserialization
      * @param CreditCardToken $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getCreditCardId(), "TestSample");
-        $this->assertEquals($obj->getPayerId(), "TestSample");
-        $this->assertEquals($obj->getLast4(), "TestSample");
-        $this->assertEquals($obj->getType(), "TestSample");
-        $this->assertEquals($obj->getExpireMonth(), 123);
-        $this->assertEquals($obj->getExpireYear(), 123);
+        self::assertEquals($obj->getCreditCardId(), "TestSample");
+        self::assertEquals($obj->getPayerId(), "TestSample");
+        self::assertEquals($obj->getLast4(), "TestSample");
+        self::assertEquals($obj->getType(), "TestSample");
+        self::assertEquals($obj->getExpireMonth(), 123);
+        self::assertEquals($obj->getExpireYear(), 123);
     }
 }

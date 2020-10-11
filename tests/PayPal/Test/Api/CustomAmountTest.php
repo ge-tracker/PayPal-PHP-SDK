@@ -16,7 +16,7 @@ class CustomAmountTest extends TestCase
      * Gets Json String of Object CustomAmount
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"label":"TestSample","amount":' .CurrencyTest::getJson() . '}';
     }
@@ -25,7 +25,7 @@ class CustomAmountTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return CustomAmount
      */
-    public static function getObject()
+    public static function getObject(): CustomAmount
     {
         return new CustomAmount(self::getJson());
     }
@@ -35,13 +35,13 @@ class CustomAmountTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return CustomAmount
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): CustomAmount
     {
         $obj = new CustomAmount(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getLabel());
-        $this->assertNotNull($obj->getAmount());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getLabel());
+        self::assertNotNull($obj->getAmount());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -49,9 +49,9 @@ class CustomAmountTest extends TestCase
      * @depends testSerializationDeserialization
      * @param CustomAmount $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getLabel(), "TestSample");
-        $this->assertEquals($obj->getAmount(), CurrencyTest::getObject());
+        self::assertEquals($obj->getLabel(), "TestSample");
+        self::assertEquals($obj->getAmount(), CurrencyTest::getObject());
     }
 }

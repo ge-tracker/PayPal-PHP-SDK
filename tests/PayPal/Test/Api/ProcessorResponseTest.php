@@ -16,7 +16,7 @@ class ProcessorResponseTest extends TestCase
      * Gets Json String of Object ProcessorResponse
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"response_code":"TestSample","avs_code":"TestSample","cvv_code":"TestSample","advice_code":"TestSample","eci_submitted":"TestSample","vpas":"TestSample"}';
     }
@@ -25,7 +25,7 @@ class ProcessorResponseTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return ProcessorResponse
      */
-    public static function getObject()
+    public static function getObject(): ProcessorResponse
     {
         return new ProcessorResponse(self::getJson());
     }
@@ -35,17 +35,17 @@ class ProcessorResponseTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return ProcessorResponse
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): ProcessorResponse
     {
         $obj = new ProcessorResponse(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getResponseCode());
-        $this->assertNotNull($obj->getAvsCode());
-        $this->assertNotNull($obj->getCvvCode());
-        $this->assertNotNull($obj->getAdviceCode());
-        $this->assertNotNull($obj->getEciSubmitted());
-        $this->assertNotNull($obj->getVpas());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getResponseCode());
+        self::assertNotNull($obj->getAvsCode());
+        self::assertNotNull($obj->getCvvCode());
+        self::assertNotNull($obj->getAdviceCode());
+        self::assertNotNull($obj->getEciSubmitted());
+        self::assertNotNull($obj->getVpas());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -53,13 +53,13 @@ class ProcessorResponseTest extends TestCase
      * @depends testSerializationDeserialization
      * @param ProcessorResponse $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getResponseCode(), "TestSample");
-        $this->assertEquals($obj->getAvsCode(), "TestSample");
-        $this->assertEquals($obj->getCvvCode(), "TestSample");
-        $this->assertEquals($obj->getAdviceCode(), "TestSample");
-        $this->assertEquals($obj->getEciSubmitted(), "TestSample");
-        $this->assertEquals($obj->getVpas(), "TestSample");
+        self::assertEquals($obj->getResponseCode(), "TestSample");
+        self::assertEquals($obj->getAvsCode(), "TestSample");
+        self::assertEquals($obj->getCvvCode(), "TestSample");
+        self::assertEquals($obj->getAdviceCode(), "TestSample");
+        self::assertEquals($obj->getEciSubmitted(), "TestSample");
+        self::assertEquals($obj->getVpas(), "TestSample");
     }
 }

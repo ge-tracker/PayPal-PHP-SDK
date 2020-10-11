@@ -16,7 +16,7 @@ class PaymentOptionsTest extends TestCase
      * Gets Json String of Object PaymentOptions
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"allowed_payment_method":"TestSample","recurring_flag":true,"skip_fmf":true}';
     }
@@ -25,7 +25,7 @@ class PaymentOptionsTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return PaymentOptions
      */
-    public static function getObject()
+    public static function getObject(): PaymentOptions
     {
         return new PaymentOptions(self::getJson());
     }
@@ -35,14 +35,14 @@ class PaymentOptionsTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return PaymentOptions
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): PaymentOptions
     {
         $obj = new PaymentOptions(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getAllowedPaymentMethod());
-        $this->assertNotNull($obj->getRecurringFlag());
-        $this->assertNotNull($obj->getSkipFmf());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getAllowedPaymentMethod());
+        self::assertNotNull($obj->getRecurringFlag());
+        self::assertNotNull($obj->getSkipFmf());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -50,10 +50,10 @@ class PaymentOptionsTest extends TestCase
      * @depends testSerializationDeserialization
      * @param PaymentOptions $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getAllowedPaymentMethod(), "TestSample");
-        $this->assertEquals($obj->getRecurringFlag(), true);
-        $this->assertEquals($obj->getSkipFmf(), true);
+        self::assertEquals($obj->getAllowedPaymentMethod(), "TestSample");
+        self::assertEquals($obj->getRecurringFlag(), true);
+        self::assertEquals($obj->getSkipFmf(), true);
     }
 }

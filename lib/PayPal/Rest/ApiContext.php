@@ -50,7 +50,7 @@ class ApiContext
      *
      * @return \PayPal\Auth\OAuthTokenCredential
      */
-    public function getCredential()
+    public function getCredential(): ?\PayPal\Auth\OAuthTokenCredential
     {
         if ($this->credential == null) {
             return PayPalCredentialManager::getInstance()->getCredentialObject();
@@ -58,7 +58,7 @@ class ApiContext
         return $this->credential;
     }
 
-    public function getRequestHeaders()
+    public function getRequestHeaders(): array
     {
         $result = PayPalConfigManager::getInstance()->get('http.headers');
         $headers = array();
@@ -69,7 +69,7 @@ class ApiContext
         return $headers;
     }
 
-    public function addRequestHeader($name, $value)
+    public function addRequestHeader($name, $value): void
     {
         // Determine if the name already has a 'http.headers' prefix. If not, add one.
         if (!(substr($name, 0, strlen('http.headers')) === 'http.headers')) {
@@ -83,7 +83,7 @@ class ApiContext
      *
      * @return string
      */
-    public function getRequestId()
+    public function getRequestId(): ?string
     {
         return $this->requestId;
     }
@@ -93,7 +93,7 @@ class ApiContext
      *
      * @param string $requestId the PayPal-Request-Id value to use
      */
-    public function setRequestId($requestId)
+    public function setRequestId($requestId): void
     {
         $this->requestId = $requestId;
     }
@@ -106,7 +106,7 @@ class ApiContext
      *
      * @return string
      */
-    public function resetRequestId()
+    public function resetRequestId(): ?string
     {
         $this->requestId = $this->generateRequestId();
         return $this->getRequestId();
@@ -117,7 +117,7 @@ class ApiContext
      *
      * @param array $config SDK configuration parameters
      */
-    public function setConfig(array $config)
+    public function setConfig(array $config): void
     {
         PayPalConfigManager::getInstance()->addConfigs($config);
     }
@@ -127,7 +127,7 @@ class ApiContext
      *
      * @return array
      */
-    public function getConfig()
+    public function getConfig(): array
     {
         return PayPalConfigManager::getInstance()->getConfigHashmap();
     }
@@ -151,7 +151,7 @@ class ApiContext
      *
      * @return string
      */
-    private function generateRequestId()
+    private function generateRequestId(): string
     {
         static $pid = -1;
         static $addr = -1;

@@ -16,7 +16,7 @@ class RefundRequestTest extends TestCase
      * Gets Json String of Object RefundRequest
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"amount":' .AmountTest::getJson() . ',"description":"TestSample","refund_type":"TestSample","refund_source":"TestSample","reason":"TestSample","invoice_number":"TestSample","refund_advice":true,"is_non_platform_transaction":"TestSample"}';
     }
@@ -25,7 +25,7 @@ class RefundRequestTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return RefundRequest
      */
-    public static function getObject()
+    public static function getObject(): RefundRequest
     {
         return new RefundRequest(self::getJson());
     }
@@ -35,17 +35,17 @@ class RefundRequestTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return RefundRequest
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): RefundRequest
     {
         $obj = new RefundRequest(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getAmount());
-        $this->assertNotNull($obj->getDescription());
-        $this->assertNotNull($obj->getRefundSource());
-        $this->assertNotNull($obj->getReason());
-        $this->assertNotNull($obj->getInvoiceNumber());
-        $this->assertNotNull($obj->getRefundAdvice());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getAmount());
+        self::assertNotNull($obj->getDescription());
+        self::assertNotNull($obj->getRefundSource());
+        self::assertNotNull($obj->getReason());
+        self::assertNotNull($obj->getInvoiceNumber());
+        self::assertNotNull($obj->getRefundAdvice());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -53,14 +53,14 @@ class RefundRequestTest extends TestCase
      * @depends testSerializationDeserialization
      * @param RefundRequest $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getAmount(), AmountTest::getObject());
-        $this->assertEquals($obj->getDescription(), "TestSample");
-        $this->assertEquals($obj->getRefundSource(), "TestSample");
-        $this->assertEquals($obj->getReason(), "TestSample");
-        $this->assertEquals($obj->getInvoiceNumber(), "TestSample");
-        $this->assertEquals($obj->getRefundAdvice(), true);
+        self::assertEquals($obj->getAmount(), AmountTest::getObject());
+        self::assertEquals($obj->getDescription(), "TestSample");
+        self::assertEquals($obj->getRefundSource(), "TestSample");
+        self::assertEquals($obj->getReason(), "TestSample");
+        self::assertEquals($obj->getInvoiceNumber(), "TestSample");
+        self::assertEquals($obj->getRefundAdvice(), true);
     }
 
 

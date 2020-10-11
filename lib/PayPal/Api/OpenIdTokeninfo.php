@@ -26,7 +26,7 @@ class OpenIdTokeninfo extends PayPalResourceModel
      * @param string $scope
      * @return self
      */
-    public function setScope($scope)
+    public function setScope($scope): self
     {
         $this->scope = $scope;
         return $this;
@@ -37,7 +37,7 @@ class OpenIdTokeninfo extends PayPalResourceModel
      *
      * @return string
      */
-    public function getScope()
+    public function getScope(): string
     {
         return $this->scope;
     }
@@ -48,7 +48,7 @@ class OpenIdTokeninfo extends PayPalResourceModel
      * @param string $access_token
      * @return self
      */
-    public function setAccessToken($access_token)
+    public function setAccessToken($access_token): self
     {
         $this->access_token = $access_token;
         return $this;
@@ -59,7 +59,7 @@ class OpenIdTokeninfo extends PayPalResourceModel
      *
      * @return string
      */
-    public function getAccessToken()
+    public function getAccessToken(): string
     {
         return $this->access_token;
     }
@@ -70,7 +70,7 @@ class OpenIdTokeninfo extends PayPalResourceModel
      * @param string $refresh_token
      * @return self
      */
-    public function setRefreshToken($refresh_token)
+    public function setRefreshToken($refresh_token): self
     {
         $this->refresh_token = $refresh_token;
         return $this;
@@ -81,7 +81,7 @@ class OpenIdTokeninfo extends PayPalResourceModel
      *
      * @return string
      */
-    public function getRefreshToken()
+    public function getRefreshToken(): string
     {
         return $this->refresh_token;
     }
@@ -92,7 +92,7 @@ class OpenIdTokeninfo extends PayPalResourceModel
      * @param string $token_type
      * @return self
      */
-    public function setTokenType($token_type)
+    public function setTokenType($token_type): self
     {
         $this->token_type = $token_type;
         return $this;
@@ -103,7 +103,7 @@ class OpenIdTokeninfo extends PayPalResourceModel
      *
      * @return string
      */
-    public function getTokenType()
+    public function getTokenType(): string
     {
         return $this->token_type;
     }
@@ -114,7 +114,7 @@ class OpenIdTokeninfo extends PayPalResourceModel
      * @param string $id_token
      * @return self
      */
-    public function setIdToken($id_token)
+    public function setIdToken($id_token): self
     {
         $this->id_token = $id_token;
         return $this;
@@ -125,7 +125,7 @@ class OpenIdTokeninfo extends PayPalResourceModel
      *
      * @return string
      */
-    public function getIdToken()
+    public function getIdToken(): string
     {
         return $this->id_token;
     }
@@ -136,7 +136,7 @@ class OpenIdTokeninfo extends PayPalResourceModel
      * @param integer $expires_in
      * @return self
      */
-    public function setExpiresIn($expires_in)
+    public function setExpiresIn($expires_in): self
     {
         $this->expires_in = $expires_in;
         return $this;
@@ -147,7 +147,7 @@ class OpenIdTokeninfo extends PayPalResourceModel
      *
      * @return integer
      */
-    public function getExpiresIn()
+    public function getExpiresIn(): int
     {
         return $this->expires_in;
     }
@@ -171,7 +171,7 @@ class OpenIdTokeninfo extends PayPalResourceModel
      * @param PayPalRestCall $restCall
      * @return OpenIdTokeninfo
      */
-    public static function createFromAuthorizationCode($params, $clientId = null, $clientSecret = null, $apiContext = null, $restCall = null)
+    public static function createFromAuthorizationCode($params, $clientId = null, $clientSecret = null, $apiContext = null, $restCall = null): OpenIdTokeninfo
     {
         static $allowedParams = array('grant_type' => 1, 'code' => 1, 'redirect_uri' => 1);
 
@@ -222,7 +222,7 @@ class OpenIdTokeninfo extends PayPalResourceModel
      * @param PayPalRestCall $restCall
      * @return OpenIdTokeninfo
      */
-    public function createFromRefreshToken($params, $apiContext = null, $restCall = null)
+    public function createFromRefreshToken($params, $apiContext = null, $restCall = null): OpenIdTokeninfo
     {
         static $allowedParams = array('grant_type' => 1, 'refresh_token' => 1, 'scope' => 1);
         $apiContext = $apiContext ? $apiContext : new ApiContext(self::$credential);
@@ -234,8 +234,8 @@ class OpenIdTokeninfo extends PayPalResourceModel
             $params['refresh_token'] = $this->getRefreshToken();
         }
 
-        $clientId = isset($params['client_id']) ? $params['client_id'] : $apiContext->getCredential()->getClientId();
-        $clientSecret = isset($params['client_secret']) ? $params['client_secret'] : $apiContext->getCredential()->getClientSecret();
+        $clientId = $params['client_id'] ?? $apiContext->getCredential()->getClientId();
+        $clientSecret = $params['client_secret'] ?? $apiContext->getCredential()->getClientSecret();
 
         $json = self::executeCall(
             "/v1/identity/openidconnect/tokenservice",

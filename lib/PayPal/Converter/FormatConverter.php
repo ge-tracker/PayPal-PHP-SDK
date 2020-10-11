@@ -11,7 +11,7 @@ class FormatConverter
      * @param $formatter
      * @return string
      */
-    public static function format($value, $formatter)
+    public static function format($value, $formatter): string
     {
         return sprintf($formatter, $value);
     }
@@ -25,7 +25,7 @@ class FormatConverter
      * @param int $decimals
      * @return null|string
      */
-    public static function formatToNumber($value, $decimals = 2)
+    public static function formatToNumber($value, $decimals = 2): ?string
     {
         if (trim($value) != null) {
             return number_format($value, $decimals, '.', '');
@@ -43,7 +43,7 @@ class FormatConverter
      * @param null $currency
      * @return null|string
      */
-    public static function formatToPrice($value, $currency = null)
+    public static function formatToPrice($value, $currency = null): ?string
     {
         $decimals = 2;
         $currencyDecimals = array('JPY' => 0, 'TWD' => 0, 'HUF' => 0);

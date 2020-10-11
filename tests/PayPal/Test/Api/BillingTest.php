@@ -16,7 +16,7 @@ class BillingTest extends TestCase
      * Gets Json String of Object Billing
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"billing_agreement_id":"TestSample"}';
     }
@@ -25,7 +25,7 @@ class BillingTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return Billing
      */
-    public static function getObject()
+    public static function getObject(): Billing
     {
         return new Billing(self::getJson());
     }
@@ -35,12 +35,12 @@ class BillingTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return Billing
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): Billing
     {
         $obj = new Billing(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getBillingAgreementId());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getBillingAgreementId());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -48,8 +48,8 @@ class BillingTest extends TestCase
      * @depends testSerializationDeserialization
      * @param Billing $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getBillingAgreementId(), "TestSample");
+        self::assertEquals($obj->getBillingAgreementId(), "TestSample");
     }
 }

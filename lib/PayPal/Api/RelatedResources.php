@@ -23,10 +23,10 @@ class RelatedResources extends PayPalModel
      * Sale transaction
      *
      * @param \PayPal\Api\Sale $sale
-     * 
+     *
      * @return $this
      */
-    public function setSale($sale)
+    public function setSale($sale): self
     {
         $this->sale = $sale;
         return $this;
@@ -37,7 +37,7 @@ class RelatedResources extends PayPalModel
      *
      * @return \PayPal\Api\Sale
      */
-    public function getSale()
+    public function getSale(): Sale
     {
         return $this->sale;
     }
@@ -46,10 +46,10 @@ class RelatedResources extends PayPalModel
      * Authorization transaction
      *
      * @param \PayPal\Api\Authorization $authorization
-     * 
+     *
      * @return $this
      */
-    public function setAuthorization($authorization)
+    public function setAuthorization($authorization): self
     {
         $this->authorization = $authorization;
         return $this;
@@ -60,7 +60,7 @@ class RelatedResources extends PayPalModel
      *
      * @return \PayPal\Api\Authorization
      */
-    public function getAuthorization()
+    public function getAuthorization(): Authorization
     {
         return $this->authorization;
     }
@@ -69,10 +69,10 @@ class RelatedResources extends PayPalModel
      * Order transaction
      *
      * @param \PayPal\Api\Order $order
-     * 
+     *
      * @return $this
      */
-    public function setOrder($order)
+    public function setOrder($order): self
     {
         $this->order = $order;
         return $this;
@@ -83,7 +83,7 @@ class RelatedResources extends PayPalModel
      *
      * @return \PayPal\Api\Order
      */
-    public function getOrder()
+    public function getOrder(): Order
     {
         return $this->order;
     }
@@ -92,10 +92,10 @@ class RelatedResources extends PayPalModel
      * Capture transaction
      *
      * @param \PayPal\Api\Capture $capture
-     * 
+     *
      * @return $this
      */
-    public function setCapture($capture)
+    public function setCapture($capture): self
     {
         $this->capture = $capture;
         return $this;
@@ -106,7 +106,7 @@ class RelatedResources extends PayPalModel
      *
      * @return \PayPal\Api\Capture
      */
-    public function getCapture()
+    public function getCapture(): Capture
     {
         return $this->capture;
     }
@@ -115,10 +115,10 @@ class RelatedResources extends PayPalModel
      * Refund transaction
      *
      * @param \PayPal\Api\Refund $refund
-     * 
+     *
      * @return $this
      */
-    public function setRefund($refund)
+    public function setRefund($refund): self
     {
         $this->refund = $refund;
         return $this;
@@ -129,7 +129,7 @@ class RelatedResources extends PayPalModel
      *
      * @return \PayPal\Api\Refund
      */
-    public function getRefund()
+    public function getRefund(): Refund
     {
         return $this->refund;
     }

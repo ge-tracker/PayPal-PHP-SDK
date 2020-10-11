@@ -11,7 +11,7 @@ class SimpleModelTestClass extends PayPalModel
      * @param string $field1
      * @return self
      */
-    public function setField1($field1)
+    public function setField1($field1): self
     {
         $this->field1 = $field1;
         return $this;
@@ -22,7 +22,7 @@ class SimpleModelTestClass extends PayPalModel
      * @access public
      * @return string
      */
-    public function getField1()
+    public function getField1(): string
     {
         return $this->field1;
     }
@@ -33,7 +33,7 @@ class SimpleModelTestClass extends PayPalModel
      * @param string $field2
      * @return self
      */
-    public function setField2($field2)
+    public function setField2($field2): self
     {
         $this->field2 = $field2;
         return $this;
@@ -44,7 +44,7 @@ class SimpleModelTestClass extends PayPalModel
      * @access public
      * @return string
      */
-    public function getField2()
+    public function getField2(): string
     {
         return $this->field2;
     }
@@ -59,7 +59,7 @@ class ContainerModelTestClass extends PayPalModel
      * @access public
      * @param string $field1
      */
-    public function setField1($field1)
+    public function setField1($field1): \ContainerModelTestClass
     {
         $this->field1 = $field1;
         return $this;
@@ -70,7 +70,7 @@ class ContainerModelTestClass extends PayPalModel
      * @access public
      * @return string
      */
-    public function getField1()
+    public function getField1(): string
     {
         return $this->field1;
     }
@@ -80,7 +80,7 @@ class ContainerModelTestClass extends PayPalModel
      * @access public
      * @param SimpleModelTestClass $field1
      */
-    public function setNested1($nested1)
+    public function setNested1($nested1): \ContainerModelTestClass
     {
         $this->nested1 = $nested1;
         return $this;
@@ -91,7 +91,7 @@ class ContainerModelTestClass extends PayPalModel
      * @access public
      * @return SimpleModelTestClass
      */
-    public function getNested1()
+    public function getNested1(): \SimpleModelTestClass
     {
         return $this->nested1;
     }
@@ -105,7 +105,7 @@ class ListModelTestClass extends PayPalModel
      * @access public
      * @param string $list1
      */
-    public function setList1($list1)
+    public function setList1($list1): void
     {
         $this->list1 = $list1;
     }
@@ -115,7 +115,7 @@ class ListModelTestClass extends PayPalModel
      * @access public
      * @return string
      */
-    public function getList1()
+    public function getList1(): string
     {
         return $this->list1;
     }
@@ -125,7 +125,7 @@ class ListModelTestClass extends PayPalModel
      * @access public
      * @param SimpleModelTestClass $list2 array of SimpleModelTestClass
      */
-    public function setList2($list2)
+    public function setList2($list2): \ListModelTestClass
     {
         $this->list2 = $list2;
         return $this;
@@ -136,7 +136,7 @@ class ListModelTestClass extends PayPalModel
      * @access public
      * @return SimpleModelTestClass array of SimpleModelTestClass
      */
-    public function getList2()
+    public function getList2(): \SimpleModelTestClass
     {
         return $this->list2;
     }
@@ -152,38 +152,35 @@ class PayPalModelTest extends TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
-    {
+    protected function setUp(): void    {
     }
 
     /**
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
     }
 
     /**
-     * @test
      */
-    public function testSimpleConversion()
+    public function testSimpleConversion(): void
     {
         $o = new SimpleModelTestClass();
         $o->setField1('value 1');
         $o->setField2("value 2");
 
-        $this->assertEquals('{"field1":"value 1","field2":"value 2"}', $o->toJSON());
+        self::assertEquals('{"field1":"value 1","field2":"value 2"}', $o->toJSON());
 
         $oCopy = new SimpleModelTestClass();
         $oCopy->fromJson($o->toJSON());
-        $this->assertEquals($o, $oCopy);
+        self::assertEquals($o, $oCopy);
     }
 
     /**
-     * @test
      */
-    public function testEmptyObject()
+    public function testEmptyObject(): void
     {
         $child = new SimpleModelTestClass();
         $child->setField1(null);
@@ -192,35 +189,33 @@ class PayPalModelTest extends TestCase
         $parent->setField1("parent");
         $parent->setNested1($child);
 
-        $this->assertEquals('{"field1":"parent","nested1":{}}',
+        self::assertEquals('{"field1":"parent","nested1":{}}',
             $parent->toJSON());
 
         $parentCopy = new ContainerModelTestClass();
         $parentCopy->fromJson($parent->toJSON());
-        $this->assertEquals($parent, $parentCopy);
+        self::assertEquals($parent, $parentCopy);
     }
 
     /**
-     * @test
      */
-    public function testSpecialChars()
+    public function testSpecialChars(): void
     {
         $o = new SimpleModelTestClass();
         $o->setField1('value "1');
         $o->setField2("value 2");
 
-        $this->assertEquals('{"field1":"value \"1","field2":"value 2"}', $o->toJSON());
+        self::assertEquals('{"field1":"value \"1","field2":"value 2"}', $o->toJSON());
 
         $oCopy = new SimpleModelTestClass();
         $oCopy->fromJson($o->toJSON());
-        $this->assertEquals($o, $oCopy);
+        self::assertEquals($o, $oCopy);
     }
 
 
     /**
-     * @test
      */
-    public function testNestedConversion()
+    public function testNestedConversion(): void
     {
         $child = new SimpleModelTestClass();
         $child->setField1('value 1');
@@ -230,19 +225,18 @@ class PayPalModelTest extends TestCase
         $parent->setField1("parent");
         $parent->setNested1($child);
 
-        $this->assertEquals('{"field1":"parent","nested1":{"field1":"value 1","field2":"value 2"}}',
+        self::assertEquals('{"field1":"parent","nested1":{"field1":"value 1","field2":"value 2"}}',
             $parent->toJSON());
 
         $parentCopy = new ContainerModelTestClass();
         $parentCopy->fromJson($parent->toJSON());
-        $this->assertEquals($parent, $parentCopy);
+        self::assertEquals($parent, $parentCopy);
     }
 
 
     /**
-     * @test
      */
-    public function testListConversion()
+    public function testListConversion(): void
     {
         $c1 = new SimpleModelTestClass();
         $c1->setField1("a")->setField2('value');
@@ -256,10 +250,10 @@ class PayPalModelTest extends TestCase
 
         $parentCopy = new ListModelTestClass();
         $parentCopy->fromJson($parent->toJSON());
-        $this->assertEquals($parent, $parentCopy);
+        self::assertEquals($parent, $parentCopy);
     }
 
-    public function EmptyNullProvider()
+    public function EmptyNullProvider(): array
     {
         return array(
             array(0, true),
@@ -276,14 +270,14 @@ class PayPalModelTest extends TestCase
      * @param string|null $field2
      * @param bool $matches
      */
-    public function testEmptyNullConversion($field2, $matches)
+    public function testEmptyNullConversion($field2, $matches): void
     {
         $c1 = new SimpleModelTestClass();
         $c1->setField1("a")->setField2($field2);
-        $this->assertNotSame(strpos($c1->toJSON(), "field2"), !$matches);
+        self::assertNotSame(strpos($c1->toJSON(), "field2"), !$matches);
     }
 
-    public function getProvider()
+    public function getProvider(): array
     {
         return array(
             array('[[]]', 1, array(array())),
@@ -312,7 +306,7 @@ class PayPalModelTest extends TestCase
         );
     }
 
-    public function getInvalidProvider()
+    public function getInvalidProvider(): array
     {
         return array(
             array('{]'),
@@ -326,14 +320,14 @@ class PayPalModelTest extends TestCase
      * @param int $count
      * @param mixed $expected
      */
-    public function testGetList($input, $count, $expected)
+    public function testGetList($input, $count, $expected): void
     {
         $result = PayPalModel::getList($input);
-        $this->assertEquals($expected, $result);
+        self::assertEquals($expected, $result);
         if ($input) {
-            $this->assertNotNull($result);
+            self::assertNotNull($result);
             $this->assertInternalType('array', $result);
-            $this->assertCount($count, $result);
+            self::assertCount($count, $result);
         }
     }
 
@@ -343,7 +337,7 @@ class PayPalModelTest extends TestCase
      * @expectedExceptionMessage Invalid JSON String
      * @param string|null $input
      */
-    public function testGetListInvalidInput($input)
+    public function testGetListInvalidInput($input): void
     {
         $result = PayPalModel::getList($input);
     }

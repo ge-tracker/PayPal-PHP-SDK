@@ -26,10 +26,10 @@ class Payer extends PayPalModel
      * Valid Values: ["credit_card", "paypal"]
      *
      * @param string $payment_method
-     * 
+     *
      * @return $this
      */
-    public function setPaymentMethod($payment_method)
+    public function setPaymentMethod($payment_method): self
     {
         $this->payment_method = $payment_method;
         return $this;
@@ -40,7 +40,7 @@ class Payer extends PayPalModel
      *
      * @return string
      */
-    public function getPaymentMethod()
+    public function getPaymentMethod(): string
     {
         return $this->payment_method;
     }
@@ -50,10 +50,10 @@ class Payer extends PayPalModel
      * Valid Values: ["VERIFIED", "UNVERIFIED"]
      *
      * @param string $status
-     * 
+     *
      * @return $this
      */
-    public function setStatus($status)
+    public function setStatus($status): self
     {
         $this->status = $status;
         return $this;
@@ -64,7 +64,7 @@ class Payer extends PayPalModel
      *
      * @return string
      */
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->status;
     }
@@ -74,10 +74,10 @@ class Payer extends PayPalModel
      * Valid Values: ["BUSINESS", "PERSONAL", "PREMIER"]
      * @deprecated Not publicly available
      * @param string $account_type
-     * 
+     *
      * @return $this
      */
-    public function setAccountType($account_type)
+    public function setAccountType($account_type): self
     {
         $this->account_type = $account_type;
         return $this;
@@ -88,7 +88,7 @@ class Payer extends PayPalModel
      * @deprecated Not publicly available
      * @return string
      */
-    public function getAccountType()
+    public function getAccountType(): string
     {
         return $this->account_type;
     }
@@ -97,10 +97,10 @@ class Payer extends PayPalModel
      * Duration since the payer established account relationship with PayPal in days.
      * @deprecated Not publicly available
      * @param string $account_age
-     * 
+     *
      * @return $this
      */
-    public function setAccountAge($account_age)
+    public function setAccountAge($account_age): self
     {
         $this->account_age = $account_age;
         return $this;
@@ -111,7 +111,7 @@ class Payer extends PayPalModel
      * @deprecated Not publicly available
      * @return string
      */
-    public function getAccountAge()
+    public function getAccountAge(): string
     {
         return $this->account_age;
     }
@@ -120,10 +120,10 @@ class Payer extends PayPalModel
      * List of funding instruments to fund the payment. 'OneOf' funding_instruments,funding_option_id to be used to identify the specifics of payment method passed.
      *
      * @param \PayPal\Api\FundingInstrument[] $funding_instruments
-     * 
+     *
      * @return $this
      */
-    public function setFundingInstruments($funding_instruments)
+    public function setFundingInstruments($funding_instruments): self
     {
         $this->funding_instruments = $funding_instruments;
         return $this;
@@ -134,7 +134,7 @@ class Payer extends PayPalModel
      *
      * @return \PayPal\Api\FundingInstrument[]
      */
-    public function getFundingInstruments()
+    public function getFundingInstruments(): array
     {
         return $this->funding_instruments;
     }
@@ -145,7 +145,7 @@ class Payer extends PayPalModel
      * @param \PayPal\Api\FundingInstrument $fundingInstrument
      * @return $this
      */
-    public function addFundingInstrument($fundingInstrument)
+    public function addFundingInstrument($fundingInstrument): ?self
     {
         if (!$this->getFundingInstruments()) {
             return $this->setFundingInstruments(array($fundingInstrument));
@@ -162,7 +162,7 @@ class Payer extends PayPalModel
      * @param \PayPal\Api\FundingInstrument $fundingInstrument
      * @return $this
      */
-    public function removeFundingInstrument($fundingInstrument)
+    public function removeFundingInstrument($fundingInstrument): self
     {
         return $this->setFundingInstruments(
             array_diff($this->getFundingInstruments(), array($fundingInstrument))
@@ -173,10 +173,10 @@ class Payer extends PayPalModel
      * Id of user selected funding option for the payment.'OneOf' funding_instruments,funding_option_id to be used to identify the specifics of payment method passed.
      * @deprecated Not publicly available
      * @param string $funding_option_id
-     * 
+     *
      * @return $this
      */
-    public function setFundingOptionId($funding_option_id)
+    public function setFundingOptionId($funding_option_id): self
     {
         $this->funding_option_id = $funding_option_id;
         return $this;
@@ -187,30 +187,30 @@ class Payer extends PayPalModel
      * @deprecated Not publicly available
      * @return string
      */
-    public function getFundingOptionId()
+    public function getFundingOptionId(): string
     {
         return $this->funding_option_id;
     }
 
     /**
-     * Default funding option available for the payment 
+     * Default funding option available for the payment
      * @deprecated Not publicly available
      * @param \PayPal\Api\FundingOption $funding_option
-     * 
+     *
      * @return $this
      */
-    public function setFundingOption($funding_option)
+    public function setFundingOption($funding_option): self
     {
         $this->funding_option = $funding_option;
         return $this;
     }
 
     /**
-     * Default funding option available for the payment 
+     * Default funding option available for the payment
      * @deprecated Not publicly available
      * @return \PayPal\Api\FundingOption
      */
-    public function getFundingOption()
+    public function getFundingOption(): FundingOption
     {
         return $this->funding_option;
     }
@@ -220,10 +220,10 @@ class Payer extends PayPalModel
      * Valid Values: ["CREDIT", "PAY_UPON_INVOICE"]
      *
      * @param string $external_selected_funding_instrument_type
-     * 
+     *
      * @return $this
      */
-    public function setExternalSelectedFundingInstrumentType($external_selected_funding_instrument_type)
+    public function setExternalSelectedFundingInstrumentType($external_selected_funding_instrument_type): self
     {
         $this->external_selected_funding_instrument_type = $external_selected_funding_instrument_type;
         return $this;
@@ -234,7 +234,7 @@ class Payer extends PayPalModel
      *
      * @return string
      */
-    public function getExternalSelectedFundingInstrumentType()
+    public function getExternalSelectedFundingInstrumentType(): string
     {
         return $this->external_selected_funding_instrument_type;
     }
@@ -243,10 +243,10 @@ class Payer extends PayPalModel
      * Funding option related to default funding option.
      * @deprecated Not publicly available
      * @param \PayPal\Api\FundingOption $related_funding_option
-     * 
+     *
      * @return $this
      */
-    public function setRelatedFundingOption($related_funding_option)
+    public function setRelatedFundingOption($related_funding_option): self
     {
         $this->related_funding_option = $related_funding_option;
         return $this;
@@ -257,30 +257,30 @@ class Payer extends PayPalModel
      * @deprecated Not publicly available
      * @return \PayPal\Api\FundingOption
      */
-    public function getRelatedFundingOption()
+    public function getRelatedFundingOption(): FundingOption
     {
         return $this->related_funding_option;
     }
 
     /**
-     * Information related to the Payer. 
+     * Information related to the Payer.
      *
      * @param \PayPal\Api\PayerInfo $payer_info
-     * 
+     *
      * @return $this
      */
-    public function setPayerInfo($payer_info)
+    public function setPayerInfo($payer_info): self
     {
         $this->payer_info = $payer_info;
         return $this;
     }
 
     /**
-     * Information related to the Payer. 
+     * Information related to the Payer.
      *
      * @return \PayPal\Api\PayerInfo
      */
-    public function getPayerInfo()
+    public function getPayerInfo(): PayerInfo
     {
         return $this->payer_info;
     }

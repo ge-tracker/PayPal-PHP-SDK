@@ -16,7 +16,7 @@ class CreateProfileResponseTest extends TestCase
      * Gets Json String of Object CreateProfileResponse
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return json_encode(json_decode('{"id":"TestSample"}'));
     }
@@ -25,7 +25,7 @@ class CreateProfileResponseTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return CreateProfileResponse
      */
-    public static function getObject()
+    public static function getObject(): CreateProfileResponse
     {
         return new CreateProfileResponse(self::getJson());
     }
@@ -35,12 +35,12 @@ class CreateProfileResponseTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return CreateProfileResponse
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): CreateProfileResponse
     {
         $obj = new CreateProfileResponse(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -48,8 +48,8 @@ class CreateProfileResponseTest extends TestCase
      * @depends testSerializationDeserialization
      * @param CreateProfileResponse $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getId(), "TestSample");
+        self::assertEquals($obj->getId(), "TestSample");
     }
 }

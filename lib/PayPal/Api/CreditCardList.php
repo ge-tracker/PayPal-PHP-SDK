@@ -22,10 +22,10 @@ class CreditCardList extends PayPalResourceModel
      * A list of credit card resources
      *
      * @param \PayPal\Api\CreditCard[] $items
-     * 
+     *
      * @return $this
      */
-    public function setItems($items)
+    public function setItems($items): self
     {
         $this->items = $items;
         return $this;
@@ -36,7 +36,7 @@ class CreditCardList extends PayPalResourceModel
      *
      * @return \PayPal\Api\CreditCard[]
      */
-    public function getItems()
+    public function getItems(): array
     {
         return $this->items;
     }
@@ -47,7 +47,7 @@ class CreditCardList extends PayPalResourceModel
      * @param \PayPal\Api\CreditCard $creditCard
      * @return $this
      */
-    public function addItem($creditCard)
+    public function addItem($creditCard): ?self
     {
         if (!$this->getItems()) {
             return $this->setItems(array($creditCard));
@@ -64,7 +64,7 @@ class CreditCardList extends PayPalResourceModel
      * @param \PayPal\Api\CreditCard $creditCard
      * @return $this
      */
-    public function removeItem($creditCard)
+    public function removeItem($creditCard): self
     {
         return $this->setItems(
             array_diff($this->getItems(), array($creditCard))
@@ -75,10 +75,10 @@ class CreditCardList extends PayPalResourceModel
      * Total number of items present in the given list. Note that the number of items might be larger than the records in the current page.
      *
      * @param int $total_items
-     * 
+     *
      * @return $this
      */
-    public function setTotalItems($total_items)
+    public function setTotalItems($total_items): self
     {
         $this->total_items = $total_items;
         return $this;
@@ -89,7 +89,7 @@ class CreditCardList extends PayPalResourceModel
      *
      * @return int
      */
-    public function getTotalItems()
+    public function getTotalItems(): int
     {
         return $this->total_items;
     }
@@ -98,10 +98,10 @@ class CreditCardList extends PayPalResourceModel
      * Total number of pages that exist, for the total number of items, with the given page size.
      *
      * @param int $total_pages
-     * 
+     *
      * @return $this
      */
-    public function setTotalPages($total_pages)
+    public function setTotalPages($total_pages): self
     {
         $this->total_pages = $total_pages;
         return $this;
@@ -112,7 +112,7 @@ class CreditCardList extends PayPalResourceModel
      *
      * @return int
      */
-    public function getTotalPages()
+    public function getTotalPages(): int
     {
         return $this->total_pages;
     }

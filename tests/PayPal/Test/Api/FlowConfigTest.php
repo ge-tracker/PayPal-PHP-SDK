@@ -17,7 +17,7 @@ class FlowConfigTest extends TestCase
      * Gets Json String of Object FlowConfig
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"landing_page_type":"TestSample","bank_txn_pending_url":"http://www.google.com","user_action":"TestSample","return_uri_http_method":"TestSample"}';
     }
@@ -26,7 +26,7 @@ class FlowConfigTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return FlowConfig
      */
-    public static function getObject()
+    public static function getObject(): FlowConfig
     {
         return new FlowConfig(self::getJson());
     }
@@ -36,15 +36,15 @@ class FlowConfigTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return FlowConfig
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): FlowConfig
     {
         $obj = new FlowConfig(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getLandingPageType());
-        $this->assertNotNull($obj->getBankTxnPendingUrl());
-        $this->assertNotNull($obj->getUserAction());
-        $this->assertNotNull($obj->getReturnUriHttpMethod());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getLandingPageType());
+        self::assertNotNull($obj->getBankTxnPendingUrl());
+        self::assertNotNull($obj->getUserAction());
+        self::assertNotNull($obj->getReturnUriHttpMethod());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -52,19 +52,19 @@ class FlowConfigTest extends TestCase
      * @depends testSerializationDeserialization
      * @param FlowConfig $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getLandingPageType(), "TestSample");
-        $this->assertEquals($obj->getBankTxnPendingUrl(), "http://www.google.com");
-        $this->assertEquals($obj->getUserAction(), "TestSample");
-        $this->assertEquals($obj->getReturnUriHttpMethod(), "TestSample");
+        self::assertEquals($obj->getLandingPageType(), "TestSample");
+        self::assertEquals($obj->getBankTxnPendingUrl(), "http://www.google.com");
+        self::assertEquals($obj->getUserAction(), "TestSample");
+        self::assertEquals($obj->getReturnUriHttpMethod(), "TestSample");
     }
 
     /**
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage BankTxnPendingUrl is not a fully qualified URL
      */
-    public function testUrlValidationForBankTxnPendingUrl()
+    public function testUrlValidationForBankTxnPendingUrl(): void
     {
         $obj = new FlowConfig();
         $obj->setBankTxnPendingUrl(null);

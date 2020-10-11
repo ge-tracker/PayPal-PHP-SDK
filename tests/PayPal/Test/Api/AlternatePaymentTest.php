@@ -16,7 +16,7 @@ class AlternatePaymentTest extends TestCase
      * Gets Json String of Object AlternatePayment
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"alternate_payment_account_id":"TestSample","external_customer_id":"TestSample","alternate_payment_provider_id":"TestSample"}';
     }
@@ -25,7 +25,7 @@ class AlternatePaymentTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return AlternatePayment
      */
-    public static function getObject()
+    public static function getObject(): AlternatePayment
     {
         return new AlternatePayment(self::getJson());
     }
@@ -35,14 +35,14 @@ class AlternatePaymentTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return AlternatePayment
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): AlternatePayment
     {
         $obj = new AlternatePayment(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getAlternatePaymentAccountId());
-        $this->assertNotNull($obj->getExternalCustomerId());
-        $this->assertNotNull($obj->getAlternatePaymentProviderId());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getAlternatePaymentAccountId());
+        self::assertNotNull($obj->getExternalCustomerId());
+        self::assertNotNull($obj->getAlternatePaymentProviderId());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -50,10 +50,10 @@ class AlternatePaymentTest extends TestCase
      * @depends testSerializationDeserialization
      * @param AlternatePayment $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getAlternatePaymentAccountId(), "TestSample");
-        $this->assertEquals($obj->getExternalCustomerId(), "TestSample");
-        $this->assertEquals($obj->getAlternatePaymentProviderId(), "TestSample");
+        self::assertEquals($obj->getAlternatePaymentAccountId(), "TestSample");
+        self::assertEquals($obj->getExternalCustomerId(), "TestSample");
+        self::assertEquals($obj->getAlternatePaymentProviderId(), "TestSample");
     }
 }

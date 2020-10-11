@@ -11,17 +11,17 @@ namespace PayPal\Api;
  *
  * @property \PayPal\Api\RelatedResources related_resources
  */
-class TransactionBase extends CartBase 
+class TransactionBase extends CartBase
 {
     /**
      * List of financial transactions (Sale, Authorization, Capture, Refund) related to the payment.
-     * 
+     *
      *
      * @param \PayPal\Api\RelatedResources[] $related_resources
-     * 
+     *
      * @return $this
      */
-    public function setRelatedResources($related_resources)
+    public function setRelatedResources($related_resources): self
     {
         $this->related_resources = $related_resources;
         return $this;

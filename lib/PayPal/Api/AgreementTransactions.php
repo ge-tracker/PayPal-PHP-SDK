@@ -19,10 +19,10 @@ class AgreementTransactions extends PayPalModel
      * Array of agreement_transaction object.
      *
      * @param \PayPal\Api\AgreementTransaction[] $agreement_transaction_list
-     * 
+     *
      * @return $this
      */
-    public function setAgreementTransactionList($agreement_transaction_list)
+    public function setAgreementTransactionList($agreement_transaction_list): self
     {
         $this->agreement_transaction_list = $agreement_transaction_list;
         return $this;
@@ -33,7 +33,7 @@ class AgreementTransactions extends PayPalModel
      *
      * @return \PayPal\Api\AgreementTransaction[]
      */
-    public function getAgreementTransactionList()
+    public function getAgreementTransactionList(): array
     {
         return $this->agreement_transaction_list;
     }
@@ -44,7 +44,7 @@ class AgreementTransactions extends PayPalModel
      * @param \PayPal\Api\AgreementTransaction $agreementTransaction
      * @return $this
      */
-    public function addAgreementTransactionList($agreementTransaction)
+    public function addAgreementTransactionList($agreementTransaction): ?self
     {
         if (!$this->getAgreementTransactionList()) {
             return $this->setAgreementTransactionList(array($agreementTransaction));
@@ -61,7 +61,7 @@ class AgreementTransactions extends PayPalModel
      * @param \PayPal\Api\AgreementTransaction $agreementTransaction
      * @return $this
      */
-    public function removeAgreementTransactionList($agreementTransaction)
+    public function removeAgreementTransactionList($agreementTransaction): self
     {
         return $this->setAgreementTransactionList(
             array_diff($this->getAgreementTransactionList(), array($agreementTransaction))

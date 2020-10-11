@@ -57,7 +57,7 @@ class PayPalLogger extends AbstractLogger
         $this->initialize();
     }
 
-    public function initialize()
+    public function initialize(): void
     {
         $config = PayPalConfigManager::getInstance()->getConfigHashmap();
         if (!empty($config)) {

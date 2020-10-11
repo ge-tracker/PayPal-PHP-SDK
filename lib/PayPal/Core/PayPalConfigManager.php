@@ -49,7 +49,7 @@ class PayPalConfigManager
      *
      * @return $this
      */
-    public static function getInstance()
+    public static function getInstance(): self
     {
         if (!isset(self::$instance)) {
             self::$instance = new self();
@@ -63,7 +63,7 @@ class PayPalConfigManager
      * @param string $fileName
      * @return $this
      */
-    public function addConfigFromIni($fileName)
+    public function addConfigFromIni($fileName): self
     {
         if ($configs = parse_ini_file($fileName)) {
             $this->addConfigs($configs);
@@ -79,7 +79,7 @@ class PayPalConfigManager
      * @param array $configs
      * @return $this
      */
-    public function addConfigs($configs = array())
+    public function addConfigs($configs = array()): self
     {
         $this->configs = $configs + $this->configs;
         return $this;
@@ -93,7 +93,7 @@ class PayPalConfigManager
      * @param string $searchKey
      * @return array
      */
-    public function get($searchKey)
+    public function get($searchKey): ?array
     {
         if (array_key_exists($searchKey, $this->configs)) {
             return $this->configs[$searchKey];
@@ -144,7 +144,7 @@ class PayPalConfigManager
     /**
      * returns the config file hashmap
      */
-    public function getConfigHashmap()
+    public function getConfigHashmap(): array
     {
         return $this->configs;
     }

@@ -16,7 +16,7 @@ class ShippingCostTest extends TestCase
      * Gets Json String of Object ShippingCost
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"amount":' .CurrencyTest::getJson() . ',"tax":' .TaxTest::getJson() . '}';
     }
@@ -25,7 +25,7 @@ class ShippingCostTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return ShippingCost
      */
-    public static function getObject()
+    public static function getObject(): ShippingCost
     {
         return new ShippingCost(self::getJson());
     }
@@ -35,13 +35,13 @@ class ShippingCostTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return ShippingCost
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): ShippingCost
     {
         $obj = new ShippingCost(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getAmount());
-        $this->assertNotNull($obj->getTax());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getAmount());
+        self::assertNotNull($obj->getTax());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -49,9 +49,9 @@ class ShippingCostTest extends TestCase
      * @depends testSerializationDeserialization
      * @param ShippingCost $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getAmount(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getTax(), TaxTest::getObject());
+        self::assertEquals($obj->getAmount(), CurrencyTest::getObject());
+        self::assertEquals($obj->getTax(), TaxTest::getObject());
     }
 }

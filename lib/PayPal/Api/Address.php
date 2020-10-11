@@ -18,10 +18,10 @@ class Address extends BaseAddress
      * Phone number in E.123 format. 50 characters max.
      *
      * @param string $phone
-     * 
+     *
      * @return $this
      */
-    public function setPhone($phone)
+    public function setPhone($phone): self
     {
         $this->phone = $phone;
         return $this;
@@ -32,7 +32,7 @@ class Address extends BaseAddress
      *
      * @return string
      */
-    public function getPhone()
+    public function getPhone(): string
     {
         return $this->phone;
     }
@@ -44,7 +44,7 @@ class Address extends BaseAddress
      *
      * @return $this
      */
-    public function setType($type)
+    public function setType($type): self
     {
         $this->type = $type;
         return $this;
@@ -55,7 +55,7 @@ class Address extends BaseAddress
      *
      * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }

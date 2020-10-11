@@ -27,10 +27,10 @@ class PayoutBatchHeader extends PayPalModel
      * The PayPal-generated ID for a batch payout.
      *
      * @param string $payout_batch_id
-     * 
+     *
      * @return $this
      */
-    public function setPayoutBatchId($payout_batch_id)
+    public function setPayoutBatchId($payout_batch_id): self
     {
         $this->payout_batch_id = $payout_batch_id;
         return $this;
@@ -41,7 +41,7 @@ class PayoutBatchHeader extends PayPalModel
      *
      * @return string
      */
-    public function getPayoutBatchId()
+    public function getPayoutBatchId(): string
     {
         return $this->payout_batch_id;
     }
@@ -50,10 +50,10 @@ class PayoutBatchHeader extends PayPalModel
      * The PayPal-generated batch payout status. If the batch payout passes the preliminary checks, the status is `PENDING`.
      *
      * @param string $batch_status
-     * 
+     *
      * @return $this
      */
-    public function setBatchStatus($batch_status)
+    public function setBatchStatus($batch_status): self
     {
         $this->batch_status = $batch_status;
         return $this;
@@ -64,7 +64,7 @@ class PayoutBatchHeader extends PayPalModel
      *
      * @return string
      */
-    public function getBatchStatus()
+    public function getBatchStatus(): string
     {
         return $this->batch_status;
     }
@@ -76,7 +76,7 @@ class PayoutBatchHeader extends PayPalModel
      *
      * @return $this
      */
-    public function setTimeCreated($time_created)
+    public function setTimeCreated($time_created): self
     {
         $this->time_created = $time_created;
         return $this;
@@ -87,7 +87,7 @@ class PayoutBatchHeader extends PayPalModel
      *
      * @return string
      */
-    public function getTimeCreated()
+    public function getTimeCreated(): string
     {
         return $this->time_created;
     }
@@ -99,7 +99,7 @@ class PayoutBatchHeader extends PayPalModel
      *
      * @return $this
      */
-    public function setTimeCompleted($time_completed)
+    public function setTimeCompleted($time_completed): self
     {
         $this->time_completed = $time_completed;
         return $this;
@@ -110,7 +110,7 @@ class PayoutBatchHeader extends PayPalModel
      *
      * @return string
      */
-    public function getTimeCompleted()
+    public function getTimeCompleted(): string
     {
         return $this->time_completed;
     }
@@ -119,10 +119,10 @@ class PayoutBatchHeader extends PayPalModel
      * The original batch header as provided by the payment sender.
      *
      * @param \PayPal\Api\PayoutSenderBatchHeader $sender_batch_header
-     * 
+     *
      * @return $this
      */
-    public function setSenderBatchHeader($sender_batch_header)
+    public function setSenderBatchHeader($sender_batch_header): self
     {
         $this->sender_batch_header = $sender_batch_header;
         return $this;
@@ -133,7 +133,7 @@ class PayoutBatchHeader extends PayPalModel
      *
      * @return \PayPal\Api\PayoutSenderBatchHeader
      */
-    public function getSenderBatchHeader()
+    public function getSenderBatchHeader(): PayoutSenderBatchHeader
     {
         return $this->sender_batch_header;
     }
@@ -145,7 +145,7 @@ class PayoutBatchHeader extends PayPalModel
      *
      * @return $this
      */
-    public function setAmount($amount)
+    public function setAmount($amount): self
     {
         $this->amount = $amount;
         return $this;
@@ -156,7 +156,7 @@ class PayoutBatchHeader extends PayPalModel
      *
      * @return \PayPal\Api\Currency
      */
-    public function getAmount()
+    public function getAmount(): Currency
     {
         return $this->amount;
     }
@@ -168,7 +168,7 @@ class PayoutBatchHeader extends PayPalModel
      *
      * @return $this
      */
-    public function setFees($fees)
+    public function setFees($fees): self
     {
         $this->fees = $fees;
         return $this;
@@ -179,7 +179,7 @@ class PayoutBatchHeader extends PayPalModel
      *
      * @return \PayPal\Api\Currency
      */
-    public function getFees()
+    public function getFees(): Currency
     {
         return $this->fees;
     }
@@ -191,7 +191,7 @@ class PayoutBatchHeader extends PayPalModel
      *
      * @return $this
      */
-    public function setErrors($errors)
+    public function setErrors($errors): self
     {
         $this->errors = $errors;
         return $this;
@@ -202,7 +202,7 @@ class PayoutBatchHeader extends PayPalModel
      *
      * @return \PayPal\Api\Error
      */
-    public function getErrors()
+    public function getErrors(): Error
     {
         return $this->errors;
     }
@@ -211,10 +211,10 @@ class PayoutBatchHeader extends PayPalModel
      * Sets Links
      *
      * @param \PayPal\Api\Links[] $links
-     * 
+     *
      * @return $this
      */
-    public function setLinks($links)
+    public function setLinks($links): self
     {
         $this->links = $links;
         return $this;
@@ -225,7 +225,7 @@ class PayoutBatchHeader extends PayPalModel
      *
      * @return \PayPal\Api\Links[]
      */
-    public function getLinks()
+    public function getLinks(): array
     {
         return $this->links;
     }
@@ -236,7 +236,7 @@ class PayoutBatchHeader extends PayPalModel
      * @param \PayPal\Api\Links $links
      * @return $this
      */
-    public function addLink($links)
+    public function addLink($links): ?self
     {
         if (!$this->getLinks()) {
             return $this->setLinks(array($links));
@@ -253,7 +253,7 @@ class PayoutBatchHeader extends PayPalModel
      * @param \PayPal\Api\Links $links
      * @return $this
      */
-    public function removeLink($links)
+    public function removeLink($links): self
     {
         return $this->setLinks(
             array_diff($this->getLinks(), array($links))

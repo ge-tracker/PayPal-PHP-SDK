@@ -23,10 +23,10 @@ class CancelNotification extends PayPalModel
      * Subject of the notification.
      *
      * @param string $subject
-     * 
+     *
      * @return $this
      */
-    public function setSubject($subject)
+    public function setSubject($subject): self
     {
         $this->subject = $subject;
         return $this;
@@ -37,7 +37,7 @@ class CancelNotification extends PayPalModel
      *
      * @return string
      */
-    public function getSubject()
+    public function getSubject(): string
     {
         return $this->subject;
     }
@@ -46,10 +46,10 @@ class CancelNotification extends PayPalModel
      * Note to the payer.
      *
      * @param string $note
-     * 
+     *
      * @return $this
      */
-    public function setNote($note)
+    public function setNote($note): self
     {
         $this->note = $note;
         return $this;
@@ -60,7 +60,7 @@ class CancelNotification extends PayPalModel
      *
      * @return string
      */
-    public function getNote()
+    public function getNote(): string
     {
         return $this->note;
     }
@@ -69,10 +69,10 @@ class CancelNotification extends PayPalModel
      * Indicates whether to send a copy of the notification to the merchant.
      *
      * @param bool $send_to_merchant
-     * 
+     *
      * @return $this
      */
-    public function setSendToMerchant($send_to_merchant)
+    public function setSendToMerchant($send_to_merchant): self
     {
         $this->send_to_merchant = $send_to_merchant;
         return $this;
@@ -83,7 +83,7 @@ class CancelNotification extends PayPalModel
      *
      * @return bool
      */
-    public function getSendToMerchant()
+    public function getSendToMerchant(): bool
     {
         return $this->send_to_merchant;
     }
@@ -92,10 +92,10 @@ class CancelNotification extends PayPalModel
      * Indicates whether to send a copy of the notification to the payer.
      *
      * @param bool $send_to_payer
-     * 
+     *
      * @return $this
      */
-    public function setSendToPayer($send_to_payer)
+    public function setSendToPayer($send_to_payer): self
     {
         $this->send_to_payer = $send_to_payer;
         return $this;
@@ -106,7 +106,7 @@ class CancelNotification extends PayPalModel
      *
      * @return bool
      */
-    public function getSendToPayer()
+    public function getSendToPayer(): bool
     {
         return $this->send_to_payer;
     }
@@ -115,10 +115,10 @@ class CancelNotification extends PayPalModel
      * Applicable for invoices created with Cc emails. If this field is not in the body, all the cc email addresses added as part of the invoice shall be notified else this field can be used to limit the list of email addresses. Note: additional email addresses are not supported.
      *
      * @param string[] $cc_emails
-     * 
+     *
      * @return $this
      */
-    public function setCcEmails($cc_emails)
+    public function setCcEmails($cc_emails): self
     {
         $this->cc_emails = $cc_emails;
         return $this;
@@ -129,7 +129,7 @@ class CancelNotification extends PayPalModel
      *
      * @return string[]
      */
-    public function getCcEmails()
+    public function getCcEmails(): array
     {
         return $this->cc_emails;
     }
@@ -140,7 +140,7 @@ class CancelNotification extends PayPalModel
      * @param string $string
      * @return $this
      */
-    public function addCcEmail($string)
+    public function addCcEmail($string): ?self
     {
         if (!$this->getCcEmails()) {
             return $this->setCcEmails(array($string));
@@ -157,7 +157,7 @@ class CancelNotification extends PayPalModel
      * @param string $string
      * @return $this
      */
-    public function removeCcEmail($string)
+    public function removeCcEmail($string): self
     {
         return $this->setCcEmails(
             array_diff($this->getCcEmails(), array($string))

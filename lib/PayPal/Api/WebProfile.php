@@ -27,7 +27,7 @@ class WebProfile extends PayPalResourceModel
      * The unique ID of the web experience profile.
      *
      * @param string $id
-     * 
+     *
      * @return $this
      */
     public function setId($id)
@@ -50,10 +50,10 @@ class WebProfile extends PayPalResourceModel
      * The web experience profile name. Unique for a specified merchant's profiles.
      *
      * @param string $name
-     * 
+     *
      * @return $this
      */
-    public function setName($name)
+    public function setName($name): self
     {
         $this->name = $name;
         return $this;
@@ -64,7 +64,7 @@ class WebProfile extends PayPalResourceModel
      *
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -73,10 +73,10 @@ class WebProfile extends PayPalResourceModel
      * Indicates whether the profile persists for three hours or permanently. Set to `false` to persist the profile permanently. Set to `true` to persist the profile for three hours.
      *
      * @param bool $temporary
-     * 
+     *
      * @return $this
      */
-    public function setTemporary($temporary)
+    public function setTemporary($temporary): self
     {
         $this->temporary = $temporary;
         return $this;
@@ -87,7 +87,7 @@ class WebProfile extends PayPalResourceModel
      *
      * @return bool
      */
-    public function getTemporary()
+    public function getTemporary(): bool
     {
         return $this->temporary;
     }
@@ -96,10 +96,10 @@ class WebProfile extends PayPalResourceModel
      * Parameters for flow configuration.
      *
      * @param \PayPal\Api\FlowConfig $flow_config
-     * 
+     *
      * @return $this
      */
-    public function setFlowConfig($flow_config)
+    public function setFlowConfig($flow_config): self
     {
         $this->flow_config = $flow_config;
         return $this;
@@ -110,7 +110,7 @@ class WebProfile extends PayPalResourceModel
      *
      * @return \PayPal\Api\FlowConfig
      */
-    public function getFlowConfig()
+    public function getFlowConfig(): FlowConfig
     {
         return $this->flow_config;
     }
@@ -119,10 +119,10 @@ class WebProfile extends PayPalResourceModel
      * Parameters for input fields customization.
      *
      * @param \PayPal\Api\InputFields $input_fields
-     * 
+     *
      * @return $this
      */
-    public function setInputFields($input_fields)
+    public function setInputFields($input_fields): self
     {
         $this->input_fields = $input_fields;
         return $this;
@@ -133,7 +133,7 @@ class WebProfile extends PayPalResourceModel
      *
      * @return \PayPal\Api\InputFields
      */
-    public function getInputFields()
+    public function getInputFields(): InputFields
     {
         return $this->input_fields;
     }
@@ -142,10 +142,10 @@ class WebProfile extends PayPalResourceModel
      * Parameters for style and presentation.
      *
      * @param \PayPal\Api\Presentation $presentation
-     * 
+     *
      * @return $this
      */
-    public function setPresentation($presentation)
+    public function setPresentation($presentation): self
     {
         $this->presentation = $presentation;
         return $this;
@@ -156,7 +156,7 @@ class WebProfile extends PayPalResourceModel
      *
      * @return \PayPal\Api\Presentation
      */
-    public function getPresentation()
+    public function getPresentation(): Presentation
     {
         return $this->presentation;
     }
@@ -168,7 +168,7 @@ class WebProfile extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return CreateProfileResponse
      */
-    public function create($apiContext = null, $restCall = null)
+    public function create($apiContext = null, $restCall = null): CreateProfileResponse
     {
         $payLoad = $this->toJSON();
         $json = self::executeCall(
@@ -191,7 +191,7 @@ class WebProfile extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return bool
      */
-    public function update($apiContext = null, $restCall = null)
+    public function update($apiContext = null, $restCall = null): bool
     {
         ArgumentValidator::validate($this->getId(), "Id");
         $payLoad = $this->toJSON();
@@ -214,7 +214,7 @@ class WebProfile extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return bool
      */
-    public function partial_update($patch, $apiContext = null, $restCall = null)
+    public function partial_update($patch, $apiContext = null, $restCall = null): bool
     {
         ArgumentValidator::validate($this->getId(), "Id");
         ArgumentValidator::validate($patch, 'patch');
@@ -242,7 +242,7 @@ class WebProfile extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return WebProfile
      */
-    public static function get($profileId, $apiContext = null, $restCall = null)
+    public static function get($profileId, $apiContext = null, $restCall = null): WebProfile
     {
         ArgumentValidator::validate($profileId, 'profileId');
         $payLoad = "";
@@ -266,7 +266,7 @@ class WebProfile extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return WebProfile[]
      */
-    public static function get_list($apiContext = null, $restCall = null)
+    public static function get_list($apiContext = null, $restCall = null): array
     {
         $payLoad = "";
         $json = self::executeCall(
@@ -287,7 +287,7 @@ class WebProfile extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return bool
      */
-    public function delete($apiContext = null, $restCall = null)
+    public function delete($apiContext = null, $restCall = null): bool
     {
         ArgumentValidator::validate($this->getId(), "Id");
         $payLoad = "";

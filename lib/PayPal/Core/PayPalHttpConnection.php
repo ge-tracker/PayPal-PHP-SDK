@@ -56,7 +56,7 @@ class PayPalHttpConnection
      *
      * @return array
      */
-    private function getHttpHeaders()
+    private function getHttpHeaders(): array
     {
         $ret = array();
         foreach ($this->httpConfig->getHeaders() as $k => $v) {
@@ -72,7 +72,8 @@ class PayPalHttpConnection
      * @param string $data
      * @return int
      */
-    protected function parseResponseHeaders($ch, $data) {
+    protected function parseResponseHeaders($ch, $data): int
+    {
         if (!$this->skippedHttpStatusLine) {
             $this->skippedHttpStatusLine = true;
             return strlen($data);
@@ -87,8 +88,8 @@ class PayPalHttpConnection
         if (strpos($trimmedData, ":") == false) {
             return strlen($data);
         }
-        
-        list($key, $value) = explode(":", $trimmedData, 2);
+
+        [$key, $value] = explode(":", $trimmedData, 2);
 
         $key = trim($key);
         $value = trim($value);
@@ -112,7 +113,8 @@ class PayPalHttpConnection
      * @param array $arr
      * @return string
      */
-    protected function implodeArray($arr) {
+    protected function implodeArray($arr): string
+    {
         $retStr = '';
         foreach($arr as $key => $value) {
             $retStr .= $key . ': ' . $value . ', ';

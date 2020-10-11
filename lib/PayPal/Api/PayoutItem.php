@@ -26,10 +26,10 @@ class PayoutItem extends PayPalResourceModel
      * The type of ID that identifies the payment receiver. Value is:<ul><code>EMAIL</code>. Unencrypted email. Value is a string of up to 127 single-byte characters.</li><li><code>PHONE</code>. Unencrypted phone number.<blockquote><strong>Note:</strong> The PayPal sandbox does not support the <code>PHONE</code> recipient type.</blockquote></li><li><code>PAYPAL_ID</code>. Encrypted PayPal account number.</li></ul>If the <code>sender_batch_header</code> includes the <code>recipient_type</code> attribute, any payout item without its own <code>recipient_type</code> attribute uses the <code>recipient_type</code> value from <code>sender_batch_header</code>. If the <code>sender_batch_header</code> omits the <code>recipient_type</code> attribute, each payout item must include its own <code>recipient_type</code> value.
      *
      * @param string $recipient_type
-     * 
+     *
      * @return $this
      */
-    public function setRecipientType($recipient_type)
+    public function setRecipientType($recipient_type): self
     {
         $this->recipient_type = $recipient_type;
         return $this;
@@ -40,7 +40,7 @@ class PayoutItem extends PayPalResourceModel
      *
      * @return string
      */
-    public function getRecipientType()
+    public function getRecipientType(): string
     {
         return $this->recipient_type;
     }
@@ -49,10 +49,10 @@ class PayoutItem extends PayPalResourceModel
      * The amount of money to pay the receiver.
      *
      * @param \PayPal\Api\Currency $amount
-     * 
+     *
      * @return $this
      */
-    public function setAmount($amount)
+    public function setAmount($amount): self
     {
         $this->amount = $amount;
         return $this;
@@ -63,7 +63,7 @@ class PayoutItem extends PayPalResourceModel
      *
      * @return \PayPal\Api\Currency
      */
-    public function getAmount()
+    public function getAmount(): Currency
     {
         return $this->amount;
     }
@@ -72,10 +72,10 @@ class PayoutItem extends PayPalResourceModel
      * Optional. A sender-specified note for notifications. Value is any string value.
      *
      * @param string $note
-     * 
+     *
      * @return $this
      */
-    public function setNote($note)
+    public function setNote($note): self
     {
         $this->note = $note;
         return $this;
@@ -86,7 +86,7 @@ class PayoutItem extends PayPalResourceModel
      *
      * @return string
      */
-    public function getNote()
+    public function getNote(): string
     {
         return $this->note;
     }
@@ -95,10 +95,10 @@ class PayoutItem extends PayPalResourceModel
      * The receiver of the payment. Corresponds to the `recipient_type` value in the request.
      *
      * @param string $receiver
-     * 
+     *
      * @return $this
      */
-    public function setReceiver($receiver)
+    public function setReceiver($receiver): self
     {
         $this->receiver = $receiver;
         return $this;
@@ -109,7 +109,7 @@ class PayoutItem extends PayPalResourceModel
      *
      * @return string
      */
-    public function getReceiver()
+    public function getReceiver(): string
     {
         return $this->receiver;
     }
@@ -118,10 +118,10 @@ class PayoutItem extends PayPalResourceModel
      * A sender-specified ID number. Tracks the batch payout in an accounting system.
      *
      * @param string $sender_item_id
-     * 
+     *
      * @return $this
      */
-    public function setSenderItemId($sender_item_id)
+    public function setSenderItemId($sender_item_id): self
     {
         $this->sender_item_id = $sender_item_id;
         return $this;
@@ -132,7 +132,7 @@ class PayoutItem extends PayPalResourceModel
      *
      * @return string
      */
-    public function getSenderItemId()
+    public function getSenderItemId(): string
     {
         return $this->sender_item_id;
     }
@@ -145,7 +145,7 @@ class PayoutItem extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return PayoutItemDetails
      */
-    public static function get($payoutItemId, $apiContext = null, $restCall = null)
+    public static function get($payoutItemId, $apiContext = null, $restCall = null): PayoutItemDetails
     {
         ArgumentValidator::validate($payoutItemId, 'payoutItemId');
         $payLoad = "";
@@ -170,7 +170,7 @@ class PayoutItem extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return PayoutItemDetails
      */
-    public static function cancel($payoutItemId, $apiContext = null, $restCall = null)
+    public static function cancel($payoutItemId, $apiContext = null, $restCall = null): PayoutItemDetails
     {
         ArgumentValidator::validate($payoutItemId, 'payoutItemId');
         $payLoad = "";

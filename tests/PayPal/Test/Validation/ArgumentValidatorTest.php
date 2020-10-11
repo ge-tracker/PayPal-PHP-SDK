@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 class ArgumentValidatorTest extends TestCase
 {
 
-    public static function positiveProvider()
+    public static function positiveProvider(): array
     {
         return array(
             array("1"),
@@ -21,7 +21,7 @@ class ArgumentValidatorTest extends TestCase
         );
     }
 
-    public static function invalidProvider()
+    public static function invalidProvider(): array
     {
         return array(
             array(null),
@@ -34,9 +34,9 @@ class ArgumentValidatorTest extends TestCase
      *
      * @dataProvider positiveProvider
      */
-    public function testValidate($input)
+    public function testValidate($input): void
     {
-        $this->assertTrue(ArgumentValidator::validate($input, "Name"));
+        self::assertTrue(ArgumentValidator::validate($input, "Name"));
     }
 
     /**
@@ -44,8 +44,8 @@ class ArgumentValidatorTest extends TestCase
      * @dataProvider invalidProvider
      * @expectedException \InvalidArgumentException
      */
-    public function testInvalidDataValidate($input)
+    public function testInvalidDataValidate($input): void
     {
-        $this->assertTrue(ArgumentValidator::validate($input, "Name"));
+        self::assertTrue(ArgumentValidator::validate($input, "Name"));
     }
 }

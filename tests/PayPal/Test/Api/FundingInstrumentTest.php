@@ -16,7 +16,7 @@ class FundingInstrumentTest extends TestCase
      * Gets Json String of Object FundingInstrument
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"credit_card":' . CreditCardTest::getJson() . ',"credit_card_token":' . CreditCardTokenTest::getJson() . ',"payment_card":' . PaymentCardTest::getJson() . ',"bank_account":' . ExtendedBankAccountTest::getJson() . ',"bank_account_token":' . BankTokenTest::getJson() . ',"credit":' . CreditTest::getJson() . ',"incentive":' . IncentiveTest::getJson() . ',"external_funding":' . ExternalFundingTest::getJson() . ',"carrier_account_token":' . CarrierAccountTokenTest::getJson() . ',"carrier_account":' . CarrierAccountTest::getJson() . ',"private_label_card":' . PrivateLabelCardTest::getJson() . ',"billing":' . BillingTest::getJson() . ',"alternate_payment":' . AlternatePaymentTest::getJson() . '}';
     }
@@ -25,7 +25,7 @@ class FundingInstrumentTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return FundingInstrument
      */
-    public static function getObject()
+    public static function getObject(): FundingInstrument
     {
         return new FundingInstrument(self::getJson());
     }
@@ -35,23 +35,23 @@ class FundingInstrumentTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return FundingInstrument
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): FundingInstrument
     {
         $obj = new FundingInstrument(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getCreditCard());
-        $this->assertNotNull($obj->getCreditCardToken());
-        $this->assertNotNull($obj->getPaymentCard());
-        $this->assertNotNull($obj->getBankAccount());
-        $this->assertNotNull($obj->getBankAccountToken());
-        $this->assertNotNull($obj->getCredit());
-        $this->assertNotNull($obj->getIncentive());
-        $this->assertNotNull($obj->getExternalFunding());
-        $this->assertNotNull($obj->getCarrierAccountToken());
-        $this->assertNotNull($obj->getCarrierAccount());
-        $this->assertNotNull($obj->getPrivateLabelCard());
-        $this->assertNotNull($obj->getBilling());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getCreditCard());
+        self::assertNotNull($obj->getCreditCardToken());
+        self::assertNotNull($obj->getPaymentCard());
+        self::assertNotNull($obj->getBankAccount());
+        self::assertNotNull($obj->getBankAccountToken());
+        self::assertNotNull($obj->getCredit());
+        self::assertNotNull($obj->getIncentive());
+        self::assertNotNull($obj->getExternalFunding());
+        self::assertNotNull($obj->getCarrierAccountToken());
+        self::assertNotNull($obj->getCarrierAccount());
+        self::assertNotNull($obj->getPrivateLabelCard());
+        self::assertNotNull($obj->getBilling());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -59,19 +59,19 @@ class FundingInstrumentTest extends TestCase
      * @depends testSerializationDeserialization
      * @param FundingInstrument $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getCreditCard(), CreditCardTest::getObject());
-        $this->assertEquals($obj->getCreditCardToken(), CreditCardTokenTest::getObject());
-        $this->assertEquals($obj->getPaymentCard(), PaymentCardTest::getObject());
-        $this->assertEquals($obj->getBankAccount(), ExtendedBankAccountTest::getObject());
-        $this->assertEquals($obj->getBankAccountToken(), BankTokenTest::getObject());
-        $this->assertEquals($obj->getCredit(), CreditTest::getObject());
-        $this->assertEquals($obj->getIncentive(), IncentiveTest::getObject());
-        $this->assertEquals($obj->getExternalFunding(), ExternalFundingTest::getObject());
-        $this->assertEquals($obj->getCarrierAccountToken(), CarrierAccountTokenTest::getObject());
-        $this->assertEquals($obj->getCarrierAccount(), CarrierAccountTest::getObject());
-        $this->assertEquals($obj->getPrivateLabelCard(), PrivateLabelCardTest::getObject());
-        $this->assertEquals($obj->getBilling(), BillingTest::getObject());
+        self::assertEquals($obj->getCreditCard(), CreditCardTest::getObject());
+        self::assertEquals($obj->getCreditCardToken(), CreditCardTokenTest::getObject());
+        self::assertEquals($obj->getPaymentCard(), PaymentCardTest::getObject());
+        self::assertEquals($obj->getBankAccount(), ExtendedBankAccountTest::getObject());
+        self::assertEquals($obj->getBankAccountToken(), BankTokenTest::getObject());
+        self::assertEquals($obj->getCredit(), CreditTest::getObject());
+        self::assertEquals($obj->getIncentive(), IncentiveTest::getObject());
+        self::assertEquals($obj->getExternalFunding(), ExternalFundingTest::getObject());
+        self::assertEquals($obj->getCarrierAccountToken(), CarrierAccountTokenTest::getObject());
+        self::assertEquals($obj->getCarrierAccount(), CarrierAccountTest::getObject());
+        self::assertEquals($obj->getPrivateLabelCard(), PrivateLabelCardTest::getObject());
+        self::assertEquals($obj->getBilling(), BillingTest::getObject());
     }
 }

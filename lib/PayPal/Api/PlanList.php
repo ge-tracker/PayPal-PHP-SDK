@@ -22,10 +22,10 @@ class PlanList extends PayPalModel
      * Array of billing plans.
      *
      * @param \PayPal\Api\Plan[] $plans
-     * 
+     *
      * @return $this
      */
-    public function setPlans($plans)
+    public function setPlans($plans): self
     {
         $this->plans = $plans;
         return $this;
@@ -36,7 +36,7 @@ class PlanList extends PayPalModel
      *
      * @return \PayPal\Api\Plan[]
      */
-    public function getPlans()
+    public function getPlans(): array
     {
         return $this->plans;
     }
@@ -47,7 +47,7 @@ class PlanList extends PayPalModel
      * @param \PayPal\Api\Plan $plan
      * @return $this
      */
-    public function addPlan($plan)
+    public function addPlan($plan): ?self
     {
         if (!$this->getPlans()) {
             return $this->setPlans(array($plan));
@@ -64,7 +64,7 @@ class PlanList extends PayPalModel
      * @param \PayPal\Api\Plan $plan
      * @return $this
      */
-    public function removePlan($plan)
+    public function removePlan($plan): self
     {
         return $this->setPlans(
             array_diff($this->getPlans(), array($plan))
@@ -75,10 +75,10 @@ class PlanList extends PayPalModel
      * Total number of items.
      *
      * @param string $total_items
-     * 
+     *
      * @return $this
      */
-    public function setTotalItems($total_items)
+    public function setTotalItems($total_items): self
     {
         $this->total_items = $total_items;
         return $this;
@@ -89,7 +89,7 @@ class PlanList extends PayPalModel
      *
      * @return string
      */
-    public function getTotalItems()
+    public function getTotalItems(): string
     {
         return $this->total_items;
     }
@@ -98,10 +98,10 @@ class PlanList extends PayPalModel
      * Total number of pages.
      *
      * @param string $total_pages
-     * 
+     *
      * @return $this
      */
-    public function setTotalPages($total_pages)
+    public function setTotalPages($total_pages): self
     {
         $this->total_pages = $total_pages;
         return $this;
@@ -112,7 +112,7 @@ class PlanList extends PayPalModel
      *
      * @return string
      */
-    public function getTotalPages()
+    public function getTotalPages(): string
     {
         return $this->total_pages;
     }
@@ -121,10 +121,10 @@ class PlanList extends PayPalModel
      * Sets Links
      *
      * @param \PayPal\Api\Links[] $links
-     * 
+     *
      * @return $this
      */
-    public function setLinks($links)
+    public function setLinks($links): self
     {
         $this->links = $links;
         return $this;
@@ -135,7 +135,7 @@ class PlanList extends PayPalModel
      *
      * @return \PayPal\Api\Links[]
      */
-    public function getLinks()
+    public function getLinks(): array
     {
         return $this->links;
     }
@@ -146,7 +146,7 @@ class PlanList extends PayPalModel
      * @param \PayPal\Api\Links $links
      * @return $this
      */
-    public function addLink($links)
+    public function addLink($links): ?self
     {
         if (!$this->getLinks()) {
             return $this->setLinks(array($links));
@@ -163,7 +163,7 @@ class PlanList extends PayPalModel
      * @param \PayPal\Api\Links $links
      * @return $this
      */
-    public function removeLink($links)
+    public function removeLink($links): self
     {
         return $this->setLinks(
             array_diff($this->getLinks(), array($links))

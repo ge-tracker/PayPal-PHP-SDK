@@ -28,10 +28,10 @@ class Details extends PayPalModel
      * Amount of the subtotal of the items. **Required** if line items are specified. 10 characters max, with support for 2 decimal places.
      *
      * @param string|double $subtotal
-     * 
+     *
      * @return $this
      */
-    public function setSubtotal($subtotal)
+    public function setSubtotal($subtotal): self
     {
         NumericValidator::validate($subtotal, "Subtotal");
         $subtotal = FormatConverter::formatToPrice($subtotal);
@@ -44,7 +44,7 @@ class Details extends PayPalModel
      *
      * @return string
      */
-    public function getSubtotal()
+    public function getSubtotal(): string
     {
         return $this->subtotal;
     }
@@ -53,10 +53,10 @@ class Details extends PayPalModel
      * Amount charged for shipping. 10 characters max with support for 2 decimal places.
      *
      * @param string|double $shipping
-     * 
+     *
      * @return $this
      */
-    public function setShipping($shipping)
+    public function setShipping($shipping): self
     {
         NumericValidator::validate($shipping, "Shipping");
         $shipping = FormatConverter::formatToPrice($shipping);
@@ -69,7 +69,7 @@ class Details extends PayPalModel
      *
      * @return string
      */
-    public function getShipping()
+    public function getShipping(): string
     {
         return $this->shipping;
     }
@@ -78,10 +78,10 @@ class Details extends PayPalModel
      * Amount charged for tax. 10 characters max with support for 2 decimal places.
      *
      * @param string|double $tax
-     * 
+     *
      * @return $this
      */
-    public function setTax($tax)
+    public function setTax($tax): self
     {
         NumericValidator::validate($tax, "Tax");
         $tax = FormatConverter::formatToPrice($tax);
@@ -94,7 +94,7 @@ class Details extends PayPalModel
      *
      * @return string
      */
-    public function getTax()
+    public function getTax(): string
     {
         return $this->tax;
     }
@@ -103,10 +103,10 @@ class Details extends PayPalModel
      * Amount being charged for the handling fee. Only supported when the `payment_method` is set to `paypal`.
      *
      * @param string|double $handling_fee
-     * 
+     *
      * @return $this
      */
-    public function setHandlingFee($handling_fee)
+    public function setHandlingFee($handling_fee): self
     {
         NumericValidator::validate($handling_fee, "Handling Fee");
         $handling_fee = FormatConverter::formatToPrice($handling_fee);
@@ -119,7 +119,7 @@ class Details extends PayPalModel
      *
      * @return string
      */
-    public function getHandlingFee()
+    public function getHandlingFee(): string
     {
         return $this->handling_fee;
     }
@@ -128,10 +128,10 @@ class Details extends PayPalModel
      * Amount being discounted for the shipping fee. Only supported when the `payment_method` is set to `paypal`.
      *
      * @param string|double $shipping_discount
-     * 
+     *
      * @return $this
      */
-    public function setShippingDiscount($shipping_discount)
+    public function setShippingDiscount($shipping_discount): self
     {
         NumericValidator::validate($shipping_discount, "Shipping Discount");
         $shipping_discount = FormatConverter::formatToPrice($shipping_discount);
@@ -144,7 +144,7 @@ class Details extends PayPalModel
      *
      * @return string
      */
-    public function getShippingDiscount()
+    public function getShippingDiscount(): string
     {
         return $this->shipping_discount;
     }
@@ -153,10 +153,10 @@ class Details extends PayPalModel
      * Amount being charged for the insurance fee. Only supported when the `payment_method` is set to `paypal`.
      *
      * @param string|double $insurance
-     * 
+     *
      * @return $this
      */
-    public function setInsurance($insurance)
+    public function setInsurance($insurance): self
     {
         NumericValidator::validate($insurance, "Insurance");
         $insurance = FormatConverter::formatToPrice($insurance);
@@ -169,7 +169,7 @@ class Details extends PayPalModel
      *
      * @return string
      */
-    public function getInsurance()
+    public function getInsurance(): string
     {
         return $this->insurance;
     }
@@ -178,10 +178,10 @@ class Details extends PayPalModel
      * Amount being charged as gift wrap fee.
      *
      * @param string|double $gift_wrap
-     * 
+     *
      * @return $this
      */
-    public function setGiftWrap($gift_wrap)
+    public function setGiftWrap($gift_wrap): self
     {
         NumericValidator::validate($gift_wrap, "Gift Wrap");
         $gift_wrap = FormatConverter::formatToPrice($gift_wrap);
@@ -194,7 +194,7 @@ class Details extends PayPalModel
      *
      * @return string
      */
-    public function getGiftWrap()
+    public function getGiftWrap(): string
     {
         return $this->gift_wrap;
     }
@@ -203,10 +203,10 @@ class Details extends PayPalModel
      * Fee charged by PayPal. In case of a refund, this is the fee amount refunded to the original receipient of the payment.
      *
      * @param string|double $fee
-     * 
+     *
      * @return $this
      */
-    public function setFee($fee)
+    public function setFee($fee): self
     {
         NumericValidator::validate($fee, "Fee");
         $fee = FormatConverter::formatToPrice($fee);
@@ -219,7 +219,7 @@ class Details extends PayPalModel
      *
      * @return string
      */
-    public function getFee()
+    public function getFee(): string
     {
         return $this->fee;
     }

@@ -17,7 +17,7 @@ class ErrorDetailsTest extends TestCase
      *
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"field":"TestSample","issue":"TestSample","purchase_unit_reference_id":"TestSample","code":"TestSample"}';
     }
@@ -27,7 +27,7 @@ class ErrorDetailsTest extends TestCase
      *
      * @return ErrorDetails
      */
-    public static function getObject()
+    public static function getObject(): ErrorDetails
     {
         return new ErrorDetails(self::getJson());
     }
@@ -38,15 +38,15 @@ class ErrorDetailsTest extends TestCase
      *
      * @return ErrorDetails
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): ErrorDetails
     {
         $obj = new ErrorDetails(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getField());
-        $this->assertNotNull($obj->getIssue());
-        $this->assertNotNull($obj->getPurchaseUnitReferenceId());
-        $this->assertNotNull($obj->getCode());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getField());
+        self::assertNotNull($obj->getIssue());
+        self::assertNotNull($obj->getPurchaseUnitReferenceId());
+        self::assertNotNull($obj->getCode());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -54,11 +54,11 @@ class ErrorDetailsTest extends TestCase
      * @depends testSerializationDeserialization
      * @param ErrorDetails $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getField(), "TestSample");
-        $this->assertEquals($obj->getIssue(), "TestSample");
-        $this->assertEquals($obj->getPurchaseUnitReferenceId(), "TestSample");
-        $this->assertEquals($obj->getCode(), "TestSample");
+        self::assertEquals($obj->getField(), "TestSample");
+        self::assertEquals($obj->getIssue(), "TestSample");
+        self::assertEquals($obj->getPurchaseUnitReferenceId(), "TestSample");
+        self::assertEquals($obj->getCode(), "TestSample");
     }
 }

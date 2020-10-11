@@ -7,7 +7,7 @@ use PayPal\Common\PayPalModel;
 /**
  * Class InvoiceSearchResponse
  *
- * 
+ *
  *
  * @package PayPal\Api
  *
@@ -20,10 +20,10 @@ class InvoiceSearchResponse extends PayPalModel
      * Total number of invoices.
      *
      * @param int $total_count
-     * 
+     *
      * @return $this
      */
-    public function setTotalCount($total_count)
+    public function setTotalCount($total_count): self
     {
         $this->total_count = $total_count;
         return $this;
@@ -34,7 +34,7 @@ class InvoiceSearchResponse extends PayPalModel
      *
      * @return int
      */
-    public function getTotalCount()
+    public function getTotalCount(): int
     {
         return $this->total_count;
     }
@@ -43,10 +43,10 @@ class InvoiceSearchResponse extends PayPalModel
      * List of invoices belonging to a merchant.
      *
      * @param \PayPal\Api\Invoice[] $invoices
-     * 
+     *
      * @return $this
      */
-    public function setInvoices($invoices)
+    public function setInvoices($invoices): self
     {
         $this->invoices = $invoices;
         return $this;
@@ -57,7 +57,7 @@ class InvoiceSearchResponse extends PayPalModel
      *
      * @return \PayPal\Api\Invoice[]
      */
-    public function getInvoices()
+    public function getInvoices(): array
     {
         return $this->invoices;
     }
@@ -68,7 +68,7 @@ class InvoiceSearchResponse extends PayPalModel
      * @param \PayPal\Api\Invoice $invoice
      * @return $this
      */
-    public function addInvoice($invoice)
+    public function addInvoice($invoice): ?self
     {
         if (!$this->getInvoices()) {
             return $this->setInvoices(array($invoice));
@@ -85,7 +85,7 @@ class InvoiceSearchResponse extends PayPalModel
      * @param \PayPal\Api\Invoice $invoice
      * @return $this
      */
-    public function removeInvoice($invoice)
+    public function removeInvoice($invoice): self
     {
         return $this->setInvoices(
             array_diff($this->getInvoices(), array($invoice))

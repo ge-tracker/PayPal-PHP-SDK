@@ -23,10 +23,10 @@ class DetailedRefund extends Refund
      * free-form field for the use of clients
      *
      * @param string $custom
-     * 
+     *
      * @return $this
      */
-    public function setCustom($custom)
+    public function setCustom($custom): self
     {
         $this->custom = $custom;
         return $this;
@@ -37,7 +37,7 @@ class DetailedRefund extends Refund
      *
      * @return string
      */
-    public function getCustom()
+    public function getCustom(): string
     {
         return $this->custom;
     }
@@ -46,10 +46,10 @@ class DetailedRefund extends Refund
      * Amount refunded to payer of the original transaction, in the current Refund call
      *
      * @param \PayPal\Api\Currency $refund_to_payer
-     * 
+     *
      * @return $this
      */
-    public function setRefundToPayer($refund_to_payer)
+    public function setRefundToPayer($refund_to_payer): self
     {
         $this->refund_to_payer = $refund_to_payer;
         return $this;
@@ -60,7 +60,7 @@ class DetailedRefund extends Refund
      *
      * @return \PayPal\Api\Currency
      */
-    public function getRefundToPayer()
+    public function getRefundToPayer(): Currency
     {
         return $this->refund_to_payer;
     }
@@ -69,10 +69,10 @@ class DetailedRefund extends Refund
      * List of external funding that were refunded by the Refund call. Each external_funding unit should have a unique reference_id
      *
      * @param \PayPal\Api\ExternalFunding[] $refund_to_external_funding
-     * 
+     *
      * @return $this
      */
-    public function setRefundToExternalFunding($refund_to_external_funding)
+    public function setRefundToExternalFunding($refund_to_external_funding): self
     {
         $this->refund_to_external_funding = $refund_to_external_funding;
         return $this;
@@ -83,7 +83,7 @@ class DetailedRefund extends Refund
      *
      * @return \PayPal\Api\ExternalFunding[]
      */
-    public function getRefundToExternalFunding()
+    public function getRefundToExternalFunding(): array
     {
         return $this->refund_to_external_funding;
     }
@@ -92,10 +92,10 @@ class DetailedRefund extends Refund
      * Transaction fee refunded to original recipient of payment.
      *
      * @param \PayPal\Api\Currency $refund_from_transaction_fee
-     * 
+     *
      * @return $this
      */
-    public function setRefundFromTransactionFee($refund_from_transaction_fee)
+    public function setRefundFromTransactionFee($refund_from_transaction_fee): self
     {
         $this->refund_from_transaction_fee = $refund_from_transaction_fee;
         return $this;
@@ -106,7 +106,7 @@ class DetailedRefund extends Refund
      *
      * @return \PayPal\Api\Currency
      */
-    public function getRefundFromTransactionFee()
+    public function getRefundFromTransactionFee(): Currency
     {
         return $this->refund_from_transaction_fee;
     }
@@ -115,10 +115,10 @@ class DetailedRefund extends Refund
      * Amount subtracted from PayPal balance of the original recipient of payment, to make this refund.
      *
      * @param \PayPal\Api\Currency $refund_from_received_amount
-     * 
+     *
      * @return $this
      */
-    public function setRefundFromReceivedAmount($refund_from_received_amount)
+    public function setRefundFromReceivedAmount($refund_from_received_amount): self
     {
         $this->refund_from_received_amount = $refund_from_received_amount;
         return $this;
@@ -129,7 +129,7 @@ class DetailedRefund extends Refund
      *
      * @return \PayPal\Api\Currency
      */
-    public function getRefundFromReceivedAmount()
+    public function getRefundFromReceivedAmount(): Currency
     {
         return $this->refund_from_received_amount;
     }
@@ -138,10 +138,10 @@ class DetailedRefund extends Refund
      * Total amount refunded so far from the original purchase. Say, for example, a buyer makes $100 purchase, the buyer was refunded $20 a week ago and is refunded $30 in this transaction. The gross refund amount is $30 (in this transaction). The total refunded amount is $50.
      *
      * @param \PayPal\Api\Currency $total_refunded_amount
-     * 
+     *
      * @return $this
      */
-    public function setTotalRefundedAmount($total_refunded_amount)
+    public function setTotalRefundedAmount($total_refunded_amount): self
     {
         $this->total_refunded_amount = $total_refunded_amount;
         return $this;
@@ -152,7 +152,7 @@ class DetailedRefund extends Refund
      *
      * @return \PayPal\Api\Currency
      */
-    public function getTotalRefundedAmount()
+    public function getTotalRefundedAmount(): Currency
     {
         return $this->total_refunded_amount;
     }

@@ -20,10 +20,10 @@ class Measurement extends PayPalModel
      * Value this measurement represents.
      *
      * @param string $value
-     * 
+     *
      * @return $this
      */
-    public function setValue($value)
+    public function setValue($value): self
     {
         $this->value = $value;
         return $this;
@@ -34,7 +34,7 @@ class Measurement extends PayPalModel
      *
      * @return string
      */
-    public function getValue()
+    public function getValue(): string
     {
         return $this->value;
     }
@@ -43,10 +43,10 @@ class Measurement extends PayPalModel
      * Unit in which the value is represented.
      *
      * @param string $unit
-     * 
+     *
      * @return $this
      */
-    public function setUnit($unit)
+    public function setUnit($unit): self
     {
         $this->unit = $unit;
         return $this;
@@ -57,7 +57,7 @@ class Measurement extends PayPalModel
      *
      * @return string
      */
-    public function getUnit()
+    public function getUnit(): string
     {
         return $this->unit;
     }

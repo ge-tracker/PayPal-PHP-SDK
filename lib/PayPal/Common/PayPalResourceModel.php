@@ -23,7 +23,7 @@ class PayPalResourceModel extends PayPalModel implements IResource
      *
      * @return $this
      */
-    public function setLinks($links)
+    public function setLinks($links): self
     {
         $this->links = $links;
         return $this;
@@ -34,7 +34,7 @@ class PayPalResourceModel extends PayPalModel implements IResource
      *
      * @return \PayPal\Api\Links[]
      */
-    public function getLinks()
+    public function getLinks(): array
     {
         return $this->links;
     }
@@ -57,7 +57,7 @@ class PayPalResourceModel extends PayPalModel implements IResource
      * @param \PayPal\Api\Links $links
      * @return $this
      */
-    public function addLink($links)
+    public function addLink($links): ?self
     {
         if (!$this->getLinks()) {
             return $this->setLinks(array($links));
@@ -74,7 +74,7 @@ class PayPalResourceModel extends PayPalModel implements IResource
      * @param \PayPal\Api\Links $links
      * @return $this
      */
-    public function removeLink($links)
+    public function removeLink($links): self
     {
         return $this->setLinks(
             array_diff($this->getLinks(), array($links))
@@ -94,7 +94,7 @@ class PayPalResourceModel extends PayPalModel implements IResource
      * @param array $handlers
      * @return string json response of the object
      */
-    protected static function executeCall($url, $method, $payLoad, $headers = array(), $apiContext = null, $restCall = null, $handlers = array('PayPal\Handler\RestHandler'))
+    protected static function executeCall($url, $method, $payLoad, $headers = array(), $apiContext = null, $restCall = null, $handlers = array('PayPal\Handler\RestHandler')): string
     {
         //Initialize the context and rest call object if not provided explicitly
         $apiContext = $apiContext ? $apiContext : new ApiContext(self::$credential);

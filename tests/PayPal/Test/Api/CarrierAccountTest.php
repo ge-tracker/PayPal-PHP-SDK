@@ -16,7 +16,7 @@ class CarrierAccountTest extends TestCase
      * Gets Json String of Object CarrierAccount
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"id":"TestSample","phone_number":"TestSample","external_customer_id":"TestSample","phone_source":"TestSample","country_code":' .CountryCodeTest::getJson() . '}';
     }
@@ -25,7 +25,7 @@ class CarrierAccountTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return CarrierAccount
      */
-    public static function getObject()
+    public static function getObject(): CarrierAccount
     {
         return new CarrierAccount(self::getJson());
     }
@@ -35,16 +35,16 @@ class CarrierAccountTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return CarrierAccount
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): CarrierAccount
     {
         $obj = new CarrierAccount(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getPhoneNumber());
-        $this->assertNotNull($obj->getExternalCustomerId());
-        $this->assertNotNull($obj->getPhoneSource());
-        $this->assertNotNull($obj->getCountryCode());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getPhoneNumber());
+        self::assertNotNull($obj->getExternalCustomerId());
+        self::assertNotNull($obj->getPhoneSource());
+        self::assertNotNull($obj->getCountryCode());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -52,12 +52,12 @@ class CarrierAccountTest extends TestCase
      * @depends testSerializationDeserialization
      * @param CarrierAccount $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getPhoneNumber(), "TestSample");
-        $this->assertEquals($obj->getExternalCustomerId(), "TestSample");
-        $this->assertEquals($obj->getPhoneSource(), "TestSample");
-        $this->assertEquals($obj->getCountryCode(), CountryCodeTest::getObject());
+        self::assertEquals($obj->getId(), "TestSample");
+        self::assertEquals($obj->getPhoneNumber(), "TestSample");
+        self::assertEquals($obj->getExternalCustomerId(), "TestSample");
+        self::assertEquals($obj->getPhoneSource(), "TestSample");
+        self::assertEquals($obj->getCountryCode(), CountryCodeTest::getObject());
     }
 }

@@ -16,7 +16,7 @@ class PlanTest extends TestCase
      * Gets Json String of Object Plan
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"id":"TestSample","name":"TestSample","description":"TestSample","type":"TestSample","state":"TestSample","create_time":"TestSample","update_time":"TestSample","payment_definitions":' .PaymentDefinitionTest::getJson() . ',"terms":' .TermsTest::getJson() . ',"merchant_preferences":' .MerchantPreferencesTest::getJson() . ',"links":' .LinksTest::getJson() . '}';
     }
@@ -25,7 +25,7 @@ class PlanTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return Plan
      */
-    public static function getObject()
+    public static function getObject(): Plan
     {
         return new Plan(self::getJson());
     }
@@ -35,22 +35,22 @@ class PlanTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return Plan
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): Plan
     {
         $obj = new Plan(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getName());
-        $this->assertNotNull($obj->getDescription());
-        $this->assertNotNull($obj->getType());
-        $this->assertNotNull($obj->getState());
-        $this->assertNotNull($obj->getCreateTime());
-        $this->assertNotNull($obj->getUpdateTime());
-        $this->assertNotNull($obj->getPaymentDefinitions());
-        $this->assertNotNull($obj->getTerms());
-        $this->assertNotNull($obj->getMerchantPreferences());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getName());
+        self::assertNotNull($obj->getDescription());
+        self::assertNotNull($obj->getType());
+        self::assertNotNull($obj->getState());
+        self::assertNotNull($obj->getCreateTime());
+        self::assertNotNull($obj->getUpdateTime());
+        self::assertNotNull($obj->getPaymentDefinitions());
+        self::assertNotNull($obj->getTerms());
+        self::assertNotNull($obj->getMerchantPreferences());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -58,101 +58,93 @@ class PlanTest extends TestCase
      * @depends testSerializationDeserialization
      * @param Plan $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getName(), "TestSample");
-        $this->assertEquals($obj->getDescription(), "TestSample");
-        $this->assertEquals($obj->getType(), "TestSample");
-        $this->assertEquals($obj->getState(), "TestSample");
-        $this->assertEquals($obj->getCreateTime(), "TestSample");
-        $this->assertEquals($obj->getUpdateTime(), "TestSample");
-        $this->assertEquals($obj->getPaymentDefinitions(), PaymentDefinitionTest::getObject());
-        $this->assertEquals($obj->getTerms(), TermsTest::getObject());
-        $this->assertEquals($obj->getMerchantPreferences(), MerchantPreferencesTest::getObject());
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals($obj->getId(), "TestSample");
+        self::assertEquals($obj->getName(), "TestSample");
+        self::assertEquals($obj->getDescription(), "TestSample");
+        self::assertEquals($obj->getType(), "TestSample");
+        self::assertEquals($obj->getState(), "TestSample");
+        self::assertEquals($obj->getCreateTime(), "TestSample");
+        self::assertEquals($obj->getUpdateTime(), "TestSample");
+        self::assertEquals($obj->getPaymentDefinitions(), PaymentDefinitionTest::getObject());
+        self::assertEquals($obj->getTerms(), TermsTest::getObject());
+        self::assertEquals($obj->getMerchantPreferences(), MerchantPreferencesTest::getObject());
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 
     /**
      * @dataProvider mockProvider
      * @param Plan $obj
      */
-    public function testGet($obj, $mockApiContext)
+    public function testGet($obj, $mockApiContext): void
     {
         $mockPayPalRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    PlanTest::getJson()
-            ));
+            ->willReturn(PlanTest::getJson());
 
         $result = $obj->get("planId", $mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
      * @param Plan $obj
      */
-    public function testCreate($obj, $mockApiContext)
+    public function testCreate($obj, $mockApiContext): void
     {
         $mockPayPalRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    self::getJson()
-            ));
+            ->willReturn(self::getJson());
 
         $result = $obj->create($mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
      * @param Plan $obj
      */
-    public function testUpdate($obj, $mockApiContext)
+    public function testUpdate($obj, $mockApiContext): void
     {
         $mockPayPalRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    true
-            ));
+            ->willReturn(true);
         $patchRequest = PatchRequestTest::getObject();
 
         $result = $obj->update($patchRequest, $mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
      * @param Plan $obj
      */
-    public function testList($obj, $mockApiContext)
+    public function testList($obj, $mockApiContext): void
     {
         $mockPayPalRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    PlanListTest::getJson()
-            ));
+            ->willReturn(PlanListTest::getJson());
         $params = ParamsTest::getObject();
 
         $result = $obj->all($params, $mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
 
-    public function mockProvider()
+    public function mockProvider(): array
     {
         $obj = self::getObject();
         $mockApiContext = $this->getMockBuilder('ApiContext')

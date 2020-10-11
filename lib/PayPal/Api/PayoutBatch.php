@@ -21,10 +21,10 @@ class PayoutBatch extends PayPalModel
      * A batch header. Includes the generated batch status.
      *
      * @param \PayPal\Api\PayoutBatchHeader $batch_header
-     * 
+     *
      * @return $this
      */
-    public function setBatchHeader($batch_header)
+    public function setBatchHeader($batch_header): self
     {
         $this->batch_header = $batch_header;
         return $this;
@@ -35,7 +35,7 @@ class PayoutBatch extends PayPalModel
      *
      * @return \PayPal\Api\PayoutBatchHeader
      */
-    public function getBatchHeader()
+    public function getBatchHeader(): PayoutBatchHeader
     {
         return $this->batch_header;
     }
@@ -44,10 +44,10 @@ class PayoutBatch extends PayPalModel
      * An array of items in a batch payout.
      *
      * @param \PayPal\Api\PayoutItemDetails[] $items
-     * 
+     *
      * @return $this
      */
-    public function setItems($items)
+    public function setItems($items): self
     {
         $this->items = $items;
         return $this;
@@ -58,7 +58,7 @@ class PayoutBatch extends PayPalModel
      *
      * @return \PayPal\Api\PayoutItemDetails[]
      */
-    public function getItems()
+    public function getItems(): array
     {
         return $this->items;
     }
@@ -69,7 +69,7 @@ class PayoutBatch extends PayPalModel
      * @param \PayPal\Api\PayoutItemDetails $payoutItemDetails
      * @return $this
      */
-    public function addItem($payoutItemDetails)
+    public function addItem($payoutItemDetails): ?self
     {
         if (!$this->getItems()) {
             return $this->setItems(array($payoutItemDetails));
@@ -86,7 +86,7 @@ class PayoutBatch extends PayPalModel
      * @param \PayPal\Api\PayoutItemDetails $payoutItemDetails
      * @return $this
      */
-    public function removeItem($payoutItemDetails)
+    public function removeItem($payoutItemDetails): self
     {
         return $this->setItems(
             array_diff($this->getItems(), array($payoutItemDetails))
@@ -101,7 +101,7 @@ class PayoutBatch extends PayPalModel
      *
      * @return $this
      */
-    public function setLinks($links)
+    public function setLinks($links): self
     {
         $this->links = $links;
         return $this;
@@ -112,7 +112,7 @@ class PayoutBatch extends PayPalModel
      *
      * @return \PayPal\Api\Links[]
      */
-    public function getLinks()
+    public function getLinks(): array
     {
         return $this->links;
     }

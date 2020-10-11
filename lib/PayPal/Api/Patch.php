@@ -23,10 +23,10 @@ class Patch extends PayPalModel
      * Valid Values: ["add", "remove", "replace", "move", "copy", "test"]
      *
      * @param string $op
-     * 
+     *
      * @return $this
      */
-    public function setOp($op)
+    public function setOp($op): self
     {
         $this->op = $op;
         return $this;
@@ -37,7 +37,7 @@ class Patch extends PayPalModel
      *
      * @return string
      */
-    public function getOp()
+    public function getOp(): string
     {
         return $this->op;
     }
@@ -46,10 +46,10 @@ class Patch extends PayPalModel
      * A JSON pointer that references a location in the target document where the operation is performed. A `string` value.
      *
      * @param string $path
-     * 
+     *
      * @return $this
      */
-    public function setPath($path)
+    public function setPath($path): self
     {
         $this->path = $path;
         return $this;
@@ -60,7 +60,7 @@ class Patch extends PayPalModel
      *
      * @return string
      */
-    public function getPath()
+    public function getPath(): string
     {
         return $this->path;
     }
@@ -69,10 +69,10 @@ class Patch extends PayPalModel
      * New value to apply based on the operation.
      *
      * @param mixed $value
-     * 
+     *
      * @return $this
      */
-    public function setValue($value)
+    public function setValue($value): self
     {
         $this->value = $value;
         return $this;
@@ -92,10 +92,10 @@ class Patch extends PayPalModel
      * A string containing a JSON Pointer value that references the location in the target document to move the value from.
      *
      * @param string $from
-     * 
+     *
      * @return $this
      */
-    public function setFrom($from)
+    public function setFrom($from): self
     {
         $this->from = $from;
         return $this;
@@ -106,7 +106,7 @@ class Patch extends PayPalModel
      *
      * @return string
      */
-    public function getFrom()
+    public function getFrom(): string
     {
         return $this->from;
     }

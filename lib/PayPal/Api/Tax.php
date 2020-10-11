@@ -24,10 +24,10 @@ class Tax extends PayPalModel
      * The resource ID.
      *
      * @param string $id
-     * 
+     *
      * @return $this
      */
-    public function setId($id)
+    public function setId($id): self
     {
         $this->id = $id;
         return $this;
@@ -38,7 +38,7 @@ class Tax extends PayPalModel
      *
      * @return string
      */
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
@@ -47,10 +47,10 @@ class Tax extends PayPalModel
      * The tax name. Maximum length is 20 characters.
      *
      * @param string $name
-     * 
+     *
      * @return $this
      */
-    public function setName($name)
+    public function setName($name): self
     {
         $this->name = $name;
         return $this;
@@ -61,7 +61,7 @@ class Tax extends PayPalModel
      *
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -70,10 +70,10 @@ class Tax extends PayPalModel
      * The rate of the specified tax. Valid range is from 0.001 to 99.999.
      *
      * @param string|double $percent
-     * 
+     *
      * @return $this
      */
-    public function setPercent($percent)
+    public function setPercent($percent): self
     {
         NumericValidator::validate($percent, "Percent");
         $percent = FormatConverter::formatToPrice($percent);
@@ -95,10 +95,10 @@ class Tax extends PayPalModel
      * The tax as a monetary amount. Cannot be specified in a request.
      *
      * @param \PayPal\Api\Currency $amount
-     * 
+     *
      * @return $this
      */
-    public function setAmount($amount)
+    public function setAmount($amount): self
     {
         $this->amount = $amount;
         return $this;
@@ -109,7 +109,7 @@ class Tax extends PayPalModel
      *
      * @return \PayPal\Api\Currency
      */
-    public function getAmount()
+    public function getAmount(): Currency
     {
         return $this->amount;
     }

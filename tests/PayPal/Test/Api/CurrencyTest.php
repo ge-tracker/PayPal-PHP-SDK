@@ -17,7 +17,7 @@ class CurrencyTest extends TestCase
      *
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"currency":"TestSample","value":"12.34"}';
     }
@@ -27,7 +27,7 @@ class CurrencyTest extends TestCase
      *
      * @return Currency
      */
-    public static function getObject()
+    public static function getObject(): Currency
     {
         return new Currency(self::getJson());
     }
@@ -38,13 +38,13 @@ class CurrencyTest extends TestCase
      *
      * @return Currency
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): Currency
     {
         $obj = new Currency(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getCurrency());
-        $this->assertNotNull($obj->getValue());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getCurrency());
+        self::assertNotNull($obj->getValue());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -52,9 +52,9 @@ class CurrencyTest extends TestCase
      * @depends testSerializationDeserialization
      * @param Currency $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getCurrency(), "TestSample");
-        $this->assertEquals($obj->getValue(), "12.34");
+        self::assertEquals($obj->getCurrency(), "TestSample");
+        self::assertEquals($obj->getValue(), "12.34");
     }
 }

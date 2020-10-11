@@ -48,8 +48,8 @@ class OauthHandler implements IPayPalHandler
         $config = $this->apiContext->getConfig();
 
         $httpConfig->setUrl(
-            rtrim(trim($this->_getEndpoint($config)), '/') .
-            (isset($options['path']) ? $options['path'] : '')
+            rtrim(trim(self::_getEndpoint($config)), '/') .
+            ($options['path'] ?? '')
         );
 
         $headers = array(

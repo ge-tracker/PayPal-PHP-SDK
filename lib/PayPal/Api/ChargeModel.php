@@ -21,10 +21,10 @@ class ChargeModel extends PayPalModel
      * Identifier of the charge model. 128 characters max.
      *
      * @param string $id
-     * 
+     *
      * @return $this
      */
-    public function setId($id)
+    public function setId($id): self
     {
         $this->id = $id;
         return $this;
@@ -35,7 +35,7 @@ class ChargeModel extends PayPalModel
      *
      * @return string
      */
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
@@ -44,10 +44,10 @@ class ChargeModel extends PayPalModel
      * Type of charge model. Allowed values: `SHIPPING`, `TAX`.
      *
      * @param string $type
-     * 
+     *
      * @return $this
      */
-    public function setType($type)
+    public function setType($type): self
     {
         $this->type = $type;
         return $this;
@@ -58,7 +58,7 @@ class ChargeModel extends PayPalModel
      *
      * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
@@ -67,10 +67,10 @@ class ChargeModel extends PayPalModel
      * Specific amount for this charge model.
      *
      * @param \PayPal\Api\Currency $amount
-     * 
+     *
      * @return $this
      */
-    public function setAmount($amount)
+    public function setAmount($amount): self
     {
         $this->amount = $amount;
         return $this;
@@ -81,7 +81,7 @@ class ChargeModel extends PayPalModel
      *
      * @return \PayPal\Api\Currency
      */
-    public function getAmount()
+    public function getAmount(): Currency
     {
         return $this->amount;
     }

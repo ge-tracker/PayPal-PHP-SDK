@@ -16,7 +16,7 @@ class PaymentExecutionTest extends TestCase
      * Gets Json String of Object PaymentExecution
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"payer_id":"TestSample","carrier_account_id":"TestSample","transactions":[' . TransactionTest::getJson() . ']}';
     }
@@ -25,7 +25,7 @@ class PaymentExecutionTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return PaymentExecution
      */
-    public static function getObject()
+    public static function getObject(): PaymentExecution
     {
         return new PaymentExecution(self::getJson());
     }
@@ -35,14 +35,14 @@ class PaymentExecutionTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return PaymentExecution
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): PaymentExecution
     {
         $obj = new PaymentExecution(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getPayerId());
-        $this->assertNotNull($obj->getCarrierAccountId());
-        $this->assertNotNull($obj->getTransactions());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getPayerId());
+        self::assertNotNull($obj->getCarrierAccountId());
+        self::assertNotNull($obj->getTransactions());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -50,10 +50,10 @@ class PaymentExecutionTest extends TestCase
      * @depends testSerializationDeserialization
      * @param PaymentExecution $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getPayerId(), "TestSample");
-        $this->assertEquals($obj->getCarrierAccountId(), "TestSample");
-        $this->assertEquals($obj->getTransactions(), array(TransactionTest::getObject()));
+        self::assertEquals($obj->getPayerId(), "TestSample");
+        self::assertEquals($obj->getCarrierAccountId(), "TestSample");
+        self::assertEquals($obj->getTransactions(), array(TransactionTest::getObject()));
     }
 }

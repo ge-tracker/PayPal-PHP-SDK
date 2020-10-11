@@ -17,7 +17,7 @@ class TemplateSettingsTest extends TestCase
      * Gets Json String of Object TemplateSettings
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"field_name":"TestSample","display_preference":' .TemplateSettingsMetadataTest::getJson() . '}';
     }
@@ -26,7 +26,7 @@ class TemplateSettingsTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return TemplateSettings
      */
-    public static function getObject()
+    public static function getObject(): TemplateSettings
     {
         return new TemplateSettings(self::getJson());
     }
@@ -36,13 +36,13 @@ class TemplateSettingsTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return TemplateSettings
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): TemplateSettings
     {
         $obj = new TemplateSettings(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getFieldName());
-        $this->assertNotNull($obj->getDisplayPreference());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getFieldName());
+        self::assertNotNull($obj->getDisplayPreference());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -50,9 +50,9 @@ class TemplateSettingsTest extends TestCase
      * @depends testSerializationDeserialization
      * @param TemplateSettings $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getFieldName(), "TestSample");
-        $this->assertEquals($obj->getDisplayPreference(), TemplateSettingsMetadataTest::getObject());
+        self::assertEquals($obj->getFieldName(), "TestSample");
+        self::assertEquals($obj->getDisplayPreference(), TemplateSettingsMetadataTest::getObject());
     }
 }

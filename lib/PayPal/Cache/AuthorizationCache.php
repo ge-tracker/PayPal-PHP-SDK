@@ -53,7 +53,7 @@ abstract class AuthorizationCache
      * @param      $tokenExpiresIn
      * @throws \Exception
      */
-    public static function push($config = null, $clientId, $accessToken, $tokenCreateTime, $tokenExpiresIn)
+    public static function push($config = null, $clientId, $accessToken, $tokenCreateTime, $tokenExpiresIn): void
     {
         // Return if not enabled
         if (!self::isEnabled($config)) {
@@ -89,19 +89,19 @@ abstract class AuthorizationCache
      * @param $config
      * @return bool
      */
-    public static function isEnabled($config)
+    public static function isEnabled($config): bool
     {
         $value = self::getConfigValue('cache.enabled', $config);
         return empty($value) ? false : ((trim($value) == true || trim($value) == 'true'));
     }
-    
+
     /**
      * Returns the cache file path
      *
      * @param $config
      * @return string
      */
-    public static function cachePath($config)
+    public static function cachePath($config): string
     {
         $cachePath = self::getConfigValue('cache.FileName', $config);
         return empty($cachePath) ? __DIR__ . self::$CACHE_PATH : $cachePath;
@@ -115,7 +115,7 @@ abstract class AuthorizationCache
      * @param $config
      * @return null|string
      */
-    private static function getConfigValue($key, $config)
+    private static function getConfigValue($key, $config): ?string
     {
         $config = ($config && is_array($config)) ? $config : PayPalConfigManager::getInstance()->getConfigHashmap();
         return (array_key_exists($key, $config)) ? trim($config[$key]) : null;

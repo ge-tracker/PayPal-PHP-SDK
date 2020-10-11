@@ -17,7 +17,7 @@ class PayoutSenderBatchHeaderTest extends TestCase
      * Gets Json String of Object PayoutSenderBatchHeader
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"sender_batch_id":"TestSample","email_subject":"TestSample","recipient_type":"TestSample","batch_status":"TestSample"}';
     }
@@ -26,7 +26,7 @@ class PayoutSenderBatchHeaderTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return PayoutSenderBatchHeader
      */
-    public static function getObject()
+    public static function getObject(): PayoutSenderBatchHeader
     {
         return new PayoutSenderBatchHeader(self::getJson());
     }
@@ -35,15 +35,15 @@ class PayoutSenderBatchHeaderTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return PayoutSenderBatchHeader
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): PayoutSenderBatchHeader
     {
         $obj = new PayoutSenderBatchHeader(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getSenderBatchId());
-        $this->assertNotNull($obj->getEmailSubject());
-        $this->assertNotNull($obj->getRecipientType());
-        $this->assertNotNull($obj->getBatchStatus());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getSenderBatchId());
+        self::assertNotNull($obj->getEmailSubject());
+        self::assertNotNull($obj->getRecipientType());
+        self::assertNotNull($obj->getBatchStatus());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -51,11 +51,11 @@ class PayoutSenderBatchHeaderTest extends TestCase
      * @depends testSerializationDeserialization
      * @param PayoutSenderBatchHeader $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getSenderBatchId(), "TestSample");
-        $this->assertEquals($obj->getEmailSubject(), "TestSample");
-        $this->assertEquals($obj->getRecipientType(), "TestSample");
-        $this->assertEquals($obj->getBatchStatus(), "TestSample");
+        self::assertEquals($obj->getSenderBatchId(), "TestSample");
+        self::assertEquals($obj->getEmailSubject(), "TestSample");
+        self::assertEquals($obj->getRecipientType(), "TestSample");
+        self::assertEquals($obj->getBatchStatus(), "TestSample");
     }
 }

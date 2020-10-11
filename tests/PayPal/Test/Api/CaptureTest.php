@@ -17,7 +17,7 @@ class CaptureTest extends TestCase
      * Gets Json String of Object Capture
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"id":"TestSample","amount":' .AmountTest::getJson() . ',"is_final_capture":true,"state":"TestSample","reason_code":"TestSample","parent_payment":"TestSample","invoice_number":"TestSample","transaction_fee":' .CurrencyTest::getJson() . ',"create_time":"TestSample","update_time":"TestSample","links":' .LinksTest::getJson() . '}';
     }
@@ -26,7 +26,7 @@ class CaptureTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return Capture
      */
-    public static function getObject()
+    public static function getObject(): Capture
     {
         return new Capture(self::getJson());
     }
@@ -36,22 +36,22 @@ class CaptureTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return Capture
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): Capture
     {
         $obj = new Capture(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getAmount());
-        $this->assertNotNull($obj->getIsFinalCapture());
-        $this->assertNotNull($obj->getState());
-        $this->assertNotNull($obj->getReasonCode());
-        $this->assertNotNull($obj->getParentPayment());
-        $this->assertNotNull($obj->getInvoiceNumber());
-        $this->assertNotNull($obj->getTransactionFee());
-        $this->assertNotNull($obj->getCreateTime());
-        $this->assertNotNull($obj->getUpdateTime());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getAmount());
+        self::assertNotNull($obj->getIsFinalCapture());
+        self::assertNotNull($obj->getState());
+        self::assertNotNull($obj->getReasonCode());
+        self::assertNotNull($obj->getParentPayment());
+        self::assertNotNull($obj->getInvoiceNumber());
+        self::assertNotNull($obj->getTransactionFee());
+        self::assertNotNull($obj->getCreateTime());
+        self::assertNotNull($obj->getUpdateTime());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -59,62 +59,58 @@ class CaptureTest extends TestCase
      * @depends testSerializationDeserialization
      * @param Capture $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getAmount(), AmountTest::getObject());
-        $this->assertEquals($obj->getIsFinalCapture(), true);
-        $this->assertEquals($obj->getState(), "TestSample");
-        $this->assertEquals($obj->getReasonCode(), "TestSample");
-        $this->assertEquals($obj->getParentPayment(), "TestSample");
-        $this->assertEquals($obj->getInvoiceNumber(), "TestSample");
-        $this->assertEquals($obj->getTransactionFee(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getCreateTime(), "TestSample");
-        $this->assertEquals($obj->getUpdateTime(), "TestSample");
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals($obj->getId(), "TestSample");
+        self::assertEquals($obj->getAmount(), AmountTest::getObject());
+        self::assertEquals($obj->getIsFinalCapture(), true);
+        self::assertEquals($obj->getState(), "TestSample");
+        self::assertEquals($obj->getReasonCode(), "TestSample");
+        self::assertEquals($obj->getParentPayment(), "TestSample");
+        self::assertEquals($obj->getInvoiceNumber(), "TestSample");
+        self::assertEquals($obj->getTransactionFee(), CurrencyTest::getObject());
+        self::assertEquals($obj->getCreateTime(), "TestSample");
+        self::assertEquals($obj->getUpdateTime(), "TestSample");
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 
     /**
      * @dataProvider mockProvider
      * @param Capture $obj
      */
-    public function testGet($obj, $mockApiContext)
+    public function testGet($obj, $mockApiContext): void
     {
         $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    CaptureTest::getJson()
-            ));
+            ->willReturn(CaptureTest::getJson());
 
         $result = $obj->get("captureId", $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
      * @param Capture $obj
      */
-    public function testRefund($obj, $mockApiContext)
+    public function testRefund($obj, $mockApiContext): void
     {
         $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                RefundTest::getJson()
-            ));
+            ->willReturn(RefundTest::getJson());
         $refund = RefundTest::getObject();
 
         $result = $obj->refund($refund, $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
 
-    public function mockProvider()
+    public function mockProvider(): array
     {
         $obj = self::getObject();
         $mockApiContext = $this->getMockBuilder('ApiContext')

@@ -16,7 +16,7 @@ class PayeeTest extends TestCase
      * Gets Json String of Object Payee
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"email":"TestSample","merchant_id":"TestSample","first_name":"TestSample","last_name":"TestSample","account_number":"TestSample","phone":' .PhoneTest::getJson() . '}';
     }
@@ -25,7 +25,7 @@ class PayeeTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return Payee
      */
-    public static function getObject()
+    public static function getObject(): Payee
     {
         return new Payee(self::getJson());
     }
@@ -35,17 +35,17 @@ class PayeeTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return Payee
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): Payee
     {
         $obj = new Payee(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getEmail());
-        $this->assertNotNull($obj->getMerchantId());
-        $this->assertNotNull($obj->getFirstName());
-        $this->assertNotNull($obj->getLastName());
-        $this->assertNotNull($obj->getAccountNumber());
-        $this->assertNotNull($obj->getPhone());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getEmail());
+        self::assertNotNull($obj->getMerchantId());
+        self::assertNotNull($obj->getFirstName());
+        self::assertNotNull($obj->getLastName());
+        self::assertNotNull($obj->getAccountNumber());
+        self::assertNotNull($obj->getPhone());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -53,13 +53,13 @@ class PayeeTest extends TestCase
      * @depends testSerializationDeserialization
      * @param Payee $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getEmail(), "TestSample");
-        $this->assertEquals($obj->getMerchantId(), "TestSample");
-        $this->assertEquals($obj->getFirstName(), "TestSample");
-        $this->assertEquals($obj->getLastName(), "TestSample");
-        $this->assertEquals($obj->getAccountNumber(), "TestSample");
-        $this->assertEquals($obj->getPhone(), PhoneTest::getObject());
+        self::assertEquals($obj->getEmail(), "TestSample");
+        self::assertEquals($obj->getMerchantId(), "TestSample");
+        self::assertEquals($obj->getFirstName(), "TestSample");
+        self::assertEquals($obj->getLastName(), "TestSample");
+        self::assertEquals($obj->getAccountNumber(), "TestSample");
+        self::assertEquals($obj->getPhone(), PhoneTest::getObject());
     }
 }

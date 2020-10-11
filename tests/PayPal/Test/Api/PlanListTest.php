@@ -16,7 +16,7 @@ class PlanListTest extends TestCase
      * Gets Json String of Object PlanList
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"plans":' .PlanTest::getJson() . ',"total_items":"TestSample","total_pages":"TestSample","links":' .LinksTest::getJson() . '}';
     }
@@ -25,7 +25,7 @@ class PlanListTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return PlanList
      */
-    public static function getObject()
+    public static function getObject(): PlanList
     {
         return new PlanList(self::getJson());
     }
@@ -35,15 +35,15 @@ class PlanListTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return PlanList
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): PlanList
     {
         $obj = new PlanList(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getPlans());
-        $this->assertNotNull($obj->getTotalItems());
-        $this->assertNotNull($obj->getTotalPages());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getPlans());
+        self::assertNotNull($obj->getTotalItems());
+        self::assertNotNull($obj->getTotalPages());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -51,11 +51,11 @@ class PlanListTest extends TestCase
      * @depends testSerializationDeserialization
      * @param PlanList $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getPlans(), PlanTest::getObject());
-        $this->assertEquals($obj->getTotalItems(), "TestSample");
-        $this->assertEquals($obj->getTotalPages(), "TestSample");
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals($obj->getPlans(), PlanTest::getObject());
+        self::assertEquals($obj->getTotalItems(), "TestSample");
+        self::assertEquals($obj->getTotalPages(), "TestSample");
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 }

@@ -18,7 +18,7 @@ class ArgumentValidator
      *                      This will be placed in the exception message for easy reference
      * @return bool
      */
-    public static function validate($argument, $argumentName = null)
+    public static function validate($argument, $argumentName = null): bool
     {
         if ($argument === null) {
             // Error if Object Null

@@ -41,7 +41,7 @@ class PayPalConnectionException extends \Exception
      *
      * @param $data
      */
-    public function setData($data)
+    public function setData($data): void
     {
         $this->data = $data;
     }
@@ -51,7 +51,7 @@ class PayPalConnectionException extends \Exception
      *
      * @return string
      */
-    public function getData()
+    public function getData(): string
     {
         return $this->data;
     }
@@ -61,7 +61,7 @@ class PayPalConnectionException extends \Exception
      *
      * @return string
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->url;
     }

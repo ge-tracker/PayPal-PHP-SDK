@@ -24,10 +24,10 @@ class CreditCardToken extends PayPalModel
      * ID of credit card previously stored using `/vault/credit-card`.
      *
      * @param string $credit_card_id
-     * 
+     *
      * @return $this
      */
-    public function setCreditCardId($credit_card_id)
+    public function setCreditCardId($credit_card_id): self
     {
         $this->credit_card_id = $credit_card_id;
         return $this;
@@ -38,7 +38,7 @@ class CreditCardToken extends PayPalModel
      *
      * @return string
      */
-    public function getCreditCardId()
+    public function getCreditCardId(): string
     {
         return $this->credit_card_id;
     }
@@ -47,10 +47,10 @@ class CreditCardToken extends PayPalModel
      * A unique identifier that you can assign and track when storing a credit card or using a stored credit card. This ID can help to avoid unintentional use or misuse of credit cards. This ID can be any value you would like to associate with the saved card, such as a UUID, username, or email address.  **Required when using a stored credit card if a payer_id was originally provided when storing the credit card in vault.**
      *
      * @param string $payer_id
-     * 
+     *
      * @return $this
      */
-    public function setPayerId($payer_id)
+    public function setPayerId($payer_id): self
     {
         $this->payer_id = $payer_id;
         return $this;
@@ -61,7 +61,7 @@ class CreditCardToken extends PayPalModel
      *
      * @return string
      */
-    public function getPayerId()
+    public function getPayerId(): string
     {
         return $this->payer_id;
     }
@@ -70,10 +70,10 @@ class CreditCardToken extends PayPalModel
      * Last four digits of the stored credit card number.
      *
      * @param string $last4
-     * 
+     *
      * @return $this
      */
-    public function setLast4($last4)
+    public function setLast4($last4): self
     {
         $this->last4 = $last4;
         return $this;
@@ -84,7 +84,7 @@ class CreditCardToken extends PayPalModel
      *
      * @return string
      */
-    public function getLast4()
+    public function getLast4(): string
     {
         return $this->last4;
     }
@@ -93,10 +93,10 @@ class CreditCardToken extends PayPalModel
      * Credit card type. Valid types are: `visa`, `mastercard`, `discover`, `amex`. Values are presented in lowercase and not should not be used for display.
      *
      * @param string $type
-     * 
+     *
      * @return $this
      */
-    public function setType($type)
+    public function setType($type): self
     {
         $this->type = $type;
         return $this;
@@ -107,7 +107,7 @@ class CreditCardToken extends PayPalModel
      *
      * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
@@ -116,10 +116,10 @@ class CreditCardToken extends PayPalModel
      * Expiration month with no leading zero. Acceptable values are 1 through 12.
      *
      * @param int $expire_month
-     * 
+     *
      * @return $this
      */
-    public function setExpireMonth($expire_month)
+    public function setExpireMonth($expire_month): self
     {
         $this->expire_month = $expire_month;
         return $this;
@@ -130,7 +130,7 @@ class CreditCardToken extends PayPalModel
      *
      * @return int
      */
-    public function getExpireMonth()
+    public function getExpireMonth(): int
     {
         return $this->expire_month;
     }
@@ -139,10 +139,10 @@ class CreditCardToken extends PayPalModel
      * 4-digit expiration year.
      *
      * @param int $expire_year
-     * 
+     *
      * @return $this
      */
-    public function setExpireYear($expire_year)
+    public function setExpireYear($expire_year): self
     {
         $this->expire_year = $expire_year;
         return $this;
@@ -153,7 +153,7 @@ class CreditCardToken extends PayPalModel
      *
      * @return int
      */
-    public function getExpireYear()
+    public function getExpireYear(): int
     {
         return $this->expire_year;
     }

@@ -20,7 +20,7 @@ class VerifyWebhookSignatureTest extends TestCase
      * Gets Json String of Object VerifyWebhookSignature
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"auth_algo":"TestSample","cert_url":"http://www.google.com","transmission_id":"TestSample","transmission_sig":"TestSample","transmission_time":"TestSample","webhook_id":"TestSample","webhook_event":' .WebhookEventTest::getJson() . '}';
     }
@@ -29,7 +29,7 @@ class VerifyWebhookSignatureTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return VerifyWebhookSignature
      */
-    public static function getObject()
+    public static function getObject(): VerifyWebhookSignature
     {
         return new VerifyWebhookSignature(self::getJson());
     }
@@ -39,18 +39,18 @@ class VerifyWebhookSignatureTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return VerifyWebhookSignature
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): VerifyWebhookSignature
     {
         $obj = new VerifyWebhookSignature(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getAuthAlgo());
-        $this->assertNotNull($obj->getCertUrl());
-        $this->assertNotNull($obj->getTransmissionId());
-        $this->assertNotNull($obj->getTransmissionSig());
-        $this->assertNotNull($obj->getTransmissionTime());
-        $this->assertNotNull($obj->getWebhookId());
-        $this->assertNotNull($obj->getWebhookEvent());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getAuthAlgo());
+        self::assertNotNull($obj->getCertUrl());
+        self::assertNotNull($obj->getTransmissionId());
+        self::assertNotNull($obj->getTransmissionSig());
+        self::assertNotNull($obj->getTransmissionTime());
+        self::assertNotNull($obj->getWebhookId());
+        self::assertNotNull($obj->getWebhookEvent());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -58,56 +58,55 @@ class VerifyWebhookSignatureTest extends TestCase
      * @depends testSerializationDeserialization
      * @param VerifyWebhookSignature $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getAuthAlgo(), "TestSample");
-        $this->assertEquals($obj->getCertUrl(), "http://www.google.com");
-        $this->assertEquals($obj->getTransmissionId(), "TestSample");
-        $this->assertEquals($obj->getTransmissionSig(), "TestSample");
-        $this->assertEquals($obj->getTransmissionTime(), "TestSample");
-        $this->assertEquals($obj->getWebhookId(), "TestSample");
-        $this->assertEquals($obj->getWebhookEvent(), WebhookEventTest::getObject());
+        self::assertEquals($obj->getAuthAlgo(), "TestSample");
+        self::assertEquals($obj->getCertUrl(), "http://www.google.com");
+        self::assertEquals($obj->getTransmissionId(), "TestSample");
+        self::assertEquals($obj->getTransmissionSig(), "TestSample");
+        self::assertEquals($obj->getTransmissionTime(), "TestSample");
+        self::assertEquals($obj->getWebhookId(), "TestSample");
+        self::assertEquals($obj->getWebhookEvent(), WebhookEventTest::getObject());
     }
 
     /**
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage CertUrl is not a fully qualified URL
      */
-    public function testUrlValidationForCertUrl()
+    public function testUrlValidationForCertUrl(): void
     {
         $obj = new VerifyWebhookSignature();
         $obj->setCertUrl(null);
     }
 
-    public function testToJsonToIncludeRequestBodyAsWebhookEvent() {
+    public function testToJsonToIncludeRequestBodyAsWebhookEvent(): void
+    {
         $obj = new VerifyWebhookSignature();
         $requestBody = '{"id":"123", "links": [], "something": {}}';
         $obj->setRequestBody($requestBody);
 
-        $this->assertEquals($obj->toJSON(), '{"webhook_event": ' . $requestBody .'}');
+        self::assertEquals($obj->toJSON(), '{"webhook_event": ' . $requestBody .'}');
     }
 
     /**
      * @dataProvider mockProvider
      * @param VerifyWebhookSignature $obj
      */
-    public function testPost($obj, $mockApiContext)
+    public function testPost($obj, $mockApiContext): void
     {
         $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    VerifyWebhookSignatureResponseTest::getJson()
-            ));
+            ->willReturn(VerifyWebhookSignatureResponseTest::getJson());
 
         $result = $obj->post($mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
 
-    public function mockProvider()
+    public function mockProvider(): array
     {
         $obj = self::getObject();
         $mockApiContext = $this->getMockBuilder('ApiContext')

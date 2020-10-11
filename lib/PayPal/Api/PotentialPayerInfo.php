@@ -18,10 +18,10 @@ class PotentialPayerInfo extends PayPalModel
      * Email address representing the potential payer.
      * @deprecated Not publicly available
      * @param string $email
-     * 
+     *
      * @return $this
      */
-    public function setEmail($email)
+    public function setEmail($email): self
     {
         $this->email = $email;
         return $this;
@@ -32,7 +32,7 @@ class PotentialPayerInfo extends PayPalModel
      * @deprecated Not publicly available
      * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
@@ -41,10 +41,10 @@ class PotentialPayerInfo extends PayPalModel
      * ExternalRememberMe id representing the potential payer
      * @deprecated Not publicly available
      * @param string $external_remember_me_id
-     * 
+     *
      * @return $this
      */
-    public function setExternalRememberMeId($external_remember_me_id)
+    public function setExternalRememberMeId($external_remember_me_id): self
     {
         $this->external_remember_me_id = $external_remember_me_id;
         return $this;
@@ -55,7 +55,7 @@ class PotentialPayerInfo extends PayPalModel
      * @deprecated Not publicly available
      * @return string
      */
-    public function getExternalRememberMeId()
+    public function getExternalRememberMeId(): string
     {
         return $this->external_remember_me_id;
     }
@@ -64,10 +64,10 @@ class PotentialPayerInfo extends PayPalModel
      * Account Number representing the potential payer
      * @deprecated Not publicly available
      * @param string $account_number
-     * 
+     *
      * @return $this
      */
-    public function setAccountNumber($account_number)
+    public function setAccountNumber($account_number): self
     {
         $this->account_number = $account_number;
         return $this;
@@ -78,7 +78,7 @@ class PotentialPayerInfo extends PayPalModel
      * @deprecated Not publicly available
      * @return string
      */
-    public function getAccountNumber()
+    public function getAccountNumber(): string
     {
         return $this->account_number;
     }
@@ -87,10 +87,10 @@ class PotentialPayerInfo extends PayPalModel
      * Billing address of the potential payer.
      * @deprecated Not publicly available
      * @param \PayPal\Api\Address $billing_address
-     * 
+     *
      * @return $this
      */
-    public function setBillingAddress($billing_address)
+    public function setBillingAddress($billing_address): self
     {
         $this->billing_address = $billing_address;
         return $this;
@@ -101,7 +101,7 @@ class PotentialPayerInfo extends PayPalModel
      * @deprecated Not publicly available
      * @return \PayPal\Api\Address
      */
-    public function getBillingAddress()
+    public function getBillingAddress(): Address
     {
         return $this->billing_address;
     }

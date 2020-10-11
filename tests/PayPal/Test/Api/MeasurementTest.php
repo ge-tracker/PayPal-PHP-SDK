@@ -16,7 +16,7 @@ class MeasurementTest extends TestCase
      * Gets Json String of Object Measurement
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"value":"TestSample","unit":"TestSample"}';
     }
@@ -25,7 +25,7 @@ class MeasurementTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return Measurement
      */
-    public static function getObject()
+    public static function getObject(): Measurement
     {
         return new Measurement(self::getJson());
     }
@@ -35,13 +35,13 @@ class MeasurementTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return Measurement
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): Measurement
     {
         $obj = new Measurement(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getValue());
-        $this->assertNotNull($obj->getUnit());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getValue());
+        self::assertNotNull($obj->getUnit());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -49,9 +49,9 @@ class MeasurementTest extends TestCase
      * @depends testSerializationDeserialization
      * @param Measurement $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getValue(), "TestSample");
-        $this->assertEquals($obj->getUnit(), "TestSample");
+        self::assertEquals($obj->getValue(), "TestSample");
+        self::assertEquals($obj->getUnit(), "TestSample");
     }
 }

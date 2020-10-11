@@ -21,10 +21,10 @@ class BankAccountsList extends PayPalModel
      * A list of bank account resources
      *
      * @param \PayPal\Api\BankAccount[] $bank_accounts
-     * 
+     *
      * @return $this
      */
-    public function setBankAccounts($bank_accounts)
+    public function setBankAccounts($bank_accounts): self
     {
         $this->{"bank-accounts"} = $bank_accounts;
         return $this;
@@ -35,7 +35,7 @@ class BankAccountsList extends PayPalModel
      *
      * @return \PayPal\Api\BankAccount[]
      */
-    public function getBankAccounts()
+    public function getBankAccounts(): array
     {
         return $this->{"bank-accounts"};
     }
@@ -46,7 +46,7 @@ class BankAccountsList extends PayPalModel
      * @param \PayPal\Api\BankAccount $bankAccount
      * @return $this
      */
-    public function addBankAccount($bankAccount)
+    public function addBankAccount($bankAccount): ?self
     {
         if (!$this->getBankAccounts()) {
             return $this->setBankAccounts(array($bankAccount));
@@ -63,7 +63,7 @@ class BankAccountsList extends PayPalModel
      * @param \PayPal\Api\BankAccount $bankAccount
      * @return $this
      */
-    public function removeBankAccount($bankAccount)
+    public function removeBankAccount($bankAccount): self
     {
         return $this->setBankAccounts(
             array_diff($this->getBankAccounts(), array($bankAccount))
@@ -74,10 +74,10 @@ class BankAccountsList extends PayPalModel
      * Number of items returned in each range of results. Note that the last results range could have fewer items than the requested number of items.
      *
      * @param int $count
-     * 
+     *
      * @return $this
      */
-    public function setCount($count)
+    public function setCount($count): self
     {
         $this->count = $count;
         return $this;
@@ -88,7 +88,7 @@ class BankAccountsList extends PayPalModel
      *
      * @return int
      */
-    public function getCount()
+    public function getCount(): int
     {
         return $this->count;
     }
@@ -97,10 +97,10 @@ class BankAccountsList extends PayPalModel
      * Identifier of the next element to get the next range of results.
      *
      * @param string $next_id
-     * 
+     *
      * @return $this
      */
-    public function setNextId($next_id)
+    public function setNextId($next_id): self
     {
         $this->next_id = $next_id;
         return $this;
@@ -111,7 +111,7 @@ class BankAccountsList extends PayPalModel
      *
      * @return string
      */
-    public function getNextId()
+    public function getNextId(): string
     {
         return $this->next_id;
     }

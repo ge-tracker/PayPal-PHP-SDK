@@ -16,7 +16,7 @@ class HyperSchemaTest extends TestCase
      * Gets Json String of Object HyperSchema
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"fragmentResolution":"TestSample","readonly":true,"contentEncoding":"TestSample","pathStart":"TestSample","mediaType":"TestSample"}';
     }
@@ -25,7 +25,7 @@ class HyperSchemaTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return HyperSchema
      */
-    public static function getObject()
+    public static function getObject(): HyperSchema
     {
         return new HyperSchema(self::getJson());
     }
@@ -35,17 +35,17 @@ class HyperSchemaTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return HyperSchema
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): HyperSchema
     {
         $obj = new HyperSchema(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getLinks());
-        $this->assertNotNull($obj->getFragmentResolution());
-        $this->assertNotNull($obj->getReadonly());
-        $this->assertNotNull($obj->getContentEncoding());
-        $this->assertNotNull($obj->getPathStart());
-        $this->assertNotNull($obj->getMediaType());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getLinks());
+        self::assertNotNull($obj->getFragmentResolution());
+        self::assertNotNull($obj->getReadonly());
+        self::assertNotNull($obj->getContentEncoding());
+        self::assertNotNull($obj->getPathStart());
+        self::assertNotNull($obj->getMediaType());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -53,13 +53,13 @@ class HyperSchemaTest extends TestCase
      * @depends testSerializationDeserialization
      * @param HyperSchema $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
-        $this->assertEquals($obj->getFragmentResolution(), "TestSample");
-        $this->assertEquals($obj->getReadonly(), true);
-        $this->assertEquals($obj->getContentEncoding(), "TestSample");
-        $this->assertEquals($obj->getPathStart(), "TestSample");
-        $this->assertEquals($obj->getMediaType(), "TestSample");
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals($obj->getFragmentResolution(), "TestSample");
+        self::assertEquals($obj->getReadonly(), true);
+        self::assertEquals($obj->getContentEncoding(), "TestSample");
+        self::assertEquals($obj->getPathStart(), "TestSample");
+        self::assertEquals($obj->getMediaType(), "TestSample");
     }
 }

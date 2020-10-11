@@ -17,7 +17,7 @@ class PaymentSummaryTest extends TestCase
      * Gets Json String of Object PaymentSummary
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"paypal":' .CurrencyTest::getJson() . ',"other":' .CurrencyTest::getJson() . '}';
     }
@@ -26,7 +26,7 @@ class PaymentSummaryTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return PaymentSummary
      */
-    public static function getObject()
+    public static function getObject(): PaymentSummary
     {
         return new PaymentSummary(self::getJson());
     }
@@ -36,13 +36,13 @@ class PaymentSummaryTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return PaymentSummary
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): PaymentSummary
     {
         $obj = new PaymentSummary(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getPaypal());
-        $this->assertNotNull($obj->getOther());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getPaypal());
+        self::assertNotNull($obj->getOther());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -50,9 +50,9 @@ class PaymentSummaryTest extends TestCase
      * @depends testSerializationDeserialization
      * @param PaymentSummary $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getPaypal(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getOther(), CurrencyTest::getObject());
+        self::assertEquals($obj->getPaypal(), CurrencyTest::getObject());
+        self::assertEquals($obj->getOther(), CurrencyTest::getObject());
     }
 }

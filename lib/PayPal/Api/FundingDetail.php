@@ -22,10 +22,10 @@ class FundingDetail extends PayPalModel
      * Expected clearing time
      *
      * @param string $clearing_time
-     * 
+     *
      * @return $this
      */
-    public function setClearingTime($clearing_time)
+    public function setClearingTime($clearing_time): self
     {
         $this->clearing_time = $clearing_time;
         return $this;
@@ -36,7 +36,7 @@ class FundingDetail extends PayPalModel
      *
      * @return string
      */
-    public function getClearingTime()
+    public function getClearingTime(): string
     {
         return $this->clearing_time;
     }
@@ -45,10 +45,10 @@ class FundingDetail extends PayPalModel
      * [DEPRECATED] Hold-off duration of the payment. payment_debit_date should be used instead.
      *
      * @param string $payment_hold_date
-     * 
+     *
      * @return $this
      */
-    public function setPaymentHoldDate($payment_hold_date)
+    public function setPaymentHoldDate($payment_hold_date): self
     {
         $this->payment_hold_date = $payment_hold_date;
         return $this;
@@ -59,7 +59,7 @@ class FundingDetail extends PayPalModel
      *
      * @return string
      */
-    public function getPaymentHoldDate()
+    public function getPaymentHoldDate(): string
     {
         return $this->payment_hold_date;
     }
@@ -68,10 +68,10 @@ class FundingDetail extends PayPalModel
      * Date when funds will be debited from the payer's account
      *
      * @param string $payment_debit_date
-     * 
+     *
      * @return $this
      */
-    public function setPaymentDebitDate($payment_debit_date)
+    public function setPaymentDebitDate($payment_debit_date): self
     {
         $this->payment_debit_date = $payment_debit_date;
         return $this;
@@ -82,7 +82,7 @@ class FundingDetail extends PayPalModel
      *
      * @return string
      */
-    public function getPaymentDebitDate()
+    public function getPaymentDebitDate(): string
     {
         return $this->payment_debit_date;
     }
@@ -92,10 +92,10 @@ class FundingDetail extends PayPalModel
      * Valid Values: ["CUP_SECURE", "PINLESS_DEBIT"]
      *
      * @param string $processing_type
-     * 
+     *
      * @return $this
      */
-    public function setProcessingType($processing_type)
+    public function setProcessingType($processing_type): self
     {
         $this->processing_type = $processing_type;
         return $this;
@@ -106,7 +106,7 @@ class FundingDetail extends PayPalModel
      *
      * @return string
      */
-    public function getProcessingType()
+    public function getProcessingType(): string
     {
         return $this->processing_type;
     }

@@ -32,10 +32,10 @@ class WebhookEvent extends PayPalResourceModel
      * The ID of the webhook event notification.
      *
      * @param string $id
-     * 
+     *
      * @return $this
      */
-    public function setId($id)
+    public function setId($id): self
     {
         $this->id = $id;
         return $this;
@@ -46,7 +46,7 @@ class WebhookEvent extends PayPalResourceModel
      *
      * @return string
      */
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
@@ -55,10 +55,10 @@ class WebhookEvent extends PayPalResourceModel
      * The date and time when the webhook event notification was created.
      *
      * @param string $create_time
-     * 
+     *
      * @return $this
      */
-    public function setCreateTime($create_time)
+    public function setCreateTime($create_time): self
     {
         $this->create_time = $create_time;
         return $this;
@@ -69,7 +69,7 @@ class WebhookEvent extends PayPalResourceModel
      *
      * @return string
      */
-    public function getCreateTime()
+    public function getCreateTime(): string
     {
         return $this->create_time;
     }
@@ -78,10 +78,10 @@ class WebhookEvent extends PayPalResourceModel
      * The name of the resource related to the webhook notification event.
      *
      * @param string $resource_type
-     * 
+     *
      * @return $this
      */
-    public function setResourceType($resource_type)
+    public function setResourceType($resource_type): self
     {
         $this->resource_type = $resource_type;
         return $this;
@@ -92,7 +92,7 @@ class WebhookEvent extends PayPalResourceModel
      *
      * @return string
      */
-    public function getResourceType()
+    public function getResourceType(): string
     {
         return $this->resource_type;
     }
@@ -101,10 +101,10 @@ class WebhookEvent extends PayPalResourceModel
      * The version of the event.
      *
      * @param string $event_version
-     * 
+     *
      * @return $this
      */
-    public function setEventVersion($event_version)
+    public function setEventVersion($event_version): self
     {
         $this->event_version = $event_version;
         return $this;
@@ -115,7 +115,7 @@ class WebhookEvent extends PayPalResourceModel
      *
      * @return string
      */
-    public function getEventVersion()
+    public function getEventVersion(): string
     {
         return $this->event_version;
     }
@@ -124,10 +124,10 @@ class WebhookEvent extends PayPalResourceModel
      * The event that triggered the webhook event notification.
      *
      * @param string $event_type
-     * 
+     *
      * @return $this
      */
-    public function setEventType($event_type)
+    public function setEventType($event_type): self
     {
         $this->event_type = $event_type;
         return $this;
@@ -138,7 +138,7 @@ class WebhookEvent extends PayPalResourceModel
      *
      * @return string
      */
-    public function getEventType()
+    public function getEventType(): string
     {
         return $this->event_type;
     }
@@ -147,10 +147,10 @@ class WebhookEvent extends PayPalResourceModel
      * A summary description for the event notification. For example, `A payment authorization was created.`
      *
      * @param string $summary
-     * 
+     *
      * @return $this
      */
-    public function setSummary($summary)
+    public function setSummary($summary): self
     {
         $this->summary = $summary;
         return $this;
@@ -161,7 +161,7 @@ class WebhookEvent extends PayPalResourceModel
      *
      * @return string
      */
-    public function getSummary()
+    public function getSummary(): string
     {
         return $this->summary;
     }
@@ -170,10 +170,10 @@ class WebhookEvent extends PayPalResourceModel
      * The resource that triggered the webhook event notification.
      *
      * @param \PayPal\Common\PayPalModel $resource
-     * 
+     *
      * @return $this
      */
-    public function setResource($resource)
+    public function setResource($resource): self
     {
         $this->resource = $resource;
         return $this;
@@ -184,7 +184,7 @@ class WebhookEvent extends PayPalResourceModel
      *
      * @return \PayPal\Common\PayPalModel
      */
-    public function getResource()
+    public function getResource(): \PayPal\Common\PayPalModel
     {
         return $this->resource;
     }
@@ -206,7 +206,7 @@ class WebhookEvent extends PayPalResourceModel
      * @throws \InvalidArgumentException if input arguments are incorrect, or Id is not found.
      * @throws PayPalConnectionException if any exception from PayPal APIs other than not found is sent.
      */
-    public static function validateAndGetReceivedEvent($body, $apiContext = null, $restCall = null)
+    public static function validateAndGetReceivedEvent($body, $apiContext = null, $restCall = null): ?WebhookEvent
     {
         if ($body == null | empty($body)){
             throw new \InvalidArgumentException("Body cannot be null or empty");
@@ -237,7 +237,7 @@ class WebhookEvent extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return WebhookEvent
      */
-    public static function get($eventId, $apiContext = null, $restCall = null)
+    public static function get($eventId, $apiContext = null, $restCall = null): WebhookEvent
     {
         ArgumentValidator::validate($eventId, 'eventId');
         $payLoad = "";
@@ -261,7 +261,7 @@ class WebhookEvent extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return WebhookEvent
      */
-    public function resend($apiContext = null, $restCall = null)
+    public function resend($apiContext = null, $restCall = null): WebhookEvent
     {
         ArgumentValidator::validate($this->getId(), "Id");
         $payLoad = "";
@@ -285,7 +285,7 @@ class WebhookEvent extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return WebhookEventList
      */
-    public static function all($params, $apiContext = null, $restCall = null)
+    public static function all($params, $apiContext = null, $restCall = null): WebhookEventList
     {
         ArgumentValidator::validate($params, 'params');
         $payLoad = "";

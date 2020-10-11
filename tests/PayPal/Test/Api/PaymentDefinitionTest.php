@@ -16,7 +16,7 @@ class PaymentDefinitionTest extends TestCase
      * Gets Json String of Object PaymentDefinition
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"id":"TestSample","name":"TestSample","type":"TestSample","frequency_interval":"TestSample","frequency":"TestSample","cycles":"TestSample","amount":' .CurrencyTest::getJson() . ',"charge_models":' .ChargeModelTest::getJson() . '}';
     }
@@ -25,7 +25,7 @@ class PaymentDefinitionTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return PaymentDefinition
      */
-    public static function getObject()
+    public static function getObject(): PaymentDefinition
     {
         return new PaymentDefinition(self::getJson());
     }
@@ -35,19 +35,19 @@ class PaymentDefinitionTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return PaymentDefinition
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): PaymentDefinition
     {
         $obj = new PaymentDefinition(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getName());
-        $this->assertNotNull($obj->getType());
-        $this->assertNotNull($obj->getFrequencyInterval());
-        $this->assertNotNull($obj->getFrequency());
-        $this->assertNotNull($obj->getCycles());
-        $this->assertNotNull($obj->getAmount());
-        $this->assertNotNull($obj->getChargeModels());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getName());
+        self::assertNotNull($obj->getType());
+        self::assertNotNull($obj->getFrequencyInterval());
+        self::assertNotNull($obj->getFrequency());
+        self::assertNotNull($obj->getCycles());
+        self::assertNotNull($obj->getAmount());
+        self::assertNotNull($obj->getChargeModels());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -55,15 +55,15 @@ class PaymentDefinitionTest extends TestCase
      * @depends testSerializationDeserialization
      * @param PaymentDefinition $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getName(), "TestSample");
-        $this->assertEquals($obj->getType(), "TestSample");
-        $this->assertEquals($obj->getFrequencyInterval(), "TestSample");
-        $this->assertEquals($obj->getFrequency(), "TestSample");
-        $this->assertEquals($obj->getCycles(), "TestSample");
-        $this->assertEquals($obj->getAmount(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getChargeModels(), ChargeModelTest::getObject());
+        self::assertEquals($obj->getId(), "TestSample");
+        self::assertEquals($obj->getName(), "TestSample");
+        self::assertEquals($obj->getType(), "TestSample");
+        self::assertEquals($obj->getFrequencyInterval(), "TestSample");
+        self::assertEquals($obj->getFrequency(), "TestSample");
+        self::assertEquals($obj->getCycles(), "TestSample");
+        self::assertEquals($obj->getAmount(), CurrencyTest::getObject());
+        self::assertEquals($obj->getChargeModels(), ChargeModelTest::getObject());
     }
 }

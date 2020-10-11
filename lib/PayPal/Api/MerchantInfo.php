@@ -29,10 +29,10 @@ class MerchantInfo extends PayPalModel
      * The merchant email address. Maximum length is 260 characters.
      *
      * @param string $email
-     * 
+     *
      * @return $this
      */
-    public function setEmail($email)
+    public function setEmail($email): self
     {
         $this->email = $email;
         return $this;
@@ -43,7 +43,7 @@ class MerchantInfo extends PayPalModel
      *
      * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
@@ -52,10 +52,10 @@ class MerchantInfo extends PayPalModel
      * The merchant first name. Maximum length is 30 characters.
      *
      * @param string $first_name
-     * 
+     *
      * @return $this
      */
-    public function setFirstName($first_name)
+    public function setFirstName($first_name): self
     {
         $this->first_name = $first_name;
         return $this;
@@ -66,7 +66,7 @@ class MerchantInfo extends PayPalModel
      *
      * @return string
      */
-    public function getFirstName()
+    public function getFirstName(): string
     {
         return $this->first_name;
     }
@@ -75,10 +75,10 @@ class MerchantInfo extends PayPalModel
      * The merchant last name. Maximum length is 30 characters.
      *
      * @param string $last_name
-     * 
+     *
      * @return $this
      */
-    public function setLastName($last_name)
+    public function setLastName($last_name): self
     {
         $this->last_name = $last_name;
         return $this;
@@ -89,7 +89,7 @@ class MerchantInfo extends PayPalModel
      *
      * @return string
      */
-    public function getLastName()
+    public function getLastName(): string
     {
         return $this->last_name;
     }
@@ -98,10 +98,10 @@ class MerchantInfo extends PayPalModel
      * The merchant address.
      *
      * @param \PayPal\Api\InvoiceAddress $address
-     * 
+     *
      * @return $this
      */
-    public function setAddress($address)
+    public function setAddress($address): self
     {
         $this->address = $address;
         return $this;
@@ -112,7 +112,7 @@ class MerchantInfo extends PayPalModel
      *
      * @return \PayPal\Api\InvoiceAddress
      */
-    public function getAddress()
+    public function getAddress(): InvoiceAddress
     {
         return $this->address;
     }
@@ -121,10 +121,10 @@ class MerchantInfo extends PayPalModel
      * The merchant company business name. Maximum length is 100 characters.
      *
      * @param string $business_name
-     * 
+     *
      * @return $this
      */
-    public function setBusinessName($business_name)
+    public function setBusinessName($business_name): self
     {
         $this->business_name = $business_name;
         return $this;
@@ -135,7 +135,7 @@ class MerchantInfo extends PayPalModel
      *
      * @return string
      */
-    public function getBusinessName()
+    public function getBusinessName(): string
     {
         return $this->business_name;
     }
@@ -144,10 +144,10 @@ class MerchantInfo extends PayPalModel
      * The merchant phone number.
      *
      * @param \PayPal\Api\Phone $phone
-     * 
+     *
      * @return $this
      */
-    public function setPhone($phone)
+    public function setPhone($phone): self
     {
         $this->phone = $phone;
         return $this;
@@ -158,7 +158,7 @@ class MerchantInfo extends PayPalModel
      *
      * @return \PayPal\Api\Phone
      */
-    public function getPhone()
+    public function getPhone(): Phone
     {
         return $this->phone;
     }
@@ -167,10 +167,10 @@ class MerchantInfo extends PayPalModel
      * The merchant fax number.
      *
      * @param \PayPal\Api\Phone $fax
-     * 
+     *
      * @return $this
      */
-    public function setFax($fax)
+    public function setFax($fax): self
     {
         $this->fax = $fax;
         return $this;
@@ -181,7 +181,7 @@ class MerchantInfo extends PayPalModel
      *
      * @return \PayPal\Api\Phone
      */
-    public function getFax()
+    public function getFax(): Phone
     {
         return $this->fax;
     }
@@ -190,10 +190,10 @@ class MerchantInfo extends PayPalModel
      * The merchant website. Maximum length is 2048 characters.
      *
      * @param string $website
-     * 
+     *
      * @return $this
      */
-    public function setWebsite($website)
+    public function setWebsite($website): self
     {
         $this->website = $website;
         return $this;
@@ -204,7 +204,7 @@ class MerchantInfo extends PayPalModel
      *
      * @return string
      */
-    public function getWebsite()
+    public function getWebsite(): string
     {
         return $this->website;
     }
@@ -213,10 +213,10 @@ class MerchantInfo extends PayPalModel
      * The merchant tax ID. Maximum length is 100 characters.
      *
      * @param string $tax_id
-     * 
+     *
      * @return $this
      */
-    public function setTaxId($tax_id)
+    public function setTaxId($tax_id): self
     {
         $this->tax_id = $tax_id;
         return $this;
@@ -227,7 +227,7 @@ class MerchantInfo extends PayPalModel
      *
      * @return string
      */
-    public function getTaxId()
+    public function getTaxId(): string
     {
         return $this->tax_id;
     }
@@ -236,10 +236,10 @@ class MerchantInfo extends PayPalModel
      * Option to provide a label to the additional_info field. 40 characters max.
      *
      * @param string $additional_info_label
-     * 
+     *
      * @return $this
      */
-    public function setAdditionalInfoLabel($additional_info_label)
+    public function setAdditionalInfoLabel($additional_info_label): self
     {
         $this->additional_info_label = $additional_info_label;
         return $this;
@@ -250,7 +250,7 @@ class MerchantInfo extends PayPalModel
      *
      * @return string
      */
-    public function getAdditionalInfoLabel()
+    public function getAdditionalInfoLabel(): string
     {
         return $this->additional_info_label;
     }
@@ -259,10 +259,10 @@ class MerchantInfo extends PayPalModel
      * Additional information, such as business hours. Maximum length is 40 characters.
      *
      * @param string $additional_info
-     * 
+     *
      * @return $this
      */
-    public function setAdditionalInfo($additional_info)
+    public function setAdditionalInfo($additional_info): self
     {
         $this->additional_info = $additional_info;
         return $this;
@@ -273,7 +273,7 @@ class MerchantInfo extends PayPalModel
      *
      * @return string
      */
-    public function getAdditionalInfo()
+    public function getAdditionalInfo(): string
     {
         return $this->additional_info;
     }

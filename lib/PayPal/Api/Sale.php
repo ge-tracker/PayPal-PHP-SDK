@@ -42,10 +42,10 @@ class Sale extends PayPalResourceModel
      * Identifier of the sale transaction.
      *
      * @param string $id
-     * 
+     *
      * @return $this
      */
-    public function setId($id)
+    public function setId($id): self
     {
         $this->id = $id;
         return $this;
@@ -56,7 +56,7 @@ class Sale extends PayPalResourceModel
      *
      * @return string
      */
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
@@ -65,10 +65,10 @@ class Sale extends PayPalResourceModel
      * Identifier to the purchase or transaction unit corresponding to this sale transaction.
      *
      * @param string $purchase_unit_reference_id
-     * 
+     *
      * @return $this
      */
-    public function setPurchaseUnitReferenceId($purchase_unit_reference_id)
+    public function setPurchaseUnitReferenceId($purchase_unit_reference_id): self
     {
         $this->purchase_unit_reference_id = $purchase_unit_reference_id;
         return $this;
@@ -79,7 +79,7 @@ class Sale extends PayPalResourceModel
      *
      * @return string
      */
-    public function getPurchaseUnitReferenceId()
+    public function getPurchaseUnitReferenceId(): string
     {
         return $this->purchase_unit_reference_id;
     }
@@ -88,10 +88,10 @@ class Sale extends PayPalResourceModel
      * Amount being collected.
      *
      * @param \PayPal\Api\Amount $amount
-     * 
+     *
      * @return $this
      */
-    public function setAmount($amount)
+    public function setAmount($amount): self
     {
         $this->amount = $amount;
         return $this;
@@ -102,7 +102,7 @@ class Sale extends PayPalResourceModel
      *
      * @return \PayPal\Api\Amount
      */
-    public function getAmount()
+    public function getAmount(): Amount
     {
         return $this->amount;
     }
@@ -112,10 +112,10 @@ class Sale extends PayPalResourceModel
      * Valid Values: ["INSTANT_TRANSFER", "MANUAL_BANK_TRANSFER", "DELAYED_TRANSFER", "ECHECK"]
      *
      * @param string $payment_mode
-     * 
+     *
      * @return $this
      */
-    public function setPaymentMode($payment_mode)
+    public function setPaymentMode($payment_mode): self
     {
         $this->payment_mode = $payment_mode;
         return $this;
@@ -126,7 +126,7 @@ class Sale extends PayPalResourceModel
      *
      * @return string
      */
-    public function getPaymentMode()
+    public function getPaymentMode(): string
     {
         return $this->payment_mode;
     }
@@ -136,10 +136,10 @@ class Sale extends PayPalResourceModel
      * Valid Values: ["completed", "partially_refunded", "pending", "refunded", "denied"]
      *
      * @param string $state
-     * 
+     *
      * @return $this
      */
-    public function setState($state)
+    public function setState($state): self
     {
         $this->state = $state;
         return $this;
@@ -150,7 +150,7 @@ class Sale extends PayPalResourceModel
      *
      * @return string
      */
-    public function getState()
+    public function getState(): string
     {
         return $this->state;
     }
@@ -160,10 +160,10 @@ class Sale extends PayPalResourceModel
      * Valid Values: ["CHARGEBACK", "GUARANTEE", "BUYER_COMPLAINT", "REFUND", "UNCONFIRMED_SHIPPING_ADDRESS", "ECHECK", "INTERNATIONAL_WITHDRAWAL", "RECEIVING_PREFERENCE_MANDATES_MANUAL_ACTION", "PAYMENT_REVIEW", "REGULATORY_REVIEW", "UNILATERAL", "VERIFICATION_REQUIRED", "TRANSACTION_APPROVED_AWAITING_FUNDING"]
      *
      * @param string $reason_code
-     * 
+     *
      * @return $this
      */
-    public function setReasonCode($reason_code)
+    public function setReasonCode($reason_code): self
     {
         $this->reason_code = $reason_code;
         return $this;
@@ -174,31 +174,31 @@ class Sale extends PayPalResourceModel
      *
      * @return string
      */
-    public function getReasonCode()
+    public function getReasonCode(): string
     {
         return $this->reason_code;
     }
 
     /**
-     * The level of seller protection in force for the transaction. Only supported when the `payment_method` is set to `paypal`. 
+     * The level of seller protection in force for the transaction. Only supported when the `payment_method` is set to `paypal`.
      * Valid Values: ["ELIGIBLE", "PARTIALLY_ELIGIBLE", "INELIGIBLE"]
      *
      * @param string $protection_eligibility
-     * 
+     *
      * @return $this
      */
-    public function setProtectionEligibility($protection_eligibility)
+    public function setProtectionEligibility($protection_eligibility): self
     {
         $this->protection_eligibility = $protection_eligibility;
         return $this;
     }
 
     /**
-     * The level of seller protection in force for the transaction. Only supported when the `payment_method` is set to `paypal`. 
+     * The level of seller protection in force for the transaction. Only supported when the `payment_method` is set to `paypal`.
      *
      * @return string
      */
-    public function getProtectionEligibility()
+    public function getProtectionEligibility(): string
     {
         return $this->protection_eligibility;
     }
@@ -208,10 +208,10 @@ class Sale extends PayPalResourceModel
      * Valid Values: ["ITEM_NOT_RECEIVED_ELIGIBLE", "UNAUTHORIZED_PAYMENT_ELIGIBLE", "ITEM_NOT_RECEIVED_ELIGIBLE,UNAUTHORIZED_PAYMENT_ELIGIBLE"]
      *
      * @param string $protection_eligibility_type
-     * 
+     *
      * @return $this
      */
-    public function setProtectionEligibilityType($protection_eligibility_type)
+    public function setProtectionEligibilityType($protection_eligibility_type): self
     {
         $this->protection_eligibility_type = $protection_eligibility_type;
         return $this;
@@ -222,7 +222,7 @@ class Sale extends PayPalResourceModel
      *
      * @return string
      */
-    public function getProtectionEligibilityType()
+    public function getProtectionEligibilityType(): string
     {
         return $this->protection_eligibility_type;
     }
@@ -231,10 +231,10 @@ class Sale extends PayPalResourceModel
      * Expected clearing time for eCheck Transactions. Returned when payment is made with eCheck. Only supported when the `payment_method` is set to `paypal`.
      *
      * @param string $clearing_time
-     * 
+     *
      * @return $this
      */
-    public function setClearingTime($clearing_time)
+    public function setClearingTime($clearing_time): self
     {
         $this->clearing_time = $clearing_time;
         return $this;
@@ -245,7 +245,7 @@ class Sale extends PayPalResourceModel
      *
      * @return string
      */
-    public function getClearingTime()
+    public function getClearingTime(): string
     {
         return $this->clearing_time;
     }
@@ -255,10 +255,10 @@ class Sale extends PayPalResourceModel
      * Valid Values: ["HELD"]
      *
      * @param string $payment_hold_status
-     * 
+     *
      * @return $this
      */
-    public function setPaymentHoldStatus($payment_hold_status)
+    public function setPaymentHoldStatus($payment_hold_status): self
     {
         $this->payment_hold_status = $payment_hold_status;
         return $this;
@@ -269,7 +269,7 @@ class Sale extends PayPalResourceModel
      *
      * @return string
      */
-    public function getPaymentHoldStatus()
+    public function getPaymentHoldStatus(): string
     {
         return $this->payment_hold_status;
     }
@@ -278,10 +278,10 @@ class Sale extends PayPalResourceModel
      * Reasons for PayPal holding recipient fund. It is set only if payment hold status is held
      *
      * @param string[] $payment_hold_reasons
-     * 
+     *
      * @return $this
      */
-    public function setPaymentHoldReasons($payment_hold_reasons)
+    public function setPaymentHoldReasons($payment_hold_reasons): self
     {
         $this->payment_hold_reasons = $payment_hold_reasons;
         return $this;
@@ -292,7 +292,7 @@ class Sale extends PayPalResourceModel
      *
      * @return string[]
      */
-    public function getPaymentHoldReasons()
+    public function getPaymentHoldReasons(): array
     {
         return $this->payment_hold_reasons;
     }
@@ -303,7 +303,7 @@ class Sale extends PayPalResourceModel
      * @param string $string
      * @return $this
      */
-    public function addPaymentHoldReason($string)
+    public function addPaymentHoldReason($string): ?self
     {
         if (!$this->getPaymentHoldReasons()) {
             return $this->setPaymentHoldReasons(array($string));
@@ -320,7 +320,7 @@ class Sale extends PayPalResourceModel
      * @param string $string
      * @return $this
      */
-    public function removePaymentHoldReason($string)
+    public function removePaymentHoldReason($string): self
     {
         return $this->setPaymentHoldReasons(
             array_diff($this->getPaymentHoldReasons(), array($string))
@@ -331,10 +331,10 @@ class Sale extends PayPalResourceModel
      * Transaction fee applicable for this payment.
      *
      * @param \PayPal\Api\Currency $transaction_fee
-     * 
+     *
      * @return $this
      */
-    public function setTransactionFee($transaction_fee)
+    public function setTransactionFee($transaction_fee): self
     {
         $this->transaction_fee = $transaction_fee;
         return $this;
@@ -345,7 +345,7 @@ class Sale extends PayPalResourceModel
      *
      * @return \PayPal\Api\Currency
      */
-    public function getTransactionFee()
+    public function getTransactionFee(): Currency
     {
         return $this->transaction_fee;
     }
@@ -354,10 +354,10 @@ class Sale extends PayPalResourceModel
      * Net amount the merchant receives for this transaction in their receivable currency. Returned only in cross-currency use cases where a merchant bills a buyer in a non-primary currency for that buyer.
      *
      * @param \PayPal\Api\Currency $receivable_amount
-     * 
+     *
      * @return $this
      */
-    public function setReceivableAmount($receivable_amount)
+    public function setReceivableAmount($receivable_amount): self
     {
         $this->receivable_amount = $receivable_amount;
         return $this;
@@ -368,7 +368,7 @@ class Sale extends PayPalResourceModel
      *
      * @return \PayPal\Api\Currency
      */
-    public function getReceivableAmount()
+    public function getReceivableAmount(): Currency
     {
         return $this->receivable_amount;
     }
@@ -377,10 +377,10 @@ class Sale extends PayPalResourceModel
      * Exchange rate applied for this transaction. Returned only in cross-currency use cases where a merchant bills a buyer in a non-primary currency for that buyer.
      *
      * @param string $exchange_rate
-     * 
+     *
      * @return $this
      */
-    public function setExchangeRate($exchange_rate)
+    public function setExchangeRate($exchange_rate): self
     {
         $this->exchange_rate = $exchange_rate;
         return $this;
@@ -391,7 +391,7 @@ class Sale extends PayPalResourceModel
      *
      * @return string
      */
-    public function getExchangeRate()
+    public function getExchangeRate(): string
     {
         return $this->exchange_rate;
     }
@@ -400,10 +400,10 @@ class Sale extends PayPalResourceModel
      * Fraud Management Filter (FMF) details applied for the payment that could result in accept, deny, or pending action. Returned in a payment response only if the merchant has enabled FMF in the profile settings and one of the fraud filters was triggered based on those settings. See [Fraud Management Filters Summary](/docs/classic/fmf/integration-guide/FMFSummary/) for more information.
      *
      * @param \PayPal\Api\FmfDetails $fmf_details
-     * 
+     *
      * @return $this
      */
-    public function setFmfDetails($fmf_details)
+    public function setFmfDetails($fmf_details): self
     {
         $this->fmf_details = $fmf_details;
         return $this;
@@ -414,7 +414,7 @@ class Sale extends PayPalResourceModel
      *
      * @return \PayPal\Api\FmfDetails
      */
-    public function getFmfDetails()
+    public function getFmfDetails(): FmfDetails
     {
         return $this->fmf_details;
     }
@@ -423,10 +423,10 @@ class Sale extends PayPalResourceModel
      * Receipt id is a payment identification number returned for guest users to identify the payment.
      *
      * @param string $receipt_id
-     * 
+     *
      * @return $this
      */
-    public function setReceiptId($receipt_id)
+    public function setReceiptId($receipt_id): self
     {
         $this->receipt_id = $receipt_id;
         return $this;
@@ -437,7 +437,7 @@ class Sale extends PayPalResourceModel
      *
      * @return string
      */
-    public function getReceiptId()
+    public function getReceiptId(): string
     {
         return $this->receipt_id;
     }
@@ -446,10 +446,10 @@ class Sale extends PayPalResourceModel
      * ID of the payment resource on which this transaction is based.
      *
      * @param string $parent_payment
-     * 
+     *
      * @return $this
      */
-    public function setParentPayment($parent_payment)
+    public function setParentPayment($parent_payment): self
     {
         $this->parent_payment = $parent_payment;
         return $this;
@@ -460,7 +460,7 @@ class Sale extends PayPalResourceModel
      *
      * @return string
      */
-    public function getParentPayment()
+    public function getParentPayment(): string
     {
         return $this->parent_payment;
     }
@@ -469,10 +469,10 @@ class Sale extends PayPalResourceModel
      * Response codes returned by the processor concerning the submitted payment. Only supported when the `payment_method` is set to `credit_card`.
      *
      * @param \PayPal\Api\ProcessorResponse $processor_response
-     * 
+     *
      * @return $this
      */
-    public function setProcessorResponse($processor_response)
+    public function setProcessorResponse($processor_response): self
     {
         $this->processor_response = $processor_response;
         return $this;
@@ -483,7 +483,7 @@ class Sale extends PayPalResourceModel
      *
      * @return \PayPal\Api\ProcessorResponse
      */
-    public function getProcessorResponse()
+    public function getProcessorResponse(): ProcessorResponse
     {
         return $this->processor_response;
     }
@@ -492,10 +492,10 @@ class Sale extends PayPalResourceModel
      * ID of the billing agreement used as reference to execute this transaction.
      *
      * @param string $billing_agreement_id
-     * 
+     *
      * @return $this
      */
-    public function setBillingAgreementId($billing_agreement_id)
+    public function setBillingAgreementId($billing_agreement_id): self
     {
         $this->billing_agreement_id = $billing_agreement_id;
         return $this;
@@ -506,7 +506,7 @@ class Sale extends PayPalResourceModel
      *
      * @return string
      */
-    public function getBillingAgreementId()
+    public function getBillingAgreementId(): string
     {
         return $this->billing_agreement_id;
     }
@@ -515,10 +515,10 @@ class Sale extends PayPalResourceModel
      * Time of sale as defined in [RFC 3339 Section 5.6](http://tools.ietf.org/html/rfc3339#section-5.6)
      *
      * @param string $create_time
-     * 
+     *
      * @return $this
      */
-    public function setCreateTime($create_time)
+    public function setCreateTime($create_time): self
     {
         $this->create_time = $create_time;
         return $this;
@@ -529,7 +529,7 @@ class Sale extends PayPalResourceModel
      *
      * @return string
      */
-    public function getCreateTime()
+    public function getCreateTime(): string
     {
         return $this->create_time;
     }
@@ -538,10 +538,10 @@ class Sale extends PayPalResourceModel
      * Time the resource was last updated in UTC ISO8601 format.
      *
      * @param string $update_time
-     * 
+     *
      * @return $this
      */
-    public function setUpdateTime($update_time)
+    public function setUpdateTime($update_time): self
     {
         $this->update_time = $update_time;
         return $this;
@@ -552,7 +552,7 @@ class Sale extends PayPalResourceModel
      *
      * @return string
      */
-    public function getUpdateTime()
+    public function getUpdateTime(): string
     {
         return $this->update_time;
     }
@@ -565,7 +565,7 @@ class Sale extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return Sale
      */
-    public static function get($saleId, $apiContext = null, $restCall = null)
+    public static function get($saleId, $apiContext = null, $restCall = null): Sale
     {
         ArgumentValidator::validate($saleId, 'saleId');
         $payLoad = "";
@@ -591,7 +591,7 @@ class Sale extends PayPalResourceModel
      * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
      * @return Refund
      */
-    public function refund($refund, $apiContext = null, $restCall = null)
+    public function refund($refund, $apiContext = null, $restCall = null): Refund
     {
         ArgumentValidator::validate($this->getId(), "Id");
         ArgumentValidator::validate($refund, 'refund');
@@ -617,7 +617,7 @@ class Sale extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return DetailedRefund
      */
-    public function refundSale($refundRequest, $apiContext = null, $restCall = null)
+    public function refundSale($refundRequest, $apiContext = null, $restCall = null): DetailedRefund
     {
         ArgumentValidator::validate($this->getId(), "Id");
         ArgumentValidator::validate($refundRequest, 'refundRequest');

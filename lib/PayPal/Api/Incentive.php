@@ -28,10 +28,10 @@ class Incentive extends PayPalModel
      * Identifier of the instrument in PayPal Wallet
      *
      * @param string $id
-     * 
+     *
      * @return $this
      */
-    public function setId($id)
+    public function setId($id): self
     {
         $this->id = $id;
         return $this;
@@ -42,7 +42,7 @@ class Incentive extends PayPalModel
      *
      * @return string
      */
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
@@ -51,10 +51,10 @@ class Incentive extends PayPalModel
      * Code that identifies the incentive.
      *
      * @param string $code
-     * 
+     *
      * @return $this
      */
-    public function setCode($code)
+    public function setCode($code): self
     {
         $this->code = $code;
         return $this;
@@ -65,7 +65,7 @@ class Incentive extends PayPalModel
      *
      * @return string
      */
-    public function getCode()
+    public function getCode(): string
     {
         return $this->code;
     }
@@ -74,10 +74,10 @@ class Incentive extends PayPalModel
      * Name of the incentive.
      *
      * @param string $name
-     * 
+     *
      * @return $this
      */
-    public function setName($name)
+    public function setName($name): self
     {
         $this->name = $name;
         return $this;
@@ -88,7 +88,7 @@ class Incentive extends PayPalModel
      *
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -97,10 +97,10 @@ class Incentive extends PayPalModel
      * Description of the incentive.
      *
      * @param string $description
-     * 
+     *
      * @return $this
      */
-    public function setDescription($description)
+    public function setDescription($description): self
     {
         $this->description = $description;
         return $this;
@@ -111,7 +111,7 @@ class Incentive extends PayPalModel
      *
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -120,10 +120,10 @@ class Incentive extends PayPalModel
      * Indicates incentive is applicable for this minimum purchase amount.
      *
      * @param \PayPal\Api\Currency $minimum_purchase_amount
-     * 
+     *
      * @return $this
      */
-    public function setMinimumPurchaseAmount($minimum_purchase_amount)
+    public function setMinimumPurchaseAmount($minimum_purchase_amount): self
     {
         $this->minimum_purchase_amount = $minimum_purchase_amount;
         return $this;
@@ -134,7 +134,7 @@ class Incentive extends PayPalModel
      *
      * @return \PayPal\Api\Currency
      */
-    public function getMinimumPurchaseAmount()
+    public function getMinimumPurchaseAmount(): Currency
     {
         return $this->minimum_purchase_amount;
     }
@@ -146,7 +146,7 @@ class Incentive extends PayPalModel
      * @throws \InvalidArgumentException
      * @return $this
      */
-    public function setLogoImageUrl($logo_image_url)
+    public function setLogoImageUrl($logo_image_url): self
     {
         UrlValidator::validate($logo_image_url, "LogoImageUrl");
         $this->logo_image_url = $logo_image_url;
@@ -158,7 +158,7 @@ class Incentive extends PayPalModel
      *
      * @return string
      */
-    public function getLogoImageUrl()
+    public function getLogoImageUrl(): string
     {
         return $this->logo_image_url;
     }
@@ -167,10 +167,10 @@ class Incentive extends PayPalModel
      * expiry date of the incentive.
      *
      * @param string $expiry_date
-     * 
+     *
      * @return $this
      */
-    public function setExpiryDate($expiry_date)
+    public function setExpiryDate($expiry_date): self
     {
         $this->expiry_date = $expiry_date;
         return $this;
@@ -181,7 +181,7 @@ class Incentive extends PayPalModel
      *
      * @return string
      */
-    public function getExpiryDate()
+    public function getExpiryDate(): string
     {
         return $this->expiry_date;
     }
@@ -191,10 +191,10 @@ class Incentive extends PayPalModel
      * Valid Values: ["COUPON", "GIFT_CARD", "MERCHANT_SPECIFIC_BALANCE", "VOUCHER"]
      *
      * @param string $type
-     * 
+     *
      * @return $this
      */
-    public function setType($type)
+    public function setType($type): self
     {
         $this->type = $type;
         return $this;
@@ -205,7 +205,7 @@ class Incentive extends PayPalModel
      *
      * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
@@ -214,10 +214,10 @@ class Incentive extends PayPalModel
      * URI to the associated terms
      *
      * @param string $terms
-     * 
+     *
      * @return $this
      */
-    public function setTerms($terms)
+    public function setTerms($terms): self
     {
         $this->terms = $terms;
         return $this;
@@ -228,7 +228,7 @@ class Incentive extends PayPalModel
      *
      * @return string
      */
-    public function getTerms()
+    public function getTerms(): string
     {
         return $this->terms;
     }

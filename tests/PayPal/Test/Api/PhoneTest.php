@@ -16,7 +16,7 @@ class PhoneTest extends TestCase
      * Gets Json String of Object Phone
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"country_code":"TestSample","national_number":"TestSample","extension":"TestSample"}';
     }
@@ -25,7 +25,7 @@ class PhoneTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return Phone
      */
-    public static function getObject()
+    public static function getObject(): Phone
     {
         return new Phone(self::getJson());
     }
@@ -35,14 +35,14 @@ class PhoneTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return Phone
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): Phone
     {
         $obj = new Phone(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getCountryCode());
-        $this->assertNotNull($obj->getNationalNumber());
-        $this->assertNotNull($obj->getExtension());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getCountryCode());
+        self::assertNotNull($obj->getNationalNumber());
+        self::assertNotNull($obj->getExtension());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -50,10 +50,10 @@ class PhoneTest extends TestCase
      * @depends testSerializationDeserialization
      * @param Phone $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getCountryCode(), "TestSample");
-        $this->assertEquals($obj->getNationalNumber(), "TestSample");
-        $this->assertEquals($obj->getExtension(), "TestSample");
+        self::assertEquals($obj->getCountryCode(), "TestSample");
+        self::assertEquals($obj->getNationalNumber(), "TestSample");
+        self::assertEquals($obj->getExtension(), "TestSample");
     }
 }

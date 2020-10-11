@@ -20,7 +20,7 @@ class WebhookEventTypeTest extends TestCase
      * Gets Json String of Object WebhookEventType
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"name":"TestSample","description":"TestSample","status":"TestSample"}';
     }
@@ -29,7 +29,7 @@ class WebhookEventTypeTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return WebhookEventType
      */
-    public static function getObject()
+    public static function getObject(): WebhookEventType
     {
         return new WebhookEventType(self::getJson());
     }
@@ -39,14 +39,14 @@ class WebhookEventTypeTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return WebhookEventType
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): WebhookEventType
     {
         $obj = new WebhookEventType(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getName());
-        $this->assertNotNull($obj->getDescription());
-        $this->assertNotNull($obj->getStatus());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getName());
+        self::assertNotNull($obj->getDescription());
+        self::assertNotNull($obj->getStatus());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -54,53 +54,49 @@ class WebhookEventTypeTest extends TestCase
      * @depends testSerializationDeserialization
      * @param WebhookEventType $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getName(), "TestSample");
-        $this->assertEquals($obj->getDescription(), "TestSample");
-        $this->assertEquals($obj->getStatus(), "TestSample");
+        self::assertEquals($obj->getName(), "TestSample");
+        self::assertEquals($obj->getDescription(), "TestSample");
+        self::assertEquals($obj->getStatus(), "TestSample");
     }
 
     /**
      * @dataProvider mockProvider
      * @param WebhookEventType $obj
      */
-    public function testSubscribedEventTypes($obj, $mockApiContext)
+    public function testSubscribedEventTypes($obj, $mockApiContext): void
     {
         $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    WebhookEventTypeListTest::getJson()
-            ));
+            ->willReturn(WebhookEventTypeListTest::getJson());
 
         $result = $obj->subscribedEventTypes("webhookId", $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
      * @param WebhookEventType $obj
      */
-    public function testAvailableEventTypes($obj, $mockApiContext)
+    public function testAvailableEventTypes($obj, $mockApiContext): void
     {
         $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    WebhookEventTypeListTest::getJson()
-            ));
+            ->willReturn(WebhookEventTypeListTest::getJson());
 
         $result = $obj->availableEventTypes($mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
 
-    public function mockProvider()
+    public function mockProvider(): array
     {
         $obj = self::getObject();
         $mockApiContext = $this->getMockBuilder('ApiContext')

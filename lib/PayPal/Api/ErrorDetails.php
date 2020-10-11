@@ -20,10 +20,10 @@ class ErrorDetails extends PayPalModel
      * Name of the field that caused the error.
      *
      * @param string $field
-     * 
+     *
      * @return $this
      */
-    public function setField($field)
+    public function setField($field): self
     {
         $this->field = $field;
         return $this;
@@ -34,7 +34,7 @@ class ErrorDetails extends PayPalModel
      *
      * @return string
      */
-    public function getField()
+    public function getField(): string
     {
         return $this->field;
     }
@@ -43,10 +43,10 @@ class ErrorDetails extends PayPalModel
      * Reason for the error.
      *
      * @param string $issue
-     * 
+     *
      * @return $this
      */
-    public function setIssue($issue)
+    public function setIssue($issue): self
     {
         $this->issue = $issue;
         return $this;
@@ -57,7 +57,7 @@ class ErrorDetails extends PayPalModel
      *
      * @return string
      */
-    public function getIssue()
+    public function getIssue(): string
     {
         return $this->issue;
     }
@@ -66,10 +66,10 @@ class ErrorDetails extends PayPalModel
      * Reference ID of the purchase_unit associated with this error
      * @deprecated Not publicly available
      * @param string $purchase_unit_reference_id
-     * 
+     *
      * @return $this
      */
-    public function setPurchaseUnitReferenceId($purchase_unit_reference_id)
+    public function setPurchaseUnitReferenceId($purchase_unit_reference_id): self
     {
         $this->purchase_unit_reference_id = $purchase_unit_reference_id;
         return $this;
@@ -80,7 +80,7 @@ class ErrorDetails extends PayPalModel
      * @deprecated Not publicly available
      * @return string
      */
-    public function getPurchaseUnitReferenceId()
+    public function getPurchaseUnitReferenceId(): string
     {
         return $this->purchase_unit_reference_id;
     }
@@ -89,10 +89,10 @@ class ErrorDetails extends PayPalModel
      * PayPal internal error code.
      * @deprecated Not publicly available
      * @param string $code
-     * 
+     *
      * @return $this
      */
-    public function setCode($code)
+    public function setCode($code): self
     {
         $this->code = $code;
         return $this;
@@ -103,7 +103,7 @@ class ErrorDetails extends PayPalModel
      * @deprecated Not publicly available
      * @return string
      */
-    public function getCode()
+    public function getCode(): string
     {
         return $this->code;
     }

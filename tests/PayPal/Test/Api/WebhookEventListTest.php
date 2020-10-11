@@ -17,7 +17,7 @@ class WebhookEventListTest extends TestCase
      * Gets Json String of Object WebhookEventList
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"events":' .WebhookEventTest::getJson() . ',"count":123,"links":' .LinksTest::getJson() . '}';
     }
@@ -26,7 +26,7 @@ class WebhookEventListTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return WebhookEventList
      */
-    public static function getObject()
+    public static function getObject(): WebhookEventList
     {
         return new WebhookEventList(self::getJson());
     }
@@ -36,14 +36,14 @@ class WebhookEventListTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return WebhookEventList
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): WebhookEventList
     {
         $obj = new WebhookEventList(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getEvents());
-        $this->assertNotNull($obj->getCount());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getEvents());
+        self::assertNotNull($obj->getCount());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -51,11 +51,11 @@ class WebhookEventListTest extends TestCase
      * @depends testSerializationDeserialization
      * @param WebhookEventList $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getEvents(), WebhookEventTest::getObject());
-        $this->assertEquals($obj->getCount(), 123);
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals($obj->getEvents(), WebhookEventTest::getObject());
+        self::assertEquals($obj->getCount(), 123);
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 
 

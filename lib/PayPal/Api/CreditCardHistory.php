@@ -24,7 +24,7 @@ class CreditCardHistory extends PayPalModel
      * @param \PayPal\Api\CreditCard[] $credit_cards
      * @return $this
      */
-    public function setCreditCards($credit_cards)
+    public function setCreditCards($credit_cards): self
     {
         $this->{"credit-cards"} = $credit_cards;
         return $this;
@@ -35,20 +35,20 @@ class CreditCardHistory extends PayPalModel
      *
      * @return \PayPal\Api\CreditCard
      */
-    public function getCreditCards()
+    public function getCreditCards(): CreditCard
     {
         return $this->{"credit-cards"};
     }
 
     /**
      * Number of items returned in each range of results. Note that the last results range could have fewer items than the requested number of items.
-     * 
+     *
      *
      * @param int $count
-     * 
+     *
      * @return $this
      */
-    public function setCount($count)
+    public function setCount($count): self
     {
         $this->count = $count;
         return $this;
@@ -59,20 +59,20 @@ class CreditCardHistory extends PayPalModel
      *
      * @return int
      */
-    public function getCount()
+    public function getCount(): int
     {
         return $this->count;
     }
 
     /**
      * Identifier of the next element to get the next range of results.
-     * 
+     *
      *
      * @param string $next_id
-     * 
+     *
      * @return $this
      */
-    public function setNextId($next_id)
+    public function setNextId($next_id): self
     {
         $this->next_id = $next_id;
         return $this;
@@ -83,7 +83,7 @@ class CreditCardHistory extends PayPalModel
      *
      * @return string
      */
-    public function getNextId()
+    public function getNextId(): string
     {
         return $this->next_id;
     }

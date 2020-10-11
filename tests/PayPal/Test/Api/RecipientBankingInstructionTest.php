@@ -16,7 +16,7 @@ class RecipientBankingInstructionTest extends TestCase
      * Gets Json String of Object RecipientBankingInstruction
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"bank_name":"TestSample","account_holder_name":"TestSample","account_number":"TestSample","routing_number":"TestSample","international_bank_account_number":"TestSample","bank_identifier_code":"TestSample"}';
     }
@@ -25,7 +25,7 @@ class RecipientBankingInstructionTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return RecipientBankingInstruction
      */
-    public static function getObject()
+    public static function getObject(): RecipientBankingInstruction
     {
         return new RecipientBankingInstruction(self::getJson());
     }
@@ -35,17 +35,17 @@ class RecipientBankingInstructionTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return RecipientBankingInstruction
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): RecipientBankingInstruction
     {
         $obj = new RecipientBankingInstruction(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getBankName());
-        $this->assertNotNull($obj->getAccountHolderName());
-        $this->assertNotNull($obj->getAccountNumber());
-        $this->assertNotNull($obj->getRoutingNumber());
-        $this->assertNotNull($obj->getInternationalBankAccountNumber());
-        $this->assertNotNull($obj->getBankIdentifierCode());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getBankName());
+        self::assertNotNull($obj->getAccountHolderName());
+        self::assertNotNull($obj->getAccountNumber());
+        self::assertNotNull($obj->getRoutingNumber());
+        self::assertNotNull($obj->getInternationalBankAccountNumber());
+        self::assertNotNull($obj->getBankIdentifierCode());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -53,13 +53,13 @@ class RecipientBankingInstructionTest extends TestCase
      * @depends testSerializationDeserialization
      * @param RecipientBankingInstruction $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getBankName(), "TestSample");
-        $this->assertEquals($obj->getAccountHolderName(), "TestSample");
-        $this->assertEquals($obj->getAccountNumber(), "TestSample");
-        $this->assertEquals($obj->getRoutingNumber(), "TestSample");
-        $this->assertEquals($obj->getInternationalBankAccountNumber(), "TestSample");
-        $this->assertEquals($obj->getBankIdentifierCode(), "TestSample");
+        self::assertEquals($obj->getBankName(), "TestSample");
+        self::assertEquals($obj->getAccountHolderName(), "TestSample");
+        self::assertEquals($obj->getAccountNumber(), "TestSample");
+        self::assertEquals($obj->getRoutingNumber(), "TestSample");
+        self::assertEquals($obj->getInternationalBankAccountNumber(), "TestSample");
+        self::assertEquals($obj->getBankIdentifierCode(), "TestSample");
     }
 }

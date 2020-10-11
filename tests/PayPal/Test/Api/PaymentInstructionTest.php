@@ -17,7 +17,7 @@ class PaymentInstructionTest extends TestCase
      * Gets Json String of Object PaymentInstruction
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"reference_number":"TestSample","instruction_type":"TestSample","recipient_banking_instruction":' .RecipientBankingInstructionTest::getJson() . ',"amount":' .CurrencyTest::getJson() . ',"payment_due_date":"TestSample","note":"TestSample","links":' .LinksTest::getJson() . '}';
     }
@@ -26,7 +26,7 @@ class PaymentInstructionTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return PaymentInstruction
      */
-    public static function getObject()
+    public static function getObject(): PaymentInstruction
     {
         return new PaymentInstruction(self::getJson());
     }
@@ -36,18 +36,18 @@ class PaymentInstructionTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return PaymentInstruction
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): PaymentInstruction
     {
         $obj = new PaymentInstruction(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getReferenceNumber());
-        $this->assertNotNull($obj->getInstructionType());
-        $this->assertNotNull($obj->getRecipientBankingInstruction());
-        $this->assertNotNull($obj->getAmount());
-        $this->assertNotNull($obj->getPaymentDueDate());
-        $this->assertNotNull($obj->getNote());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getReferenceNumber());
+        self::assertNotNull($obj->getInstructionType());
+        self::assertNotNull($obj->getRecipientBankingInstruction());
+        self::assertNotNull($obj->getAmount());
+        self::assertNotNull($obj->getPaymentDueDate());
+        self::assertNotNull($obj->getNote());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -55,38 +55,36 @@ class PaymentInstructionTest extends TestCase
      * @depends testSerializationDeserialization
      * @param PaymentInstruction $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getReferenceNumber(), "TestSample");
-        $this->assertEquals($obj->getInstructionType(), "TestSample");
-        $this->assertEquals($obj->getRecipientBankingInstruction(), RecipientBankingInstructionTest::getObject());
-        $this->assertEquals($obj->getAmount(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getPaymentDueDate(), "TestSample");
-        $this->assertEquals($obj->getNote(), "TestSample");
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals($obj->getReferenceNumber(), "TestSample");
+        self::assertEquals($obj->getInstructionType(), "TestSample");
+        self::assertEquals($obj->getRecipientBankingInstruction(), RecipientBankingInstructionTest::getObject());
+        self::assertEquals($obj->getAmount(), CurrencyTest::getObject());
+        self::assertEquals($obj->getPaymentDueDate(), "TestSample");
+        self::assertEquals($obj->getNote(), "TestSample");
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 
     /**
      * @dataProvider mockProvider
      * @param PaymentInstruction $obj
      */
-    public function testGet($obj, $mockApiContext)
+    public function testGet($obj, $mockApiContext): void
     {
         $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    PaymentInstructionTest::getJson()
-            ));
+            ->willReturn(PaymentInstructionTest::getJson());
 
         $result = $obj->get("paymentId", $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
 
-    public function mockProvider()
+    public function mockProvider(): array
     {
         $obj = self::getObject();
         $mockApiContext = $this->getMockBuilder('ApiContext')

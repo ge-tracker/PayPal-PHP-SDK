@@ -16,7 +16,7 @@ class TermsTest extends TestCase
      * Gets Json String of Object Terms
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"id":"TestSample","type":"TestSample","max_billing_amount":' .CurrencyTest::getJson() . ',"occurrences":"TestSample","amount_range":' .CurrencyTest::getJson() . ',"buyer_editable":"TestSample"}';
     }
@@ -25,7 +25,7 @@ class TermsTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return Terms
      */
-    public static function getObject()
+    public static function getObject(): Terms
     {
         return new Terms(self::getJson());
     }
@@ -35,17 +35,17 @@ class TermsTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return Terms
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): Terms
     {
         $obj = new Terms(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getType());
-        $this->assertNotNull($obj->getMaxBillingAmount());
-        $this->assertNotNull($obj->getOccurrences());
-        $this->assertNotNull($obj->getAmountRange());
-        $this->assertNotNull($obj->getBuyerEditable());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getType());
+        self::assertNotNull($obj->getMaxBillingAmount());
+        self::assertNotNull($obj->getOccurrences());
+        self::assertNotNull($obj->getAmountRange());
+        self::assertNotNull($obj->getBuyerEditable());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -53,13 +53,13 @@ class TermsTest extends TestCase
      * @depends testSerializationDeserialization
      * @param Terms $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getType(), "TestSample");
-        $this->assertEquals($obj->getMaxBillingAmount(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getOccurrences(), "TestSample");
-        $this->assertEquals($obj->getAmountRange(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getBuyerEditable(), "TestSample");
+        self::assertEquals($obj->getId(), "TestSample");
+        self::assertEquals($obj->getType(), "TestSample");
+        self::assertEquals($obj->getMaxBillingAmount(), CurrencyTest::getObject());
+        self::assertEquals($obj->getOccurrences(), "TestSample");
+        self::assertEquals($obj->getAmountRange(), CurrencyTest::getObject());
+        self::assertEquals($obj->getBuyerEditable(), "TestSample");
     }
 }

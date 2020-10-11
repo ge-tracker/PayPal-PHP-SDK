@@ -17,10 +17,10 @@ class Image extends PayPalModel
      * List of invoices belonging to a merchant.
      *
      * @param string $imageBase64String
-     * 
+     *
      * @return $this
      */
-    public function setImage($imageBase64String)
+    public function setImage($imageBase64String): self
     {
         $this->image = $imageBase64String;
         return $this;
@@ -31,7 +31,7 @@ class Image extends PayPalModel
      *
      * @return string
      */
-    public function getImage()
+    public function getImage(): string
     {
         return $this->image;
     }
@@ -42,7 +42,7 @@ class Image extends PayPalModel
      * @param string $name File Name
      * @return string File name
      */
-    public function saveToFile($name = null)
+    public function saveToFile($name = null): ?string
     {
         // Self Generate File Location
         if (!$name) {

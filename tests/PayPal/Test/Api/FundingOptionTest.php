@@ -16,7 +16,7 @@ class FundingOptionTest extends TestCase
      * Gets Json String of Object FundingOption
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"id":"TestSample","funding_sources":' . FundingSourceTest::getJson() . ',"backup_funding_instrument":' . FundingInstrumentTest::getJson() . ',"currency_conversion":' . CurrencyConversionTest::getJson() . ',"installment_info":' . InstallmentInfoTest::getJson() . ',"links":' . LinksTest::getJson() . '}';
     }
@@ -25,7 +25,7 @@ class FundingOptionTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return FundingOption
      */
-    public static function getObject()
+    public static function getObject(): FundingOption
     {
         return new FundingOption(self::getJson());
     }
@@ -35,17 +35,17 @@ class FundingOptionTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return FundingOption
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): FundingOption
     {
         $obj = new FundingOption(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getFundingSources());
-        $this->assertNotNull($obj->getBackupFundingInstrument());
-        $this->assertNotNull($obj->getCurrencyConversion());
-        $this->assertNotNull($obj->getInstallmentInfo());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getFundingSources());
+        self::assertNotNull($obj->getBackupFundingInstrument());
+        self::assertNotNull($obj->getCurrencyConversion());
+        self::assertNotNull($obj->getInstallmentInfo());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -53,13 +53,13 @@ class FundingOptionTest extends TestCase
      * @depends testSerializationDeserialization
      * @param FundingOption $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getFundingSources(), FundingSourceTest::getObject());
-        $this->assertEquals($obj->getBackupFundingInstrument(), FundingInstrumentTest::getObject());
-        $this->assertEquals($obj->getCurrencyConversion(), CurrencyConversionTest::getObject());
-        $this->assertEquals($obj->getInstallmentInfo(), InstallmentInfoTest::getObject());
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals($obj->getId(), "TestSample");
+        self::assertEquals($obj->getFundingSources(), FundingSourceTest::getObject());
+        self::assertEquals($obj->getBackupFundingInstrument(), FundingInstrumentTest::getObject());
+        self::assertEquals($obj->getCurrencyConversion(), CurrencyConversionTest::getObject());
+        self::assertEquals($obj->getInstallmentInfo(), InstallmentInfoTest::getObject());
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 }

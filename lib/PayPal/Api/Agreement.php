@@ -35,10 +35,10 @@ class Agreement extends PayPalResourceModel
      * Identifier of the agreement.
      *
      * @param string $id
-     * 
+     *
      * @return $this
      */
-    public function setId($id)
+    public function setId($id): self
     {
         $this->id = $id;
         return $this;
@@ -49,7 +49,7 @@ class Agreement extends PayPalResourceModel
      *
      * @return string
      */
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
@@ -58,10 +58,10 @@ class Agreement extends PayPalResourceModel
      * State of the agreement.
      *
      * @param string $state
-     * 
+     *
      * @return $this
      */
-    public function setState($state)
+    public function setState($state): self
     {
         $this->state = $state;
         return $this;
@@ -72,7 +72,7 @@ class Agreement extends PayPalResourceModel
      *
      * @return string
      */
-    public function getState()
+    public function getState(): string
     {
         return $this->state;
     }
@@ -81,10 +81,10 @@ class Agreement extends PayPalResourceModel
      * Name of the agreement.
      *
      * @param string $name
-     * 
+     *
      * @return $this
      */
-    public function setName($name)
+    public function setName($name): self
     {
         $this->name = $name;
         return $this;
@@ -95,7 +95,7 @@ class Agreement extends PayPalResourceModel
      *
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -104,10 +104,10 @@ class Agreement extends PayPalResourceModel
      * Description of the agreement.
      *
      * @param string $description
-     * 
+     *
      * @return $this
      */
-    public function setDescription($description)
+    public function setDescription($description): self
     {
         $this->description = $description;
         return $this;
@@ -118,7 +118,7 @@ class Agreement extends PayPalResourceModel
      *
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -127,10 +127,10 @@ class Agreement extends PayPalResourceModel
      * Start date of the agreement. Date format yyyy-MM-dd z, as defined in [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
      *
      * @param string $start_date
-     * 
+     *
      * @return $this
      */
-    public function setStartDate($start_date)
+    public function setStartDate($start_date): self
     {
         $this->start_date = $start_date;
         return $this;
@@ -141,7 +141,7 @@ class Agreement extends PayPalResourceModel
      *
      * @return string
      */
-    public function getStartDate()
+    public function getStartDate(): string
     {
         return $this->start_date;
     }
@@ -150,10 +150,10 @@ class Agreement extends PayPalResourceModel
      * Details of the buyer who is enrolling in this agreement. This information is gathered from execution of the approval URL.
      *
      * @param \PayPal\Api\Payer $payer
-     * 
+     *
      * @return $this
      */
-    public function setPayer($payer)
+    public function setPayer($payer): self
     {
         $this->payer = $payer;
         return $this;
@@ -164,7 +164,7 @@ class Agreement extends PayPalResourceModel
      *
      * @return \PayPal\Api\Payer
      */
-    public function getPayer()
+    public function getPayer(): Payer
     {
         return $this->payer;
     }
@@ -173,10 +173,10 @@ class Agreement extends PayPalResourceModel
      * Shipping address object of the agreement, which should be provided if it is different from the default address.
      *
      * @param \PayPal\Api\Address $shipping_address
-     * 
+     *
      * @return $this
      */
-    public function setShippingAddress($shipping_address)
+    public function setShippingAddress($shipping_address): self
     {
         $this->shipping_address = $shipping_address;
         return $this;
@@ -187,7 +187,7 @@ class Agreement extends PayPalResourceModel
      *
      * @return \PayPal\Api\Address
      */
-    public function getShippingAddress()
+    public function getShippingAddress(): Address
     {
         return $this->shipping_address;
     }
@@ -196,10 +196,10 @@ class Agreement extends PayPalResourceModel
      * Default merchant preferences from the billing plan are used, unless override preferences are provided here.
      *
      * @param \PayPal\Api\MerchantPreferences $override_merchant_preferences
-     * 
+     *
      * @return $this
      */
-    public function setOverrideMerchantPreferences($override_merchant_preferences)
+    public function setOverrideMerchantPreferences($override_merchant_preferences): self
     {
         $this->override_merchant_preferences = $override_merchant_preferences;
         return $this;
@@ -210,7 +210,7 @@ class Agreement extends PayPalResourceModel
      *
      * @return \PayPal\Api\MerchantPreferences
      */
-    public function getOverrideMerchantPreferences()
+    public function getOverrideMerchantPreferences(): MerchantPreferences
     {
         return $this->override_merchant_preferences;
     }
@@ -219,10 +219,10 @@ class Agreement extends PayPalResourceModel
      * Array of override_charge_model for this agreement if needed to change the default models from the billing plan.
      *
      * @param \PayPal\Api\OverrideChargeModel[] $override_charge_models
-     * 
+     *
      * @return $this
      */
-    public function setOverrideChargeModels($override_charge_models)
+    public function setOverrideChargeModels($override_charge_models): self
     {
         $this->override_charge_models = $override_charge_models;
         return $this;
@@ -244,15 +244,15 @@ class Agreement extends PayPalResourceModel
      * @param \PayPal\Api\OverrideChargeModel $overrideChargeModel
      * @return $this
      */
-    public function addOverrideChargeModel($overrideChargeModel)
+    public function addOverrideChargeModel($overrideChargeModel): ?self
     {
         if (!$this->getOverrideChargeModels()) {
             return $this->setOverrideChargeModels(array($overrideChargeModel));
-        } else {
-            return $this->setOverrideChargeModels(
-                array_merge($this->getOverrideChargeModels(), array($overrideChargeModel))
-            );
         }
+
+        return $this->setOverrideChargeModels(
+            array_merge($this->getOverrideChargeModels(), array($overrideChargeModel))
+        );
     }
 
     /**
@@ -261,7 +261,7 @@ class Agreement extends PayPalResourceModel
      * @param \PayPal\Api\OverrideChargeModel $overrideChargeModel
      * @return $this
      */
-    public function removeOverrideChargeModel($overrideChargeModel)
+    public function removeOverrideChargeModel($overrideChargeModel): self
     {
         return $this->setOverrideChargeModels(
             array_diff($this->getOverrideChargeModels(), array($overrideChargeModel))
@@ -272,10 +272,10 @@ class Agreement extends PayPalResourceModel
      * Plan details for this agreement.
      *
      * @param \PayPal\Api\Plan $plan
-     * 
+     *
      * @return $this
      */
-    public function setPlan($plan)
+    public function setPlan($plan): self
     {
         $this->plan = $plan;
         return $this;
@@ -286,7 +286,7 @@ class Agreement extends PayPalResourceModel
      *
      * @return \PayPal\Api\Plan
      */
-    public function getPlan()
+    public function getPlan(): Plan
     {
         return $this->plan;
     }
@@ -295,10 +295,10 @@ class Agreement extends PayPalResourceModel
      * Date and time that this resource was created. Date format yyyy-MM-dd z, as defined in [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
      *
      * @param string $create_time
-     * 
+     *
      * @return $this
      */
-    public function setCreateTime($create_time)
+    public function setCreateTime($create_time): self
     {
         $this->create_time = $create_time;
         return $this;
@@ -309,7 +309,7 @@ class Agreement extends PayPalResourceModel
      *
      * @return string
      */
-    public function getCreateTime()
+    public function getCreateTime(): string
     {
         return $this->create_time;
     }
@@ -318,10 +318,10 @@ class Agreement extends PayPalResourceModel
      * Date and time that this resource was updated. Date format yyyy-MM-dd z, as defined in [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
      *
      * @param string $update_time
-     * 
+     *
      * @return $this
      */
-    public function setUpdateTime($update_time)
+    public function setUpdateTime($update_time): self
     {
         $this->update_time = $update_time;
         return $this;
@@ -332,7 +332,7 @@ class Agreement extends PayPalResourceModel
      *
      * @return string
      */
-    public function getUpdateTime()
+    public function getUpdateTime(): string
     {
         return $this->update_time;
     }
@@ -341,10 +341,10 @@ class Agreement extends PayPalResourceModel
      * Agreement Details
      *
      * @param \PayPal\Api\AgreementDetails $agreement_details
-     * 
+     *
      * @return $this
      */
-    public function setAgreementDetails($agreement_details)
+    public function setAgreementDetails($agreement_details): self
     {
         $this->agreement_details = $agreement_details;
         return $this;
@@ -355,7 +355,7 @@ class Agreement extends PayPalResourceModel
      *
      * @return \PayPal\Api\AgreementDetails
      */
-    public function getAgreementDetails()
+    public function getAgreementDetails(): AgreementDetails
     {
         return $this->agreement_details;
     }
@@ -365,7 +365,7 @@ class Agreement extends PayPalResourceModel
      *
      * @return null|string
      */
-    public function getApprovalLink()
+    public function getApprovalLink(): ?string
     {
         return $this->getLink(PayPalConstants::APPROVAL_URL);
     }
@@ -377,7 +377,7 @@ class Agreement extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return Agreement
      */
-    public function create($apiContext = null, $restCall = null)
+    public function create($apiContext = null, $restCall = null): Agreement
     {
         $payLoad = $this->toJSON();
         $json = self::executeCall(
@@ -400,7 +400,7 @@ class Agreement extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return Agreement
      */
-    public function execute($paymentToken, $apiContext = null, $restCall = null)
+    public function execute($paymentToken, $apiContext = null, $restCall = null): Agreement
     {
         ArgumentValidator::validate($paymentToken, 'paymentToken');
         $payLoad = "";
@@ -424,7 +424,7 @@ class Agreement extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return Agreement
      */
-    public static function get($agreementId, $apiContext = null, $restCall = null)
+    public static function get($agreementId, $apiContext = null, $restCall = null): Agreement
     {
         ArgumentValidator::validate($agreementId, 'agreementId');
         $payLoad = "";
@@ -449,7 +449,7 @@ class Agreement extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return bool
      */
-    public function update($patchRequest, $apiContext = null, $restCall = null)
+    public function update($patchRequest, $apiContext = null, $restCall = null): bool
     {
         ArgumentValidator::validate($this->getId(), "Id");
         ArgumentValidator::validate($patchRequest, 'patchRequest');
@@ -473,7 +473,7 @@ class Agreement extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return bool
      */
-    public function suspend($agreementStateDescriptor, $apiContext = null, $restCall = null)
+    public function suspend($agreementStateDescriptor, $apiContext = null, $restCall = null): bool
     {
         ArgumentValidator::validate($this->getId(), "Id");
         ArgumentValidator::validate($agreementStateDescriptor, 'agreementStateDescriptor');
@@ -497,7 +497,7 @@ class Agreement extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return bool
      */
-    public function reActivate($agreementStateDescriptor, $apiContext = null, $restCall = null)
+    public function reActivate($agreementStateDescriptor, $apiContext = null, $restCall = null): bool
     {
         ArgumentValidator::validate($this->getId(), "Id");
         ArgumentValidator::validate($agreementStateDescriptor, 'agreementStateDescriptor');
@@ -521,7 +521,7 @@ class Agreement extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return bool
      */
-    public function cancel($agreementStateDescriptor, $apiContext = null, $restCall = null)
+    public function cancel($agreementStateDescriptor, $apiContext = null, $restCall = null): bool
     {
         ArgumentValidator::validate($this->getId(), "Id");
         ArgumentValidator::validate($agreementStateDescriptor, 'agreementStateDescriptor');
@@ -545,7 +545,7 @@ class Agreement extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return bool
      */
-    public function billBalance($agreementStateDescriptor, $apiContext = null, $restCall = null)
+    public function billBalance($agreementStateDescriptor, $apiContext = null, $restCall = null): bool
     {
         ArgumentValidator::validate($this->getId(), "Id");
         ArgumentValidator::validate($agreementStateDescriptor, 'agreementStateDescriptor');
@@ -569,7 +569,7 @@ class Agreement extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return bool
      */
-    public function setBalance($currency, $apiContext = null, $restCall = null)
+    public function setBalance($currency, $apiContext = null, $restCall = null): bool
     {
         ArgumentValidator::validate($this->getId(), "Id");
         ArgumentValidator::validate($currency, 'currency');
@@ -594,7 +594,7 @@ class Agreement extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return AgreementTransactions
      */
-    public static function transactions($agreementId, $apiContext = null, $restCall = null)
+    public static function transactions($agreementId, $apiContext = null, $restCall = null): AgreementTransactions
     {
         ArgumentValidator::validate($agreementId, 'agreementId');
         $payLoad = "";
@@ -620,7 +620,7 @@ class Agreement extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return AgreementTransactions
      */
-    public static function searchTransactions($agreementId, $params = array(), $apiContext = null, $restCall = null)
+    public static function searchTransactions($agreementId, $params = array(), $apiContext = null, $restCall = null): AgreementTransactions
     {
         ArgumentValidator::validate($agreementId, 'agreementId');
         ArgumentValidator::validate($params, 'params');

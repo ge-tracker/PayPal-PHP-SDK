@@ -16,7 +16,7 @@ class CreditCardListTest extends TestCase
      * Gets Json String of Object CreditCardList
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"items":' .CreditCardTest::getJson() . ',"links":' .LinksTest::getJson() . ',"total_items":123,"total_pages":123}';
     }
@@ -25,7 +25,7 @@ class CreditCardListTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return CreditCardList
      */
-    public static function getObject()
+    public static function getObject(): CreditCardList
     {
         return new CreditCardList(self::getJson());
     }
@@ -35,15 +35,15 @@ class CreditCardListTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return CreditCardList
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): CreditCardList
     {
         $obj = new CreditCardList(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getItems());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertNotNull($obj->getTotalItems());
-        $this->assertNotNull($obj->getTotalPages());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getItems());
+        self::assertNotNull($obj->getLinks());
+        self::assertNotNull($obj->getTotalItems());
+        self::assertNotNull($obj->getTotalPages());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -51,11 +51,11 @@ class CreditCardListTest extends TestCase
      * @depends testSerializationDeserialization
      * @param CreditCardList $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getItems(), CreditCardTest::getObject());
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
-        $this->assertEquals($obj->getTotalItems(), 123);
-        $this->assertEquals($obj->getTotalPages(), 123);
+        self::assertEquals($obj->getItems(), CreditCardTest::getObject());
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals($obj->getTotalItems(), 123);
+        self::assertEquals($obj->getTotalPages(), 123);
     }
 }

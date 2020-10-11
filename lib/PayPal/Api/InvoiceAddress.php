@@ -17,10 +17,10 @@ class InvoiceAddress extends BaseAddress
      * Phone number in E.123 format.
      *
      * @param \PayPal\Api\Phone $phone
-     * 
+     *
      * @return $this
      */
-    public function setPhone($phone)
+    public function setPhone($phone): self
     {
         $this->phone = $phone;
         return $this;
@@ -31,7 +31,7 @@ class InvoiceAddress extends BaseAddress
      *
      * @return \PayPal\Api\Phone
      */
-    public function getPhone()
+    public function getPhone(): Phone
     {
         return $this->phone;
     }

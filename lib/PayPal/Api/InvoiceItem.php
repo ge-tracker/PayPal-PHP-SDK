@@ -29,10 +29,10 @@ class InvoiceItem extends PayPalModel
      * Name of the item. 200 characters max.
      *
      * @param string $name
-     * 
+     *
      * @return $this
      */
-    public function setName($name)
+    public function setName($name): self
     {
         $this->name = $name;
         return $this;
@@ -43,7 +43,7 @@ class InvoiceItem extends PayPalModel
      *
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -52,10 +52,10 @@ class InvoiceItem extends PayPalModel
      * Description of the item. 1000 characters max.
      *
      * @param string $description
-     * 
+     *
      * @return $this
      */
-    public function setDescription($description)
+    public function setDescription($description): self
     {
         $this->description = $description;
         return $this;
@@ -66,7 +66,7 @@ class InvoiceItem extends PayPalModel
      *
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -75,10 +75,10 @@ class InvoiceItem extends PayPalModel
      * Quantity of the item. Range of -10000 to 10000.
      *
      * @param string|double $quantity
-     * 
+     *
      * @return $this
      */
-    public function setQuantity($quantity)
+    public function setQuantity($quantity): self
     {
         NumericValidator::validate($quantity, "Quantity");
         $quantity = FormatConverter::formatToPrice($quantity);
@@ -100,10 +100,10 @@ class InvoiceItem extends PayPalModel
      * Unit price of the item. Range of -1,000,000 to 1,000,000.
      *
      * @param \PayPal\Api\Currency $unit_price
-     * 
+     *
      * @return $this
      */
-    public function setUnitPrice($unit_price)
+    public function setUnitPrice($unit_price): self
     {
         $this->unit_price = $unit_price;
         return $this;
@@ -114,7 +114,7 @@ class InvoiceItem extends PayPalModel
      *
      * @return \PayPal\Api\Currency
      */
-    public function getUnitPrice()
+    public function getUnitPrice(): Currency
     {
         return $this->unit_price;
     }
@@ -123,10 +123,10 @@ class InvoiceItem extends PayPalModel
      * Tax associated with the item.
      *
      * @param \PayPal\Api\Tax $tax
-     * 
+     *
      * @return $this
      */
-    public function setTax($tax)
+    public function setTax($tax): self
     {
         $this->tax = $tax;
         return $this;
@@ -137,7 +137,7 @@ class InvoiceItem extends PayPalModel
      *
      * @return \PayPal\Api\Tax
      */
-    public function getTax()
+    public function getTax(): Tax
     {
         return $this->tax;
     }
@@ -146,10 +146,10 @@ class InvoiceItem extends PayPalModel
      * The date when the item or service was provided. The date format is *yyyy*-*MM*-*dd* *z* as defined in [Internet Date/Time Format](http://tools.ietf.org/html/rfc3339#section-5.6).
      *
      * @param string $date
-     * 
+     *
      * @return $this
      */
-    public function setDate($date)
+    public function setDate($date): self
     {
         $this->date = $date;
         return $this;
@@ -160,7 +160,7 @@ class InvoiceItem extends PayPalModel
      *
      * @return string
      */
-    public function getDate()
+    public function getDate(): string
     {
         return $this->date;
     }
@@ -169,10 +169,10 @@ class InvoiceItem extends PayPalModel
      * The item discount, as a percent or an amount value.
      *
      * @param \PayPal\Api\Cost $discount
-     * 
+     *
      * @return $this
      */
-    public function setDiscount($discount)
+    public function setDiscount($discount): self
     {
         $this->discount = $discount;
         return $this;
@@ -183,7 +183,7 @@ class InvoiceItem extends PayPalModel
      *
      * @return \PayPal\Api\Cost
      */
-    public function getDiscount()
+    public function getDiscount(): Cost
     {
         return $this->discount;
     }
@@ -195,7 +195,7 @@ class InvoiceItem extends PayPalModel
      * @throws \InvalidArgumentException
      * @return $this
      */
-    public function setImageUrl($image_url)
+    public function setImageUrl($image_url): self
     {
         UrlValidator::validate($image_url, "ImageUrl");
         $this->image_url = $image_url;
@@ -207,7 +207,7 @@ class InvoiceItem extends PayPalModel
      * @deprecated Not publicly available
      * @return string
      */
-    public function getImageUrl()
+    public function getImageUrl(): string
     {
         return $this->image_url;
     }
@@ -217,10 +217,10 @@ class InvoiceItem extends PayPalModel
      * Valid Values: ["QUANTITY", "HOURS", "AMOUNT"]
      *
      * @param string $unit_of_measure
-     * 
+     *
      * @return $this
      */
-    public function setUnitOfMeasure($unit_of_measure)
+    public function setUnitOfMeasure($unit_of_measure): self
     {
         $this->unit_of_measure = $unit_of_measure;
         return $this;
@@ -231,7 +231,7 @@ class InvoiceItem extends PayPalModel
      *
      * @return string
      */
-    public function getUnitOfMeasure()
+    public function getUnitOfMeasure(): string
     {
         return $this->unit_of_measure;
     }

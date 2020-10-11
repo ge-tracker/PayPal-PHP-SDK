@@ -17,7 +17,7 @@ class DetailsTest extends TestCase
      *
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"subtotal":"12.34","shipping":"12.34","tax":"12.34","handling_fee":"12.34","shipping_discount":"12.34","insurance":"12.34","gift_wrap":"12.34","fee":"12.34"}';
     }
@@ -27,7 +27,7 @@ class DetailsTest extends TestCase
      *
      * @return Details
      */
-    public static function getObject()
+    public static function getObject(): Details
     {
         return new Details(self::getJson());
     }
@@ -38,19 +38,19 @@ class DetailsTest extends TestCase
      *
      * @return Details
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): Details
     {
         $obj = new Details(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getSubtotal());
-        $this->assertNotNull($obj->getShipping());
-        $this->assertNotNull($obj->getTax());
-        $this->assertNotNull($obj->getHandlingFee());
-        $this->assertNotNull($obj->getShippingDiscount());
-        $this->assertNotNull($obj->getInsurance());
-        $this->assertNotNull($obj->getGiftWrap());
-        $this->assertNotNull($obj->getFee());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getSubtotal());
+        self::assertNotNull($obj->getShipping());
+        self::assertNotNull($obj->getTax());
+        self::assertNotNull($obj->getHandlingFee());
+        self::assertNotNull($obj->getShippingDiscount());
+        self::assertNotNull($obj->getInsurance());
+        self::assertNotNull($obj->getGiftWrap());
+        self::assertNotNull($obj->getFee());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -58,15 +58,15 @@ class DetailsTest extends TestCase
      * @depends testSerializationDeserialization
      * @param Details $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getSubtotal(), "12.34");
-        $this->assertEquals($obj->getShipping(), "12.34");
-        $this->assertEquals($obj->getTax(), "12.34");
-        $this->assertEquals($obj->getHandlingFee(), "12.34");
-        $this->assertEquals($obj->getShippingDiscount(), "12.34");
-        $this->assertEquals($obj->getInsurance(), "12.34");
-        $this->assertEquals($obj->getGiftWrap(), "12.34");
-        $this->assertEquals($obj->getFee(), "12.34");
+        self::assertEquals($obj->getSubtotal(), "12.34");
+        self::assertEquals($obj->getShipping(), "12.34");
+        self::assertEquals($obj->getTax(), "12.34");
+        self::assertEquals($obj->getHandlingFee(), "12.34");
+        self::assertEquals($obj->getShippingDiscount(), "12.34");
+        self::assertEquals($obj->getInsurance(), "12.34");
+        self::assertEquals($obj->getGiftWrap(), "12.34");
+        self::assertEquals($obj->getFee(), "12.34");
     }
 }

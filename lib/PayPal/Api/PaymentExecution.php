@@ -20,10 +20,10 @@ class PaymentExecution extends PayPalModel
      * The ID of the Payer, passed in the `return_url` by PayPal.
      *
      * @param string $payer_id
-     * 
+     *
      * @return $this
      */
-    public function setPayerId($payer_id)
+    public function setPayerId($payer_id): self
     {
         $this->payer_id = $payer_id;
         return $this;
@@ -34,7 +34,7 @@ class PaymentExecution extends PayPalModel
      *
      * @return string
      */
-    public function getPayerId()
+    public function getPayerId(): string
     {
         return $this->payer_id;
     }
@@ -43,10 +43,10 @@ class PaymentExecution extends PayPalModel
      * Carrier account id for a carrier billing payment. For a carrier billing payment, payer_id is not applicable.
      * @deprecated Not publicly available
      * @param string $carrier_account_id
-     * 
+     *
      * @return $this
      */
-    public function setCarrierAccountId($carrier_account_id)
+    public function setCarrierAccountId($carrier_account_id): self
     {
         $this->carrier_account_id = $carrier_account_id;
         return $this;
@@ -57,7 +57,7 @@ class PaymentExecution extends PayPalModel
      * @deprecated Not publicly available
      * @return string
      */
-    public function getCarrierAccountId()
+    public function getCarrierAccountId(): string
     {
         return $this->carrier_account_id;
     }
@@ -66,10 +66,10 @@ class PaymentExecution extends PayPalModel
      * Transactional details including the amount and item details.
      *
      * @param \PayPal\Api\Transaction[] $transactions
-     * 
+     *
      * @return $this
      */
-    public function setTransactions($transactions)
+    public function setTransactions($transactions): self
     {
         $this->transactions = $transactions;
         return $this;
@@ -80,7 +80,7 @@ class PaymentExecution extends PayPalModel
      *
      * @return \PayPal\Api\Transaction[]
      */
-    public function getTransactions()
+    public function getTransactions(): array
     {
         return $this->transactions;
     }
@@ -91,7 +91,7 @@ class PaymentExecution extends PayPalModel
      * @param \PayPal\Api\Transaction $transaction
      * @return $this
      */
-    public function addTransaction($transaction)
+    public function addTransaction($transaction): ?self
     {
         if (!$this->getTransactions()) {
             return $this->setTransactions(array($transaction));
@@ -108,7 +108,7 @@ class PaymentExecution extends PayPalModel
      * @param \PayPal\Api\Transaction $transaction
      * @return $this
      */
-    public function removeTransaction($transaction)
+    public function removeTransaction($transaction): self
     {
         return $this->setTransactions(
             array_diff($this->getTransactions(), array($transaction))

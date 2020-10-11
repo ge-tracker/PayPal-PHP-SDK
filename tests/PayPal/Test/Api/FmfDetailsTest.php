@@ -16,7 +16,7 @@ class FmfDetailsTest extends TestCase
      * Gets Json String of Object FmfDetails
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"filter_type":"TestSample","filter_id":"TestSample","name":"TestSample","description":"TestSample"}';
     }
@@ -25,7 +25,7 @@ class FmfDetailsTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return FmfDetails
      */
-    public static function getObject()
+    public static function getObject(): FmfDetails
     {
         return new FmfDetails(self::getJson());
     }
@@ -35,15 +35,15 @@ class FmfDetailsTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return FmfDetails
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): FmfDetails
     {
         $obj = new FmfDetails(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getFilterType());
-        $this->assertNotNull($obj->getFilterId());
-        $this->assertNotNull($obj->getName());
-        $this->assertNotNull($obj->getDescription());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getFilterType());
+        self::assertNotNull($obj->getFilterId());
+        self::assertNotNull($obj->getName());
+        self::assertNotNull($obj->getDescription());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -51,11 +51,11 @@ class FmfDetailsTest extends TestCase
      * @depends testSerializationDeserialization
      * @param FmfDetails $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getFilterType(), "TestSample");
-        $this->assertEquals($obj->getFilterId(), "TestSample");
-        $this->assertEquals($obj->getName(), "TestSample");
-        $this->assertEquals($obj->getDescription(), "TestSample");
+        self::assertEquals($obj->getFilterType(), "TestSample");
+        self::assertEquals($obj->getFilterId(), "TestSample");
+        self::assertEquals($obj->getName(), "TestSample");
+        self::assertEquals($obj->getDescription(), "TestSample");
     }
 }

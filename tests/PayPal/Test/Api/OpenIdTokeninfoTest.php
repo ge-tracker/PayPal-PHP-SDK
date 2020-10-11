@@ -18,8 +18,7 @@ class OpenIdTokeninfoTest extends TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
-    {
+    protected function setUp(): void    {
         $this->token = new OpenIdTokeninfo();
         $this->token->setAccessToken("Access token")
             ->setExpiresIn(900)
@@ -33,26 +32,25 @@ class OpenIdTokeninfoTest extends TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
     }
 
     /**
-     * @test
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): void
     {
         $tokenCopy = new OpenIdTokeninfo();
         $tokenCopy->fromJson($this->token->toJson());
 
-        $this->assertEquals($this->token, $tokenCopy);
+        self::assertEquals($this->token, $tokenCopy);
     }
 
     /**
      * @t1est
      * TODO: Fix Test. This test is disabled
      */
-    public function t1estOperations()
+    public function t1estOperations(): void
     {
         $clientId = 'AQkquBDf1zctJOWGKWUEtKXm6qVhueUEMvXO_-MCI4DQQ4-LWvkDLIN2fGsd';
         $clientSecret = 'ELtVxAjhT7cJimnz5-Nsx9k2reTKSVfErNQF-CmrwJgxRtylkGTKlU4RvrX';
@@ -64,7 +62,7 @@ class OpenIdTokeninfoTest extends TestCase
             'client_secret' => $clientSecret
         );
         $accessToken = OpenIdTokeninfo::createFromAuthorizationCode($params);
-        $this->assertNotNull($accessToken);
+        self::assertNotNull($accessToken);
 
         $params = array(
             'refresh_token' => $accessToken->getRefreshToken(),
@@ -72,6 +70,6 @@ class OpenIdTokeninfoTest extends TestCase
             'client_secret' => $clientSecret
         );
         $accessToken = $accessToken->createFromRefreshToken($params);
-        $this->assertNotNull($accessToken);
+        self::assertNotNull($accessToken);
     }
 }

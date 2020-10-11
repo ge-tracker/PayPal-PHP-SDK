@@ -35,7 +35,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return $this
      */
-    public function setId($id)
+    public function setId($id): self
     {
         $this->id = $id;
         return $this;
@@ -47,7 +47,7 @@ class CreditCard extends PayPalResourceModel
      * @deprecated Not publicly available
      * @return string
      */
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
@@ -59,7 +59,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return $this
      */
-    public function setNumber($number)
+    public function setNumber($number): self
     {
         $this->number = $number;
         return $this;
@@ -70,7 +70,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return string
      */
-    public function getNumber()
+    public function getNumber(): string
     {
         return $this->number;
     }
@@ -82,7 +82,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return $this
      */
-    public function setType($type)
+    public function setType($type): self
     {
         $this->type = $type;
         return $this;
@@ -93,7 +93,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
@@ -105,7 +105,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return $this
      */
-    public function setExpireMonth($expire_month)
+    public function setExpireMonth($expire_month): self
     {
         $this->expire_month = $expire_month;
         return $this;
@@ -116,7 +116,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return int
      */
-    public function getExpireMonth()
+    public function getExpireMonth(): int
     {
         return $this->expire_month;
     }
@@ -128,7 +128,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return $this
      */
-    public function setExpireYear($expire_year)
+    public function setExpireYear($expire_year): self
     {
         $this->expire_year = $expire_year;
         return $this;
@@ -139,7 +139,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return int
      */
-    public function getExpireYear()
+    public function getExpireYear(): int
     {
         return $this->expire_year;
     }
@@ -151,7 +151,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return $this
      */
-    public function setCvv2($cvv2)
+    public function setCvv2($cvv2): self
     {
         $this->cvv2 = $cvv2;
         return $this;
@@ -162,7 +162,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return string
      */
-    public function getCvv2()
+    public function getCvv2(): string
     {
         return $this->cvv2;
     }
@@ -174,7 +174,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return $this
      */
-    public function setFirstName($first_name)
+    public function setFirstName($first_name): self
     {
         $this->first_name = $first_name;
         return $this;
@@ -185,7 +185,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return string
      */
-    public function getFirstName()
+    public function getFirstName(): string
     {
         return $this->first_name;
     }
@@ -197,7 +197,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return $this
      */
-    public function setLastName($last_name)
+    public function setLastName($last_name): self
     {
         $this->last_name = $last_name;
         return $this;
@@ -208,7 +208,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return string
      */
-    public function getLastName()
+    public function getLastName(): string
     {
         return $this->last_name;
     }
@@ -220,7 +220,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return $this
      */
-    public function setBillingAddress($billing_address)
+    public function setBillingAddress($billing_address): self
     {
         $this->billing_address = $billing_address;
         return $this;
@@ -231,7 +231,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return \PayPal\Api\Address
      */
-    public function getBillingAddress()
+    public function getBillingAddress(): Address
     {
         return $this->billing_address;
     }
@@ -243,7 +243,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return $this
      */
-    public function setExternalCustomerId($external_customer_id)
+    public function setExternalCustomerId($external_customer_id): self
     {
         $this->external_customer_id = $external_customer_id;
         return $this;
@@ -254,7 +254,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return string
      */
-    public function getExternalCustomerId()
+    public function getExternalCustomerId(): string
     {
         return $this->external_customer_id;
     }
@@ -266,7 +266,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return $this
      */
-    public function setMerchantId($merchant_id)
+    public function setMerchantId($merchant_id): self
     {
         $this->merchant_id = $merchant_id;
         return $this;
@@ -277,7 +277,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return string
      */
-    public function getMerchantId()
+    public function getMerchantId(): string
     {
         return $this->merchant_id;
     }
@@ -290,7 +290,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return $this
      */
-    public function setPayerId($payer_id)
+    public function setPayerId($payer_id): self
     {
         $this->payer_id = $payer_id;
         return $this;
@@ -302,7 +302,7 @@ class CreditCard extends PayPalResourceModel
      * @deprecated This is being deprecated in favor of the `external_customer_id` property.
      * @return string
      */
-    public function getPayerId()
+    public function getPayerId(): string
     {
         return $this->payer_id;
     }
@@ -314,7 +314,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return $this
      */
-    public function setExternalCardId($external_card_id)
+    public function setExternalCardId($external_card_id): self
     {
         $this->external_card_id = $external_card_id;
         return $this;
@@ -325,7 +325,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return string
      */
-    public function getExternalCardId()
+    public function getExternalCardId(): string
     {
         return $this->external_card_id;
     }
@@ -338,7 +338,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return $this
      */
-    public function setState($state)
+    public function setState($state): self
     {
         $this->state = $state;
         return $this;
@@ -349,7 +349,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return string
      */
-    public function getState()
+    public function getState(): string
     {
         return $this->state;
     }
@@ -361,7 +361,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return $this
      */
-    public function setCreateTime($create_time)
+    public function setCreateTime($create_time): self
     {
         $this->create_time = $create_time;
         return $this;
@@ -372,7 +372,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return string
      */
-    public function getCreateTime()
+    public function getCreateTime(): string
     {
         return $this->create_time;
     }
@@ -384,7 +384,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return $this
      */
-    public function setUpdateTime($update_time)
+    public function setUpdateTime($update_time): self
     {
         $this->update_time = $update_time;
         return $this;
@@ -395,7 +395,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return string
      */
-    public function getUpdateTime()
+    public function getUpdateTime(): string
     {
         return $this->update_time;
     }
@@ -407,7 +407,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return $this
      */
-    public function setValidUntil($valid_until)
+    public function setValidUntil($valid_until): self
     {
         $this->valid_until = $valid_until;
         return $this;
@@ -418,7 +418,7 @@ class CreditCard extends PayPalResourceModel
      *
      * @return string
      */
-    public function getValidUntil()
+    public function getValidUntil(): string
     {
         return $this->valid_until;
     }
@@ -430,7 +430,7 @@ class CreditCard extends PayPalResourceModel
      * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
      * @return CreditCard
      */
-    public function create($apiContext = null, $restCall = null)
+    public function create($apiContext = null, $restCall = null): CreditCard
     {
         $payLoad = $this->toJSON();
         $json = self::executeCall(
@@ -453,7 +453,7 @@ class CreditCard extends PayPalResourceModel
      * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
      * @return CreditCard
      */
-    public static function get($creditCardId, $apiContext = null, $restCall = null)
+    public static function get($creditCardId, $apiContext = null, $restCall = null): CreditCard
     {
         ArgumentValidator::validate($creditCardId, 'creditCardId');
         $payLoad = "";
@@ -477,7 +477,7 @@ class CreditCard extends PayPalResourceModel
      * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
      * @return bool
      */
-    public function delete($apiContext = null, $restCall = null)
+    public function delete($apiContext = null, $restCall = null): bool
     {
         ArgumentValidator::validate($this->getId(), "Id");
         $payLoad = "";
@@ -500,7 +500,7 @@ class CreditCard extends PayPalResourceModel
      * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
      * @return CreditCard
      */
-    public function update($patchRequest, $apiContext = null, $restCall = null)
+    public function update($patchRequest, $apiContext = null, $restCall = null): CreditCard
     {
         ArgumentValidator::validate($this->getId(), "Id");
         ArgumentValidator::validate($patchRequest, 'patch');
@@ -525,7 +525,7 @@ class CreditCard extends PayPalResourceModel
      * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
      * @return CreditCardList
      */
-    public static function all($params, $apiContext = null, $restCall = null)
+    public static function all($params, $apiContext = null, $restCall = null): CreditCardList
     {
         if (is_null($params)) {
             $params = array();

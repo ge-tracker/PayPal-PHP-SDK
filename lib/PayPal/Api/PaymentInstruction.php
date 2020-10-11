@@ -30,7 +30,7 @@ class PaymentInstruction extends PayPalResourceModel
      *
      * @return $this
      */
-    public function setReferenceNumber($reference_number)
+    public function setReferenceNumber($reference_number): self
     {
         $this->reference_number = $reference_number;
         return $this;
@@ -41,7 +41,7 @@ class PaymentInstruction extends PayPalResourceModel
      *
      * @return string
      */
-    public function getReferenceNumber()
+    public function getReferenceNumber(): string
     {
         return $this->reference_number;
     }
@@ -54,7 +54,7 @@ class PaymentInstruction extends PayPalResourceModel
      *
      * @return $this
      */
-    public function setInstructionType($instruction_type)
+    public function setInstructionType($instruction_type): self
     {
         $this->instruction_type = $instruction_type;
         return $this;
@@ -65,7 +65,7 @@ class PaymentInstruction extends PayPalResourceModel
      *
      * @return string
      */
-    public function getInstructionType()
+    public function getInstructionType(): string
     {
         return $this->instruction_type;
     }
@@ -77,7 +77,7 @@ class PaymentInstruction extends PayPalResourceModel
      *
      * @return $this
      */
-    public function setRecipientBankingInstruction($recipient_banking_instruction)
+    public function setRecipientBankingInstruction($recipient_banking_instruction): self
     {
         $this->recipient_banking_instruction = $recipient_banking_instruction;
         return $this;
@@ -88,7 +88,7 @@ class PaymentInstruction extends PayPalResourceModel
      *
      * @return \PayPal\Api\RecipientBankingInstruction
      */
-    public function getRecipientBankingInstruction()
+    public function getRecipientBankingInstruction(): RecipientBankingInstruction
     {
         return $this->recipient_banking_instruction;
     }
@@ -100,7 +100,7 @@ class PaymentInstruction extends PayPalResourceModel
      *
      * @return $this
      */
-    public function setAmount($amount)
+    public function setAmount($amount): self
     {
         $this->amount = $amount;
         return $this;
@@ -111,7 +111,7 @@ class PaymentInstruction extends PayPalResourceModel
      *
      * @return \PayPal\Api\Currency
      */
-    public function getAmount()
+    public function getAmount(): Currency
     {
         return $this->amount;
     }
@@ -123,7 +123,7 @@ class PaymentInstruction extends PayPalResourceModel
      *
      * @return $this
      */
-    public function setPaymentDueDate($payment_due_date)
+    public function setPaymentDueDate($payment_due_date): self
     {
         $this->payment_due_date = $payment_due_date;
         return $this;
@@ -134,7 +134,7 @@ class PaymentInstruction extends PayPalResourceModel
      *
      * @return string
      */
-    public function getPaymentDueDate()
+    public function getPaymentDueDate(): string
     {
         return $this->payment_due_date;
     }
@@ -146,7 +146,7 @@ class PaymentInstruction extends PayPalResourceModel
      *
      * @return $this
      */
-    public function setNote($note)
+    public function setNote($note): self
     {
         $this->note = $note;
         return $this;
@@ -157,7 +157,7 @@ class PaymentInstruction extends PayPalResourceModel
      *
      * @return string
      */
-    public function getNote()
+    public function getNote(): string
     {
         return $this->note;
     }
@@ -170,7 +170,7 @@ class PaymentInstruction extends PayPalResourceModel
      * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
      * @return PaymentInstruction
      */
-    public static function get($paymentId, $apiContext = null, $restCall = null)
+    public static function get($paymentId, $apiContext = null, $restCall = null): PaymentInstruction
     {
         ArgumentValidator::validate($paymentId, 'paymentId');
         $payLoad = "";

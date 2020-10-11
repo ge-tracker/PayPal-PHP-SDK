@@ -16,7 +16,7 @@ class LinksTest extends TestCase
      * Gets Json String of Object Links
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"href":"TestSample","rel":"TestSample","targetSchema":' .HyperSchemaTest::getJson() . ',"method":"TestSample","enctype":"TestSample","schema":' .HyperSchemaTest::getJson() . '}';
     }
@@ -25,7 +25,7 @@ class LinksTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return Links
      */
-    public static function getObject()
+    public static function getObject(): Links
     {
         return new Links(self::getJson());
     }
@@ -35,17 +35,17 @@ class LinksTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return Links
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): Links
     {
         $obj = new Links(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getHref());
-        $this->assertNotNull($obj->getRel());
-        $this->assertNotNull($obj->getTargetSchema());
-        $this->assertNotNull($obj->getMethod());
-        $this->assertNotNull($obj->getEnctype());
-        $this->assertNotNull($obj->getSchema());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getHref());
+        self::assertNotNull($obj->getRel());
+        self::assertNotNull($obj->getTargetSchema());
+        self::assertNotNull($obj->getMethod());
+        self::assertNotNull($obj->getEnctype());
+        self::assertNotNull($obj->getSchema());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -53,13 +53,13 @@ class LinksTest extends TestCase
      * @depends testSerializationDeserialization
      * @param Links $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getHref(), "TestSample");
-        $this->assertEquals($obj->getRel(), "TestSample");
-        $this->assertEquals($obj->getTargetSchema(), HyperSchemaTest::getObject());
-        $this->assertEquals($obj->getMethod(), "TestSample");
-        $this->assertEquals($obj->getEnctype(), "TestSample");
-        $this->assertEquals($obj->getSchema(), HyperSchemaTest::getObject());
+        self::assertEquals($obj->getHref(), "TestSample");
+        self::assertEquals($obj->getRel(), "TestSample");
+        self::assertEquals($obj->getTargetSchema(), HyperSchemaTest::getObject());
+        self::assertEquals($obj->getMethod(), "TestSample");
+        self::assertEquals($obj->getEnctype(), "TestSample");
+        self::assertEquals($obj->getSchema(), HyperSchemaTest::getObject());
     }
 }

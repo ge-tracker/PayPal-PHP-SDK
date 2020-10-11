@@ -49,7 +49,7 @@ class FuturePayment extends Payment
      * @param ApiContext $apiContext
      * @return string|null refresh token
      */
-    public static function getRefreshToken($authorizationCode, $apiContext = null)
+    public static function getRefreshToken($authorizationCode, $apiContext = null): ?string
     {
         $apiContext = $apiContext ? $apiContext : new ApiContext(self::$credential);
         $credential = $apiContext->getCredential();

@@ -16,7 +16,7 @@ class NameValuePairTest extends TestCase
      * Gets Json String of Object NameValuePair
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"name":"TestSample","value":"TestSample"}';
     }
@@ -25,7 +25,7 @@ class NameValuePairTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return NameValuePair
      */
-    public static function getObject()
+    public static function getObject(): NameValuePair
     {
         return new NameValuePair(self::getJson());
     }
@@ -35,13 +35,13 @@ class NameValuePairTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return NameValuePair
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): NameValuePair
     {
         $obj = new NameValuePair(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getName());
-        $this->assertNotNull($obj->getValue());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getName());
+        self::assertNotNull($obj->getValue());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -49,9 +49,9 @@ class NameValuePairTest extends TestCase
      * @depends testSerializationDeserialization
      * @param NameValuePair $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getName(), "TestSample");
-        $this->assertEquals($obj->getValue(), "TestSample");
+        self::assertEquals($obj->getName(), "TestSample");
+        self::assertEquals($obj->getValue(), "TestSample");
     }
 }

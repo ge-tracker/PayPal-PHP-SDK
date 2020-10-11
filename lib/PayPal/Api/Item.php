@@ -29,10 +29,10 @@ class Item extends PayPalModel
      * Stock keeping unit corresponding (SKU) to item.
      *
      * @param string $sku
-     * 
+     *
      * @return $this
      */
-    public function setSku($sku)
+    public function setSku($sku): self
     {
         $this->sku = $sku;
         return $this;
@@ -43,7 +43,7 @@ class Item extends PayPalModel
      *
      * @return string
      */
-    public function getSku()
+    public function getSku(): string
     {
         return $this->sku;
     }
@@ -52,10 +52,10 @@ class Item extends PayPalModel
      * Item name. 127 characters max.
      *
      * @param string $name
-     * 
+     *
      * @return $this
      */
-    public function setName($name)
+    public function setName($name): self
     {
         $this->name = $name;
         return $this;
@@ -66,7 +66,7 @@ class Item extends PayPalModel
      *
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -75,10 +75,10 @@ class Item extends PayPalModel
      * Description of the item. Only supported when the `payment_method` is set to `paypal`.
      *
      * @param string $description
-     * 
+     *
      * @return $this
      */
-    public function setDescription($description)
+    public function setDescription($description): self
     {
         $this->description = $description;
         return $this;
@@ -89,7 +89,7 @@ class Item extends PayPalModel
      *
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -98,10 +98,10 @@ class Item extends PayPalModel
      * Number of a particular item. 10 characters max.
      *
      * @param string $quantity
-     * 
+     *
      * @return $this
      */
-    public function setQuantity($quantity)
+    public function setQuantity($quantity): self
     {
         $this->quantity = $quantity;
         return $this;
@@ -112,7 +112,7 @@ class Item extends PayPalModel
      *
      * @return string
      */
-    public function getQuantity()
+    public function getQuantity(): string
     {
         return $this->quantity;
     }
@@ -121,10 +121,10 @@ class Item extends PayPalModel
      * Item cost. 10 characters max.
      *
      * @param string|double $price
-     * 
+     *
      * @return $this
      */
-    public function setPrice($price)
+    public function setPrice($price): self
     {
         NumericValidator::validate($price, "Price");
         $price = FormatConverter::formatToPrice($price, $this->getCurrency());
@@ -137,7 +137,7 @@ class Item extends PayPalModel
      *
      * @return string
      */
-    public function getPrice()
+    public function getPrice(): string
     {
         return $this->price;
     }
@@ -146,10 +146,10 @@ class Item extends PayPalModel
      * 3-letter [currency code](https://developer.paypal.com/docs/integration/direct/rest_api_payment_country_currency_support/).
      *
      * @param string $currency
-     * 
+     *
      * @return $this
      */
-    public function setCurrency($currency)
+    public function setCurrency($currency): self
     {
         $this->currency = $currency;
         return $this;
@@ -160,7 +160,7 @@ class Item extends PayPalModel
      *
      * @return string
      */
-    public function getCurrency()
+    public function getCurrency(): string
     {
         return $this->currency;
     }
@@ -169,10 +169,10 @@ class Item extends PayPalModel
      * Tax of the item. Only supported when the `payment_method` is set to `paypal`.
      *
      * @param string|double $tax
-     * 
+     *
      * @return $this
      */
-    public function setTax($tax)
+    public function setTax($tax): self
     {
         NumericValidator::validate($tax, "Tax");
         $tax = FormatConverter::formatToPrice($tax, $this->getCurrency());
@@ -185,7 +185,7 @@ class Item extends PayPalModel
      *
      * @return string
      */
-    public function getTax()
+    public function getTax(): string
     {
         return $this->tax;
     }
@@ -197,7 +197,7 @@ class Item extends PayPalModel
      * @throws \InvalidArgumentException
      * @return $this
      */
-    public function setUrl($url)
+    public function setUrl($url): self
     {
         UrlValidator::validate($url, "Url");
         $this->url = $url;
@@ -209,7 +209,7 @@ class Item extends PayPalModel
      *
      * @return string
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->url;
     }
@@ -219,10 +219,10 @@ class Item extends PayPalModel
      * Valid Values: ["DIGITAL", "PHYSICAL"]
      * @deprecated Not publicly available
      * @param string $category
-     * 
+     *
      * @return $this
      */
-    public function setCategory($category)
+    public function setCategory($category): self
     {
         $this->category = $category;
         return $this;
@@ -233,7 +233,7 @@ class Item extends PayPalModel
      * @deprecated Not publicly available
      * @return string
      */
-    public function getCategory()
+    public function getCategory(): string
     {
         return $this->category;
     }
@@ -242,10 +242,10 @@ class Item extends PayPalModel
      * Weight of the item.
      * @deprecated Not publicly available
      * @param \PayPal\Api\Measurement $weight
-     * 
+     *
      * @return $this
      */
-    public function setWeight($weight)
+    public function setWeight($weight): self
     {
         $this->weight = $weight;
         return $this;
@@ -256,7 +256,7 @@ class Item extends PayPalModel
      * @deprecated Not publicly available
      * @return \PayPal\Api\Measurement
      */
-    public function getWeight()
+    public function getWeight(): Measurement
     {
         return $this->weight;
     }
@@ -265,10 +265,10 @@ class Item extends PayPalModel
      * Length of the item.
      * @deprecated Not publicly available
      * @param \PayPal\Api\Measurement $length
-     * 
+     *
      * @return $this
      */
-    public function setLength($length)
+    public function setLength($length): self
     {
         $this->length = $length;
         return $this;
@@ -279,7 +279,7 @@ class Item extends PayPalModel
      * @deprecated Not publicly available
      * @return \PayPal\Api\Measurement
      */
-    public function getLength()
+    public function getLength(): Measurement
     {
         return $this->length;
     }
@@ -288,10 +288,10 @@ class Item extends PayPalModel
      * Height of the item.
      * @deprecated Not publicly available
      * @param \PayPal\Api\Measurement $height
-     * 
+     *
      * @return $this
      */
-    public function setHeight($height)
+    public function setHeight($height): self
     {
         $this->height = $height;
         return $this;
@@ -302,7 +302,7 @@ class Item extends PayPalModel
      * @deprecated Not publicly available
      * @return \PayPal\Api\Measurement
      */
-    public function getHeight()
+    public function getHeight(): Measurement
     {
         return $this->height;
     }
@@ -311,10 +311,10 @@ class Item extends PayPalModel
      * Width of the item.
      * @deprecated Not publicly available
      * @param \PayPal\Api\Measurement $width
-     * 
+     *
      * @return $this
      */
-    public function setWidth($width)
+    public function setWidth($width): self
     {
         $this->width = $width;
         return $this;
@@ -325,7 +325,7 @@ class Item extends PayPalModel
      * @deprecated Not publicly available
      * @return \PayPal\Api\Measurement
      */
-    public function getWidth()
+    public function getWidth(): Measurement
     {
         return $this->width;
     }
@@ -334,10 +334,10 @@ class Item extends PayPalModel
      * Set of optional data used for PayPal risk determination.
      * @deprecated Not publicly available
      * @param \PayPal\Api\NameValuePair[] $supplementary_data
-     * 
+     *
      * @return $this
      */
-    public function setSupplementaryData($supplementary_data)
+    public function setSupplementaryData($supplementary_data): self
     {
         $this->supplementary_data = $supplementary_data;
         return $this;
@@ -348,7 +348,7 @@ class Item extends PayPalModel
      * @deprecated Not publicly available
      * @return \PayPal\Api\NameValuePair[]
      */
-    public function getSupplementaryData()
+    public function getSupplementaryData(): array
     {
         return $this->supplementary_data;
     }
@@ -359,7 +359,7 @@ class Item extends PayPalModel
      * @param \PayPal\Api\NameValuePair $nameValuePair
      * @return $this
      */
-    public function addSupplementaryData($nameValuePair)
+    public function addSupplementaryData($nameValuePair): ?self
     {
         if (!$this->getSupplementaryData()) {
             return $this->setSupplementaryData(array($nameValuePair));
@@ -376,7 +376,7 @@ class Item extends PayPalModel
      * @param \PayPal\Api\NameValuePair $nameValuePair
      * @return $this
      */
-    public function removeSupplementaryData($nameValuePair)
+    public function removeSupplementaryData($nameValuePair): self
     {
         return $this->setSupplementaryData(
             array_diff($this->getSupplementaryData(), array($nameValuePair))
@@ -387,10 +387,10 @@ class Item extends PayPalModel
      * Set of optional data used for PayPal post-transaction notifications.
      * @deprecated Not publicly available
      * @param \PayPal\Api\NameValuePair[] $postback_data
-     * 
+     *
      * @return $this
      */
-    public function setPostbackData($postback_data)
+    public function setPostbackData($postback_data): self
     {
         $this->postback_data = $postback_data;
         return $this;
@@ -401,7 +401,7 @@ class Item extends PayPalModel
      * @deprecated Not publicly available
      * @return \PayPal\Api\NameValuePair[]
      */
-    public function getPostbackData()
+    public function getPostbackData(): array
     {
         return $this->postback_data;
     }
@@ -412,7 +412,7 @@ class Item extends PayPalModel
      * @param \PayPal\Api\NameValuePair $nameValuePair
      * @return $this
      */
-    public function addPostbackData($nameValuePair)
+    public function addPostbackData($nameValuePair): ?self
     {
         if (!$this->getPostbackData()) {
             return $this->setPostbackData(array($nameValuePair));
@@ -429,7 +429,7 @@ class Item extends PayPalModel
      * @param \PayPal\Api\NameValuePair $nameValuePair
      * @return $this
      */
-    public function removePostbackData($nameValuePair)
+    public function removePostbackData($nameValuePair): self
     {
         return $this->setPostbackData(
             array_diff($this->getPostbackData(), array($nameValuePair))

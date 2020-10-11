@@ -26,10 +26,10 @@ class BaseAddress extends PayPalModel
      * Line 1 of the Address (eg. number, street, etc).
      *
      * @param string $line1
-     * 
+     *
      * @return $this
      */
-    public function setLine1($line1)
+    public function setLine1($line1): self
     {
         $this->line1 = $line1;
         return $this;
@@ -40,7 +40,7 @@ class BaseAddress extends PayPalModel
      *
      * @return string
      */
-    public function getLine1()
+    public function getLine1(): string
     {
         return $this->line1;
     }
@@ -49,10 +49,10 @@ class BaseAddress extends PayPalModel
      * Optional line 2 of the Address (eg. suite, apt #, etc.).
      *
      * @param string $line2
-     * 
+     *
      * @return $this
      */
-    public function setLine2($line2)
+    public function setLine2($line2): self
     {
         $this->line2 = $line2;
         return $this;
@@ -63,7 +63,7 @@ class BaseAddress extends PayPalModel
      *
      * @return string
      */
-    public function getLine2()
+    public function getLine2(): string
     {
         return $this->line2;
     }
@@ -72,10 +72,10 @@ class BaseAddress extends PayPalModel
      * City name.
      *
      * @param string $city
-     * 
+     *
      * @return $this
      */
-    public function setCity($city)
+    public function setCity($city): self
     {
         $this->city = $city;
         return $this;
@@ -86,7 +86,7 @@ class BaseAddress extends PayPalModel
      *
      * @return string
      */
-    public function getCity()
+    public function getCity(): string
     {
         return $this->city;
     }
@@ -95,10 +95,10 @@ class BaseAddress extends PayPalModel
      * 2 letter country code.
      *
      * @param string $country_code
-     * 
+     *
      * @return $this
      */
-    public function setCountryCode($country_code)
+    public function setCountryCode($country_code): self
     {
         $this->country_code = $country_code;
         return $this;
@@ -109,7 +109,7 @@ class BaseAddress extends PayPalModel
      *
      * @return string
      */
-    public function getCountryCode()
+    public function getCountryCode(): string
     {
         return $this->country_code;
     }
@@ -118,10 +118,10 @@ class BaseAddress extends PayPalModel
      * Zip code or equivalent is usually required for countries that have them. For list of countries that do not have postal codes please refer to http://en.wikipedia.org/wiki/Postal_code.
      *
      * @param string $postal_code
-     * 
+     *
      * @return $this
      */
-    public function setPostalCode($postal_code)
+    public function setPostalCode($postal_code): self
     {
         $this->postal_code = $postal_code;
         return $this;
@@ -132,7 +132,7 @@ class BaseAddress extends PayPalModel
      *
      * @return string
      */
-    public function getPostalCode()
+    public function getPostalCode(): string
     {
         return $this->postal_code;
     }
@@ -141,10 +141,10 @@ class BaseAddress extends PayPalModel
      * 2 letter code for US states, and the equivalent for other countries.
      *
      * @param string $state
-     * 
+     *
      * @return $this
      */
-    public function setState($state)
+    public function setState($state): self
     {
         $this->state = $state;
         return $this;
@@ -155,7 +155,7 @@ class BaseAddress extends PayPalModel
      *
      * @return string
      */
-    public function getState()
+    public function getState(): string
     {
         return $this->state;
     }
@@ -168,7 +168,7 @@ class BaseAddress extends PayPalModel
      *
      * @return $this
      */
-    public function setNormalizationStatus($normalization_status)
+    public function setNormalizationStatus($normalization_status): self
     {
         $this->normalization_status = $normalization_status;
         return $this;
@@ -179,7 +179,7 @@ class BaseAddress extends PayPalModel
      *
      * @return string
      */
-    public function getNormalizationStatus()
+    public function getNormalizationStatus(): string
     {
         return $this->normalization_status;
     }
@@ -192,7 +192,7 @@ class BaseAddress extends PayPalModel
      *
      * @return $this
      */
-    public function setStatus($status)
+    public function setStatus($status): self
     {
         $this->status = $status;
         return $this;
@@ -203,7 +203,7 @@ class BaseAddress extends PayPalModel
      *
      * @return string
      */
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->status;
     }

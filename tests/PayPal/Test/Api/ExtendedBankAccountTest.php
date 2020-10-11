@@ -16,7 +16,7 @@ class ExtendedBankAccountTest extends TestCase
      * Gets Json String of Object ExtendedBankAccount
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"mandate_reference_number":"TestSample"}';
     }
@@ -25,7 +25,7 @@ class ExtendedBankAccountTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return ExtendedBankAccount
      */
-    public static function getObject()
+    public static function getObject(): ExtendedBankAccount
     {
         return new ExtendedBankAccount(self::getJson());
     }
@@ -35,12 +35,12 @@ class ExtendedBankAccountTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return ExtendedBankAccount
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): ExtendedBankAccount
     {
         $obj = new ExtendedBankAccount(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getMandateReferenceNumber());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getMandateReferenceNumber());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -48,8 +48,8 @@ class ExtendedBankAccountTest extends TestCase
      * @depends testSerializationDeserialization
      * @param ExtendedBankAccount $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getMandateReferenceNumber(), "TestSample");
+        self::assertEquals($obj->getMandateReferenceNumber(), "TestSample");
     }
 }

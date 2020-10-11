@@ -16,7 +16,7 @@ class PaymentCardTest extends TestCase
      * Gets Json String of Object PaymentCard
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"id":"TestSample","number":"TestSample","type":"TestSample","expire_month":"123","expire_year":"123","start_month":"TestSample","start_year":"TestSample","cvv2":"TestSample","first_name":"TestSample","last_name":"TestSample","billing_country":"TestSample","billing_address":' .AddressTest::getJson() . ',"external_customer_id":"TestSample","status":"TestSample","card_product_class":"TestSample","valid_until":"TestSample","issue_number":"TestSample","links":' .LinksTest::getJson() . '}';
     }
@@ -25,7 +25,7 @@ class PaymentCardTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return PaymentCard
      */
-    public static function getObject()
+    public static function getObject(): PaymentCard
     {
         return new PaymentCard(self::getJson());
     }
@@ -35,29 +35,29 @@ class PaymentCardTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return PaymentCard
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): PaymentCard
     {
         $obj = new PaymentCard(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getNumber());
-        $this->assertNotNull($obj->getType());
-        $this->assertNotNull($obj->getExpireMonth());
-        $this->assertNotNull($obj->getExpireYear());
-        $this->assertNotNull($obj->getStartMonth());
-        $this->assertNotNull($obj->getStartYear());
-        $this->assertNotNull($obj->getCvv2());
-        $this->assertNotNull($obj->getFirstName());
-        $this->assertNotNull($obj->getLastName());
-        $this->assertNotNull($obj->getBillingCountry());
-        $this->assertNotNull($obj->getBillingAddress());
-        $this->assertNotNull($obj->getExternalCustomerId());
-        $this->assertNotNull($obj->getStatus());
-        $this->assertNotNull($obj->getCardProductClass());
-        $this->assertNotNull($obj->getValidUntil());
-        $this->assertNotNull($obj->getIssueNumber());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getNumber());
+        self::assertNotNull($obj->getType());
+        self::assertNotNull($obj->getExpireMonth());
+        self::assertNotNull($obj->getExpireYear());
+        self::assertNotNull($obj->getStartMonth());
+        self::assertNotNull($obj->getStartYear());
+        self::assertNotNull($obj->getCvv2());
+        self::assertNotNull($obj->getFirstName());
+        self::assertNotNull($obj->getLastName());
+        self::assertNotNull($obj->getBillingCountry());
+        self::assertNotNull($obj->getBillingAddress());
+        self::assertNotNull($obj->getExternalCustomerId());
+        self::assertNotNull($obj->getStatus());
+        self::assertNotNull($obj->getCardProductClass());
+        self::assertNotNull($obj->getValidUntil());
+        self::assertNotNull($obj->getIssueNumber());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -65,25 +65,25 @@ class PaymentCardTest extends TestCase
      * @depends testSerializationDeserialization
      * @param PaymentCard $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getNumber(), "TestSample");
-        $this->assertEquals($obj->getType(), "TestSample");
-        $this->assertEquals($obj->getExpireMonth(), "TestSample");
-        $this->assertEquals($obj->getExpireYear(), "TestSample");
-        $this->assertEquals($obj->getStartMonth(), "TestSample");
-        $this->assertEquals($obj->getStartYear(), "TestSample");
-        $this->assertEquals($obj->getCvv2(), "TestSample");
-        $this->assertEquals($obj->getFirstName(), "TestSample");
-        $this->assertEquals($obj->getLastName(), "TestSample");
-        $this->assertEquals($obj->getBillingCountry(), "TestSample");
-        $this->assertEquals($obj->getBillingAddress(), AddressTest::getObject());
-        $this->assertEquals($obj->getExternalCustomerId(), "TestSample");
-        $this->assertEquals($obj->getStatus(), "TestSample");
-        $this->assertEquals($obj->getCardProductClass(), "TestSample");
-        $this->assertEquals($obj->getValidUntil(), "TestSample");
-        $this->assertEquals($obj->getIssueNumber(), "TestSample");
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals($obj->getId(), "TestSample");
+        self::assertEquals($obj->getNumber(), "TestSample");
+        self::assertEquals($obj->getType(), "TestSample");
+        self::assertEquals($obj->getExpireMonth(), "TestSample");
+        self::assertEquals($obj->getExpireYear(), "TestSample");
+        self::assertEquals($obj->getStartMonth(), "TestSample");
+        self::assertEquals($obj->getStartYear(), "TestSample");
+        self::assertEquals($obj->getCvv2(), "TestSample");
+        self::assertEquals($obj->getFirstName(), "TestSample");
+        self::assertEquals($obj->getLastName(), "TestSample");
+        self::assertEquals($obj->getBillingCountry(), "TestSample");
+        self::assertEquals($obj->getBillingAddress(), AddressTest::getObject());
+        self::assertEquals($obj->getExternalCustomerId(), "TestSample");
+        self::assertEquals($obj->getStatus(), "TestSample");
+        self::assertEquals($obj->getCardProductClass(), "TestSample");
+        self::assertEquals($obj->getValidUntil(), "TestSample");
+        self::assertEquals($obj->getIssueNumber(), "TestSample");
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 }

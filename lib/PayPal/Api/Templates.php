@@ -27,10 +27,10 @@ class Templates extends PayPalResourceModel
      * List of addresses in merchant's profile.
      *
      * @param \PayPal\Api\Address[] $addresses
-     * 
+     *
      * @return $this
      */
-    public function setAddresses($addresses)
+    public function setAddresses($addresses): self
     {
         $this->addresses = $addresses;
         return $this;
@@ -41,7 +41,7 @@ class Templates extends PayPalResourceModel
      *
      * @return \PayPal\Api\Address[]
      */
-    public function getAddresses()
+    public function getAddresses(): array
     {
         return $this->addresses;
     }
@@ -52,7 +52,7 @@ class Templates extends PayPalResourceModel
      * @param \PayPal\Api\Address $address
      * @return $this
      */
-    public function addAddress($address)
+    public function addAddress($address): ?self
     {
         if (!$this->getAddresses()) {
             return $this->setAddresses(array($address));
@@ -69,7 +69,7 @@ class Templates extends PayPalResourceModel
      * @param \PayPal\Api\Address $address
      * @return $this
      */
-    public function removeAddress($address)
+    public function removeAddress($address): self
     {
         return $this->setAddresses(
             array_diff($this->getAddresses(), array($address))
@@ -80,10 +80,10 @@ class Templates extends PayPalResourceModel
      * List of emails in merchant's profile.
      *
      * @param string[] $emails
-     * 
+     *
      * @return $this
      */
-    public function setEmails($emails)
+    public function setEmails($emails): self
     {
         $this->emails = $emails;
         return $this;
@@ -94,7 +94,7 @@ class Templates extends PayPalResourceModel
      *
      * @return string[]
      */
-    public function getEmails()
+    public function getEmails(): array
     {
         return $this->emails;
     }
@@ -105,7 +105,7 @@ class Templates extends PayPalResourceModel
      * @param string $string
      * @return $this
      */
-    public function addEmail($string)
+    public function addEmail($string): ?self
     {
         if (!$this->getEmails()) {
             return $this->setEmails(array($string));
@@ -122,7 +122,7 @@ class Templates extends PayPalResourceModel
      * @param string $string
      * @return $this
      */
-    public function removeEmail($string)
+    public function removeEmail($string): self
     {
         return $this->setEmails(
             array_diff($this->getEmails(), array($string))
@@ -133,10 +133,10 @@ class Templates extends PayPalResourceModel
      * List of phone numbers in merchant's profile.
      *
      * @param \PayPal\Api\Phone[] $phones
-     * 
+     *
      * @return $this
      */
-    public function setPhones($phones)
+    public function setPhones($phones): self
     {
         $this->phones = $phones;
         return $this;
@@ -147,7 +147,7 @@ class Templates extends PayPalResourceModel
      *
      * @return \PayPal\Api\Phone[]
      */
-    public function getPhones()
+    public function getPhones(): array
     {
         return $this->phones;
     }
@@ -158,7 +158,7 @@ class Templates extends PayPalResourceModel
      * @param \PayPal\Api\Phone $phone
      * @return $this
      */
-    public function addPhone($phone)
+    public function addPhone($phone): ?self
     {
         if (!$this->getPhones()) {
             return $this->setPhones(array($phone));
@@ -175,7 +175,7 @@ class Templates extends PayPalResourceModel
      * @param \PayPal\Api\Phone $phone
      * @return $this
      */
-    public function removePhone($phone)
+    public function removePhone($phone): self
     {
         return $this->setPhones(
             array_diff($this->getPhones(), array($phone))
@@ -186,10 +186,10 @@ class Templates extends PayPalResourceModel
      * Array of templates.
      *
      * @param \PayPal\Api\Template[] $templates
-     * 
+     *
      * @return $this
      */
-    public function setTemplates($templates)
+    public function setTemplates($templates): self
     {
         $this->templates = $templates;
         return $this;
@@ -200,7 +200,7 @@ class Templates extends PayPalResourceModel
      *
      * @return \PayPal\Api\Template[]
      */
-    public function getTemplates()
+    public function getTemplates(): array
     {
         return $this->templates;
     }
@@ -211,7 +211,7 @@ class Templates extends PayPalResourceModel
      * @param \PayPal\Api\Template $template
      * @return $this
      */
-    public function addTemplate($template)
+    public function addTemplate($template): ?self
     {
         if (!$this->getTemplates()) {
             return $this->setTemplates(array($template));
@@ -228,7 +228,7 @@ class Templates extends PayPalResourceModel
      * @param \PayPal\Api\Template $template
      * @return $this
      */
-    public function removeTemplate($template)
+    public function removeTemplate($template): self
     {
         return $this->setTemplates(
             array_diff($this->getTemplates(), array($template))
@@ -245,7 +245,7 @@ class Templates extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return Template
      */
-    public static function get($templateId, $apiContext = null, $restCall = null)
+    public static function get($templateId, $apiContext = null, $restCall = null): Template
     {
         ArgumentValidator::validate($templateId, 'templateId');
         $payLoad = "";
@@ -270,7 +270,7 @@ class Templates extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return Templates
      */
-    public static function getAll($params = array(), $apiContext = null, $restCall = null)
+    public static function getAll($params = array(), $apiContext = null, $restCall = null): Templates
     {
         ArgumentValidator::validate($params, 'params');
         $payLoad = "";

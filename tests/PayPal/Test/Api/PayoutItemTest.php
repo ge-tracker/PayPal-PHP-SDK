@@ -18,7 +18,7 @@ class PayoutItemTest extends TestCase
      * Gets Json String of Object PayoutItem
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"recipient_type":"TestSample","amount":' .CurrencyTest::getJson() . ',"note":"TestSample","receiver":"TestSample","sender_item_id":"TestSample"}';
     }
@@ -27,7 +27,7 @@ class PayoutItemTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return PayoutItem
      */
-    public static function getObject()
+    public static function getObject(): PayoutItem
     {
         return new PayoutItem(self::getJson());
     }
@@ -37,16 +37,16 @@ class PayoutItemTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return PayoutItem
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): PayoutItem
     {
         $obj = new PayoutItem(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getRecipientType());
-        $this->assertNotNull($obj->getAmount());
-        $this->assertNotNull($obj->getNote());
-        $this->assertNotNull($obj->getReceiver());
-        $this->assertNotNull($obj->getSenderItemId());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getRecipientType());
+        self::assertNotNull($obj->getAmount());
+        self::assertNotNull($obj->getNote());
+        self::assertNotNull($obj->getReceiver());
+        self::assertNotNull($obj->getSenderItemId());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -54,56 +54,52 @@ class PayoutItemTest extends TestCase
      * @depends testSerializationDeserialization
      * @param PayoutItem $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getRecipientType(), "TestSample");
-        $this->assertEquals($obj->getAmount(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getNote(), "TestSample");
-        $this->assertEquals($obj->getReceiver(), "TestSample");
-        $this->assertEquals($obj->getSenderItemId(), "TestSample");
+        self::assertEquals($obj->getRecipientType(), "TestSample");
+        self::assertEquals($obj->getAmount(), CurrencyTest::getObject());
+        self::assertEquals($obj->getNote(), "TestSample");
+        self::assertEquals($obj->getReceiver(), "TestSample");
+        self::assertEquals($obj->getSenderItemId(), "TestSample");
     }
 
     /**
      * @dataProvider mockProvider
      * @param PayoutItem $obj
      */
-    public function testGet($obj, $mockApiContext)
+    public function testGet($obj, $mockApiContext): void
     {
         $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                PayoutItemDetailsTest::getJson()
-            ));
+            ->willReturn(PayoutItemDetailsTest::getJson());
 
         $result = $obj->get("payoutItemId", $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
 
     /**
      * @dataProvider mockProvider
      * @param PayoutItem $obj
      */
-    public function testCancel($obj, $mockApiContext)
+    public function testCancel($obj, $mockApiContext): void
     {
         $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                PayoutItemDetailsTest::getJson()
-            ));
+            ->willReturn(PayoutItemDetailsTest::getJson());
 
         $result = $obj->cancel("payoutItemId", $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
 
-    public function mockProvider()
+    public function mockProvider(): array
     {
         $obj = self::getObject();
         $mockApiContext = $this->getMockBuilder('ApiContext')

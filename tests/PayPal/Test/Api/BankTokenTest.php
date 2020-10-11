@@ -16,7 +16,7 @@ class BankTokenTest extends TestCase
      * Gets Json String of Object BankToken
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"bank_id":"TestSample","external_customer_id":"TestSample","mandate_reference_number":"TestSample"}';
     }
@@ -25,7 +25,7 @@ class BankTokenTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return BankToken
      */
-    public static function getObject()
+    public static function getObject(): BankToken
     {
         return new BankToken(self::getJson());
     }
@@ -35,14 +35,14 @@ class BankTokenTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return BankToken
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): BankToken
     {
         $obj = new BankToken(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getBankId());
-        $this->assertNotNull($obj->getExternalCustomerId());
-        $this->assertNotNull($obj->getMandateReferenceNumber());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getBankId());
+        self::assertNotNull($obj->getExternalCustomerId());
+        self::assertNotNull($obj->getMandateReferenceNumber());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -50,10 +50,10 @@ class BankTokenTest extends TestCase
      * @depends testSerializationDeserialization
      * @param BankToken $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getBankId(), "TestSample");
-        $this->assertEquals($obj->getExternalCustomerId(), "TestSample");
-        $this->assertEquals($obj->getMandateReferenceNumber(), "TestSample");
+        self::assertEquals($obj->getBankId(), "TestSample");
+        self::assertEquals($obj->getExternalCustomerId(), "TestSample");
+        self::assertEquals($obj->getMandateReferenceNumber(), "TestSample");
     }
 }

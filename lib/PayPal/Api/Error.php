@@ -27,7 +27,7 @@ class Error extends PayPalModel
      *
      * @return $this
      */
-    public function setName($name)
+    public function setName($name): self
     {
         $this->name = $name;
         return $this;
@@ -38,7 +38,7 @@ class Error extends PayPalModel
      *
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -51,7 +51,7 @@ class Error extends PayPalModel
      *
      * @return $this
      */
-    public function setPurchaseUnitReferenceId($purchase_unit_reference_id)
+    public function setPurchaseUnitReferenceId($purchase_unit_reference_id): self
     {
         $this->purchase_unit_reference_id = $purchase_unit_reference_id;
         return $this;
@@ -63,7 +63,7 @@ class Error extends PayPalModel
      * @deprecated Not publicly available
      * @return string
      */
-    public function getPurchaseUnitReferenceId()
+    public function getPurchaseUnitReferenceId(): string
     {
         return $this->purchase_unit_reference_id;
     }
@@ -76,7 +76,7 @@ class Error extends PayPalModel
      *
      * @return $this
      */
-    public function setCode($code)
+    public function setCode($code): self
     {
         $this->code = $code;
         return $this;
@@ -88,7 +88,7 @@ class Error extends PayPalModel
      * @deprecated Not publicly available
      * @return string
      */
-    public function getCode()
+    public function getCode(): string
     {
         return $this->code;
     }
@@ -100,7 +100,7 @@ class Error extends PayPalModel
      *
      * @return $this
      */
-    public function setDebugId($debug_id)
+    public function setDebugId($debug_id): self
     {
         $this->debug_id = $debug_id;
         return $this;
@@ -111,7 +111,7 @@ class Error extends PayPalModel
      *
      * @return string
      */
-    public function getDebugId()
+    public function getDebugId(): string
     {
         return $this->debug_id;
     }
@@ -123,7 +123,7 @@ class Error extends PayPalModel
      *
      * @return $this
      */
-    public function setMessage($message)
+    public function setMessage($message): self
     {
         $this->message = $message;
         return $this;
@@ -134,7 +134,7 @@ class Error extends PayPalModel
      *
      * @return string
      */
-    public function getMessage()
+    public function getMessage(): string
     {
         return $this->message;
     }
@@ -146,7 +146,7 @@ class Error extends PayPalModel
      *
      * @return $this
      */
-    public function setInformationLink($information_link)
+    public function setInformationLink($information_link): self
     {
         $this->information_link = $information_link;
         return $this;
@@ -157,7 +157,7 @@ class Error extends PayPalModel
      *
      * @return string
      */
-    public function getInformationLink()
+    public function getInformationLink(): string
     {
         return $this->information_link;
     }
@@ -169,7 +169,7 @@ class Error extends PayPalModel
      *
      * @return $this
      */
-    public function setDetails($details)
+    public function setDetails($details): self
     {
         $this->details = $details;
         return $this;
@@ -180,7 +180,7 @@ class Error extends PayPalModel
      *
      * @return \PayPal\Api\ErrorDetails[]
      */
-    public function getDetails()
+    public function getDetails(): array
     {
         return $this->details;
     }
@@ -191,7 +191,7 @@ class Error extends PayPalModel
      * @param \PayPal\Api\ErrorDetails $errorDetails
      * @return $this
      */
-    public function addDetail($errorDetails)
+    public function addDetail($errorDetails): ?self
     {
         if (!$this->getDetails()) {
             return $this->setDetails(array($errorDetails));
@@ -208,7 +208,7 @@ class Error extends PayPalModel
      * @param \PayPal\Api\ErrorDetails $errorDetails
      * @return $this
      */
-    public function removeDetail($errorDetails)
+    public function removeDetail($errorDetails): self
     {
         return $this->setDetails(
             array_diff($this->getDetails(), array($errorDetails))
@@ -223,7 +223,7 @@ class Error extends PayPalModel
      *
      * @return $this
      */
-    public function setProcessorResponse($processor_response)
+    public function setProcessorResponse($processor_response): self
     {
         $this->processor_response = $processor_response;
         return $this;
@@ -235,7 +235,7 @@ class Error extends PayPalModel
      * @deprecated Not publicly available
      * @return \PayPal\Api\ProcessorResponse
      */
-    public function getProcessorResponse()
+    public function getProcessorResponse(): ProcessorResponse
     {
         return $this->processor_response;
     }
@@ -248,7 +248,7 @@ class Error extends PayPalModel
      *
      * @return $this
      */
-    public function setFmfDetails($fmf_details)
+    public function setFmfDetails($fmf_details): self
     {
         $this->fmf_details = $fmf_details;
         return $this;
@@ -260,7 +260,7 @@ class Error extends PayPalModel
      * @deprecated Not publicly available
      * @return \PayPal\Api\FmfDetails
      */
-    public function getFmfDetails()
+    public function getFmfDetails(): FmfDetails
     {
         return $this->fmf_details;
     }
@@ -272,7 +272,7 @@ class Error extends PayPalModel
      *
      * @return $this
      */
-    public function setLinks($links)
+    public function setLinks($links): self
     {
         $this->links = $links;
         return $this;
@@ -283,7 +283,7 @@ class Error extends PayPalModel
      *
      * @return \PayPal\Api\Links[]
      */
-    public function getLinks()
+    public function getLinks(): array
     {
         return $this->links;
     }
@@ -294,7 +294,7 @@ class Error extends PayPalModel
      * @param \PayPal\Api\Links $links
      * @return $this
      */
-    public function addLink($links)
+    public function addLink($links): ?self
     {
         if (!$this->getLinks()) {
             return $this->setLinks(array($links));
@@ -311,7 +311,7 @@ class Error extends PayPalModel
      * @param \PayPal\Api\Links $links
      * @return $this
      */
-    public function removeLink($links)
+    public function removeLink($links): self
     {
         return $this->setLinks(
             array_diff($this->getLinks(), array($links))

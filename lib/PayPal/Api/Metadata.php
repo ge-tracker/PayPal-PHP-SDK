@@ -29,10 +29,10 @@ class Metadata extends PayPalModel
      * The date and time when the resource was created.
      *
      * @param string $created_date
-     * 
+     *
      * @return $this
      */
-    public function setCreatedDate($created_date)
+    public function setCreatedDate($created_date): self
     {
         $this->created_date = $created_date;
         return $this;
@@ -43,7 +43,7 @@ class Metadata extends PayPalModel
      *
      * @return string
      */
-    public function getCreatedDate()
+    public function getCreatedDate(): string
     {
         return $this->created_date;
     }
@@ -52,10 +52,10 @@ class Metadata extends PayPalModel
      * The email address of the account that created the resource.
      *
      * @param string $created_by
-     * 
+     *
      * @return $this
      */
-    public function setCreatedBy($created_by)
+    public function setCreatedBy($created_by): self
     {
         $this->created_by = $created_by;
         return $this;
@@ -66,7 +66,7 @@ class Metadata extends PayPalModel
      *
      * @return string
      */
-    public function getCreatedBy()
+    public function getCreatedBy(): string
     {
         return $this->created_by;
     }
@@ -75,10 +75,10 @@ class Metadata extends PayPalModel
      * The date and time when the resource was cancelled.
      *
      * @param string $cancelled_date
-     * 
+     *
      * @return $this
      */
-    public function setCancelledDate($cancelled_date)
+    public function setCancelledDate($cancelled_date): self
     {
         $this->cancelled_date = $cancelled_date;
         return $this;
@@ -89,7 +89,7 @@ class Metadata extends PayPalModel
      *
      * @return string
      */
-    public function getCancelledDate()
+    public function getCancelledDate(): string
     {
         return $this->cancelled_date;
     }
@@ -98,10 +98,10 @@ class Metadata extends PayPalModel
      * The actor who cancelled the resource.
      *
      * @param string $cancelled_by
-     * 
+     *
      * @return $this
      */
-    public function setCancelledBy($cancelled_by)
+    public function setCancelledBy($cancelled_by): self
     {
         $this->cancelled_by = $cancelled_by;
         return $this;
@@ -112,7 +112,7 @@ class Metadata extends PayPalModel
      *
      * @return string
      */
-    public function getCancelledBy()
+    public function getCancelledBy(): string
     {
         return $this->cancelled_by;
     }
@@ -121,10 +121,10 @@ class Metadata extends PayPalModel
      * The date and time when the resource was last edited.
      *
      * @param string $last_updated_date
-     * 
+     *
      * @return $this
      */
-    public function setLastUpdatedDate($last_updated_date)
+    public function setLastUpdatedDate($last_updated_date): self
     {
         $this->last_updated_date = $last_updated_date;
         return $this;
@@ -135,7 +135,7 @@ class Metadata extends PayPalModel
      *
      * @return string
      */
-    public function getLastUpdatedDate()
+    public function getLastUpdatedDate(): string
     {
         return $this->last_updated_date;
     }
@@ -144,10 +144,10 @@ class Metadata extends PayPalModel
      * The email address of the account that last edited the resource.
      *
      * @param string $last_updated_by
-     * 
+     *
      * @return $this
      */
-    public function setLastUpdatedBy($last_updated_by)
+    public function setLastUpdatedBy($last_updated_by): self
     {
         $this->last_updated_by = $last_updated_by;
         return $this;
@@ -158,7 +158,7 @@ class Metadata extends PayPalModel
      *
      * @return string
      */
-    public function getLastUpdatedBy()
+    public function getLastUpdatedBy(): string
     {
         return $this->last_updated_by;
     }
@@ -167,10 +167,10 @@ class Metadata extends PayPalModel
      * The date and time when the resource was first sent.
      *
      * @param string $first_sent_date
-     * 
+     *
      * @return $this
      */
-    public function setFirstSentDate($first_sent_date)
+    public function setFirstSentDate($first_sent_date): self
     {
         $this->first_sent_date = $first_sent_date;
         return $this;
@@ -181,7 +181,7 @@ class Metadata extends PayPalModel
      *
      * @return string
      */
-    public function getFirstSentDate()
+    public function getFirstSentDate(): string
     {
         return $this->first_sent_date;
     }
@@ -190,10 +190,10 @@ class Metadata extends PayPalModel
      * The date and time when the resource was last sent.
      *
      * @param string $last_sent_date
-     * 
+     *
      * @return $this
      */
-    public function setLastSentDate($last_sent_date)
+    public function setLastSentDate($last_sent_date): self
     {
         $this->last_sent_date = $last_sent_date;
         return $this;
@@ -204,7 +204,7 @@ class Metadata extends PayPalModel
      *
      * @return string
      */
-    public function getLastSentDate()
+    public function getLastSentDate(): string
     {
         return $this->last_sent_date;
     }
@@ -213,10 +213,10 @@ class Metadata extends PayPalModel
      * The email address of the account that last sent the resource.
      *
      * @param string $last_sent_by
-     * 
+     *
      * @return $this
      */
-    public function setLastSentBy($last_sent_by)
+    public function setLastSentBy($last_sent_by): self
     {
         $this->last_sent_by = $last_sent_by;
         return $this;
@@ -227,7 +227,7 @@ class Metadata extends PayPalModel
      *
      * @return string
      */
-    public function getLastSentBy()
+    public function getLastSentBy(): string
     {
         return $this->last_sent_by;
     }
@@ -239,7 +239,7 @@ class Metadata extends PayPalModel
      * @throws \InvalidArgumentException
      * @return $this
      */
-    public function setPayerViewUrl($payer_view_url)
+    public function setPayerViewUrl($payer_view_url): self
     {
         UrlValidator::validate($payer_view_url, "PayerViewUrl");
         $this->payer_view_url = $payer_view_url;
@@ -251,7 +251,7 @@ class Metadata extends PayPalModel
      *
      * @return string
      */
-    public function getPayerViewUrl()
+    public function getPayerViewUrl(): string
     {
         return $this->payer_view_url;
     }

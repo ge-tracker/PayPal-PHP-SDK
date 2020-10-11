@@ -25,10 +25,10 @@ class Webhook extends PayPalResourceModel
      * The ID of the webhook.
      *
      * @param string $id
-     * 
+     *
      * @return $this
      */
-    public function setId($id)
+    public function setId($id): self
     {
         $this->id = $id;
         return $this;
@@ -39,7 +39,7 @@ class Webhook extends PayPalResourceModel
      *
      * @return string
      */
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
@@ -51,7 +51,7 @@ class Webhook extends PayPalResourceModel
      * @throws \InvalidArgumentException
      * @return $this
      */
-    public function setUrl($url)
+    public function setUrl($url): self
     {
         UrlValidator::validate($url, "Url");
         $this->url = $url;
@@ -63,7 +63,7 @@ class Webhook extends PayPalResourceModel
      *
      * @return string
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->url;
     }
@@ -72,10 +72,10 @@ class Webhook extends PayPalResourceModel
      * A list of up to ten events to which to subscribe your webhook. To subscribe to all events including new events as they are added, specify the asterisk (`*`) wildcard. To replace the `event_types` array, specify the `*` wildcard. To see all supported events, [list available events](#available-event-type.list).
      *
      * @param \PayPal\Api\WebhookEventType[] $event_types
-     * 
+     *
      * @return $this
      */
-    public function setEventTypes($event_types)
+    public function setEventTypes($event_types): self
     {
         $this->event_types = $event_types;
         return $this;
@@ -86,7 +86,7 @@ class Webhook extends PayPalResourceModel
      *
      * @return \PayPal\Api\WebhookEventType[]
      */
-    public function getEventTypes()
+    public function getEventTypes(): array
     {
         return $this->event_types;
     }
@@ -97,7 +97,7 @@ class Webhook extends PayPalResourceModel
      * @param \PayPal\Api\WebhookEventType $webhookEventType
      * @return $this
      */
-    public function addEventType($webhookEventType)
+    public function addEventType($webhookEventType): ?self
     {
         if (!$this->getEventTypes()) {
             return $this->setEventTypes(array($webhookEventType));
@@ -114,7 +114,7 @@ class Webhook extends PayPalResourceModel
      * @param \PayPal\Api\WebhookEventType $webhookEventType
      * @return $this
      */
-    public function removeEventType($webhookEventType)
+    public function removeEventType($webhookEventType): self
     {
         return $this->setEventTypes(
             array_diff($this->getEventTypes(), array($webhookEventType))
@@ -128,7 +128,7 @@ class Webhook extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return Webhook
      */
-    public function create($apiContext = null, $restCall = null)
+    public function create($apiContext = null, $restCall = null): Webhook
     {
         $payLoad = $this->toJSON();
         $json = self::executeCall(
@@ -151,7 +151,7 @@ class Webhook extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return Webhook
      */
-    public static function get($webhookId, $apiContext = null, $restCall = null)
+    public static function get($webhookId, $apiContext = null, $restCall = null): Webhook
     {
         ArgumentValidator::validate($webhookId, 'webhookId');
         $payLoad = "";
@@ -177,7 +177,7 @@ class Webhook extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return WebhookList
      */
-    public static function getAll($apiContext = null, $restCall = null)
+    public static function getAll($apiContext = null, $restCall = null): WebhookList
     {
         return self::getAllWithParams(array(), $apiContext, $restCall);
     }
@@ -190,7 +190,7 @@ class Webhook extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return WebhookList
      */
-    public static function getAllWithParams($params = array(), $apiContext = null, $restCall = null)
+    public static function getAllWithParams($params = array(), $apiContext = null, $restCall = null): WebhookList
     {
         ArgumentValidator::validate($params, 'params');
         $payLoad = "";
@@ -218,7 +218,7 @@ class Webhook extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return Webhook
      */
-    public function update($patchRequest, $apiContext = null, $restCall = null)
+    public function update($patchRequest, $apiContext = null, $restCall = null): Webhook
     {
         ArgumentValidator::validate($this->getId(), "Id");
         ArgumentValidator::validate($patchRequest, 'patchRequest');
@@ -242,7 +242,7 @@ class Webhook extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return bool
      */
-    public function delete($apiContext = null, $restCall = null)
+    public function delete($apiContext = null, $restCall = null): bool
     {
         ArgumentValidator::validate($this->getId(), "Id");
         $payLoad = "";

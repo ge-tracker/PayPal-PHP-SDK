@@ -16,7 +16,7 @@ class PayoutTest extends TestCase
      * Gets Json String of Object Payout
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"sender_batch_header":' .PayoutSenderBatchHeaderTest::getJson() . ',"items":' .PayoutItemTest::getJson() . ',"links":' .LinksTest::getJson() . '}';
     }
@@ -25,7 +25,7 @@ class PayoutTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return Payout
      */
-    public static function getObject()
+    public static function getObject(): Payout
     {
         return new Payout(self::getJson());
     }
@@ -35,14 +35,14 @@ class PayoutTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return Payout
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): Payout
     {
         $obj = new Payout(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getSenderBatchHeader());
-        $this->assertNotNull($obj->getItems());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getSenderBatchHeader());
+        self::assertNotNull($obj->getItems());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -50,54 +50,50 @@ class PayoutTest extends TestCase
      * @depends testSerializationDeserialization
      * @param Payout $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getSenderBatchHeader(), PayoutSenderBatchHeaderTest::getObject());
-        $this->assertEquals($obj->getItems(), PayoutItemTest::getObject());
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals($obj->getSenderBatchHeader(), PayoutSenderBatchHeaderTest::getObject());
+        self::assertEquals($obj->getItems(), PayoutItemTest::getObject());
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 
     /**
      * @dataProvider mockProvider
      * @param Payout $obj
      */
-    public function testCreate($obj, $mockApiContext)
+    public function testCreate($obj, $mockApiContext): void
     {
         $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    PayoutBatchTest::getJson()
-            ));
+            ->willReturn(PayoutBatchTest::getJson());
         $params = array();
 
         $result = $obj->create($params, $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
      * @param Payout $obj
      */
-    public function testGet($obj, $mockApiContext)
+    public function testGet($obj, $mockApiContext): void
     {
         $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    PayoutBatchTest::getJson()
-            ));
+            ->willReturn(PayoutBatchTest::getJson());
 
         $result = $obj->get("payoutBatchId", $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
 
-    public function mockProvider()
+    public function mockProvider(): array
     {
         $obj = self::getObject();
         $mockApiContext = $this->getMockBuilder('ApiContext')

@@ -16,7 +16,7 @@ class ShippingAddressTest extends TestCase
      * Gets Json String of Object ShippingAddress
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"id":"TestSample","recipient_name":"TestSample","default_address":true}';
     }
@@ -25,7 +25,7 @@ class ShippingAddressTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return ShippingAddress
      */
-    public static function getObject()
+    public static function getObject(): ShippingAddress
     {
         return new ShippingAddress(self::getJson());
     }
@@ -35,14 +35,14 @@ class ShippingAddressTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return ShippingAddress
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): ShippingAddress
     {
         $obj = new ShippingAddress(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getRecipientName());
-        $this->assertNotNull($obj->getDefaultAddress());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getRecipientName());
+        self::assertNotNull($obj->getDefaultAddress());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -50,10 +50,10 @@ class ShippingAddressTest extends TestCase
      * @depends testSerializationDeserialization
      * @param ShippingAddress $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getRecipientName(), "TestSample");
-        $this->assertEquals($obj->getDefaultAddress(), true);
+        self::assertEquals($obj->getId(), "TestSample");
+        self::assertEquals($obj->getRecipientName(), "TestSample");
+        self::assertEquals($obj->getDefaultAddress(), true);
     }
 }

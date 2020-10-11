@@ -23,10 +23,10 @@ class FlowConfig extends PayPalModel
      * The type of landing page to display on the PayPal site for user checkout. Set to `Billing` to use the non-PayPal account landing page. Set to `Login` to use the PayPal account login landing page.
      *
      * @param string $landing_page_type
-     * 
+     *
      * @return $this
      */
-    public function setLandingPageType($landing_page_type)
+    public function setLandingPageType($landing_page_type): self
     {
         $this->landing_page_type = $landing_page_type;
         return $this;
@@ -37,7 +37,7 @@ class FlowConfig extends PayPalModel
      *
      * @return string
      */
-    public function getLandingPageType()
+    public function getLandingPageType(): string
     {
         return $this->landing_page_type;
     }
@@ -49,7 +49,7 @@ class FlowConfig extends PayPalModel
      * @throws \InvalidArgumentException
      * @return $this
      */
-    public function setBankTxnPendingUrl($bank_txn_pending_url)
+    public function setBankTxnPendingUrl($bank_txn_pending_url): self
     {
         UrlValidator::validate($bank_txn_pending_url, "BankTxnPendingUrl");
         $this->bank_txn_pending_url = $bank_txn_pending_url;
@@ -61,7 +61,7 @@ class FlowConfig extends PayPalModel
      *
      * @return string
      */
-    public function getBankTxnPendingUrl()
+    public function getBankTxnPendingUrl(): string
     {
         return $this->bank_txn_pending_url;
     }
@@ -70,10 +70,10 @@ class FlowConfig extends PayPalModel
      * Defines whether buyers can complete purchases on the PayPal or merchant website.
      *
      * @param string $user_action
-     * 
+     *
      * @return $this
      */
-    public function setUserAction($user_action)
+    public function setUserAction($user_action): self
     {
         $this->user_action = $user_action;
         return $this;
@@ -84,7 +84,7 @@ class FlowConfig extends PayPalModel
      *
      * @return string
      */
-    public function getUserAction()
+    public function getUserAction(): string
     {
         return $this->user_action;
     }
@@ -93,10 +93,10 @@ class FlowConfig extends PayPalModel
      * Defines the HTTP method to use to redirect the user to a return URL. A valid value is `GET` or `POST`.
      *
      * @param string $return_uri_http_method
-     * 
+     *
      * @return $this
      */
-    public function setReturnUriHttpMethod($return_uri_http_method)
+    public function setReturnUriHttpMethod($return_uri_http_method): self
     {
         $this->return_uri_http_method = $return_uri_http_method;
         return $this;
@@ -107,7 +107,7 @@ class FlowConfig extends PayPalModel
      *
      * @return string
      */
-    public function getReturnUriHttpMethod()
+    public function getReturnUriHttpMethod(): string
     {
         return $this->return_uri_http_method;
     }

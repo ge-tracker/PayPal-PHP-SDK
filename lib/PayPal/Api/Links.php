@@ -7,7 +7,7 @@ use PayPal\Common\PayPalModel;
 /**
  * Class Links
  *
- * 
+ *
  *
  * @package PayPal\Api
  *
@@ -24,10 +24,10 @@ class Links extends PayPalModel
      * Sets Href
      *
      * @param string $href
-     * 
+     *
      * @return $this
      */
-    public function setHref($href)
+    public function setHref($href): self
     {
         $this->href = $href;
         return $this;
@@ -38,7 +38,7 @@ class Links extends PayPalModel
      *
      * @return string
      */
-    public function getHref()
+    public function getHref(): string
     {
         return $this->href;
     }
@@ -47,10 +47,10 @@ class Links extends PayPalModel
      * Sets Rel
      *
      * @param string $rel
-     * 
+     *
      * @return $this
      */
-    public function setRel($rel)
+    public function setRel($rel): self
     {
         $this->rel = $rel;
         return $this;
@@ -61,7 +61,7 @@ class Links extends PayPalModel
      *
      * @return string
      */
-    public function getRel()
+    public function getRel(): string
     {
         return $this->rel;
     }
@@ -70,10 +70,10 @@ class Links extends PayPalModel
      * Sets TargetSchema
      *
      * @param \PayPal\Api\HyperSchema $targetSchema
-     * 
+     *
      * @return $this
      */
-    public function setTargetSchema($targetSchema)
+    public function setTargetSchema($targetSchema): self
     {
         $this->targetSchema = $targetSchema;
         return $this;
@@ -84,7 +84,7 @@ class Links extends PayPalModel
      *
      * @return \PayPal\Api\HyperSchema
      */
-    public function getTargetSchema()
+    public function getTargetSchema(): HyperSchema
     {
         return $this->targetSchema;
     }
@@ -93,10 +93,10 @@ class Links extends PayPalModel
      * Sets Method
      *
      * @param string $method
-     * 
+     *
      * @return $this
      */
-    public function setMethod($method)
+    public function setMethod($method): self
     {
         $this->method = $method;
         return $this;
@@ -107,7 +107,7 @@ class Links extends PayPalModel
      *
      * @return string
      */
-    public function getMethod()
+    public function getMethod(): string
     {
         return $this->method;
     }
@@ -116,10 +116,10 @@ class Links extends PayPalModel
      * Sets Enctype
      *
      * @param string $enctype
-     * 
+     *
      * @return $this
      */
-    public function setEnctype($enctype)
+    public function setEnctype($enctype): self
     {
         $this->enctype = $enctype;
         return $this;
@@ -130,7 +130,7 @@ class Links extends PayPalModel
      *
      * @return string
      */
-    public function getEnctype()
+    public function getEnctype(): string
     {
         return $this->enctype;
     }
@@ -139,10 +139,10 @@ class Links extends PayPalModel
      * Sets Schema
      *
      * @param \PayPal\Api\HyperSchema $schema
-     * 
+     *
      * @return $this
      */
-    public function setSchema($schema)
+    public function setSchema($schema): self
     {
         $this->schema = $schema;
         return $this;
@@ -153,7 +153,7 @@ class Links extends PayPalModel
      *
      * @return \PayPal\Api\HyperSchema
      */
-    public function getSchema()
+    public function getSchema(): HyperSchema
     {
         return $this->schema;
     }

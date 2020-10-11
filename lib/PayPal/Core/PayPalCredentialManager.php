@@ -58,7 +58,7 @@ class PayPalCredentialManager
      * @param array|null $config
      * @return PayPalCredentialManager
      */
-    public static function getInstance($config = null)
+    public static function getInstance($config = null): PayPalCredentialManager
     {
         if (!self::$instance) {
             self::$instance = new self($config == null ? PayPalConfigManager::getInstance()->getConfigHashmap() : $config);
@@ -71,7 +71,7 @@ class PayPalCredentialManager
      *
      * @param array $config
      */
-    private function initCredential($config)
+    private function initCredential($config): void
     {
         $suffix = 1;
         $prefix = "acct";
@@ -124,7 +124,7 @@ class PayPalCredentialManager
      *
      * @return $this
      */
-    public function setCredentialObject(OAuthTokenCredential $credential, $userId = null, $default = true)
+    public function setCredentialObject(OAuthTokenCredential $credential, $userId = null, $default = true): self
     {
         $key = $userId == null ? 'default' : $userId;
         $this->credentialHashmap[$key] = $credential;
@@ -141,7 +141,7 @@ class PayPalCredentialManager
      * @return OAuthTokenCredential
      * @throws PayPalInvalidCredentialException
      */
-    public function getCredentialObject($userId = null)
+    public function getCredentialObject($userId = null): OAuthTokenCredential
     {
         if ($userId == null && array_key_exists($this->defaultAccountName, $this->credentialHashmap)) {
             $credObj = $this->credentialHashmap[$this->defaultAccountName];

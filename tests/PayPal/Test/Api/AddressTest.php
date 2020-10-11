@@ -15,7 +15,7 @@ class AddressTest extends TestCase
      * Gets Json String of Object Address
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"line1":"TestSample","line2":"TestSample","city":"TestSample","country_code":"TestSample","postal_code":"TestSample","state":"TestSample","phone":"TestSample","normalization_status":"TestSample","status":"TestSample","type":"TestSample"}';
     }
@@ -24,7 +24,7 @@ class AddressTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return Address
      */
-    public static function getObject()
+    public static function getObject(): Address
     {
         return new Address(self::getJson());
     }
@@ -33,21 +33,21 @@ class AddressTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return Address
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): Address
     {
         $obj = new Address(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getLine1());
-        $this->assertNotNull($obj->getLine2());
-        $this->assertNotNull($obj->getCity());
-        $this->assertNotNull($obj->getCountryCode());
-        $this->assertNotNull($obj->getPostalCode());
-        $this->assertNotNull($obj->getState());
-        $this->assertNotNull($obj->getPhone());
-        $this->assertNotNull($obj->getNormalizationStatus());
-        $this->assertNotNull($obj->getStatus());
-        $this->assertNotNull($obj->getType());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getLine1());
+        self::assertNotNull($obj->getLine2());
+        self::assertNotNull($obj->getCity());
+        self::assertNotNull($obj->getCountryCode());
+        self::assertNotNull($obj->getPostalCode());
+        self::assertNotNull($obj->getState());
+        self::assertNotNull($obj->getPhone());
+        self::assertNotNull($obj->getNormalizationStatus());
+        self::assertNotNull($obj->getStatus());
+        self::assertNotNull($obj->getType());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -55,17 +55,17 @@ class AddressTest extends TestCase
      * @depends testSerializationDeserialization
      * @param Address $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getLine1(), "TestSample");
-        $this->assertEquals($obj->getLine2(), "TestSample");
-        $this->assertEquals($obj->getCity(), "TestSample");
-        $this->assertEquals($obj->getCountryCode(), "TestSample");
-        $this->assertEquals($obj->getPostalCode(), "TestSample");
-        $this->assertEquals($obj->getState(), "TestSample");
-        $this->assertEquals($obj->getPhone(), "TestSample");
-        $this->assertEquals($obj->getNormalizationStatus(), "TestSample");
-        $this->assertEquals($obj->getStatus(), "TestSample");
-        $this->assertEquals($obj->getType(), "TestSample");
+        self::assertEquals($obj->getLine1(), "TestSample");
+        self::assertEquals($obj->getLine2(), "TestSample");
+        self::assertEquals($obj->getCity(), "TestSample");
+        self::assertEquals($obj->getCountryCode(), "TestSample");
+        self::assertEquals($obj->getPostalCode(), "TestSample");
+        self::assertEquals($obj->getState(), "TestSample");
+        self::assertEquals($obj->getPhone(), "TestSample");
+        self::assertEquals($obj->getNormalizationStatus(), "TestSample");
+        self::assertEquals($obj->getStatus(), "TestSample");
+        self::assertEquals($obj->getType(), "TestSample");
     }
 }

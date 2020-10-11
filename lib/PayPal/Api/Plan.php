@@ -32,10 +32,10 @@ class Plan extends PayPalResourceModel
      * Identifier of the billing plan. 128 characters max.
      *
      * @param string $id
-     * 
+     *
      * @return $this
      */
-    public function setId($id)
+    public function setId($id): self
     {
         $this->id = $id;
         return $this;
@@ -46,7 +46,7 @@ class Plan extends PayPalResourceModel
      *
      * @return string
      */
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
@@ -55,10 +55,10 @@ class Plan extends PayPalResourceModel
      * Name of the billing plan. 128 characters max.
      *
      * @param string $name
-     * 
+     *
      * @return $this
      */
-    public function setName($name)
+    public function setName($name): self
     {
         $this->name = $name;
         return $this;
@@ -69,7 +69,7 @@ class Plan extends PayPalResourceModel
      *
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -78,10 +78,10 @@ class Plan extends PayPalResourceModel
      * Description of the billing plan. 128 characters max.
      *
      * @param string $description
-     * 
+     *
      * @return $this
      */
-    public function setDescription($description)
+    public function setDescription($description): self
     {
         $this->description = $description;
         return $this;
@@ -92,7 +92,7 @@ class Plan extends PayPalResourceModel
      *
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -101,10 +101,10 @@ class Plan extends PayPalResourceModel
      * Type of the billing plan. Allowed values: `FIXED`, `INFINITE`.
      *
      * @param string $type
-     * 
+     *
      * @return $this
      */
-    public function setType($type)
+    public function setType($type): self
     {
         $this->type = $type;
         return $this;
@@ -115,7 +115,7 @@ class Plan extends PayPalResourceModel
      *
      * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
@@ -124,10 +124,10 @@ class Plan extends PayPalResourceModel
      * Status of the billing plan. Allowed values: `CREATED`, `ACTIVE`, `INACTIVE`, and `DELETED`.
      *
      * @param string $state
-     * 
+     *
      * @return $this
      */
-    public function setState($state)
+    public function setState($state): self
     {
         $this->state = $state;
         return $this;
@@ -138,7 +138,7 @@ class Plan extends PayPalResourceModel
      *
      * @return string
      */
-    public function getState()
+    public function getState(): string
     {
         return $this->state;
     }
@@ -147,10 +147,10 @@ class Plan extends PayPalResourceModel
      * Time when the billing plan was created. Format YYYY-MM-DDTimeTimezone, as defined in [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
      *
      * @param string $create_time
-     * 
+     *
      * @return $this
      */
-    public function setCreateTime($create_time)
+    public function setCreateTime($create_time): self
     {
         $this->create_time = $create_time;
         return $this;
@@ -161,7 +161,7 @@ class Plan extends PayPalResourceModel
      *
      * @return string
      */
-    public function getCreateTime()
+    public function getCreateTime(): string
     {
         return $this->create_time;
     }
@@ -170,10 +170,10 @@ class Plan extends PayPalResourceModel
      * Time when this billing plan was updated. Format YYYY-MM-DDTimeTimezone, as defined in [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
      *
      * @param string $update_time
-     * 
+     *
      * @return $this
      */
-    public function setUpdateTime($update_time)
+    public function setUpdateTime($update_time): self
     {
         $this->update_time = $update_time;
         return $this;
@@ -184,7 +184,7 @@ class Plan extends PayPalResourceModel
      *
      * @return string
      */
-    public function getUpdateTime()
+    public function getUpdateTime(): string
     {
         return $this->update_time;
     }
@@ -193,10 +193,10 @@ class Plan extends PayPalResourceModel
      * Array of payment definitions for this billing plan.
      *
      * @param \PayPal\Api\PaymentDefinition[] $payment_definitions
-     * 
+     *
      * @return $this
      */
-    public function setPaymentDefinitions($payment_definitions)
+    public function setPaymentDefinitions($payment_definitions): self
     {
         $this->payment_definitions = $payment_definitions;
         return $this;
@@ -207,7 +207,7 @@ class Plan extends PayPalResourceModel
      *
      * @return \PayPal\Api\PaymentDefinition[]
      */
-    public function getPaymentDefinitions()
+    public function getPaymentDefinitions(): array
     {
         return $this->payment_definitions;
     }
@@ -218,7 +218,7 @@ class Plan extends PayPalResourceModel
      * @param \PayPal\Api\PaymentDefinition $paymentDefinition
      * @return $this
      */
-    public function addPaymentDefinition($paymentDefinition)
+    public function addPaymentDefinition($paymentDefinition): ?self
     {
         if (!$this->getPaymentDefinitions()) {
             return $this->setPaymentDefinitions(array($paymentDefinition));
@@ -235,7 +235,7 @@ class Plan extends PayPalResourceModel
      * @param \PayPal\Api\PaymentDefinition $paymentDefinition
      * @return $this
      */
-    public function removePaymentDefinition($paymentDefinition)
+    public function removePaymentDefinition($paymentDefinition): self
     {
         return $this->setPaymentDefinitions(
             array_diff($this->getPaymentDefinitions(), array($paymentDefinition))
@@ -246,10 +246,10 @@ class Plan extends PayPalResourceModel
      * Array of terms for this billing plan.
      *
      * @param \PayPal\Api\Terms[] $terms
-     * 
+     *
      * @return $this
      */
-    public function setTerms($terms)
+    public function setTerms($terms): self
     {
         $this->terms = $terms;
         return $this;
@@ -260,7 +260,7 @@ class Plan extends PayPalResourceModel
      *
      * @return \PayPal\Api\Terms[]
      */
-    public function getTerms()
+    public function getTerms(): array
     {
         return $this->terms;
     }
@@ -271,7 +271,7 @@ class Plan extends PayPalResourceModel
      * @param \PayPal\Api\Terms $terms
      * @return $this
      */
-    public function addTerm($terms)
+    public function addTerm($terms): ?self
     {
         if (!$this->getTerms()) {
             return $this->setTerms(array($terms));
@@ -288,7 +288,7 @@ class Plan extends PayPalResourceModel
      * @param \PayPal\Api\Terms $terms
      * @return $this
      */
-    public function removeTerm($terms)
+    public function removeTerm($terms): self
     {
         return $this->setTerms(
             array_diff($this->getTerms(), array($terms))
@@ -299,10 +299,10 @@ class Plan extends PayPalResourceModel
      * Specific preferences such as: set up fee, max fail attempts, autobill amount, and others that are configured for this billing plan.
      *
      * @param \PayPal\Api\MerchantPreferences $merchant_preferences
-     * 
+     *
      * @return $this
      */
-    public function setMerchantPreferences($merchant_preferences)
+    public function setMerchantPreferences($merchant_preferences): self
     {
         $this->merchant_preferences = $merchant_preferences;
         return $this;
@@ -313,7 +313,7 @@ class Plan extends PayPalResourceModel
      *
      * @return \PayPal\Api\MerchantPreferences
      */
-    public function getMerchantPreferences()
+    public function getMerchantPreferences(): MerchantPreferences
     {
         return $this->merchant_preferences;
     }
@@ -326,7 +326,7 @@ class Plan extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return Plan
      */
-    public static function get($planId, $apiContext = null, $restCall = null)
+    public static function get($planId, $apiContext = null, $restCall = null): Plan
     {
         ArgumentValidator::validate($planId, 'planId');
         $payLoad = "";
@@ -350,7 +350,7 @@ class Plan extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return Plan
      */
-    public function create($apiContext = null, $restCall = null)
+    public function create($apiContext = null, $restCall = null): Plan
     {
         $payLoad = $this->toJSON();
         $json = self::executeCall(
@@ -373,7 +373,7 @@ class Plan extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return bool
      */
-    public function update($patchRequest, $apiContext = null, $restCall = null)
+    public function update($patchRequest, $apiContext = null, $restCall = null): bool
     {
         ArgumentValidator::validate($this->getId(), "Id");
         ArgumentValidator::validate($patchRequest, 'patchRequest');
@@ -396,7 +396,7 @@ class Plan extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return bool
      */
-    public function delete($apiContext = null, $restCall = null)
+    public function delete($apiContext = null, $restCall = null): bool
     {
         ArgumentValidator::validate($this->getId(), "Id");
         $patchRequest = new PatchRequest();
@@ -419,7 +419,7 @@ class Plan extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return PlanList
      */
-    public static function all($params, $apiContext = null, $restCall = null)
+    public static function all($params, $apiContext = null, $restCall = null): PlanList
     {
         ArgumentValidator::validate($params, 'params');
         $payLoad = "";

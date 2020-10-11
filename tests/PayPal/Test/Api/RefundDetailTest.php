@@ -16,7 +16,7 @@ class RefundDetailTest extends TestCase
      * Gets Json String of Object RefundDetail
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"type":"TestSample","date":"TestSample","note":"TestSample","amount":' .CurrencyTest::getJson() . '}';
     }
@@ -25,7 +25,7 @@ class RefundDetailTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return RefundDetail
      */
-    public static function getObject()
+    public static function getObject(): RefundDetail
     {
         return new RefundDetail(self::getJson());
     }
@@ -35,16 +35,16 @@ class RefundDetailTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return RefundDetail
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): RefundDetail
     {
         $obj = new RefundDetail(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getType());
-        $this->assertNotNull($obj->getTransactionId());
-        $this->assertNotNull($obj->getDate());
-        $this->assertNotNull($obj->getNote());
-        $this->assertNotNull($obj->getAmount());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getType());
+        self::assertNotNull($obj->getTransactionId());
+        self::assertNotNull($obj->getDate());
+        self::assertNotNull($obj->getNote());
+        self::assertNotNull($obj->getAmount());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -52,12 +52,12 @@ class RefundDetailTest extends TestCase
      * @depends testSerializationDeserialization
      * @param RefundDetail $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getType(), "TestSample");
-        $this->assertEquals($obj->getTransactionId(), "TestSample");
-        $this->assertEquals($obj->getDate(), "TestSample");
-        $this->assertEquals($obj->getNote(), "TestSample");
-        $this->assertEquals($obj->getAmount(), CurrencyTest::getObject());
+        self::assertEquals($obj->getType(), "TestSample");
+        self::assertEquals($obj->getTransactionId(), "TestSample");
+        self::assertEquals($obj->getDate(), "TestSample");
+        self::assertEquals($obj->getNote(), "TestSample");
+        self::assertEquals($obj->getAmount(), CurrencyTest::getObject());
     }
 }

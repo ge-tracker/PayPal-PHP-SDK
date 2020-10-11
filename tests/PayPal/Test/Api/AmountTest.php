@@ -16,7 +16,7 @@ class AmountTest extends TestCase
      * Gets Json String of Object Amount
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"currency":"TestSample","total":"12.34","details":' . DetailsTest::getJson() . '}';
     }
@@ -25,7 +25,7 @@ class AmountTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return Amount
      */
-    public static function getObject()
+    public static function getObject(): Amount
     {
         return new Amount(self::getJson());
     }
@@ -35,14 +35,14 @@ class AmountTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return Amount
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): Amount
     {
         $obj = new Amount(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getCurrency());
-        $this->assertNotNull($obj->getTotal());
-        $this->assertNotNull($obj->getDetails());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getCurrency());
+        self::assertNotNull($obj->getTotal());
+        self::assertNotNull($obj->getDetails());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -50,10 +50,10 @@ class AmountTest extends TestCase
      * @depends testSerializationDeserialization
      * @param Amount $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getCurrency(), "TestSample");
-        $this->assertEquals($obj->getTotal(), "12.34");
-        $this->assertEquals($obj->getDetails(), DetailsTest::getObject());
+        self::assertEquals($obj->getCurrency(), "TestSample");
+        self::assertEquals($obj->getTotal(), "12.34");
+        self::assertEquals($obj->getDetails(), DetailsTest::getObject());
     }
 }

@@ -24,7 +24,7 @@ class PaymentsFunctionalTest extends TestCase
 
     public $apiContext;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $className = $this->getClassName();
         $testName = $this->getName();
@@ -41,26 +41,26 @@ class PaymentsFunctionalTest extends TestCase
      * Returns just the classname of the test you are executing. It removes the namespaces.
      * @return string
      */
-    public function getClassName()
+    public function getClassName(): string
     {
         return join('', array_slice(explode('\\', get_class($this)), -1));
     }
 
-    public function testCreate()
+    public function testCreate(): Payment
     {
         $request = $this->operation['request']['body'];
         $obj = new Payment($request);
         $result = $obj->create($this->apiContext, $this->mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
         return $result;
     }
 
-    public function testCreateWallet()
+    public function testCreateWallet(): Payment
     {
         $request = $this->operation['request']['body'];
         $obj = new Payment($request);
         $result = $obj->create($this->apiContext, $this->mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
         return $result;
     }
 
@@ -69,11 +69,11 @@ class PaymentsFunctionalTest extends TestCase
      * @param $payment Payment
      * @return Payment
      */
-    public function testGet($payment)
+    public function testGet($payment): Payment
     {
         $result = Payment::get($payment->getId(), $this->apiContext, $this->mockPayPalRestCall);
-        $this->assertNotNull($result);
-        $this->assertEquals($payment->getId(), $result->getId());
+        self::assertNotNull($result);
+        self::assertEquals($payment->getId(), $result->getId());
         return $result;
     }
 
@@ -82,15 +82,15 @@ class PaymentsFunctionalTest extends TestCase
      * @param $payment Payment
      * @return Sale
      */
-    public function testGetSale($payment)
+    public function testGetSale($payment): Sale
     {
         $transactions = $payment->getTransactions();
         $transaction = $transactions[0];
         $relatedResources = $transaction->getRelatedResources();
         $resource = $relatedResources[0];
         $result = Sale::get($resource->getSale()->getId(), $this->apiContext, $this->mockPayPalRestCall);
-        $this->assertNotNull($result);
-        $this->assertEquals($resource->getSale()->getId(), $result->getId());
+        self::assertNotNull($result);
+        self::assertEquals($resource->getSale()->getId(), $result->getId());
         return $result;
     }
 
@@ -99,14 +99,14 @@ class PaymentsFunctionalTest extends TestCase
      * @param $sale Sale
      * @return Sale
      */
-    public function testRefundSale($sale)
+    public function testRefundSale($sale): ?Sale
     {
         $refund = new Refund($this->operation['request']['body']);
         $result = $sale->refund($refund, $this->apiContext, $this->mockPayPalRestCall);
-        $this->assertNotNull($result);
-        $this->assertEquals('completed', $result->getState());
-        $this->assertEquals($sale->getId(), $result->getSaleId());
-        $this->assertEquals($sale->getParentPayment(), $result->getParentPayment());
+        self::assertNotNull($result);
+        self::assertEquals('completed', $result->getState());
+        self::assertEquals($sale->getId(), $result->getSaleId());
+        self::assertEquals($sale->getParentPayment(), $result->getParentPayment());
     }
 
     /**
@@ -114,10 +114,10 @@ class PaymentsFunctionalTest extends TestCase
      * @param $payment Payment
      * @return Payment
      */
-    public function testExecute($payment)
+    public function testExecute($payment): ?Payment
     {
         if (Setup::$mode == 'sandbox') {
-            $this->markTestSkipped('Not executable on sandbox environment. Needs human interaction');
+            self::markTestSkipped('Not executable on sandbox environment. Needs human interaction');
         }
     }
 }

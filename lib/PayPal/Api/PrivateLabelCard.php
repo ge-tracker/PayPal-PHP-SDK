@@ -23,10 +23,10 @@ class PrivateLabelCard extends PayPalModel
      * encrypted identifier of the private label card instrument.
      *
      * @param string $id
-     * 
+     *
      * @return $this
      */
-    public function setId($id)
+    public function setId($id): self
     {
         $this->id = $id;
         return $this;
@@ -37,7 +37,7 @@ class PrivateLabelCard extends PayPalModel
      *
      * @return string
      */
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
@@ -46,10 +46,10 @@ class PrivateLabelCard extends PayPalModel
      * last 4 digits of the card number.
      *
      * @param string $card_number
-     * 
+     *
      * @return $this
      */
-    public function setCardNumber($card_number)
+    public function setCardNumber($card_number): self
     {
         $this->card_number = $card_number;
         return $this;
@@ -60,7 +60,7 @@ class PrivateLabelCard extends PayPalModel
      *
      * @return string
      */
-    public function getCardNumber()
+    public function getCardNumber(): string
     {
         return $this->card_number;
     }
@@ -69,10 +69,10 @@ class PrivateLabelCard extends PayPalModel
      * Merchants providing private label store cards have associated issuer account. This value indicates encrypted account number of the associated issuer account.
      *
      * @param string $issuer_id
-     * 
+     *
      * @return $this
      */
-    public function setIssuerId($issuer_id)
+    public function setIssuerId($issuer_id): self
     {
         $this->issuer_id = $issuer_id;
         return $this;
@@ -83,7 +83,7 @@ class PrivateLabelCard extends PayPalModel
      *
      * @return string
      */
-    public function getIssuerId()
+    public function getIssuerId(): string
     {
         return $this->issuer_id;
     }
@@ -92,10 +92,10 @@ class PrivateLabelCard extends PayPalModel
      * Merchants providing private label store cards have associated issuer account. This value indicates name on the issuer account.
      *
      * @param string $issuer_name
-     * 
+     *
      * @return $this
      */
-    public function setIssuerName($issuer_name)
+    public function setIssuerName($issuer_name): self
     {
         $this->issuer_name = $issuer_name;
         return $this;
@@ -106,7 +106,7 @@ class PrivateLabelCard extends PayPalModel
      *
      * @return string
      */
-    public function getIssuerName()
+    public function getIssuerName(): string
     {
         return $this->issuer_name;
     }
@@ -115,10 +115,10 @@ class PrivateLabelCard extends PayPalModel
      * This value indicates URL to access PLCC program logo image
      *
      * @param string $image_key
-     * 
+     *
      * @return $this
      */
-    public function setImageKey($image_key)
+    public function setImageKey($image_key): self
     {
         $this->image_key = $image_key;
         return $this;
@@ -129,7 +129,7 @@ class PrivateLabelCard extends PayPalModel
      *
      * @return string
      */
-    public function getImageKey()
+    public function getImageKey(): string
     {
         return $this->image_key;
     }

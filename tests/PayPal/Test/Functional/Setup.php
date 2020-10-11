@@ -12,7 +12,7 @@ class Setup
 
     public static $mode = 'mock';
 
-    public static function SetUpForFunctionalTests(TestCase &$test)
+    public static function SetUpForFunctionalTests(TestCase &$test): void
     {
         $configs = array(
             'mode' => 'sandbox',
@@ -41,9 +41,7 @@ class Setup
 
             $test->mockPayPalRestCall->expects($test->any())
                 ->method('execute')
-                ->will($test->returnValue(
-                    $test->response
-                ));
+                ->willReturn($test->response);
         }
     }
 }

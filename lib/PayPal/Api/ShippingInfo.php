@@ -23,10 +23,10 @@ class ShippingInfo extends PayPalModel
      * The invoice recipient first name. Maximum length is 30 characters.
      *
      * @param string $first_name
-     * 
+     *
      * @return $this
      */
-    public function setFirstName($first_name)
+    public function setFirstName($first_name): self
     {
         $this->first_name = $first_name;
         return $this;
@@ -37,7 +37,7 @@ class ShippingInfo extends PayPalModel
      *
      * @return string
      */
-    public function getFirstName()
+    public function getFirstName(): string
     {
         return $this->first_name;
     }
@@ -46,10 +46,10 @@ class ShippingInfo extends PayPalModel
      * The invoice recipient last name. Maximum length is 30 characters.
      *
      * @param string $last_name
-     * 
+     *
      * @return $this
      */
-    public function setLastName($last_name)
+    public function setLastName($last_name): self
     {
         $this->last_name = $last_name;
         return $this;
@@ -60,7 +60,7 @@ class ShippingInfo extends PayPalModel
      *
      * @return string
      */
-    public function getLastName()
+    public function getLastName(): string
     {
         return $this->last_name;
     }
@@ -69,10 +69,10 @@ class ShippingInfo extends PayPalModel
      * The invoice recipient company business name. Maximum length is 100 characters.
      *
      * @param string $business_name
-     * 
+     *
      * @return $this
      */
-    public function setBusinessName($business_name)
+    public function setBusinessName($business_name): self
     {
         $this->business_name = $business_name;
         return $this;
@@ -83,7 +83,7 @@ class ShippingInfo extends PayPalModel
      *
      * @return string
      */
-    public function getBusinessName()
+    public function getBusinessName(): string
     {
         return $this->business_name;
     }
@@ -94,7 +94,7 @@ class ShippingInfo extends PayPalModel
      * @param \PayPal\Api\Phone $phone
      * @return $this
      */
-    public function setPhone($phone)
+    public function setPhone($phone): self
     {
         $this->phone = $phone;
         return $this;
@@ -105,7 +105,7 @@ class ShippingInfo extends PayPalModel
      *
      * @return \PayPal\Api\Phone
      */
-    public function getPhone()
+    public function getPhone(): Phone
     {
         return $this->phone;
     }
@@ -116,7 +116,7 @@ class ShippingInfo extends PayPalModel
      * @param string $email
      * @return $this
      */
-    public function setEmail($email)
+    public function setEmail($email): self
     {
         $this->email = $email;
         return $this;
@@ -127,7 +127,7 @@ class ShippingInfo extends PayPalModel
      *
      * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
@@ -136,10 +136,10 @@ class ShippingInfo extends PayPalModel
      * Address of the invoice recipient.
      *
      * @param \PayPal\Api\InvoiceAddress $address
-     * 
+     *
      * @return $this
      */
-    public function setAddress($address)
+    public function setAddress($address): self
     {
         $this->address = $address;
         return $this;
@@ -150,7 +150,7 @@ class ShippingInfo extends PayPalModel
      *
      * @return \PayPal\Api\InvoiceAddress
      */
-    public function getAddress()
+    public function getAddress(): InvoiceAddress
     {
         return $this->address;
     }

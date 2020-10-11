@@ -20,10 +20,10 @@ class Payee extends PayPalModel
      * Email Address associated with the Payee's PayPal Account. If the provided email address is not associated with any PayPal Account, the payee can only receive PayPal Wallet Payments. Direct Credit Card Payments will be denied due to card compliance requirements.
      *
      * @param string $email
-     * 
+     *
      * @return $this
      */
-    public function setEmail($email)
+    public function setEmail($email): self
     {
         $this->email = $email;
         return $this;
@@ -34,7 +34,7 @@ class Payee extends PayPalModel
      *
      * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
@@ -43,10 +43,10 @@ class Payee extends PayPalModel
      * Encrypted PayPal account identifier for the Payee.
      *
      * @param string $merchant_id
-     * 
+     *
      * @return $this
      */
-    public function setMerchantId($merchant_id)
+    public function setMerchantId($merchant_id): self
     {
         $this->merchant_id = $merchant_id;
         return $this;
@@ -57,7 +57,7 @@ class Payee extends PayPalModel
      *
      * @return string
      */
-    public function getMerchantId()
+    public function getMerchantId(): string
     {
         return $this->merchant_id;
     }
@@ -66,10 +66,10 @@ class Payee extends PayPalModel
      * First Name of the Payee.
      * @deprecated Not publicly available
      * @param string $first_name
-     * 
+     *
      * @return $this
      */
-    public function setFirstName($first_name)
+    public function setFirstName($first_name): self
     {
         $this->first_name = $first_name;
         return $this;
@@ -80,7 +80,7 @@ class Payee extends PayPalModel
      * @deprecated Not publicly available
      * @return string
      */
-    public function getFirstName()
+    public function getFirstName(): string
     {
         return $this->first_name;
     }
@@ -89,10 +89,10 @@ class Payee extends PayPalModel
      * Last Name of the Payee.
      * @deprecated Not publicly available
      * @param string $last_name
-     * 
+     *
      * @return $this
      */
-    public function setLastName($last_name)
+    public function setLastName($last_name): self
     {
         $this->last_name = $last_name;
         return $this;
@@ -103,7 +103,7 @@ class Payee extends PayPalModel
      * @deprecated Not publicly available
      * @return string
      */
-    public function getLastName()
+    public function getLastName(): string
     {
         return $this->last_name;
     }
@@ -112,10 +112,10 @@ class Payee extends PayPalModel
      * Unencrypted PayPal account Number of the Payee
      * @deprecated Not publicly available
      * @param string $account_number
-     * 
+     *
      * @return $this
      */
-    public function setAccountNumber($account_number)
+    public function setAccountNumber($account_number): self
     {
         $this->account_number = $account_number;
         return $this;
@@ -126,7 +126,7 @@ class Payee extends PayPalModel
      * @deprecated Not publicly available
      * @return string
      */
-    public function getAccountNumber()
+    public function getAccountNumber(): string
     {
         return $this->account_number;
     }
@@ -135,10 +135,10 @@ class Payee extends PayPalModel
      * Information related to the Payee.
      * @deprecated Not publicly available
      * @param \PayPal\Api\Phone $phone
-     * 
+     *
      * @return $this
      */
-    public function setPhone($phone)
+    public function setPhone($phone): self
     {
         $this->phone = $phone;
         return $this;
@@ -149,7 +149,7 @@ class Payee extends PayPalModel
      * @deprecated Not publicly available
      * @return \PayPal\Api\Phone
      */
-    public function getPhone()
+    public function getPhone(): Phone
     {
         return $this->phone;
     }

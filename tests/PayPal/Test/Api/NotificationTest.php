@@ -16,7 +16,7 @@ class NotificationTest extends TestCase
      * Gets Json String of Object Notification
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"subject":"TestSample","note":"TestSample","send_to_merchant":true}';
     }
@@ -25,7 +25,7 @@ class NotificationTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return Notification
      */
-    public static function getObject()
+    public static function getObject(): Notification
     {
         return new Notification(self::getJson());
     }
@@ -35,14 +35,14 @@ class NotificationTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return Notification
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): Notification
     {
         $obj = new Notification(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getSubject());
-        $this->assertNotNull($obj->getNote());
-        $this->assertNotNull($obj->getSendToMerchant());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getSubject());
+        self::assertNotNull($obj->getNote());
+        self::assertNotNull($obj->getSendToMerchant());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -50,10 +50,10 @@ class NotificationTest extends TestCase
      * @depends testSerializationDeserialization
      * @param Notification $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getSubject(), "TestSample");
-        $this->assertEquals($obj->getNote(), "TestSample");
-        $this->assertEquals($obj->getSendToMerchant(), true);
+        self::assertEquals($obj->getSubject(), "TestSample");
+        self::assertEquals($obj->getNote(), "TestSample");
+        self::assertEquals($obj->getSendToMerchant(), true);
     }
 }

@@ -17,7 +17,7 @@ class PatchRequestTest extends TestCase
      * Gets Json String of Object PatchRequest
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"patches":' .PatchTest::getJson() . '}';
     }
@@ -26,7 +26,7 @@ class PatchRequestTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return PatchRequest
      */
-    public static function getObject()
+    public static function getObject(): PatchRequest
     {
         return new PatchRequest(self::getJson());
     }
@@ -36,11 +36,11 @@ class PatchRequestTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return PatchRequest
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): PatchRequest
     {
         $obj = new PatchRequest(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getPatches());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getPatches());
         return $obj;
     }
 
@@ -48,8 +48,8 @@ class PatchRequestTest extends TestCase
      * @depends testSerializationDeserialization
      * @param PatchRequest $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getPatches(), PatchTest::getObject());
+        self::assertEquals($obj->getPatches(), PatchTest::getObject());
     }
 }

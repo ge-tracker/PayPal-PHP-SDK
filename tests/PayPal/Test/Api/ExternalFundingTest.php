@@ -16,7 +16,7 @@ class ExternalFundingTest extends TestCase
      * Gets Json String of Object ExternalFunding
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"reference_id":"TestSample","code":"TestSample","funding_account_id":"TestSample","display_text":"TestSample","amount":' .AmountTest::getJson() . '}';
     }
@@ -25,7 +25,7 @@ class ExternalFundingTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return ExternalFunding
      */
-    public static function getObject()
+    public static function getObject(): ExternalFunding
     {
         return new ExternalFunding(self::getJson());
     }
@@ -35,16 +35,16 @@ class ExternalFundingTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return ExternalFunding
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): ExternalFunding
     {
         $obj = new ExternalFunding(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getReferenceId());
-        $this->assertNotNull($obj->getCode());
-        $this->assertNotNull($obj->getFundingAccountId());
-        $this->assertNotNull($obj->getDisplayText());
-        $this->assertNotNull($obj->getAmount());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getReferenceId());
+        self::assertNotNull($obj->getCode());
+        self::assertNotNull($obj->getFundingAccountId());
+        self::assertNotNull($obj->getDisplayText());
+        self::assertNotNull($obj->getAmount());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -52,12 +52,12 @@ class ExternalFundingTest extends TestCase
      * @depends testSerializationDeserialization
      * @param ExternalFunding $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getReferenceId(), "TestSample");
-        $this->assertEquals($obj->getCode(), "TestSample");
-        $this->assertEquals($obj->getFundingAccountId(), "TestSample");
-        $this->assertEquals($obj->getDisplayText(), "TestSample");
-        $this->assertEquals($obj->getAmount(), AmountTest::getObject());
+        self::assertEquals($obj->getReferenceId(), "TestSample");
+        self::assertEquals($obj->getCode(), "TestSample");
+        self::assertEquals($obj->getFundingAccountId(), "TestSample");
+        self::assertEquals($obj->getDisplayText(), "TestSample");
+        self::assertEquals($obj->getAmount(), AmountTest::getObject());
     }
 }

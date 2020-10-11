@@ -19,10 +19,10 @@ class TemplateSettingsMetadata extends PayPalModel
      * Indicates whether this field should be hidden. default is false
      *
      * @param bool $hidden
-     * 
+     *
      * @return $this
      */
-    public function setHidden($hidden)
+    public function setHidden($hidden): self
     {
         $this->hidden = $hidden;
         return $this;
@@ -33,7 +33,7 @@ class TemplateSettingsMetadata extends PayPalModel
      *
      * @return bool
      */
-    public function getHidden()
+    public function getHidden(): bool
     {
         return $this->hidden;
     }

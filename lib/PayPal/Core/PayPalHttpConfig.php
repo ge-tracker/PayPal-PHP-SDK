@@ -63,7 +63,7 @@ class PayPalHttpConfig
         $this->curlOptions = $this->getHttpConstantsFromConfigs($configs, 'http.') + self::$defaultCurlOptions;
         // Update the Cipher List based on OpenSSL or NSS settings
         $curl = curl_version();
-        $sslVersion = isset($curl['ssl_version']) ? $curl['ssl_version'] : '';
+        $sslVersion = $curl['ssl_version'] ?? '';
         if($sslVersion && substr_compare($sslVersion, "NSS/", 0, strlen("NSS/")) === 0) {
             //Remove the Cipher List for NSS
             $this->removeCurlOption(CURLOPT_SSL_CIPHER_LIST);
@@ -75,7 +75,7 @@ class PayPalHttpConfig
      *
      * @return null|string
      */
-    public function getUrl()
+    public function getUrl(): ?string
     {
         return $this->url;
     }
@@ -85,7 +85,7 @@ class PayPalHttpConfig
      *
      * @return string
      */
-    public function getMethod()
+    public function getMethod(): string
     {
         return $this->method;
     }
@@ -95,7 +95,7 @@ class PayPalHttpConfig
      *
      * @return array
      */
-    public function getHeaders()
+    public function getHeaders(): array
     {
         return $this->headers;
     }
@@ -106,12 +106,9 @@ class PayPalHttpConfig
      * @param $name
      * @return string|null
      */
-    public function getHeader($name)
+    public function getHeader($name): ?string
     {
-        if (array_key_exists($name, $this->headers)) {
-            return $this->headers[$name];
-        }
-        return null;
+        return $this->headers[$name] ?? null;
     }
 
     /**
@@ -119,7 +116,7 @@ class PayPalHttpConfig
      *
      * @param $url
      */
-    public function setUrl($url)
+    public function setUrl($url): void
     {
         $this->url = $url;
     }
@@ -129,7 +126,7 @@ class PayPalHttpConfig
      *
      * @param array $headers
      */
-    public function setHeaders(array $headers = array())
+    public function setHeaders(array $headers = array()): void
     {
         $this->headers = $headers;
     }
@@ -141,12 +138,12 @@ class PayPalHttpConfig
      * @param      $value
      * @param bool $overWrite allows you to override header value
      */
-    public function addHeader($name, $value, $overWrite = true)
+    public function addHeader($name, $value, $overWrite = true): void
     {
         if (!array_key_exists($name, $this->headers) || $overWrite) {
             $this->headers[$name] = $value;
         } else {
-            $this->headers[$name] = $this->headers[$name] . self::HEADER_SEPARATOR . $value;
+            $this->headers[$name] .= self::HEADER_SEPARATOR . $value;
         }
     }
 
@@ -155,7 +152,7 @@ class PayPalHttpConfig
      *
      * @param $name
      */
-    public function removeHeader($name)
+    public function removeHeader($name): void
     {
         unset($this->headers[$name]);
     }
@@ -165,7 +162,7 @@ class PayPalHttpConfig
      *
      * @return array
      */
-    public function getCurlOptions()
+    public function getCurlOptions(): array
     {
         return $this->curlOptions;
     }
@@ -176,7 +173,7 @@ class PayPalHttpConfig
      * @param string $name
      * @param mixed  $value
      */
-    public function addCurlOption($name, $value)
+    public function addCurlOption($name, $value): void
     {
         $this->curlOptions[$name] = $value;
     }
@@ -186,7 +183,7 @@ class PayPalHttpConfig
      *
      * @param $name
      */
-    public function removeCurlOption($name)
+    public function removeCurlOption($name): void
     {
         unset($this->curlOptions[$name]);
     }
@@ -196,7 +193,7 @@ class PayPalHttpConfig
      *
      * @param $options
      */
-    public function setCurlOptions($options)
+    public function setCurlOptions($options): void
     {
         $this->curlOptions = $options;
     }
@@ -207,7 +204,7 @@ class PayPalHttpConfig
      * @param      $certPath
      * @param null $passPhrase
      */
-    public function setSSLCert($certPath, $passPhrase = null)
+    public function setSSLCert($certPath, $passPhrase = null): void
     {
         $this->curlOptions[CURLOPT_SSLCERT] = realpath($certPath);
         if (isset($passPhrase) && trim($passPhrase) != "") {
@@ -220,7 +217,7 @@ class PayPalHttpConfig
      *
      * @param integer $timeout
      */
-    public function setHttpTimeout($timeout)
+    public function setHttpTimeout($timeout): void
     {
         $this->curlOptions[CURLOPT_CONNECTTIMEOUT] = $timeout;
     }
@@ -231,7 +228,7 @@ class PayPalHttpConfig
      * @param string $proxy
      * @throws PayPalConfigurationException
      */
-    public function setHttpProxy($proxy)
+    public function setHttpProxy($proxy): void
     {
         $urlParts = parse_url($proxy);
         if ($urlParts == false || !array_key_exists("host", $urlParts)) {
@@ -251,7 +248,7 @@ class PayPalHttpConfig
      *
      * @param int $retryCount
      */
-    public function setHttpRetryCount($retryCount)
+    public function setHttpRetryCount($retryCount): void
     {
         $this->retryCount = $retryCount;
     }
@@ -261,7 +258,7 @@ class PayPalHttpConfig
      *
      * @return int
      */
-    public function getHttpRetryCount()
+    public function getHttpRetryCount(): int
     {
         return $this->retryCount;
     }
@@ -271,7 +268,7 @@ class PayPalHttpConfig
      *
      * @param string $userAgentString
      */
-    public function setUserAgent($userAgentString)
+    public function setUserAgent($userAgentString): void
     {
         $this->curlOptions[CURLOPT_USERAGENT] = $userAgentString;
     }
@@ -283,7 +280,7 @@ class PayPalHttpConfig
      * @param       $prefix
      * @return array
      */
-    public function getHttpConstantsFromConfigs($configs = array(), $prefix)
+    public function getHttpConstantsFromConfigs($configs = array(), $prefix): array
     {
         $arr = array();
         if ($prefix != null && is_array($configs)) {

@@ -16,7 +16,7 @@ class TaxTest extends TestCase
      * Gets Json String of Object Tax
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"id":"TestSample","name":"TestSample","percent":"12.34","amount":' .CurrencyTest::getJson() . '}';
     }
@@ -25,7 +25,7 @@ class TaxTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return Tax
      */
-    public static function getObject()
+    public static function getObject(): Tax
     {
         return new Tax(self::getJson());
     }
@@ -35,15 +35,15 @@ class TaxTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return Tax
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): Tax
     {
         $obj = new Tax(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getName());
-        $this->assertNotNull($obj->getPercent());
-        $this->assertNotNull($obj->getAmount());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getName());
+        self::assertNotNull($obj->getPercent());
+        self::assertNotNull($obj->getAmount());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -51,11 +51,11 @@ class TaxTest extends TestCase
      * @depends testSerializationDeserialization
      * @param Tax $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getName(), "TestSample");
-        $this->assertEquals($obj->getPercent(), "12.34");
-        $this->assertEquals($obj->getAmount(), CurrencyTest::getObject());
+        self::assertEquals($obj->getId(), "TestSample");
+        self::assertEquals($obj->getName(), "TestSample");
+        self::assertEquals($obj->getPercent(), "12.34");
+        self::assertEquals($obj->getAmount(), CurrencyTest::getObject());
     }
 }

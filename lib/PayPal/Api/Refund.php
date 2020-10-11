@@ -33,10 +33,10 @@ class Refund extends PayPalResourceModel
      * ID of the refund transaction. 17 characters max.
      *
      * @param string $id
-     * 
+     *
      * @return $this
      */
-    public function setId($id)
+    public function setId($id): self
     {
         $this->id = $id;
         return $this;
@@ -47,7 +47,7 @@ class Refund extends PayPalResourceModel
      *
      * @return string
      */
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
@@ -56,10 +56,10 @@ class Refund extends PayPalResourceModel
      * Details including both refunded amount (to payer) and refunded fee (to payee). 10 characters max.
      *
      * @param \PayPal\Api\Amount $amount
-     * 
+     *
      * @return $this
      */
-    public function setAmount($amount)
+    public function setAmount($amount): self
     {
         $this->amount = $amount;
         return $this;
@@ -70,7 +70,7 @@ class Refund extends PayPalResourceModel
      *
      * @return \PayPal\Api\Amount
      */
-    public function getAmount()
+    public function getAmount(): Amount
     {
         return $this->amount;
     }
@@ -80,10 +80,10 @@ class Refund extends PayPalResourceModel
      * Valid Values: ["pending", "completed", "failed"]
      *
      * @param string $state
-     * 
+     *
      * @return $this
      */
-    public function setState($state)
+    public function setState($state): self
     {
         $this->state = $state;
         return $this;
@@ -94,7 +94,7 @@ class Refund extends PayPalResourceModel
      *
      * @return string
      */
-    public function getState()
+    public function getState(): string
     {
         return $this->state;
     }
@@ -103,10 +103,10 @@ class Refund extends PayPalResourceModel
      * Reason description for the Sale transaction being refunded.
      *
      * @param string $reason
-     * 
+     *
      * @return $this
      */
-    public function setReason($reason)
+    public function setReason($reason): self
     {
         $this->reason = $reason;
         return $this;
@@ -117,7 +117,7 @@ class Refund extends PayPalResourceModel
      *
      * @return string
      */
-    public function getReason()
+    public function getReason(): string
     {
         return $this->reason;
     }
@@ -126,10 +126,10 @@ class Refund extends PayPalResourceModel
      * Your own invoice or tracking ID number. Character length and limitations: 127 single-byte alphanumeric characters.
      *
      * @param string $invoice_number
-     * 
+     *
      * @return $this
      */
-    public function setInvoiceNumber($invoice_number)
+    public function setInvoiceNumber($invoice_number): self
     {
         $this->invoice_number = $invoice_number;
         return $this;
@@ -140,30 +140,30 @@ class Refund extends PayPalResourceModel
      *
      * @return string
      */
-    public function getInvoiceNumber()
+    public function getInvoiceNumber(): string
     {
         return $this->invoice_number;
     }
 
     /**
-     * ID of the Sale transaction being refunded. 
+     * ID of the Sale transaction being refunded.
      *
      * @param string $sale_id
-     * 
+     *
      * @return $this
      */
-    public function setSaleId($sale_id)
+    public function setSaleId($sale_id): self
     {
         $this->sale_id = $sale_id;
         return $this;
     }
 
     /**
-     * ID of the Sale transaction being refunded. 
+     * ID of the Sale transaction being refunded.
      *
      * @return string
      */
-    public function getSaleId()
+    public function getSaleId(): string
     {
         return $this->sale_id;
     }
@@ -172,10 +172,10 @@ class Refund extends PayPalResourceModel
      * ID of the sale transaction being refunded.
      *
      * @param string $capture_id
-     * 
+     *
      * @return $this
      */
-    public function setCaptureId($capture_id)
+    public function setCaptureId($capture_id): self
     {
         $this->capture_id = $capture_id;
         return $this;
@@ -186,7 +186,7 @@ class Refund extends PayPalResourceModel
      *
      * @return string
      */
-    public function getCaptureId()
+    public function getCaptureId(): string
     {
         return $this->capture_id;
     }
@@ -195,10 +195,10 @@ class Refund extends PayPalResourceModel
      * ID of the payment resource on which this transaction is based.
      *
      * @param string $parent_payment
-     * 
+     *
      * @return $this
      */
-    public function setParentPayment($parent_payment)
+    public function setParentPayment($parent_payment): self
     {
         $this->parent_payment = $parent_payment;
         return $this;
@@ -209,7 +209,7 @@ class Refund extends PayPalResourceModel
      *
      * @return string
      */
-    public function getParentPayment()
+    public function getParentPayment(): string
     {
         return $this->parent_payment;
     }
@@ -218,10 +218,10 @@ class Refund extends PayPalResourceModel
      * Description of what is being refunded for.
      *
      * @param string $description
-     * 
+     *
      * @return $this
      */
-    public function setDescription($description)
+    public function setDescription($description): self
     {
         $this->description = $description;
         return $this;
@@ -232,7 +232,7 @@ class Refund extends PayPalResourceModel
      *
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -241,10 +241,10 @@ class Refund extends PayPalResourceModel
      * Time of refund as defined in [RFC 3339 Section 5.6](http://tools.ietf.org/html/rfc3339#section-5.6).
      *
      * @param string $create_time
-     * 
+     *
      * @return $this
      */
-    public function setCreateTime($create_time)
+    public function setCreateTime($create_time): self
     {
         $this->create_time = $create_time;
         return $this;
@@ -255,7 +255,7 @@ class Refund extends PayPalResourceModel
      *
      * @return string
      */
-    public function getCreateTime()
+    public function getCreateTime(): string
     {
         return $this->create_time;
     }
@@ -264,10 +264,10 @@ class Refund extends PayPalResourceModel
      * Time that the resource was last updated.
      *
      * @param string $update_time
-     * 
+     *
      * @return $this
      */
-    public function setUpdateTime($update_time)
+    public function setUpdateTime($update_time): self
     {
         $this->update_time = $update_time;
         return $this;
@@ -278,7 +278,7 @@ class Refund extends PayPalResourceModel
      *
      * @return string
      */
-    public function getUpdateTime()
+    public function getUpdateTime(): string
     {
         return $this->update_time;
     }
@@ -288,10 +288,10 @@ class Refund extends PayPalResourceModel
      * Valid Values: ["ECHECK"]
      *
      * @param string $reason_code
-     * 
+     *
      * @return $this
      */
-    public function setReasonCode($reason_code)
+    public function setReasonCode($reason_code): self
     {
         $this->reason_code = $reason_code;
         return $this;
@@ -302,7 +302,7 @@ class Refund extends PayPalResourceModel
      *
      * @return string
      */
-    public function getReasonCode()
+    public function getReasonCode(): string
     {
         return $this->reason_code;
     }
@@ -315,7 +315,7 @@ class Refund extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return Refund
      */
-    public static function get($refundId, $apiContext = null, $restCall = null)
+    public static function get($refundId, $apiContext = null, $restCall = null): Refund
     {
         ArgumentValidator::validate($refundId, 'refundId');
         $payLoad = "";

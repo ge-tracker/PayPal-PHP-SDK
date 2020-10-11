@@ -23,7 +23,7 @@ class OpenIdSession
      * @param ApiContext $apiContext Optional API Context
      * @return string Authorization URL
      */
-    public static function getAuthorizationUrl($redirectUri, $scope, $clientId, $nonce = null, $state = null, $apiContext = null)
+    public static function getAuthorizationUrl($redirectUri, $scope, $clientId, $nonce = null, $state = null, $apiContext = null): string
     {
         $apiContext = $apiContext ? $apiContext : new ApiContext();
         $config = $apiContext->getConfig();
@@ -67,7 +67,7 @@ class OpenIdSession
      * @param ApiContext $apiContext    Optional API Context
      * @return string logout URL
      */
-    public static function getLogoutUrl($redirectUri, $idToken, $apiContext = null)
+    public static function getLogoutUrl($redirectUri, $idToken, $apiContext = null): string
     {
 
         if (is_null($apiContext)) {
@@ -89,7 +89,7 @@ class OpenIdSession
      * @param $config
      * @return null|string
      */
-    private static function getBaseUrl($config)
+    private static function getBaseUrl($config): ?string
     {
 
         if (array_key_exists('openid.RedirectUri', $config)) {

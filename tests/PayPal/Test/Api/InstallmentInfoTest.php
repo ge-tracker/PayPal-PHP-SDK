@@ -16,7 +16,7 @@ class InstallmentInfoTest extends TestCase
      * Gets Json String of Object InstallmentInfo
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"installment_id":"TestSample","network":"TestSample","issuer":"TestSample","installment_options":' . InstallmentOptionTest::getJson() . '}';
     }
@@ -25,7 +25,7 @@ class InstallmentInfoTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return InstallmentInfo
      */
-    public static function getObject()
+    public static function getObject(): InstallmentInfo
     {
         return new InstallmentInfo(self::getJson());
     }
@@ -35,15 +35,15 @@ class InstallmentInfoTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return InstallmentInfo
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): InstallmentInfo
     {
         $obj = new InstallmentInfo(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getInstallmentId());
-        $this->assertNotNull($obj->getNetwork());
-        $this->assertNotNull($obj->getIssuer());
-        $this->assertNotNull($obj->getInstallmentOptions());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getInstallmentId());
+        self::assertNotNull($obj->getNetwork());
+        self::assertNotNull($obj->getIssuer());
+        self::assertNotNull($obj->getInstallmentOptions());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -51,11 +51,11 @@ class InstallmentInfoTest extends TestCase
      * @depends testSerializationDeserialization
      * @param InstallmentInfo $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getInstallmentId(), "TestSample");
-        $this->assertEquals($obj->getNetwork(), "TestSample");
-        $this->assertEquals($obj->getIssuer(), "TestSample");
-        $this->assertEquals($obj->getInstallmentOptions(), InstallmentOptionTest::getObject());
+        self::assertEquals($obj->getInstallmentId(), "TestSample");
+        self::assertEquals($obj->getNetwork(), "TestSample");
+        self::assertEquals($obj->getIssuer(), "TestSample");
+        self::assertEquals($obj->getInstallmentOptions(), InstallmentOptionTest::getObject());
     }
 }

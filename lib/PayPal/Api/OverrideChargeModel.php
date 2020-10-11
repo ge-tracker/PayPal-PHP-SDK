@@ -20,10 +20,10 @@ class OverrideChargeModel extends PayPalModel
      * ID of charge model.
      *
      * @param string $charge_id
-     * 
+     *
      * @return $this
      */
-    public function setChargeId($charge_id)
+    public function setChargeId($charge_id): self
     {
         $this->charge_id = $charge_id;
         return $this;
@@ -34,7 +34,7 @@ class OverrideChargeModel extends PayPalModel
      *
      * @return string
      */
-    public function getChargeId()
+    public function getChargeId(): string
     {
         return $this->charge_id;
     }
@@ -43,10 +43,10 @@ class OverrideChargeModel extends PayPalModel
      * Updated Amount to be associated with this charge model.
      *
      * @param \PayPal\Api\Currency $amount
-     * 
+     *
      * @return $this
      */
-    public function setAmount($amount)
+    public function setAmount($amount): self
     {
         $this->amount = $amount;
         return $this;
@@ -57,7 +57,7 @@ class OverrideChargeModel extends PayPalModel
      *
      * @return \PayPal\Api\Currency
      */
-    public function getAmount()
+    public function getAmount(): Currency
     {
         return $this->amount;
     }

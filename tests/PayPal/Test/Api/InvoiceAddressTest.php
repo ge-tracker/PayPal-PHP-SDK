@@ -16,7 +16,7 @@ class InvoiceAddressTest extends TestCase
      * Gets Json String of Object Address
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"line1":"TestSample","line2":"TestSample","city":"TestSample","country_code":"TestSample","postal_code":"TestSample","state":"TestSample","phone":'. PhoneTest::getJson() . "}";
     }
@@ -25,7 +25,7 @@ class InvoiceAddressTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return InvoiceAddress
      */
-    public static function getObject()
+    public static function getObject(): InvoiceAddress
     {
         return new InvoiceAddress(self::getJson());
     }
@@ -35,18 +35,18 @@ class InvoiceAddressTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return InvoiceAddress
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): InvoiceAddress
     {
         $obj = new InvoiceAddress(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getLine1());
-        $this->assertNotNull($obj->getLine2());
-        $this->assertNotNull($obj->getCity());
-        $this->assertNotNull($obj->getCountryCode());
-        $this->assertNotNull($obj->getPostalCode());
-        $this->assertNotNull($obj->getState());
-        $this->assertNotNull($obj->getPhone());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getLine1());
+        self::assertNotNull($obj->getLine2());
+        self::assertNotNull($obj->getCity());
+        self::assertNotNull($obj->getCountryCode());
+        self::assertNotNull($obj->getPostalCode());
+        self::assertNotNull($obj->getState());
+        self::assertNotNull($obj->getPhone());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -54,14 +54,14 @@ class InvoiceAddressTest extends TestCase
      * @depends testSerializationDeserialization
      * @param InvoiceAddress $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getLine1(), "TestSample");
-        $this->assertEquals($obj->getLine2(), "TestSample");
-        $this->assertEquals($obj->getCity(), "TestSample");
-        $this->assertEquals($obj->getCountryCode(), "TestSample");
-        $this->assertEquals($obj->getPostalCode(), "TestSample");
-        $this->assertEquals($obj->getState(), "TestSample");
-        $this->assertEquals($obj->getPhone(), PhoneTest::getObject());
+        self::assertEquals($obj->getLine1(), "TestSample");
+        self::assertEquals($obj->getLine2(), "TestSample");
+        self::assertEquals($obj->getCity(), "TestSample");
+        self::assertEquals($obj->getCountryCode(), "TestSample");
+        self::assertEquals($obj->getPostalCode(), "TestSample");
+        self::assertEquals($obj->getState(), "TestSample");
+        self::assertEquals($obj->getPhone(), PhoneTest::getObject());
     }
 }

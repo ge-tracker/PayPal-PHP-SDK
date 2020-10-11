@@ -27,7 +27,7 @@ class PayPalModel
      * @deprecated Pass ApiContext to create/get methods instead
      * @param \PayPal\Auth\OAuthTokenCredential $credential
      */
-    public static function setCredential($credential)
+    public static function setCredential($credential): void
     {
         self::$credential = $credential;
     }
@@ -64,7 +64,7 @@ class PayPalModel
      * @param mixed $data Array object or json string representation
      * @return array
      */
-    public static function getList($data)
+    public static function getList($data): ?array
     {
         // Return Null if Null
         if ($data === null) {
@@ -198,7 +198,7 @@ class PayPalModel
      * @param $arr
      * @return $this
      */
-    public function fromArray($arr)
+    public function fromArray($arr): self
     {
         if (!empty($arr)) {
             // Iterate over each element in array
@@ -248,7 +248,7 @@ class PayPalModel
         return $this;
     }
 
-    private function assignValue($key, $value)
+    private function assignValue($key, $value): void
     {
         $setter = 'set'. $this->convertToCamelCase($key);
         // If we find the setter, use that, otherwise use magic method.
@@ -265,7 +265,7 @@ class PayPalModel
      * @param $json
      * @return $this
      */
-    public function fromJson($json)
+    public function fromJson($json): self
     {
         return $this->fromArray(json_decode($json, true));
     }
@@ -291,7 +291,7 @@ class PayPalModel
         // Because of PHP Version 5.3, we cannot use JSON_UNESCAPED_SLASHES option
         // Instead we would use the str_replace command for now.
         // TODO: Replace this code with return json_encode($this->toArray(), $options | 64); once we support PHP >= 5.4
-        if (version_compare(phpversion(), '5.4.0', '>=') === true) {
+        if (version_compare(PHP_VERSION, '5.4.0', '>=') === true) {
             return json_encode($this->toArray(), $options | 64);
         }
         return str_replace('\\/', '/', json_encode($this->toArray(), $options));

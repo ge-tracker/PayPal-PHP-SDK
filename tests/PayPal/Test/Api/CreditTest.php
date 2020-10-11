@@ -17,7 +17,7 @@ class CreditTest extends TestCase
      *
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"id":"TestSample","type":"TestSample"}';
     }
@@ -27,7 +27,7 @@ class CreditTest extends TestCase
      *
      * @return Credit
      */
-    public static function getObject()
+    public static function getObject(): Credit
     {
         return new Credit(self::getJson());
     }
@@ -38,13 +38,13 @@ class CreditTest extends TestCase
      *
      * @return Credit
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): Credit
     {
         $obj = new Credit(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getType());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getType());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -52,9 +52,9 @@ class CreditTest extends TestCase
      * @depends testSerializationDeserialization
      * @param Credit $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getType(), "TestSample");
+        self::assertEquals($obj->getId(), "TestSample");
+        self::assertEquals($obj->getType(), "TestSample");
     }
 }

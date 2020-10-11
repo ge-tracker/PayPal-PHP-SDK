@@ -16,7 +16,7 @@ class PaymentHistoryTest extends TestCase
      * Gets Json String of Object PaymentHistory
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"payments":' . PaymentTest::getJson() . ',"count":123,"next_id":"TestSample"}';
     }
@@ -25,7 +25,7 @@ class PaymentHistoryTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return PaymentHistory
      */
-    public static function getObject()
+    public static function getObject(): PaymentHistory
     {
         return new PaymentHistory(self::getJson());
     }
@@ -35,14 +35,14 @@ class PaymentHistoryTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return PaymentHistory
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): PaymentHistory
     {
         $obj = new PaymentHistory(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getPayments());
-        $this->assertNotNull($obj->getCount());
-        $this->assertNotNull($obj->getNextId());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getPayments());
+        self::assertNotNull($obj->getCount());
+        self::assertNotNull($obj->getNextId());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -50,10 +50,10 @@ class PaymentHistoryTest extends TestCase
      * @depends testSerializationDeserialization
      * @param PaymentHistory $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getPayments(), PaymentTest::getObject());
-        $this->assertEquals($obj->getCount(), 123);
-        $this->assertEquals($obj->getNextId(), "TestSample");
+        self::assertEquals($obj->getPayments(), PaymentTest::getObject());
+        self::assertEquals($obj->getCount(), 123);
+        self::assertEquals($obj->getNextId(), "TestSample");
     }
 }

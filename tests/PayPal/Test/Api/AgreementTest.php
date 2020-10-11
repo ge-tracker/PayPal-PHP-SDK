@@ -16,7 +16,7 @@ class AgreementTest extends TestCase
      * Gets Json String of Object Agreement
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"id":"TestSample","state":"TestSample","name":"TestSample","description":"TestSample","start_date":"TestSample","payer":' .PayerTest::getJson() . ',"shipping_address":' .AddressTest::getJson() . ',"override_merchant_preferences":' .MerchantPreferencesTest::getJson() . ',"override_charge_models":' .OverrideChargeModelTest::getJson() . ',"plan":' .PlanTest::getJson() . ',"create_time":"TestSample","agreement_details":{"outstanding_balance":{"currency":"USD","value":"0.00"},"cycles_remaining":"12","cycles_completed":"0","next_billing_date":"2015-06-17T10:00:00Z","last_payment_date":"2015-03-18T20:20:17Z","last_payment_amount":{"currency":"USD","value":"1.00"},"final_payment_date":"2017-04-17T10:00:00Z","failed_payment_count":"0"},"update_time":"TestSample","links":' .LinksTest::getJson() . '}';
     }
@@ -25,7 +25,7 @@ class AgreementTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return Agreement
      */
-    public static function getObject()
+    public static function getObject(): Agreement
     {
         return new Agreement(self::getJson());
     }
@@ -35,24 +35,24 @@ class AgreementTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return Agreement
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): Agreement
     {
         $obj = new Agreement(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getState());
-        $this->assertNotNull($obj->getName());
-        $this->assertNotNull($obj->getDescription());
-        $this->assertNotNull($obj->getStartDate());
-        $this->assertNotNull($obj->getPayer());
-        $this->assertNotNull($obj->getShippingAddress());
-        $this->assertNotNull($obj->getOverrideMerchantPreferences());
-        $this->assertNotNull($obj->getOverrideChargeModels());
-        $this->assertNotNull($obj->getPlan());
-        $this->assertNotNull($obj->getCreateTime());
-        $this->assertNotNull($obj->getUpdateTime());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getState());
+        self::assertNotNull($obj->getName());
+        self::assertNotNull($obj->getDescription());
+        self::assertNotNull($obj->getStartDate());
+        self::assertNotNull($obj->getPayer());
+        self::assertNotNull($obj->getShippingAddress());
+        self::assertNotNull($obj->getOverrideMerchantPreferences());
+        self::assertNotNull($obj->getOverrideChargeModels());
+        self::assertNotNull($obj->getPlan());
+        self::assertNotNull($obj->getCreateTime());
+        self::assertNotNull($obj->getUpdateTime());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -60,221 +60,201 @@ class AgreementTest extends TestCase
      * @depends testSerializationDeserialization
      * @param Agreement $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getState(), "TestSample");
-        $this->assertEquals($obj->getName(), "TestSample");
-        $this->assertEquals($obj->getDescription(), "TestSample");
-        $this->assertEquals($obj->getStartDate(), "TestSample");
-        $this->assertEquals($obj->getPayer(), PayerTest::getObject());
-        $this->assertEquals($obj->getShippingAddress(), AddressTest::getObject());
-        $this->assertEquals($obj->getOverrideMerchantPreferences(), MerchantPreferencesTest::getObject());
-        $this->assertEquals($obj->getOverrideChargeModels(), OverrideChargeModelTest::getObject());
-        $this->assertEquals($obj->getPlan(), PlanTest::getObject());
-        $this->assertEquals($obj->getCreateTime(), "TestSample");
-        $this->assertEquals($obj->getUpdateTime(), "TestSample");
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals($obj->getId(), "TestSample");
+        self::assertEquals($obj->getState(), "TestSample");
+        self::assertEquals($obj->getName(), "TestSample");
+        self::assertEquals($obj->getDescription(), "TestSample");
+        self::assertEquals($obj->getStartDate(), "TestSample");
+        self::assertEquals($obj->getPayer(), PayerTest::getObject());
+        self::assertEquals($obj->getShippingAddress(), AddressTest::getObject());
+        self::assertEquals($obj->getOverrideMerchantPreferences(), MerchantPreferencesTest::getObject());
+        self::assertEquals($obj->getOverrideChargeModels(), OverrideChargeModelTest::getObject());
+        self::assertEquals($obj->getPlan(), PlanTest::getObject());
+        self::assertEquals($obj->getCreateTime(), "TestSample");
+        self::assertEquals($obj->getUpdateTime(), "TestSample");
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 
     /**
      * @dataProvider mockProvider
      * @param Agreement $obj
      */
-    public function testCreate($obj, $mockApiContext)
+    public function testCreate($obj, $mockApiContext): void
     {
         $mockPayPalRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    self::getJson()
-            ));
+            ->willReturn(self::getJson());
 
         $result = $obj->create($mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
      * @param Agreement $obj
      */
-    public function testExecute($obj, $mockApiContext)
+    public function testExecute($obj, $mockApiContext): void
     {
         $mockPayPalRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    self::getJson()
-            ));
+            ->willReturn(self::getJson());
 
         $result = $obj->execute("123123", $mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
      * @param Agreement $obj
      */
-    public function testGet($obj, $mockApiContext)
+    public function testGet($obj, $mockApiContext): void
     {
         $mockPayPalRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    AgreementTest::getJson()
-            ));
+            ->willReturn(AgreementTest::getJson());
 
         $result = $obj->get("agreementId", $mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
      * @param Agreement $obj
      */
-    public function testUpdate($obj, $mockApiContext)
+    public function testUpdate($obj, $mockApiContext): void
     {
         $mockPayPalRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    self::getJson()
-            ));
+            ->willReturn(self::getJson());
         $patchRequest = PatchRequestTest::getObject();
 
         $result = $obj->update($patchRequest, $mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
      * @param Agreement $obj
      */
-    public function testSuspend($obj, $mockApiContext)
+    public function testSuspend($obj, $mockApiContext): void
     {
         $mockPayPalRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    true
-            ));
+            ->willReturn(true);
         $agreementStateDescriptor = AgreementStateDescriptorTest::getObject();
 
         $result = $obj->suspend($agreementStateDescriptor, $mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
      * @param Agreement $obj
      */
-    public function testReActivate($obj, $mockApiContext)
+    public function testReActivate($obj, $mockApiContext): void
     {
         $mockPayPalRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    true
-            ));
+            ->willReturn(true);
         $agreementStateDescriptor = AgreementStateDescriptorTest::getObject();
 
         $result = $obj->reActivate($agreementStateDescriptor, $mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
      * @param Agreement $obj
      */
-    public function testCancel($obj, $mockApiContext)
+    public function testCancel($obj, $mockApiContext): void
     {
         $mockPayPalRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    true
-            ));
+            ->willReturn(true);
         $agreementStateDescriptor = AgreementStateDescriptorTest::getObject();
 
         $result = $obj->cancel($agreementStateDescriptor, $mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
      * @param Agreement $obj
      */
-    public function testBillBalance($obj, $mockApiContext)
+    public function testBillBalance($obj, $mockApiContext): void
     {
         $mockPayPalRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    true
-            ));
+            ->willReturn(true);
         $agreementStateDescriptor = AgreementStateDescriptorTest::getObject();
 
         $result = $obj->billBalance($agreementStateDescriptor, $mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
      * @param Agreement $obj
      */
-    public function testSetBalance($obj, $mockApiContext)
+    public function testSetBalance($obj, $mockApiContext): void
     {
         $mockPayPalRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    true
-            ));
+            ->willReturn(true);
         $currency = CurrencyTest::getObject();
 
         $result = $obj->setBalance($currency, $mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
      * @param Agreement $obj
      */
-    public function testTransactions($obj, $mockApiContext)
+    public function testTransactions($obj, $mockApiContext): void
     {
         $mockPayPalRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    AgreementTransactionsTest::getJson()
-            ));
+            ->willReturn(AgreementTransactionsTest::getJson());
 
         $result = $obj->searchTransactions("agreementId", array(), $mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
 
-    public function mockProvider()
+    public function mockProvider(): array
     {
         $obj = self::getObject();
         $mockApiContext = $this->getMockBuilder('ApiContext')

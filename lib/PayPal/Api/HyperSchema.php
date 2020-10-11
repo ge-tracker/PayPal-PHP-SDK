@@ -7,7 +7,7 @@ use PayPal\Common\PayPalModel;
 /**
  * Class HyperSchema
  *
- * 
+ *
  *
  * @package PayPal\Api
  *
@@ -24,10 +24,10 @@ class HyperSchema extends PayPalModel
      * Sets Links
      *
      * @param \PayPal\Api\Links[] $links
-     * 
+     *
      * @return $this
      */
-    public function setLinks($links)
+    public function setLinks($links): self
     {
         $this->links = $links;
         return $this;
@@ -38,7 +38,7 @@ class HyperSchema extends PayPalModel
      *
      * @return \PayPal\Api\Links[]
      */
-    public function getLinks()
+    public function getLinks(): array
     {
         return $this->links;
     }
@@ -49,7 +49,7 @@ class HyperSchema extends PayPalModel
      * @param \PayPal\Api\Links $links
      * @return $this
      */
-    public function addLink($links)
+    public function addLink($links): ?self
     {
         if (!$this->getLinks()) {
             return $this->setLinks(array($links));
@@ -66,7 +66,7 @@ class HyperSchema extends PayPalModel
      * @param \PayPal\Api\Links $links
      * @return $this
      */
-    public function removeLink($links)
+    public function removeLink($links): self
     {
         return $this->setLinks(
             array_diff($this->getLinks(), array($links))
@@ -77,10 +77,10 @@ class HyperSchema extends PayPalModel
      * Sets FragmentResolution
      *
      * @param string $fragmentResolution
-     * 
+     *
      * @return $this
      */
-    public function setFragmentResolution($fragmentResolution)
+    public function setFragmentResolution($fragmentResolution): self
     {
         $this->fragmentResolution = $fragmentResolution;
         return $this;
@@ -91,7 +91,7 @@ class HyperSchema extends PayPalModel
      *
      * @return string
      */
-    public function getFragmentResolution()
+    public function getFragmentResolution(): string
     {
         return $this->fragmentResolution;
     }
@@ -100,10 +100,10 @@ class HyperSchema extends PayPalModel
      * Sets Readonly
      *
      * @param bool $readonly
-     * 
+     *
      * @return $this
      */
-    public function setReadonly($readonly)
+    public function setReadonly($readonly): self
     {
         $this->readonly = $readonly;
         return $this;
@@ -114,7 +114,7 @@ class HyperSchema extends PayPalModel
      *
      * @return bool
      */
-    public function getReadonly()
+    public function getReadonly(): bool
     {
         return $this->readonly;
     }
@@ -123,10 +123,10 @@ class HyperSchema extends PayPalModel
      * Sets ContentEncoding
      *
      * @param string $contentEncoding
-     * 
+     *
      * @return $this
      */
-    public function setContentEncoding($contentEncoding)
+    public function setContentEncoding($contentEncoding): self
     {
         $this->contentEncoding = $contentEncoding;
         return $this;
@@ -137,7 +137,7 @@ class HyperSchema extends PayPalModel
      *
      * @return string
      */
-    public function getContentEncoding()
+    public function getContentEncoding(): string
     {
         return $this->contentEncoding;
     }
@@ -146,10 +146,10 @@ class HyperSchema extends PayPalModel
      * Sets PathStart
      *
      * @param string $pathStart
-     * 
+     *
      * @return $this
      */
-    public function setPathStart($pathStart)
+    public function setPathStart($pathStart): self
     {
         $this->pathStart = $pathStart;
         return $this;
@@ -160,7 +160,7 @@ class HyperSchema extends PayPalModel
      *
      * @return string
      */
-    public function getPathStart()
+    public function getPathStart(): string
     {
         return $this->pathStart;
     }
@@ -169,10 +169,10 @@ class HyperSchema extends PayPalModel
      * Sets MediaType
      *
      * @param string $mediaType
-     * 
+     *
      * @return $this
      */
-    public function setMediaType($mediaType)
+    public function setMediaType($mediaType): self
     {
         $this->mediaType = $mediaType;
         return $this;
@@ -183,7 +183,7 @@ class HyperSchema extends PayPalModel
      *
      * @return string
      */
-    public function getMediaType()
+    public function getMediaType(): string
     {
         return $this->mediaType;
     }

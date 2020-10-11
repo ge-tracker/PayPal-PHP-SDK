@@ -68,7 +68,7 @@ class RestHandler implements IPayPalHandler
 
         $httpConfig->setUrl(
             rtrim(trim($this->_getEndpoint($config)), '/') .
-            (isset($options['path']) ? $options['path'] : '')
+            ($options['path'] ?? '')
         );
 
         // Overwrite Expect Header to disable 100 Continue Issue
@@ -100,7 +100,7 @@ class RestHandler implements IPayPalHandler
      * @return string
      * @throws \PayPal\Exception\PayPalConfigurationException
      */
-    private function _getEndpoint($config)
+    private function _getEndpoint($config): ?string
     {
         if (isset($config['service.EndPoint'])) {
             return $config['service.EndPoint'];

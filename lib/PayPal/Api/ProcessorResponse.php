@@ -27,7 +27,7 @@ class ProcessorResponse extends PayPalModel
      *
      * @return $this
      */
-    public function setResponseCode($response_code)
+    public function setResponseCode($response_code): self
     {
         $this->response_code = $response_code;
         return $this;
@@ -38,7 +38,7 @@ class ProcessorResponse extends PayPalModel
      *
      * @return string
      */
-    public function getResponseCode()
+    public function getResponseCode(): string
     {
         return $this->response_code;
     }
@@ -50,7 +50,7 @@ class ProcessorResponse extends PayPalModel
      *
      * @return $this
      */
-    public function setAvsCode($avs_code)
+    public function setAvsCode($avs_code): self
     {
         $this->avs_code = $avs_code;
         return $this;
@@ -61,7 +61,7 @@ class ProcessorResponse extends PayPalModel
      *
      * @return string
      */
-    public function getAvsCode()
+    public function getAvsCode(): string
     {
         return $this->avs_code;
     }
@@ -73,7 +73,7 @@ class ProcessorResponse extends PayPalModel
      *
      * @return $this
      */
-    public function setCvvCode($cvv_code)
+    public function setCvvCode($cvv_code): self
     {
         $this->cvv_code = $cvv_code;
         return $this;
@@ -84,7 +84,7 @@ class ProcessorResponse extends PayPalModel
      *
      * @return string
      */
-    public function getCvvCode()
+    public function getCvvCode(): string
     {
         return $this->cvv_code;
     }
@@ -97,7 +97,7 @@ class ProcessorResponse extends PayPalModel
      *
      * @return $this
      */
-    public function setAdviceCode($advice_code)
+    public function setAdviceCode($advice_code): self
     {
         $this->advice_code = $advice_code;
         return $this;
@@ -108,7 +108,7 @@ class ProcessorResponse extends PayPalModel
      *
      * @return string
      */
-    public function getAdviceCode()
+    public function getAdviceCode(): string
     {
         return $this->advice_code;
     }
@@ -120,7 +120,7 @@ class ProcessorResponse extends PayPalModel
      *
      * @return $this
      */
-    public function setEciSubmitted($eci_submitted)
+    public function setEciSubmitted($eci_submitted): self
     {
         $this->eci_submitted = $eci_submitted;
         return $this;
@@ -131,7 +131,7 @@ class ProcessorResponse extends PayPalModel
      *
      * @return string
      */
-    public function getEciSubmitted()
+    public function getEciSubmitted(): string
     {
         return $this->eci_submitted;
     }
@@ -143,7 +143,7 @@ class ProcessorResponse extends PayPalModel
      *
      * @return $this
      */
-    public function setVpas($vpas)
+    public function setVpas($vpas): self
     {
         $this->vpas = $vpas;
         return $this;
@@ -154,7 +154,7 @@ class ProcessorResponse extends PayPalModel
      *
      * @return string
      */
-    public function getVpas()
+    public function getVpas(): string
     {
         return $this->vpas;
     }

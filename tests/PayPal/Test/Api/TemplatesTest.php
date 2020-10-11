@@ -20,7 +20,7 @@ class TemplatesTest extends TestCase
      * Gets Json String of Object Templates
      * @return string
      */
-    public static function getJson()
+    public static function getJson(): string
     {
         return '{"addresses":' .AddressTest::getJson() . ',"emails":"TestSample","phones":' .PhoneTest::getJson() . ',"templates":' .TemplateTest::getJson() . ',"links":' .LinksTest::getJson() . '}';
     }
@@ -29,7 +29,7 @@ class TemplatesTest extends TestCase
      * Gets Object Instance with Json data filled in
      * @return Templates
      */
-    public static function getObject()
+    public static function getObject(): Templates
     {
         return new Templates(self::getJson());
     }
@@ -39,16 +39,16 @@ class TemplatesTest extends TestCase
      * Tests for Serialization and Deserialization Issues
      * @return Templates
      */
-    public function testSerializationDeserialization()
+    public function testSerializationDeserialization(): Templates
     {
         $obj = new Templates(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getAddresses());
-        $this->assertNotNull($obj->getEmails());
-        $this->assertNotNull($obj->getPhones());
-        $this->assertNotNull($obj->getTemplates());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getAddresses());
+        self::assertNotNull($obj->getEmails());
+        self::assertNotNull($obj->getPhones());
+        self::assertNotNull($obj->getTemplates());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -56,56 +56,52 @@ class TemplatesTest extends TestCase
      * @depends testSerializationDeserialization
      * @param Templates $obj
      */
-    public function testGetters($obj)
+    public function testGetters($obj): void
     {
-        $this->assertEquals($obj->getAddresses(), AddressTest::getObject());
-        $this->assertEquals($obj->getEmails(), "TestSample");
-        $this->assertEquals($obj->getPhones(), PhoneTest::getObject());
-        $this->assertEquals($obj->getTemplates(), TemplateTest::getObject());
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals($obj->getAddresses(), AddressTest::getObject());
+        self::assertEquals($obj->getEmails(), "TestSample");
+        self::assertEquals($obj->getPhones(), PhoneTest::getObject());
+        self::assertEquals($obj->getTemplates(), TemplateTest::getObject());
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 
     /**
      * @dataProvider mockProvider
      * @param Templates $obj
      */
-    public function testGet($obj, $mockApiContext)
+    public function testGet($obj, $mockApiContext): void
     {
         $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    TemplateTest::getJson()
-            ));
+            ->willReturn(TemplateTest::getJson());
 
         $result = $obj->get("templateId", $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
      * @param Templates $obj
      */
-    public function testGetAll($obj, $mockApiContext)
+    public function testGetAll($obj, $mockApiContext): void
     {
         $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    TemplatesTest::getJson()
-            ));
+            ->willReturn(TemplatesTest::getJson());
         $params = array();
 
         $result = $obj->getAll($params, $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
 
-    public function mockProvider()
+    public function mockProvider(): array
     {
         $obj = self::getObject();
         $mockApiContext = $this->getMockBuilder('ApiContext')

@@ -26,7 +26,7 @@ class PayPalMissingCredentialException extends \Exception
      *
      * @return string
      */
-    public function errorMessage()
+    public function errorMessage(): string
     {
         $errorMsg = 'Error on line ' . $this->getLine() . ' in ' . $this->getFile()
             . ': <b>' . $this->getMessage() . '</b>';

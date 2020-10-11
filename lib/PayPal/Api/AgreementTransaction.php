@@ -28,10 +28,10 @@ class AgreementTransaction extends PayPalModel
      * Id corresponding to this transaction.
      *
      * @param string $transaction_id
-     * 
+     *
      * @return $this
      */
-    public function setTransactionId($transaction_id)
+    public function setTransactionId($transaction_id): self
     {
         $this->transaction_id = $transaction_id;
         return $this;
@@ -42,7 +42,7 @@ class AgreementTransaction extends PayPalModel
      *
      * @return string
      */
-    public function getTransactionId()
+    public function getTransactionId(): string
     {
         return $this->transaction_id;
     }
@@ -51,10 +51,10 @@ class AgreementTransaction extends PayPalModel
      * State of the subscription at this time.
      *
      * @param string $status
-     * 
+     *
      * @return $this
      */
-    public function setStatus($status)
+    public function setStatus($status): self
     {
         $this->status = $status;
         return $this;
@@ -65,7 +65,7 @@ class AgreementTransaction extends PayPalModel
      *
      * @return string
      */
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->status;
     }
@@ -74,10 +74,10 @@ class AgreementTransaction extends PayPalModel
      * Type of transaction, usually Recurring Payment.
      *
      * @param string $transaction_type
-     * 
+     *
      * @return $this
      */
-    public function setTransactionType($transaction_type)
+    public function setTransactionType($transaction_type): self
     {
         $this->transaction_type = $transaction_type;
         return $this;
@@ -88,7 +88,7 @@ class AgreementTransaction extends PayPalModel
      *
      * @return string
      */
-    public function getTransactionType()
+    public function getTransactionType(): string
     {
         return $this->transaction_type;
     }
@@ -97,10 +97,10 @@ class AgreementTransaction extends PayPalModel
      * Amount for this transaction.
      *
      * @param \PayPal\Api\Currency $amount
-     * 
+     *
      * @return $this
      */
-    public function setAmount($amount)
+    public function setAmount($amount): self
     {
         $this->amount = $amount;
         return $this;
@@ -111,7 +111,7 @@ class AgreementTransaction extends PayPalModel
      *
      * @return \PayPal\Api\Currency
      */
-    public function getAmount()
+    public function getAmount(): Currency
     {
         return $this->amount;
     }
@@ -120,10 +120,10 @@ class AgreementTransaction extends PayPalModel
      * Fee amount for this transaction.
      *
      * @param \PayPal\Api\Currency $fee_amount
-     * 
+     *
      * @return $this
      */
-    public function setFeeAmount($fee_amount)
+    public function setFeeAmount($fee_amount): self
     {
         $this->fee_amount = $fee_amount;
         return $this;
@@ -134,7 +134,7 @@ class AgreementTransaction extends PayPalModel
      *
      * @return \PayPal\Api\Currency
      */
-    public function getFeeAmount()
+    public function getFeeAmount(): Currency
     {
         return $this->fee_amount;
     }
@@ -143,10 +143,10 @@ class AgreementTransaction extends PayPalModel
      * Net amount for this transaction.
      *
      * @param \PayPal\Api\Currency $net_amount
-     * 
+     *
      * @return $this
      */
-    public function setNetAmount($net_amount)
+    public function setNetAmount($net_amount): self
     {
         $this->net_amount = $net_amount;
         return $this;
@@ -157,7 +157,7 @@ class AgreementTransaction extends PayPalModel
      *
      * @return \PayPal\Api\Currency
      */
-    public function getNetAmount()
+    public function getNetAmount(): Currency
     {
         return $this->net_amount;
     }
@@ -166,10 +166,10 @@ class AgreementTransaction extends PayPalModel
      * Email id of payer.
      *
      * @param string $payer_email
-     * 
+     *
      * @return $this
      */
-    public function setPayerEmail($payer_email)
+    public function setPayerEmail($payer_email): self
     {
         $this->payer_email = $payer_email;
         return $this;
@@ -180,7 +180,7 @@ class AgreementTransaction extends PayPalModel
      *
      * @return string
      */
-    public function getPayerEmail()
+    public function getPayerEmail(): string
     {
         return $this->payer_email;
     }
@@ -189,10 +189,10 @@ class AgreementTransaction extends PayPalModel
      * Business name of payer.
      *
      * @param string $payer_name
-     * 
+     *
      * @return $this
      */
-    public function setPayerName($payer_name)
+    public function setPayerName($payer_name): self
     {
         $this->payer_name = $payer_name;
         return $this;
@@ -203,7 +203,7 @@ class AgreementTransaction extends PayPalModel
      *
      * @return string
      */
-    public function getPayerName()
+    public function getPayerName(): string
     {
         return $this->payer_name;
     }
@@ -212,10 +212,10 @@ class AgreementTransaction extends PayPalModel
      * Time at which this transaction happened.
      *
      * @param string $time_stamp
-     * 
+     *
      * @return $this
      */
-    public function setTimeStamp($time_stamp)
+    public function setTimeStamp($time_stamp): self
     {
         $this->time_stamp = $time_stamp;
         return $this;
@@ -226,7 +226,7 @@ class AgreementTransaction extends PayPalModel
      *
      * @return string
      */
-    public function getTimeStamp()
+    public function getTimeStamp(): string
     {
         return $this->time_stamp;
     }
@@ -235,10 +235,10 @@ class AgreementTransaction extends PayPalModel
      * Time zone of time_updated field.
      *
      * @param string $time_zone
-     * 
+     *
      * @return $this
      */
-    public function setTimeZone($time_zone)
+    public function setTimeZone($time_zone): self
     {
         $this->time_zone = $time_zone;
         return $this;
@@ -249,7 +249,7 @@ class AgreementTransaction extends PayPalModel
      *
      * @return string
      */
-    public function getTimeZone()
+    public function getTimeZone(): string
     {
         return $this->time_zone;
     }

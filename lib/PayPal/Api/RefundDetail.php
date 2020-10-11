@@ -24,10 +24,10 @@ class RefundDetail extends PayPalModel
      * Valid Values: ["PAYPAL", "EXTERNAL"]
      *
      * @param string $type
-     * 
+     *
      * @return $this
      */
-    public function setType($type)
+    public function setType($type): self
     {
         $this->type = $type;
         return $this;
@@ -38,7 +38,7 @@ class RefundDetail extends PayPalModel
      *
      * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
@@ -47,10 +47,10 @@ class RefundDetail extends PayPalModel
      * The PayPal refund transaction ID. Required with the `PAYPAL` refund type.
      *
      * @param string $transaction_id
-     * 
+     *
      * @return $this
      */
-    public function setTransactionId($transaction_id)
+    public function setTransactionId($transaction_id): self
     {
         $this->transaction_id = $transaction_id;
         return $this;
@@ -61,7 +61,7 @@ class RefundDetail extends PayPalModel
      *
      * @return string
      */
-    public function getTransactionId()
+    public function getTransactionId(): string
     {
         return $this->transaction_id;
     }
@@ -70,10 +70,10 @@ class RefundDetail extends PayPalModel
      * Date on which the invoice was refunded. Date format: yyyy-MM-dd z. For example, 2014-02-27 PST.
      *
      * @param string $date
-     * 
+     *
      * @return $this
      */
-    public function setDate($date)
+    public function setDate($date): self
     {
         $this->date = $date;
         return $this;
@@ -84,7 +84,7 @@ class RefundDetail extends PayPalModel
      *
      * @return string
      */
-    public function getDate()
+    public function getDate(): string
     {
         return $this->date;
     }
@@ -93,10 +93,10 @@ class RefundDetail extends PayPalModel
      * Optional note associated with the refund.
      *
      * @param string $note
-     * 
+     *
      * @return $this
      */
-    public function setNote($note)
+    public function setNote($note): self
     {
         $this->note = $note;
         return $this;
@@ -107,7 +107,7 @@ class RefundDetail extends PayPalModel
      *
      * @return string
      */
-    public function getNote()
+    public function getNote(): string
     {
         return $this->note;
     }
@@ -116,10 +116,10 @@ class RefundDetail extends PayPalModel
      * Amount to be recorded as refund against invoice. If this field is not passed, the total invoice paid amount is recorded as refund.
      *
      * @param \PayPal\Api\Currency $amount
-     * 
+     *
      * @return $this
      */
-    public function setAmount($amount)
+    public function setAmount($amount): self
     {
         $this->amount = $amount;
         return $this;
@@ -130,7 +130,7 @@ class RefundDetail extends PayPalModel
      *
      * @return \PayPal\Api\Currency
      */
-    public function getAmount()
+    public function getAmount(): Currency
     {
         return $this->amount;
     }
