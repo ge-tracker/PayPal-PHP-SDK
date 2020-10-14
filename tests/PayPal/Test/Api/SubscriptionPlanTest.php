@@ -74,7 +74,7 @@ class SubscriptionPlanTest extends TestCase
         self::assertEquals('TestSample', $obj->getCreateTime());
         self::assertEquals('TestSample', $obj->getUpdateTime());
         self::assertEquals($obj->getBillingCycles(), [BillingCyclesTest::getObject()]);
-        self::assertEquals($obj->getPaymentPreferences(), PaymentDefinitionTest::getObject());
+        self::assertEquals($obj->getPaymentPreferences(), PaymentPreferencesTest::getObject());
         self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 
