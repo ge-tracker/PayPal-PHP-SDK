@@ -26,5 +26,8 @@
         "psr-0": {
             "PayPal": "lib/"
         }
+    },
+    "scripts": {
+        "fix": "./vendor/bin/php-cs-fixer fix"
     }
 }
