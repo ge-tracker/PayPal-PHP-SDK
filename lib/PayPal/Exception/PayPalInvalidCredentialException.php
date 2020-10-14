@@ -2,12 +2,14 @@
 
 namespace PayPal\Exception;
 
+use Exception;
+
 /**
  * Class PayPalInvalidCredentialException
  *
  * @package PayPal\Exception
  */
-class PayPalInvalidCredentialException extends \Exception
+class PayPalInvalidCredentialException extends Exception
 {
 
     /**
@@ -28,8 +30,7 @@ class PayPalInvalidCredentialException extends \Exception
      */
     public function errorMessage()
     {
-        $errorMsg = 'Error on line ' . $this->getLine() . ' in ' . $this->getFile()
+        return 'Error on line ' . $this->getLine() . ' in ' . $this->getFile()
             . ': <b>' . $this->getMessage() . '</b>';
-        return $errorMsg;
     }
 }

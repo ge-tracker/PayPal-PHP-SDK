@@ -32,9 +32,9 @@ class PayPalHttpConfig
         //Adding it like this for backward compatibility with older versions of curl
     );
 
-    const HEADER_SEPARATOR = ';';
-    const HTTP_GET = 'GET';
-    const HTTP_POST = 'POST';
+    public const HEADER_SEPARATOR = ';';
+    public const HTTP_GET = 'GET';
+    public const HTTP_POST = 'POST';
 
     private $headers = array();
 
@@ -63,7 +63,7 @@ class PayPalHttpConfig
         $this->curlOptions = $this->getHttpConstantsFromConfigs($configs, 'http.') + self::$defaultCurlOptions;
         // Update the Cipher List based on OpenSSL or NSS settings
         $curl = curl_version();
-        $sslVersion = isset($curl['ssl_version']) ? $curl['ssl_version'] : '';
+        $sslVersion = $curl['ssl_version'] ?? '';
         if($sslVersion && substr_compare($sslVersion, "NSS/", 0, strlen("NSS/")) === 0) {
             //Remove the Cipher List for NSS
             $this->removeCurlOption(CURLOPT_SSL_CIPHER_LIST);
@@ -108,10 +108,7 @@ class PayPalHttpConfig
      */
     public function getHeader($name)
     {
-        if (array_key_exists($name, $this->headers)) {
-            return $this->headers[$name];
-        }
-        return null;
+        return $this->headers[$name] ?? null;
     }
 
     /**
@@ -146,7 +143,7 @@ class PayPalHttpConfig
         if (!array_key_exists($name, $this->headers) || $overWrite) {
             $this->headers[$name] = $value;
         } else {
-            $this->headers[$name] = $this->headers[$name] . self::HEADER_SEPARATOR . $value;
+            $this->headers[$name] .= self::HEADER_SEPARATOR . $value;
         }
     }
 
@@ -289,7 +286,7 @@ class PayPalHttpConfig
         if ($prefix != null && is_array($configs)) {
             foreach ($configs as $k => $v) {
                 // Check if it startsWith
-                if (substr($k, 0, strlen($prefix)) === $prefix) {
+                if (strpos($k, $prefix) === 0) {
                     $newKey = ltrim($k, $prefix);
                     if (defined($newKey)) {
                         $arr[constant($newKey)] = $v;

@@ -238,8 +238,7 @@ class VerifyWebhookSignature extends PayPalResourceModel
     {
         if (!is_null($this->request_body)) {
             $valuesToEncode = $this->toArray();
-            unset($valuesToEncode['webhook_event']);
-            unset($valuesToEncode['request_body']);
+            unset($valuesToEncode['webhook_event'], $valuesToEncode['request_body']);
 
             $payLoad = "{";
             foreach ($valuesToEncode as $field => $value) {
@@ -248,9 +247,9 @@ class VerifyWebhookSignature extends PayPalResourceModel
             $payLoad .= "\"webhook_event\": $this->request_body";
             $payLoad .= "}";
             return $payLoad;
-        } else {
-            $payLoad = parent::toJSON($options);
-            return $payLoad;
         }
+
+        $payLoad = parent::toJSON($options);
+        return $payLoad;
     }
 }

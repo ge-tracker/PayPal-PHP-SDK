@@ -79,7 +79,7 @@ class PayPalHttpConnection
         }
 
         $trimmedData = trim($data);
-        if (strlen($trimmedData) == 0) {
+        if ($trimmedData == '') {
             return strlen($data);
         }
 
@@ -87,15 +87,15 @@ class PayPalHttpConnection
         if (strpos($trimmedData, ":") == false) {
             return strlen($data);
         }
-        
-        list($key, $value) = explode(":", $trimmedData, 2);
+
+        [$key, $value] = explode(":", $trimmedData, 2);
 
         $key = trim($key);
         $value = trim($value);
 
         // This will skip over the HTTP Status Line and any other lines
         // that don't look like header lines with values
-        if (strlen($key) > 0 && strlen($value) > 0) {
+        if ($key != '' && $value != '') {
             // This is actually a very basic way of looking at response headers
             // and may miss a few repeated headers with different (appended)
             // values but this should work for debugging purposes.
@@ -175,7 +175,7 @@ class PayPalHttpConnection
         //Retry if Certificate Exception
         if (curl_errno($ch) == 60) {
             $this->logger->info("Invalid or no certificate authority found - Retrying using bundled CA certs file");
-            curl_setopt($ch, CURLOPT_CAINFO, dirname(__FILE__) . '/cacert.pem');
+            curl_setopt($ch, CURLOPT_CAINFO, __DIR__ . '/cacert.pem');
             $result = curl_exec($ch);
             //Retrieve Response Status
             $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);

@@ -532,7 +532,7 @@ class OpenIdUserinfo extends PayPalResourceModel
             $restCall
         );
 
-        $ret = new OpenIdUserinfo();
+        $ret = new self();
         $ret->fromJson($json);
 
         return $ret;

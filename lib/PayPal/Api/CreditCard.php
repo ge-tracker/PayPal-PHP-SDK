@@ -465,7 +465,7 @@ class CreditCard extends PayPalResourceModel
             $apiContext,
             $restCall
         );
-        $ret = new CreditCard();
+        $ret = new self();
         $ret->fromJson($json);
         return $ret;
     }

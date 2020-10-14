@@ -3,6 +3,7 @@
 namespace PayPal\Common;
 
 use PayPal\Validation\JsonValidator;
+use stdClass;
 
 /**
  * Generic Model class that all API domain classes extend
@@ -71,7 +72,7 @@ class PayPalModel
             return null;
         }
 
-        if (is_a($data, get_class(new \stdClass()))) {
+        if (is_a($data, get_class(new stdClass()))) {
             //This means, root element is object
             return new static(json_encode($data));
         }
@@ -93,7 +94,7 @@ class PayPalModel
                     $list[] = self::getList($v);
                 }
             }
-            if (is_a($decoded, get_class(new \stdClass()))) {
+            if (is_a($decoded, get_class(new stdClass()))) {
                 //This means, root element is object
                 $list[] = new static(json_encode($decoded));
             }
@@ -173,9 +174,9 @@ class PayPalModel
     {
         $ret = array();
         foreach ($param as $k => $v) {
-            if ($v instanceof PayPalModel) {
+            if ($v instanceof self) {
                 $ret[$k] = $v->toArray();
-            } elseif (is_array($v) && sizeof($v) <= 0) {
+            } elseif (is_array($v) && count($v) <= 0) {
                 $ret[$k] = array();
             } elseif (is_array($v)) {
                 $ret[$k] = $this->_convertToArray($v);
@@ -186,7 +187,7 @@ class PayPalModel
         // If the array is empty, which means an empty object,
         // we need to convert array to StdClass object to properly
         // represent JSON String
-        if (sizeof($ret) <= 0) {
+        if (count($ret) <= 0) {
             $ret = new PayPalModel();
         }
         return $ret;
@@ -204,41 +205,37 @@ class PayPalModel
             // Iterate over each element in array
             foreach ($arr as $k => $v) {
                 // If the value is an array, it means, it is an object after conversion
-                if (is_array($v)) {
-                    // Determine the class of the object
-                    if (($clazz = ReflectionUtil::getPropertyClass(get_class($this), $k)) != null) {
-                        // If the value is an associative array, it means, its an object. Just make recursive call to it.
-                        if (empty($v)) {
-                            if (ReflectionUtil::isPropertyClassArray(get_class($this), $k)) {
-                                // It means, it is an array of objects.
-                                $this->assignValue($k, array());
-                                continue;
-                            }
-                            $o = new $clazz();
-                            //$arr = array();
-                            $this->assignValue($k, $o);
-                        } elseif (ArrayUtil::isAssocArray($v)) {
-                            /** @var self $o */
-                            $o = new $clazz();
-                            $o->fromArray($v);
-                            $this->assignValue($k, $o);
-                        } else {
-                            // Else, value is an array of object/data
-                            $arr = array();
-                            // Iterate through each element in that array.
-                            foreach ($v as $nk => $nv) {
-                                if (is_array($nv)) {
-                                    $o = new $clazz();
-                                    $o->fromArray($nv);
-                                    $arr[$nk] = $o;
-                                } else {
-                                    $arr[$nk] = $nv;
-                                }
-                            }
-                            $this->assignValue($k, $arr);
+                // Determine the class of the object
+                if (is_array($v) && ($clazz = ReflectionUtil::getPropertyClass(get_class($this), $k)) != null) {
+                    // If the value is an associative array, it means, its an object. Just make recursive call to it.
+                    if (empty($v)) {
+                        if (ReflectionUtil::isPropertyClassArray(get_class($this), $k)) {
+                            // It means, it is an array of objects.
+                            $this->assignValue($k, array());
+                            continue;
                         }
+                        $o = new $clazz();
+                        //$arr = array();
+                        $this->assignValue($k, $o);
+                    } elseif (ArrayUtil::isAssocArray($v)) {
+                        /** @var self $o */
+                        $o = new $clazz();
+                        $o->fromArray($v);
+                        $this->assignValue($k, $o);
                     } else {
-                        $this->assignValue($k, $v);
+                        // Else, value is an array of object/data
+                        $arr = array();
+                        // Iterate through each element in that array.
+                        foreach ($v as $nk => $nv) {
+                            if (is_array($nv)) {
+                                $o = new $clazz();
+                                $o->fromArray($nv);
+                                $arr[$nk] = $o;
+                            } else {
+                                $arr[$nk] = $nv;
+                            }
+                        }
+                        $this->assignValue($k, $arr);
                     }
                 } else {
                     $this->assignValue($k, $v);
@@ -291,7 +288,7 @@ class PayPalModel
         // Because of PHP Version 5.3, we cannot use JSON_UNESCAPED_SLASHES option
         // Instead we would use the str_replace command for now.
         // TODO: Replace this code with return json_encode($this->toArray(), $options | 64); once we support PHP >= 5.4
-        if (version_compare(phpversion(), '5.4.0', '>=') === true) {
+        if (PHP_VERSION_ID >= 50400 === true) {
             return json_encode($this->toArray(), $options | 64);
         }
         return str_replace('\\/', '/', json_encode($this->toArray(), $options));

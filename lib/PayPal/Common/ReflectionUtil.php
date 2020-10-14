@@ -3,6 +3,8 @@
 namespace PayPal\Common;
 
 use PayPal\Exception\PayPalConfigurationException;
+use ReflectionMethod;
+use RuntimeException;
 
 /**
  * Class ReflectionUtil
@@ -56,9 +58,9 @@ class ReflectionUtil
         if (isset($param)) {
             $anno = preg_split("/[\s\[\]]+/", $param);
             return $anno[0];
-        } else {
-            throw new PayPalConfigurationException("Getter function for '$propertyName' in '$class' class should have a proper return type.");
         }
+
+        throw new PayPalConfigurationException("Getter function for '$propertyName' in '$class' class should have a proper return type.");
     }
 
     /**
@@ -82,9 +84,9 @@ class ReflectionUtil
 
         if (isset($param)) {
             return substr($param, -strlen('[]'))==='[]';
-        } else {
-            throw new PayPalConfigurationException("Getter function for '$propertyName' in '$class' class should have a proper return type.");
         }
+
+        throw new PayPalConfigurationException("Getter function for '$propertyName' in '$class' class should have a proper return type.");
     }
 
     /**
@@ -99,7 +101,7 @@ class ReflectionUtil
     {
         $class = is_object($class) ? get_class($class) : $class;
         if (!class_exists('ReflectionProperty')) {
-            throw new \RuntimeException("Property type of " . $class . "::{$propertyName} cannot be resolved");
+            throw new RuntimeException("Property type of " . $class . "::{$propertyName} cannot be resolved");
         }
 
         if ($annotations =& self::$propertiesType[$class][$propertyName]) {
@@ -108,7 +110,7 @@ class ReflectionUtil
 
         if (!($refl =& self::$propertiesRefl[$class][$propertyName])) {
             $getter = self::getter($class, $propertyName);
-            $refl = new \ReflectionMethod($class, $getter);
+            $refl = new ReflectionMethod($class, $getter);
             self::$propertiesRefl[$class][$propertyName] = $refl;
         }
 

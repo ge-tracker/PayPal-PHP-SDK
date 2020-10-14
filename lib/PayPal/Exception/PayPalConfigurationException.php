@@ -2,12 +2,14 @@
 
 namespace PayPal\Exception;
 
+use Exception;
+
 /**
  * Class PayPalConfigurationException
  *
  * @package PayPal\Exception
  */
-class PayPalConfigurationException extends \Exception
+class PayPalConfigurationException extends Exception
 {
 
     /**

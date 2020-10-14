@@ -182,7 +182,7 @@ class PaymentInstruction extends PayPalResourceModel
             $apiContext,
             $restCall
         );
-        $ret = new PaymentInstruction();
+        $ret = new self();
         $ret->fromJson($json);
         return $ret;
     }

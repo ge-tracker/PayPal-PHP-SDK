@@ -25,14 +25,14 @@ class OpenIdSession
      */
     public static function getAuthorizationUrl($redirectUri, $scope, $clientId, $nonce = null, $state = null, $apiContext = null)
     {
-        $apiContext = $apiContext ? $apiContext : new ApiContext();
+        $apiContext = $apiContext ?: new ApiContext();
         $config = $apiContext->getConfig();
 
         if ($apiContext->get($clientId)) {
             $clientId = $apiContext->get($clientId);
         }
 
-        $clientId = $clientId ? $clientId : $apiContext->getCredential()->getClientId();
+        $clientId = $clientId ?: $apiContext->getCredential()->getClientId();
 
         $scope = count($scope) != 0 ? $scope : array('openid', 'profile', 'address', 'email', 'phone',
             'https://uri.paypal.com/services/paypalattributes', 'https://uri.paypal.com/services/expresscheckout');
@@ -94,7 +94,9 @@ class OpenIdSession
 
         if (array_key_exists('openid.RedirectUri', $config)) {
             return $config['openid.RedirectUri'];
-        } else if (array_key_exists('mode', $config)) {
+        }
+
+        if (array_key_exists('mode', $config)) {
             switch (strtoupper($config['mode'])) {
                 case 'SANDBOX':
                     return PayPalConstants::OPENID_REDIRECT_SANDBOX_URL;

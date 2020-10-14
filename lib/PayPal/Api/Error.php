@@ -195,11 +195,11 @@ class Error extends PayPalModel
     {
         if (!$this->getDetails()) {
             return $this->setDetails(array($errorDetails));
-        } else {
-            return $this->setDetails(
-                array_merge($this->getDetails(), array($errorDetails))
-            );
         }
+
+        return $this->setDetails(
+            array_merge($this->getDetails(), array($errorDetails))
+        );
     }
 
     /**
@@ -298,11 +298,11 @@ class Error extends PayPalModel
     {
         if (!$this->getLinks()) {
             return $this->setLinks(array($links));
-        } else {
-            return $this->setLinks(
-                array_merge($this->getLinks(), array($links))
-            );
         }
+
+        return $this->setLinks(
+            array_merge($this->getLinks(), array($links))
+        );
     }
 
     /**

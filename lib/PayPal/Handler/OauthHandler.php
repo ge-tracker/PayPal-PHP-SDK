@@ -11,6 +11,7 @@ use PayPal\Core\PayPalHttpConfig;
 use PayPal\Exception\PayPalConfigurationException;
 use PayPal\Exception\PayPalInvalidCredentialException;
 use PayPal\Exception\PayPalMissingCredentialException;
+use Paypal\Rest\ApiContext;
 
 /**
  * Class OauthHandler
@@ -48,8 +49,8 @@ class OauthHandler implements IPayPalHandler
         $config = $this->apiContext->getConfig();
 
         $httpConfig->setUrl(
-            rtrim(trim($this->_getEndpoint($config)), '/') .
-            (isset($options['path']) ? $options['path'] : '')
+            rtrim(trim(self::_getEndpoint($config)), '/') .
+            ($options['path'] ?? '')
         );
 
         $headers = array(
@@ -104,7 +105,7 @@ class OauthHandler implements IPayPalHandler
     /**
      * @return \Paypal\Rest\ApiContext
      */
-    public function getApiContext(): \Paypal\Rest\ApiContext
+    public function getApiContext(): ApiContext
     {
         return $this->apiContext;
     }

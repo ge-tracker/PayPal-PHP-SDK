@@ -27,7 +27,7 @@ class Templates extends PayPalResourceModel
      * List of addresses in merchant's profile.
      *
      * @param \PayPal\Api\Address[] $addresses
-     * 
+     *
      * @return $this
      */
     public function setAddresses($addresses)
@@ -56,11 +56,11 @@ class Templates extends PayPalResourceModel
     {
         if (!$this->getAddresses()) {
             return $this->setAddresses(array($address));
-        } else {
-            return $this->setAddresses(
-                array_merge($this->getAddresses(), array($address))
-            );
         }
+
+        return $this->setAddresses(
+            array_merge($this->getAddresses(), array($address))
+        );
     }
 
     /**
@@ -80,7 +80,7 @@ class Templates extends PayPalResourceModel
      * List of emails in merchant's profile.
      *
      * @param string[] $emails
-     * 
+     *
      * @return $this
      */
     public function setEmails($emails)
@@ -109,11 +109,11 @@ class Templates extends PayPalResourceModel
     {
         if (!$this->getEmails()) {
             return $this->setEmails(array($string));
-        } else {
-            return $this->setEmails(
-                array_merge($this->getEmails(), array($string))
-            );
         }
+
+        return $this->setEmails(
+            array_merge($this->getEmails(), array($string))
+        );
     }
 
     /**
@@ -133,7 +133,7 @@ class Templates extends PayPalResourceModel
      * List of phone numbers in merchant's profile.
      *
      * @param \PayPal\Api\Phone[] $phones
-     * 
+     *
      * @return $this
      */
     public function setPhones($phones)
@@ -162,11 +162,11 @@ class Templates extends PayPalResourceModel
     {
         if (!$this->getPhones()) {
             return $this->setPhones(array($phone));
-        } else {
-            return $this->setPhones(
-                array_merge($this->getPhones(), array($phone))
-            );
         }
+
+        return $this->setPhones(
+            array_merge($this->getPhones(), array($phone))
+        );
     }
 
     /**
@@ -186,7 +186,7 @@ class Templates extends PayPalResourceModel
      * Array of templates.
      *
      * @param \PayPal\Api\Template[] $templates
-     * 
+     *
      * @return $this
      */
     public function setTemplates($templates)
@@ -215,11 +215,11 @@ class Templates extends PayPalResourceModel
     {
         if (!$this->getTemplates()) {
             return $this->setTemplates(array($template));
-        } else {
-            return $this->setTemplates(
-                array_merge($this->getTemplates(), array($template))
-            );
         }
+
+        return $this->setTemplates(
+            array_merge($this->getTemplates(), array($template))
+        );
     }
 
     /**
@@ -285,7 +285,7 @@ class Templates extends PayPalResourceModel
             $apiContext,
             $restCall
         );
-        $ret = new Templates();
+        $ret = new self();
         $ret->fromJson($json);
         return $ret;
     }

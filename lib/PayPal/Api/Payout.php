@@ -76,11 +76,11 @@ class Payout extends PayPalResourceModel
     {
         if (!$this->getItems()) {
             return $this->setItems(array($payoutItem));
-        } else {
-            return $this->setItems(
-                array_merge($this->getItems(), array($payoutItem))
-            );
         }
+
+        return $this->setItems(
+            array_merge($this->getItems(), array($payoutItem))
+        );
     }
 
     /**
@@ -106,7 +106,7 @@ class Payout extends PayPalResourceModel
      */
     public function create($params = array(), $apiContext = null, $restCall = null)
     {
-        $params = $params ? $params : array();
+        $params = $params ?: [];
         ArgumentValidator::validate($params, 'params');
         $payLoad = $this->toJSON();
         $allowedParams = array(

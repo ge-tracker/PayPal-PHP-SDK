@@ -2,6 +2,7 @@
 
 namespace PayPal\Core;
 
+use Exception;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Exception\PayPalInvalidCredentialException;
 
@@ -46,7 +47,7 @@ class PayPalCredentialManager
     {
         try {
             $this->initCredential($config);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->credentialHashmap = array();
             throw $e;
         }
@@ -78,7 +79,7 @@ class PayPalCredentialManager
 
         $arr = array();
         foreach ($config as $k => $v) {
-            if (strstr($k, $prefix)) {
+            if (strpos($k, $prefix) !== false) {
                 $arr[$k] = $v;
             }
         }
@@ -87,25 +88,28 @@ class PayPalCredentialManager
         $arr = array();
         foreach ($config as $key => $value) {
             $pos = strpos($key, '.');
-            if (strstr($key, "acct")) {
+            if (strpos($key, "acct") !== false) {
                 $arr[] = substr($key, 0, $pos);
             }
         }
         $arrayPartKeys = array_unique($arr);
 
         $key = $prefix . $suffix;
+        $clientIdKey = $key . ".ClientId";
+        $clientSecretKey = $key . ".ClientSecret";
+        $usernameKey = $key . ".UserName";
         $userName = null;
         while (in_array($key, $arrayPartKeys)) {
-            if (isset($credArr[$key . ".ClientId"]) && isset($credArr[$key . ".ClientSecret"])) {
+            if (isset($credArr[$clientIdKey], $credArr[$clientSecretKey])) {
                 $userName = $key;
                 $this->credentialHashmap[$userName] = new OAuthTokenCredential(
-                    $credArr[$key . ".ClientId"],
-                    $credArr[$key . ".ClientSecret"]
+                    $credArr[$clientIdKey],
+                    $credArr[$clientSecretKey]
                 );
             }
             if ($userName && $this->defaultAccountName == null) {
-                if (array_key_exists($key . '.UserName', $credArr)) {
-                    $this->defaultAccountName = $credArr[$key . '.UserName'];
+                if (array_key_exists($usernameKey, $credArr)) {
+                    $this->defaultAccountName = $credArr[$usernameKey];
                 } else {
                     $this->defaultAccountName = $key;
                 }
@@ -150,7 +154,7 @@ class PayPalCredentialManager
         }
 
         if (empty($credObj)) {
-            throw new PayPalInvalidCredentialException("Credential not found for " .  ($userId ? $userId : " default user") .
+            throw new PayPalInvalidCredentialException("Credential not found for " .  ($userId ?: " default user") .
             ". Please make sure your configuration/APIContext has credential information");
         }
         return $credObj;

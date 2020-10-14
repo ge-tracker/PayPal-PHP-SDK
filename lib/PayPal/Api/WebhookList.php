@@ -19,7 +19,7 @@ class WebhookList extends PayPalModel
      * A list of webhooks.
      *
      * @param \PayPal\Api\Webhook[] $webhooks
-     * 
+     *
      * @return $this
      */
     public function setWebhooks($webhooks)
@@ -48,11 +48,11 @@ class WebhookList extends PayPalModel
     {
         if (!$this->getWebhooks()) {
             return $this->setWebhooks(array($webhook));
-        } else {
-            return $this->setWebhooks(
-                array_merge($this->getWebhooks(), array($webhook))
-            );
         }
+
+        return $this->setWebhooks(
+            array_merge($this->getWebhooks(), array($webhook))
+        );
     }
 
     /**

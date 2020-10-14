@@ -5,6 +5,7 @@ namespace PayPal\Common;
 use PayPal\Rest\ApiContext;
 use PayPal\Rest\IResource;
 use PayPal\Transport\PayPalRestCall;
+use PayPal\Handler\RestHandler;
 
 /**
  * Class PayPalResourceModel
@@ -61,11 +62,11 @@ class PayPalResourceModel extends PayPalModel implements IResource
     {
         if (!$this->getLinks()) {
             return $this->setLinks(array($links));
-        } else {
-            return $this->setLinks(
-                array_merge($this->getLinks(), array($links))
-            );
         }
+
+        return $this->setLinks(
+            array_merge($this->getLinks(), array($links))
+        );
     }
 
     /**
@@ -94,15 +95,14 @@ class PayPalResourceModel extends PayPalModel implements IResource
      * @param array $handlers
      * @return string json response of the object
      */
-    protected static function executeCall($url, $method, $payLoad, $headers = array(), $apiContext = null, $restCall = null, $handlers = array('PayPal\Handler\RestHandler'))
+    protected static function executeCall($url, $method, $payLoad, $headers = array(), $apiContext = null, $restCall = null, $handlers = array(RestHandler::class))
     {
         //Initialize the context and rest call object if not provided explicitly
-        $apiContext = $apiContext ? $apiContext : new ApiContext(self::$credential);
-        $restCall = $restCall ? $restCall : new PayPalRestCall($apiContext);
+        $apiContext = $apiContext ?: new ApiContext(self::$credential);
+        $restCall = $restCall ?: new PayPalRestCall($apiContext);
 
         //Make the execution call
-        $json = $restCall->execute($handlers, $url, $method, $payLoad, $headers);
-        return $json;
+        return $restCall->execute($handlers, $url, $method, $payLoad, $headers);
     }
 
     /**
@@ -114,7 +114,7 @@ class PayPalResourceModel extends PayPalModel implements IResource
      */
     public function updateAccessToken($refreshToken, $apiContext)
     {
-        $apiContext = $apiContext ? $apiContext : new ApiContext(self::$credential);
+        $apiContext = $apiContext ?: new ApiContext(self::$credential);
         $apiContext->getCredential()->updateAccessToken($apiContext->getConfig(), $refreshToken);
     }
 }

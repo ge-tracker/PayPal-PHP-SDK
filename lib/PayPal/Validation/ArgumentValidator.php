@@ -2,6 +2,8 @@
 
 namespace PayPal\Validation;
 
+use InvalidArgumentException;
+
 /**
  * Class ArgumentValidator
  *
@@ -22,10 +24,12 @@ class ArgumentValidator
     {
         if ($argument === null) {
             // Error if Object Null
-            throw new \InvalidArgumentException("$argumentName cannot be null");
-        } elseif (gettype($argument) == 'string' && trim($argument) == '') {
+            throw new InvalidArgumentException("$argumentName cannot be null");
+        }
+
+        if (is_string($argument) && trim($argument) == '') {
             // Error if String Empty
-            throw new \InvalidArgumentException("$argumentName string cannot be empty");
+            throw new InvalidArgumentException("$argumentName string cannot be empty");
         }
         return true;
     }

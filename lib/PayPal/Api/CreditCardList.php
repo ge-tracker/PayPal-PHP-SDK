@@ -22,7 +22,7 @@ class CreditCardList extends PayPalResourceModel
      * A list of credit card resources
      *
      * @param \PayPal\Api\CreditCard[] $items
-     * 
+     *
      * @return $this
      */
     public function setItems($items)
@@ -51,11 +51,11 @@ class CreditCardList extends PayPalResourceModel
     {
         if (!$this->getItems()) {
             return $this->setItems(array($creditCard));
-        } else {
-            return $this->setItems(
-                array_merge($this->getItems(), array($creditCard))
-            );
         }
+
+        return $this->setItems(
+            array_merge($this->getItems(), array($creditCard))
+        );
     }
 
     /**
@@ -75,7 +75,7 @@ class CreditCardList extends PayPalResourceModel
      * Total number of items present in the given list. Note that the number of items might be larger than the records in the current page.
      *
      * @param int $total_items
-     * 
+     *
      * @return $this
      */
     public function setTotalItems($total_items)
@@ -98,7 +98,7 @@ class CreditCardList extends PayPalResourceModel
      * Total number of pages that exist, for the total number of items, with the given page size.
      *
      * @param int $total_pages
-     * 
+     *
      * @return $this
      */
     public function setTotalPages($total_pages)

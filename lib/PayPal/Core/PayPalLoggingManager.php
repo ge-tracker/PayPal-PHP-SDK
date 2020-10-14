@@ -4,6 +4,7 @@ namespace PayPal\Core;
 
 use PayPal\Log\PayPalLogFactory;
 use Psr\Log\LoggerInterface;
+use PayPal\Log\PayPalDefaultLogFactory;
 
 /**
  * Simple Logging Manager.
@@ -39,11 +40,11 @@ class PayPalLoggingManager
      */
     public static function getInstance($loggerName = __CLASS__)
     {
-        if (array_key_exists($loggerName, PayPalLoggingManager::$instances)) {
-            return PayPalLoggingManager::$instances[$loggerName];
+        if (array_key_exists($loggerName, self::$instances)) {
+            return self::$instances[$loggerName];
         }
         $instance = new self($loggerName);
-        PayPalLoggingManager::$instances[$loggerName] = $instance;
+        self::$instances[$loggerName] = $instance;
         return $instance;
     }
 
@@ -56,7 +57,7 @@ class PayPalLoggingManager
     {
         $config = PayPalConfigManager::getInstance()->getConfigHashmap();
         // Checks if custom factory defined, and is it an implementation of @PayPalLogFactory
-        $factory = array_key_exists('log.AdapterFactory', $config) && in_array('PayPal\Log\PayPalLogFactory', class_implements($config['log.AdapterFactory'])) ? $config['log.AdapterFactory'] : '\PayPal\Log\PayPalDefaultLogFactory';
+        $factory = array_key_exists('log.AdapterFactory', $config) && in_array(PayPalLogFactory::class, class_implements($config['log.AdapterFactory'])) ? $config['log.AdapterFactory'] : PayPalDefaultLogFactory::class;
         /** @var PayPalLogFactory $factoryInstance */
         $factoryInstance = new $factory();
         $this->logger = $factoryInstance->getLogger($loggerName);

@@ -72,7 +72,7 @@ class ApiContext
     public function addRequestHeader($name, $value)
     {
         // Determine if the name already has a 'http.headers' prefix. If not, add one.
-        if (!(substr($name, 0, strlen('http.headers')) === 'http.headers')) {
+        if (!(strpos($name, 'http.headers') === 0)) {
             $name = 'http.headers.' . $name;
         }
         PayPalConfigManager::getInstance()->addConfigs(array($name => $value));

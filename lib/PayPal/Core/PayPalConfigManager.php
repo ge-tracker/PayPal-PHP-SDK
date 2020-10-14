@@ -37,7 +37,7 @@ class PayPalConfigManager
             $configFile = constant('PP_CONFIG_PATH') . '/sdk_config.ini';
         } else {
             $configFile = implode(DIRECTORY_SEPARATOR,
-                array(dirname(__FILE__), "..", "config", "sdk_config.ini"));
+                array(__DIR__, "..", "config", "sdk_config.ini"));
         }
         if (file_exists($configFile)) {
             $this->addConfigFromIni($configFile);
@@ -97,18 +97,18 @@ class PayPalConfigManager
     {
         if (array_key_exists($searchKey, $this->configs)) {
             return $this->configs[$searchKey];
-        } else {
-            $arr = array();
-            if ($searchKey !== '') {
-                foreach ($this->configs as $k => $v) {
-                    if (strstr($k, $searchKey)) {
-                        $arr[$k] = $v;
-                    }
+        }
+
+        $arr = array();
+        if ($searchKey !== '') {
+            foreach ($this->configs as $k => $v) {
+                if (strstr($k, $searchKey)) {
+                    $arr[$k] = $v;
                 }
             }
-
-            return $arr;
         }
+
+        return $arr;
     }
 
     /**
@@ -127,18 +127,16 @@ class PayPalConfigManager
             $arr = array();
             foreach ($this->configs as $key => $value) {
                 $pos = strpos($key, '.');
-                if (strstr($key, "acct")) {
+                if (strpos($key, "acct") !== false) {
                     $arr[] = substr($key, 0, $pos);
                 }
             }
             return array_unique($arr);
-        } else {
-            $iniPrefix = array_search($userId, $this->configs);
-            $pos = strpos($iniPrefix, '.');
-            $acct = substr($iniPrefix, 0, $pos);
-
-            return $acct;
         }
+
+        $iniPrefix = array_search($userId, $this->configs);
+        $pos = strpos($iniPrefix, '.');
+        return substr($iniPrefix, 0, $pos);
     }
 
     /**

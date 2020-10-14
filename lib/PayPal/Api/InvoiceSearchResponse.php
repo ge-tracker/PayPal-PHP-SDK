@@ -7,7 +7,7 @@ use PayPal\Common\PayPalModel;
 /**
  * Class InvoiceSearchResponse
  *
- * 
+ *
  *
  * @package PayPal\Api
  *
@@ -20,7 +20,7 @@ class InvoiceSearchResponse extends PayPalModel
      * Total number of invoices.
      *
      * @param int $total_count
-     * 
+     *
      * @return $this
      */
     public function setTotalCount($total_count)
@@ -43,7 +43,7 @@ class InvoiceSearchResponse extends PayPalModel
      * List of invoices belonging to a merchant.
      *
      * @param \PayPal\Api\Invoice[] $invoices
-     * 
+     *
      * @return $this
      */
     public function setInvoices($invoices)
@@ -72,11 +72,11 @@ class InvoiceSearchResponse extends PayPalModel
     {
         if (!$this->getInvoices()) {
             return $this->setInvoices(array($invoice));
-        } else {
-            return $this->setInvoices(
-                array_merge($this->getInvoices(), array($invoice))
-            );
         }
+
+        return $this->setInvoices(
+            array_merge($this->getInvoices(), array($invoice))
+        );
     }
 
     /**

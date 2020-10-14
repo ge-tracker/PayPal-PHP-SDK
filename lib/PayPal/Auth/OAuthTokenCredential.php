@@ -12,6 +12,7 @@ use PayPal\Exception\PayPalConnectionException;
 use PayPal\Handler\IPayPalHandler;
 use PayPal\Rest\ApiContext;
 use PayPal\Security\Cipher;
+use PayPal\Handler\OauthHandler;
 
 /**
  * Class OAuthTokenCredential
@@ -24,7 +25,7 @@ class OAuthTokenCredential extends PayPalResourceModel
     /**
      * @var string Default Auth Handler
      */
-    public static $AUTH_HANDLER = 'PayPal\Handler\OauthHandler';
+    public static $AUTH_HANDLER = OauthHandler::class;
 
     /**
      * Private Variable
@@ -242,7 +243,7 @@ class OAuthTokenCredential extends PayPalResourceModel
         /** @var IPayPalHandler $handler */
         foreach ($handlers as $handler) {
             if (!is_object($handler)) {
-                $fullHandler = "\\" . (string)$handler;
+                $fullHandler = "\\" . $handler;
                 $handler = new $fullHandler(new ApiContext($this));
             }
             $handler->handle($httpConfig, $payload, array('clientId' => $clientId, 'clientSecret' => $clientSecret));
@@ -250,9 +251,7 @@ class OAuthTokenCredential extends PayPalResourceModel
 
         $connection = new PayPalHttpConnection($httpConfig, $config);
         $res = $connection->execute($payload);
-        $response = json_decode($res, true);
-
-        return $response;
+        return json_decode($res, true);
     }
 
 
@@ -279,15 +278,15 @@ class OAuthTokenCredential extends PayPalResourceModel
         $payload = http_build_query($params);
         $response = $this->getToken($config, $this->clientId, $this->clientSecret, $payload);
 
-        if ($response == null || !isset($response["access_token"]) || !isset($response["expires_in"])) {
+        if (!isset($response["access_token"], $response["expires_in"]) || $response == null) {
             $this->accessToken = null;
             $this->tokenExpiresIn = null;
             PayPalLoggingManager::getInstance(__CLASS__)->warning("Could not generate new Access token. Invalid response from server: ");
             throw new PayPalConnectionException(null, "Could not generate new Access token. Invalid response from server: ");
-        } else {
-            $this->accessToken = $response["access_token"];
-            $this->tokenExpiresIn = $response["expires_in"];
         }
+
+        $this->accessToken = $response["access_token"];
+        $this->tokenExpiresIn = $response["expires_in"];
         $this->tokenCreateTime = time();
 
         return $this->accessToken;

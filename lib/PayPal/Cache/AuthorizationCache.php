@@ -2,6 +2,7 @@
 
 namespace PayPal\Cache;
 
+use Exception;
 use PayPal\Core\PayPalConfigManager;
 use PayPal\Validation\JsonValidator;
 
@@ -34,7 +35,9 @@ abstract class AuthorizationCache
                 if ($clientId && is_array($tokens) && array_key_exists($clientId, $tokens)) {
                     // If client Id is found, just send in that data only
                     return $tokens[$clientId];
-                } elseif ($clientId) {
+                }
+
+                if ($clientId) {
                     // If client Id is provided, but no key in persisted data found matching it.
                     return null;
                 }
@@ -61,15 +64,13 @@ abstract class AuthorizationCache
         }
 
         $cachePath = self::cachePath($config);
-        if (!is_dir(dirname($cachePath))) {
-            if (mkdir(dirname($cachePath), 0755, true) == false) {
-                throw new \Exception("Failed to create directory at $cachePath");
-            }
+        if (!is_dir(dirname($cachePath)) && mkdir(dirname($cachePath), 0755, true) == false) {
+            throw new \RuntimeException("Failed to create directory at $cachePath");
         }
 
         // Reads all the existing persisted data
         $tokens = self::pull();
-        $tokens = $tokens ? $tokens : array();
+        $tokens = $tokens ?: [];
         if (is_array($tokens)) {
             $tokens[$clientId] = array(
                 'clientId' => $clientId,
@@ -79,8 +80,8 @@ abstract class AuthorizationCache
             );
         }
         if (!file_put_contents($cachePath, json_encode($tokens))) {
-            throw new \Exception("Failed to write cache");
-        };
+            throw new \RuntimeException("Failed to write cache");
+        }
     }
 
     /**
@@ -94,7 +95,7 @@ abstract class AuthorizationCache
         $value = self::getConfigValue('cache.enabled', $config);
         return empty($value) ? false : ((trim($value) == true || trim($value) == 'true'));
     }
-    
+
     /**
      * Returns the cache file path
      *

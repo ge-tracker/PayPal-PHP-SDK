@@ -21,7 +21,7 @@ class WebhookEventList extends PayPalModel
      * A list of webhooks events.
      *
      * @param \PayPal\Api\WebhookEvent[] $events
-     * 
+     *
      * @return $this
      */
     public function setEvents($events)
@@ -50,11 +50,11 @@ class WebhookEventList extends PayPalModel
     {
         if (!$this->getEvents()) {
             return $this->setEvents(array($webhookEvent));
-        } else {
-            return $this->setEvents(
-                array_merge($this->getEvents(), array($webhookEvent))
-            );
         }
+
+        return $this->setEvents(
+            array_merge($this->getEvents(), array($webhookEvent))
+        );
     }
 
     /**
@@ -74,7 +74,7 @@ class WebhookEventList extends PayPalModel
      * The number of items in each range of results. Note that the response might have fewer items than the requested `page_size` value.
      *
      * @param int $count
-     * 
+     *
      * @return $this
      */
     public function setCount($count)
@@ -97,7 +97,7 @@ class WebhookEventList extends PayPalModel
      * Sets Links
      *
      * @param \PayPal\Api\Links[] $links
-     * 
+     *
      * @return $this
      */
     public function setLinks($links)
@@ -126,11 +126,11 @@ class WebhookEventList extends PayPalModel
     {
         if (!$this->getLinks()) {
             return $this->setLinks(array($links));
-        } else {
-            return $this->setLinks(
-                array_merge($this->getLinks(), array($links))
-            );
         }
+
+        return $this->setLinks(
+            array_merge($this->getLinks(), array($links))
+        );
     }
 
     /**

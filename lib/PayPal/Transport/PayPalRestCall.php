@@ -54,7 +54,7 @@ class PayPalRestCall
     {
         $config = $this->apiContext->getConfig();
         $httpConfig = new PayPalHttpConfig(null, $method, $config);
-        $headers = $headers ? $headers : array();
+        $headers = $headers ?: [];
         $httpConfig->setHeaders($headers +
             array(
                 'Content-Type' => 'application/json'
@@ -69,14 +69,12 @@ class PayPalRestCall
         /** @var \Paypal\Handler\IPayPalHandler $handler */
         foreach ($handlers as $handler) {
             if (!is_object($handler)) {
-                $fullHandler = "\\" . (string)$handler;
+                $fullHandler = "\\" . $handler;
                 $handler = new $fullHandler($this->apiContext);
             }
             $handler->handle($httpConfig, $data, array('path' => $path, 'apiContext' => $this->apiContext));
         }
         $connection = new PayPalHttpConnection($httpConfig, $config);
-        $response = $connection->execute($data);
-
-        return $response;
+        return $connection->execute($data);
     }
 }

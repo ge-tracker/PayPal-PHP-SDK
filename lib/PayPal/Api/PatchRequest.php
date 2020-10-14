@@ -19,7 +19,7 @@ class PatchRequest extends PayPalModel
      * Placeholder for holding array of patch objects
      *
      * @param \PayPal\Api\Patch[] $patches
-     * 
+     *
      * @return $this
      */
     public function setPatches($patches)
@@ -48,11 +48,11 @@ class PatchRequest extends PayPalModel
     {
         if (!$this->getPatches()) {
             return $this->setPatches(array($patch));
-        } else {
-            return $this->setPatches(
-                array_merge($this->getPatches(), array($patch))
-            );
         }
+
+        return $this->setPatches(
+            array_merge($this->getPatches(), array($patch))
+        );
     }
 
     /**

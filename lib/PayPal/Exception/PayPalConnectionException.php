@@ -2,12 +2,14 @@
 
 namespace PayPal\Exception;
 
+use Exception;
+
 /**
  * Class PayPalConnectionException
  *
  * @package PayPal\Exception
  */
-class PayPalConnectionException extends \Exception
+class PayPalConnectionException extends Exception
 {
     /**
      * The url that was being connected to when the exception occured

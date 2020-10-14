@@ -104,7 +104,8 @@ class BillingPlansFunctionalTest extends TestCase
         $result = Plan::get($plan->getId(), $this->apiContext, $this->mockPayPalRestCall);
         self::assertNotNull($result);
         self::assertEquals($plan->getId(), $result->getId());
-        self::assertEquals($plan, $result, "", 0, 10, true);
+        self::assertEquals($plan, $result);
+//        self::assertEquals($plan, $result, "", 0, 10, true);
         return $result;
     }
 

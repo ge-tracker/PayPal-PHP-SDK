@@ -178,18 +178,18 @@ class OpenIdTokeninfo extends PayPalResourceModel
         if (!array_key_exists('grant_type', $params)) {
             $params['grant_type'] = 'authorization_code';
         }
-        $apiContext = $apiContext ? $apiContext : new ApiContext(self::$credential);
+        $apiContext = $apiContext ?: new ApiContext(self::$credential);
 
-        if (sizeof($apiContext->get($clientId)) > 0) {
+        if (count($apiContext->get($clientId)) > 0) {
             $clientId = $apiContext->get($clientId);
         }
 
-        if (sizeof($apiContext->get($clientSecret)) > 0) {
+        if (count($apiContext->get($clientSecret)) > 0) {
             $clientSecret = $apiContext->get($clientSecret);
         }
 
-        $clientId = $clientId ? $clientId : $apiContext->getCredential()->getClientId();
-        $clientSecret = $clientSecret ? $clientSecret : $apiContext->getCredential()->getClientSecret();
+        $clientId = $clientId ?: $apiContext->getCredential()->getClientId();
+        $clientSecret = $clientSecret ?: $apiContext->getCredential()->getClientSecret();
 
         $json = self::executeCall(
             "/v1/identity/openidconnect/tokenservice",
@@ -202,7 +202,7 @@ class OpenIdTokeninfo extends PayPalResourceModel
             $apiContext,
             $restCall
         );
-        $token = new OpenIdTokeninfo();
+        $token = new self();
         $token->fromJson($json);
         return $token;
     }
@@ -225,7 +225,7 @@ class OpenIdTokeninfo extends PayPalResourceModel
     public function createFromRefreshToken($params, $apiContext = null, $restCall = null)
     {
         static $allowedParams = array('grant_type' => 1, 'refresh_token' => 1, 'scope' => 1);
-        $apiContext = $apiContext ? $apiContext : new ApiContext(self::$credential);
+        $apiContext = $apiContext ?: new ApiContext(self::$credential);
 
         if (!array_key_exists('grant_type', $params)) {
             $params['grant_type'] = 'refresh_token';
@@ -234,8 +234,8 @@ class OpenIdTokeninfo extends PayPalResourceModel
             $params['refresh_token'] = $this->getRefreshToken();
         }
 
-        $clientId = isset($params['client_id']) ? $params['client_id'] : $apiContext->getCredential()->getClientId();
-        $clientSecret = isset($params['client_secret']) ? $params['client_secret'] : $apiContext->getCredential()->getClientSecret();
+        $clientId = $params['client_id'] ?? $apiContext->getCredential()->getClientId();
+        $clientSecret = $params['client_secret'] ?? $apiContext->getCredential()->getClientSecret();
 
         $json = self::executeCall(
             "/v1/identity/openidconnect/tokenservice",

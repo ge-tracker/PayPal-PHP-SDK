@@ -25,7 +25,7 @@ class Webhook extends PayPalResourceModel
      * The ID of the webhook.
      *
      * @param string $id
-     * 
+     *
      * @return $this
      */
     public function setId($id)
@@ -72,7 +72,7 @@ class Webhook extends PayPalResourceModel
      * A list of up to ten events to which to subscribe your webhook. To subscribe to all events including new events as they are added, specify the asterisk (`*`) wildcard. To replace the `event_types` array, specify the `*` wildcard. To see all supported events, [list available events](#available-event-type.list).
      *
      * @param \PayPal\Api\WebhookEventType[] $event_types
-     * 
+     *
      * @return $this
      */
     public function setEventTypes($event_types)
@@ -101,11 +101,11 @@ class Webhook extends PayPalResourceModel
     {
         if (!$this->getEventTypes()) {
             return $this->setEventTypes(array($webhookEventType));
-        } else {
-            return $this->setEventTypes(
-                array_merge($this->getEventTypes(), array($webhookEventType))
-            );
         }
+
+        return $this->setEventTypes(
+            array_merge($this->getEventTypes(), array($webhookEventType))
+        );
     }
 
     /**
@@ -163,7 +163,7 @@ class Webhook extends PayPalResourceModel
             $apiContext,
             $restCall
         );
-        $ret = new Webhook();
+        $ret = new self();
         $ret->fromJson($json);
         return $ret;
     }

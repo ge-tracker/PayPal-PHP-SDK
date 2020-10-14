@@ -16,7 +16,7 @@ class Cipher
     /**
      * Fixed IV Size
      */
-    const IV_SIZE = 16;
+    public const IV_SIZE = 16;
 
     public function __construct($secretKey)
     {
@@ -32,7 +32,7 @@ class Cipher
     public function encrypt($input)
     {
         // Create a random IV. Not using mcrypt to generate one, as to not have a dependency on it.
-        $iv = substr(uniqid("", true), 0, Cipher::IV_SIZE);
+        $iv = substr(uniqid("", true), 0, self::IV_SIZE);
         // Encrypt the data
         $encrypted = openssl_encrypt($input, "AES-256-CBC", $this->secretKey, 0, $iv);
         // Encode the data with IV as prefix
@@ -50,8 +50,8 @@ class Cipher
         // Decode the IV + data
         $input = base64_decode($input);
         // Remove the IV
-        $iv = substr($input, 0, Cipher::IV_SIZE);
+        $iv = substr($input, 0, self::IV_SIZE);
         // Return Decrypted Data
-        return openssl_decrypt(substr($input, Cipher::IV_SIZE), "AES-256-CBC", $this->secretKey, 0, $iv);
+        return openssl_decrypt(substr($input, self::IV_SIZE), "AES-256-CBC", $this->secretKey, 0, $iv);
     }
 }
