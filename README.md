@@ -1,6 +1,4 @@
-# Deprecation Notice:
-This SDK is deprecated. You can continue to use it, but no new features or support requests will be accepted.
-For alternatives, please visit [the current SDK homepage on the PayPal Developer Portal](https://developer.paypal.com/docs/api/rest-sdks/)
+**This is a refactored version of PayPal's deprecated PHP SDK. I have integrated some of the new Subscription API endpoints.**
 
 ## REST API SDK for PHP
 
