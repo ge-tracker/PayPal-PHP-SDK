@@ -1,5 +1,10 @@
 **This is a refactored version of PayPal's deprecated PHP SDK. I have integrated some of the new Subscription API endpoints.**
 
+- [Plans](https://developer.paypal.com/docs/api/subscriptions/v1/#plans) are defined in `\PayPal\Api\SubscriptionPlan`
+- [Subscriptions](https://developer.paypal.com/docs/api/subscriptions/v1/#subscriptions) are under `\PayPal\Api\Subscription`
+
+---
+
 ## REST API SDK for PHP
 
 ![Home Image](https://raw.githubusercontent.com/wiki/paypal/PayPal-PHP-SDK/images/homepage.jpg)
