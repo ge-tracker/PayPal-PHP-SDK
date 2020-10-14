@@ -72,7 +72,7 @@ class BillingPlansFunctionalTest extends TestCase
      */
     public function getClassName()
     {
-        return join('', array_slice(explode('\\', get_class($this)), -1));
+        return implode('', array_slice(explode('\\', get_class($this)), -1));
     }
 
     public function testCreate()

@@ -32,7 +32,6 @@ class PayPalConnectionExceptionTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testGetUrl()
     {
@@ -40,7 +39,6 @@ class PayPalConnectionExceptionTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testGetData()
     {

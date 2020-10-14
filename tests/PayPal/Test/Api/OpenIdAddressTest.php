@@ -42,7 +42,6 @@ class OpenIdAddressTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testSerializationDeserialization()
     {

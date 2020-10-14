@@ -32,7 +32,6 @@ class PayPalLoggingManagerTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testError()
     {
@@ -40,7 +39,6 @@ class PayPalLoggingManagerTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testWarning()
     {
@@ -48,7 +46,6 @@ class PayPalLoggingManagerTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testInfo()
     {
@@ -56,7 +53,6 @@ class PayPalLoggingManagerTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testFine()
     {

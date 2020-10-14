@@ -5,6 +5,7 @@ namespace PayPal\Test\Api;
 use PayPal\Api\Authorization;
 use PayPal\Api\Order;
 use PHPUnit\Framework\TestCase;
+use PayPal\Transport\PayPalRestCall;
 
 /**
  * Class Order
@@ -86,15 +87,13 @@ class OrderTest extends TestCase
      */
     public function testGet($obj, $mockApiContext)
     {
-        $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
+        $mockPPRestCall = $this->getMockBuilder(PayPalRestCall::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will(self::returnValue(
-                    self::getJson()
-            ));
+            ->willReturn(self::getJson());
 
         $result = $obj->get("orderId", $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
@@ -105,15 +104,13 @@ class OrderTest extends TestCase
      */
     public function testCapture($obj, $mockApiContext)
     {
-        $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
+        $mockPPRestCall = $this->getMockBuilder(PayPalRestCall::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will(self::returnValue(
-                    CaptureTest::getJson()
-            ));
+            ->willReturn(CaptureTest::getJson());
         $capture = CaptureTest::getObject();
 
         $result = $obj->capture($capture, $mockApiContext, $mockPPRestCall);
@@ -125,15 +122,13 @@ class OrderTest extends TestCase
      */
     public function testVoid($obj, $mockApiContext)
     {
-        $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
+        $mockPPRestCall = $this->getMockBuilder(PayPalRestCall::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will(self::returnValue(
-                    self::getJson()
-            ));
+            ->willReturn(self::getJson());
 
         $result = $obj->void($mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
@@ -144,15 +139,13 @@ class OrderTest extends TestCase
      */
     public function testAuthorize($obj, $mockApiContext)
     {
-        $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
+        $mockPPRestCall = $this->getMockBuilder(PayPalRestCall::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will(self::returnValue(
-                    AuthorizationTest::getJson()
-            ));
+            ->willReturn(AuthorizationTest::getJson());
 
         $authorization = new Authorization();
         $result = $obj->authorize($authorization, $mockApiContext, $mockPPRestCall);

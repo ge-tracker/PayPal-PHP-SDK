@@ -4,6 +4,7 @@ namespace PayPal\Test\Api;
 
 use PayPal\Api\WebProfile;
 use PHPUnit\Framework\TestCase;
+use PayPal\Transport\PayPalRestCall;
 
 /**
  * Class WebProfile
@@ -69,15 +70,13 @@ class WebProfileTest extends TestCase
      */
     public function testCreate($obj, $mockApiContext)
     {
-        $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
+        $mockPPRestCall = $this->getMockBuilder(PayPalRestCall::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will(self::returnValue(
-                    self::getJson()
-            ));
+            ->willReturn(self::getJson());
 
         $result = $obj->create($mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
@@ -88,15 +87,13 @@ class WebProfileTest extends TestCase
      */
     public function testUpdate($obj, $mockApiContext)
     {
-        $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
+        $mockPPRestCall = $this->getMockBuilder(PayPalRestCall::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will(self::returnValue(
-                    true
-            ));
+            ->willReturn(true);
 
         $result = $obj->update($mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
@@ -107,15 +104,13 @@ class WebProfileTest extends TestCase
      */
     public function testPartialUpdate($obj, $mockApiContext)
     {
-        $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
+        $mockPPRestCall = $this->getMockBuilder(PayPalRestCall::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will(self::returnValue(
-                    true
-            ));
+            ->willReturn(true);
         $patch = array(PatchTest::getObject());
 
         $result = $obj->partial_update($patch, $mockApiContext, $mockPPRestCall);
@@ -127,15 +122,13 @@ class WebProfileTest extends TestCase
      */
     public function testGet($obj, $mockApiContext)
     {
-        $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
+        $mockPPRestCall = $this->getMockBuilder(PayPalRestCall::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will(self::returnValue(
-                    self::getJson()
-            ));
+            ->willReturn(self::getJson());
 
         $result = $obj->get("profileId", $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
@@ -146,15 +139,13 @@ class WebProfileTest extends TestCase
      */
     public function testGetList($obj, $mockApiContext)
     {
-        $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
+        $mockPPRestCall = $this->getMockBuilder(PayPalRestCall::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will(self::returnValue(
-                    json_encode(array(json_decode(self::getJson())))
-            ));
+            ->willReturn(json_encode([json_decode(self::getJson())]));
 
         $result = $obj->get_list($mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
@@ -165,15 +156,13 @@ class WebProfileTest extends TestCase
      */
     public function testDelete($obj, $mockApiContext)
     {
-        $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
+        $mockPPRestCall = $this->getMockBuilder(PayPalRestCall::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will(self::returnValue(
-                    true
-            ));
+            ->willReturn(true);
 
         $result = $obj->delete($mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);

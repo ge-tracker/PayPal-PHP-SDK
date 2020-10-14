@@ -8,6 +8,7 @@ use PayPal\Api\VerifyWebhookSignatureResponse;
 use PayPal\Rest\ApiContext;
 use PayPal\Api\VerifyWebhookSignature;
 use PHPUnit\Framework\TestCase;
+use PayPal\Transport\PayPalRestCall;
 
 /**
  * Class VerifyWebhookSignature
@@ -91,15 +92,13 @@ class VerifyWebhookSignatureTest extends TestCase
      */
     public function testPost($obj, $mockApiContext)
     {
-        $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
+        $mockPPRestCall = $this->getMockBuilder(PayPalRestCall::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will(self::returnValue(
-                    VerifyWebhookSignatureResponseTest::getJson()
-            ));
+            ->willReturn(VerifyWebhookSignatureResponseTest::getJson());
 
         $result = $obj->post($mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);

@@ -6,13 +6,14 @@ use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Core\PayPalCredentialManager;
 use PayPal\Rest\ApiContext;
 use PHPUnit\Framework\TestCase;
+use PayPal\Transport\PayPalRestCall;
 
 class Setup
 {
 
     public static $mode = 'mock';
 
-    public static function SetUpForFunctionalTests(TestCase &$test)
+    public static function SetUpForFunctionalTests(TestCase $test)
     {
         $configs = array(
             'mode' => 'sandbox',
@@ -31,19 +32,17 @@ class Setup
         //PayPalConfigManager::getInstance()->addConfigs($configs);
         PayPalCredentialManager::getInstance()->setCredentialObject(PayPalCredentialManager::getInstance()->getCredentialObject('acct1'));
 
-        self::$mode = getenv('REST_MODE') ? getenv('REST_MODE') : 'mock';
+        self::$mode = getenv('REST_MODE') ?: 'mock';
         if (self::$mode != 'sandbox') {
 
             // Mock PayPalRest Caller if mode set to mock
-            $test->mockPayPalRestCall = $test->getMockBuilder('\PayPal\Transport\PayPalRestCall')
+            $test->mockPayPalRestCall = $test->getMockBuilder(PayPalRestCall::class)
                 ->disableOriginalConstructor()
                 ->getMock();
 
             $test->mockPayPalRestCall->expects($test->any())
                 ->method('execute')
-                ->will($test->returnValue(
-                    $test->response
-                ));
+                ->willReturn($test->response);
         }
     }
 }

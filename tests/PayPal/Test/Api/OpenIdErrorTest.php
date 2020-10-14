@@ -36,7 +36,6 @@ class OpenIdErrorTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testSerializationDeserialization()
     {

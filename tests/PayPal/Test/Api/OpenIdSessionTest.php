@@ -41,7 +41,6 @@ class OpenIdSessionTest extends TestCase
 
 
     /**
-     * @test
      */
     public function testLoginUrlForMultipleScopes()
     {
@@ -65,7 +64,6 @@ class OpenIdSessionTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testLoginWithCustomConfig()
     {
@@ -79,7 +77,6 @@ class OpenIdSessionTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testLogoutWithCustomConfig()
     {

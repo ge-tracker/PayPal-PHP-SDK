@@ -1,4 +1,6 @@
 <?php
+
+use PayPal\Exception\PayPalInvalidCredentialException;
 use PayPal\Core\PayPalCredentialManager;
 use PHPUnit\Framework\TestCase;
 
@@ -47,16 +49,14 @@ class PayPalCredentialManagerTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testGetInstance()
     {
         $instance = $this->object::getInstance($this->config);
-        self::assertInstanceOf('PayPal\Core\PayPalCredentialManager', $instance);
+        self::assertInstanceOf(PayPalCredentialManager::class, $instance);
     }
 
     /**
-     * @test
      */
     public function testGetSpecificCredentialObject()
     {
@@ -114,11 +114,10 @@ class PayPalCredentialManagerTest extends TestCase
 
 
     /**
-     * @test
      */
     public function testGetInvalidCredentialObject()
     {
-        $this->expectException('PayPal\Exception\PayPalInvalidCredentialException');
+        $this->expectException(PayPalInvalidCredentialException::class);
         $cred = $this->object->getCredentialObject('invalid_biz_api1.gmail.com');
     }
 
@@ -134,7 +133,6 @@ class PayPalCredentialManagerTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testGetRestCredentialObject()
     {

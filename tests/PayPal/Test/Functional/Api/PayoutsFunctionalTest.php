@@ -46,7 +46,7 @@ class PayoutsFunctionalTest extends TestCase
      */
     public function getClassName()
     {
-        return join('', array_slice(explode('\\', get_class($this)), -1));
+        return implode('', array_slice(explode('\\', get_class($this)), -1));
     }
 
     public function testCreate()
@@ -63,7 +63,7 @@ class PayoutsFunctionalTest extends TestCase
         self::assertEquals(self::$batchId, $result->getBatchHeader()->getSenderBatchHeader()->getSenderBatchId());
         self::assertEquals('SUCCESS', $result->getBatchHeader()->getBatchStatus());
         $items = $result->getItems();
-        self::assertGreaterThan(0, sizeof($items));
+        self::assertGreaterThan(0, count($items));
         $item = $items[0];
         self::assertEquals('UNCLAIMED', $item->getTransactionStatus());
         return $result;

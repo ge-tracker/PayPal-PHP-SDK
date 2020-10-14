@@ -6,6 +6,7 @@ use PayPal\Api\ItemsArray;
 use PayPal\Api\PayoutItem;
 use PayPal\Transport\PPRestCall;
 use PHPUnit\Framework\TestCase;
+use PayPal\Transport\PayPalRestCall;
 
 /**
  * Class PayoutItem
@@ -69,15 +70,13 @@ class PayoutItemTest extends TestCase
      */
     public function testGet($obj, $mockApiContext)
     {
-        $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
+        $mockPPRestCall = $this->getMockBuilder(PayPalRestCall::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will(self::returnValue(
-                PayoutItemDetailsTest::getJson()
-            ));
+            ->willReturn(PayoutItemDetailsTest::getJson());
 
         $result = $obj->get("payoutItemId", $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
@@ -89,15 +88,13 @@ class PayoutItemTest extends TestCase
      */
     public function testCancel($obj, $mockApiContext)
     {
-        $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
+        $mockPPRestCall = $this->getMockBuilder(PayPalRestCall::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will(self::returnValue(
-                PayoutItemDetailsTest::getJson()
-            ));
+            ->willReturn(PayoutItemDetailsTest::getJson());
 
         $result = $obj->cancel("payoutItemId", $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);

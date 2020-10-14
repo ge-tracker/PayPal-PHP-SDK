@@ -31,7 +31,6 @@ class PayPalInvalidCredentialExceptionTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testErrorMessage()
     {

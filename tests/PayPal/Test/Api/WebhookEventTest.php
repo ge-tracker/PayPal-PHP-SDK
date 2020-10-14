@@ -8,6 +8,7 @@ use PayPal\Api\WebhookEventList;
 use PayPal\Rest\ApiContext;
 use PayPal\Api\WebhookEvent;
 use PHPUnit\Framework\TestCase;
+use PayPal\Transport\PayPalRestCall;
 
 /**
  * Class WebhookEvent
@@ -81,15 +82,13 @@ class WebhookEventTest extends TestCase
      */
     public function testGet($obj, $mockApiContext)
     {
-        $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
+        $mockPPRestCall = $this->getMockBuilder(PayPalRestCall::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will(self::returnValue(
-                    self::getJson()
-            ));
+            ->willReturn(self::getJson());
 
         $result = $obj->get("eventId", $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
@@ -101,15 +100,13 @@ class WebhookEventTest extends TestCase
     public function testResend($obj, $mockApiContext)
     {
         self::markTestSkipped();
-        $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
+        $mockPPRestCall = $this->getMockBuilder(PayPalRestCall::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will(self::returnValue(
-                    self::getJson()
-            ));
+            ->willReturn(self::getJson());
         $eventResend = EventResendTest::getObject();
 
         $result = $obj->resend($eventResend, $mockApiContext, $mockPPRestCall);
@@ -121,15 +118,13 @@ class WebhookEventTest extends TestCase
      */
     public function testList($obj, $mockApiContext)
     {
-        $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
+        $mockPPRestCall = $this->getMockBuilder(PayPalRestCall::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will(self::returnValue(
-                    WebhookEventListTest::getJson()
-            ));
+            ->willReturn(WebhookEventListTest::getJson());
         $params = array();
 
         $result = $obj->all($params, $mockApiContext, $mockPPRestCall);

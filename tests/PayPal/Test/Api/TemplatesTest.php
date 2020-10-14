@@ -8,6 +8,7 @@ use PayPal\Api\Template;
 use PayPal\Rest\ApiContext;
 use PayPal\Api\Templates;
 use PHPUnit\Framework\TestCase;
+use PayPal\Transport\PayPalRestCall;
 
 /**
  * Class Templates
@@ -71,15 +72,13 @@ class TemplatesTest extends TestCase
      */
     public function testGet($obj, $mockApiContext)
     {
-        $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
+        $mockPPRestCall = $this->getMockBuilder(PayPalRestCall::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will(self::returnValue(
-                    TemplateTest::getJson()
-            ));
+            ->willReturn(TemplateTest::getJson());
 
         $result = $obj->get("templateId", $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
@@ -90,15 +89,13 @@ class TemplatesTest extends TestCase
      */
     public function testGetAll($obj, $mockApiContext)
     {
-        $mockPPRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
+        $mockPPRestCall = $this->getMockBuilder(PayPalRestCall::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will(self::returnValue(
-                    self::getJson()
-            ));
+            ->willReturn(self::getJson());
         $params = array();
 
         $result = $obj->getAll($params, $mockApiContext, $mockPPRestCall);

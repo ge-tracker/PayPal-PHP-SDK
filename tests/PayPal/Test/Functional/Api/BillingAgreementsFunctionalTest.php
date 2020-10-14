@@ -51,7 +51,7 @@ class BillingAgreementsFunctionalTest extends TestCase
      */
     public function getClassName()
     {
-        return join('', array_slice(explode('\\', get_class($this)), -1));
+        return implode('', array_slice(explode('\\', get_class($this)), -1));
     }
 
     /**
@@ -176,7 +176,7 @@ class BillingAgreementsFunctionalTest extends TestCase
         $result = Agreement::searchTransactions($agreement->getId(), $params, $this->apiContext, $this->mockPayPalRestCall);
         self::assertNotNull($result);
         self::assertIsArray($result->getAgreementTransactionList());
-        self::assertGreaterThan(0, sizeof($result->getAgreementTransactionList()));
+        self::assertGreaterThan(0, count($result->getAgreementTransactionList()));
         $list = $result->getAgreementTransactionList();
         $first = $list[0];
         self::assertEquals($first->getTransactionId(), $agreement->getId());

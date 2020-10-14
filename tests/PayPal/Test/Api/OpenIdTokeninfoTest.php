@@ -38,7 +38,6 @@ class OpenIdTokeninfoTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testSerializationDeserialization()
     {

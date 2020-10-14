@@ -165,7 +165,6 @@ class PayPalModelTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testSimpleConversion()
     {
@@ -181,7 +180,6 @@ class PayPalModelTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testEmptyObject()
     {
@@ -201,7 +199,6 @@ class PayPalModelTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testSpecialChars()
     {
@@ -218,7 +215,6 @@ class PayPalModelTest extends TestCase
 
 
     /**
-     * @test
      */
     public function testNestedConversion()
     {
@@ -240,7 +236,6 @@ class PayPalModelTest extends TestCase
 
 
     /**
-     * @test
      */
     public function testListConversion()
     {

@@ -4,6 +4,7 @@ namespace PayPal\Test\Api;
 
 use PayPal\Api\Plan;
 use PHPUnit\Framework\TestCase;
+use PayPal\Transport\PayPalRestCall;
 
 /**
  * Class Plan
@@ -79,15 +80,13 @@ class PlanTest extends TestCase
      */
     public function testGet($obj, $mockApiContext)
     {
-        $mockPayPalRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
+        $mockPayPalRestCall = $this->getMockBuilder(PayPalRestCall::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will(self::returnValue(
-                    self::getJson()
-            ));
+            ->willReturn(self::getJson());
 
         $result = $obj->get("planId", $mockApiContext, $mockPayPalRestCall);
         self::assertNotNull($result);
@@ -98,15 +97,13 @@ class PlanTest extends TestCase
      */
     public function testCreate($obj, $mockApiContext)
     {
-        $mockPayPalRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
+        $mockPayPalRestCall = $this->getMockBuilder(PayPalRestCall::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will(self::returnValue(
-                    self::getJson()
-            ));
+            ->willReturn(self::getJson());
 
         $result = $obj->create($mockApiContext, $mockPayPalRestCall);
         self::assertNotNull($result);
@@ -117,15 +114,13 @@ class PlanTest extends TestCase
      */
     public function testUpdate($obj, $mockApiContext)
     {
-        $mockPayPalRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
+        $mockPayPalRestCall = $this->getMockBuilder(PayPalRestCall::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will(self::returnValue(
-                    true
-            ));
+            ->willReturn(true);
         $patchRequest = PatchRequestTest::getObject();
 
         $result = $obj->update($patchRequest, $mockApiContext, $mockPayPalRestCall);
@@ -138,15 +133,13 @@ class PlanTest extends TestCase
     public function testList($obj, $mockApiContext)
     {
         self::markTestSkipped();
-        $mockPayPalRestCall = $this->getMockBuilder('\PayPal\Transport\PayPalRestCall')
+        $mockPayPalRestCall = $this->getMockBuilder(PayPalRestCall::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will(self::returnValue(
-                    PlanListTest::getJson()
-            ));
+            ->willReturn(PlanListTest::getJson());
         $params = ParamsTest::getObject();
 
         $result = $obj->all($params, $mockApiContext, $mockPayPalRestCall);

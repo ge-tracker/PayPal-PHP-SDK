@@ -4,6 +4,7 @@ namespace PayPal\Test\Core;
 
 use PayPal\Core\PayPalHttpConfig;
 use PHPUnit\Framework\TestCase;
+use PayPal\Exception\PayPalConfigurationException;
 
 /**
  * Test class for PayPalHttpConfigTest.
@@ -36,7 +37,6 @@ class PayPalHttpConfigTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testHeaderFunctions()
     {
@@ -63,7 +63,6 @@ class PayPalHttpConfigTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testCurlOpts()
     {
@@ -89,7 +88,6 @@ class PayPalHttpConfigTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testUserAgent()
     {
@@ -102,7 +100,6 @@ class PayPalHttpConfigTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testSSLOpts()
     {
@@ -118,7 +115,6 @@ class PayPalHttpConfigTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testProxyOpts()
     {
@@ -131,7 +127,7 @@ class PayPalHttpConfigTest extends TestCase
         self::assertEquals('hostname:8081', $curlOpts[CURLOPT_PROXY]);
         self::assertEquals('me:secret', $curlOpts[CURLOPT_PROXYUSERPWD]);
 
-        $this->expectException('PayPal\Exception\PayPalConfigurationException');
+        $this->expectException(PayPalConfigurationException::class);
         $o->setHttpProxy('invalid string');
     }
 }
