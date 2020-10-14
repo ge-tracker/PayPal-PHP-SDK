@@ -38,12 +38,12 @@ class PotentialPayerInfoTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new PotentialPayerInfo(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getEmail());
-        $this->assertNotNull($obj->getExternalRememberMeId());
-        $this->assertNotNull($obj->getAccountNumber());
-        $this->assertNotNull($obj->getBillingAddress());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getEmail());
+        self::assertNotNull($obj->getExternalRememberMeId());
+        self::assertNotNull($obj->getAccountNumber());
+        self::assertNotNull($obj->getBillingAddress());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -53,9 +53,9 @@ class PotentialPayerInfoTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getEmail(), "TestSample");
-        $this->assertEquals($obj->getExternalRememberMeId(), "TestSample");
-        $this->assertEquals($obj->getAccountNumber(), "TestSample");
-        $this->assertEquals($obj->getBillingAddress(), AddressTest::getObject());
+        self::assertEquals("TestSample", $obj->getEmail());
+        self::assertEquals("TestSample", $obj->getExternalRememberMeId());
+        self::assertEquals("TestSample", $obj->getAccountNumber());
+        self::assertEquals($obj->getBillingAddress(), AddressTest::getObject());
     }
 }

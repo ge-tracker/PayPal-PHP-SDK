@@ -38,9 +38,9 @@ class InvoiceNumberTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new InvoiceNumber(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getNumber());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getNumber());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -50,6 +50,6 @@ class InvoiceNumberTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getNumber(), "1234");
+        self::assertEquals("1234", $obj->getNumber());
     }
 }

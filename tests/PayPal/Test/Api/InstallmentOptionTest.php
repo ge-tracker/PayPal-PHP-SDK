@@ -38,12 +38,12 @@ class InstallmentOptionTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new InstallmentOption(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getTerm());
-        $this->assertNotNull($obj->getMonthlyPayment());
-        $this->assertNotNull($obj->getDiscountAmount());
-        $this->assertNotNull($obj->getDiscountPercentage());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getTerm());
+        self::assertNotNull($obj->getMonthlyPayment());
+        self::assertNotNull($obj->getDiscountAmount());
+        self::assertNotNull($obj->getDiscountPercentage());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -53,9 +53,9 @@ class InstallmentOptionTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getTerm(), 123);
-        $this->assertEquals($obj->getMonthlyPayment(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getDiscountAmount(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getDiscountPercentage(), "TestSample");
+        self::assertEquals(123, $obj->getTerm());
+        self::assertEquals($obj->getMonthlyPayment(), CurrencyTest::getObject());
+        self::assertEquals($obj->getDiscountAmount(), CurrencyTest::getObject());
+        self::assertEquals("TestSample", $obj->getDiscountPercentage());
     }
 }

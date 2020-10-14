@@ -38,13 +38,13 @@ class PresentationTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Presentation(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getBrandName());
-        $this->assertNotNull($obj->getLogoImage());
-        $this->assertNotNull($obj->getLocaleCode());
-        $this->assertNotNull($obj->getReturnUrlLabel());
-        $this->assertNotNull($obj->getNoteToSellerLabel());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getBrandName());
+        self::assertNotNull($obj->getLogoImage());
+        self::assertNotNull($obj->getLocaleCode());
+        self::assertNotNull($obj->getReturnUrlLabel());
+        self::assertNotNull($obj->getNoteToSellerLabel());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -54,11 +54,11 @@ class PresentationTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getBrandName(), "TestSample");
-        $this->assertEquals($obj->getLogoImage(), "TestSample");
-        $this->assertEquals($obj->getLocaleCode(), "TestSample");
-        $this->assertEquals($obj->getReturnUrlLabel(), "TestSample");
-        $this->assertEquals($obj->getNoteToSellerLabel(), "TestSample");
+        self::assertEquals("TestSample", $obj->getBrandName());
+        self::assertEquals("TestSample", $obj->getLogoImage());
+        self::assertEquals("TestSample", $obj->getLocaleCode());
+        self::assertEquals("TestSample", $obj->getReturnUrlLabel());
+        self::assertEquals("TestSample", $obj->getNoteToSellerLabel());
     }
 
 

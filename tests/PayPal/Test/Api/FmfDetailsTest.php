@@ -38,12 +38,12 @@ class FmfDetailsTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new FmfDetails(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getFilterType());
-        $this->assertNotNull($obj->getFilterId());
-        $this->assertNotNull($obj->getName());
-        $this->assertNotNull($obj->getDescription());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getFilterType());
+        self::assertNotNull($obj->getFilterId());
+        self::assertNotNull($obj->getName());
+        self::assertNotNull($obj->getDescription());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -53,9 +53,9 @@ class FmfDetailsTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getFilterType(), "TestSample");
-        $this->assertEquals($obj->getFilterId(), "TestSample");
-        $this->assertEquals($obj->getName(), "TestSample");
-        $this->assertEquals($obj->getDescription(), "TestSample");
+        self::assertEquals("TestSample", $obj->getFilterType());
+        self::assertEquals("TestSample", $obj->getFilterId());
+        self::assertEquals("TestSample", $obj->getName());
+        self::assertEquals("TestSample", $obj->getDescription());
     }
 }

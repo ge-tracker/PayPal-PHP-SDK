@@ -38,13 +38,13 @@ class CarrierAccountTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new CarrierAccount(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getPhoneNumber());
-        $this->assertNotNull($obj->getExternalCustomerId());
-        $this->assertNotNull($obj->getPhoneSource());
-        $this->assertNotNull($obj->getCountryCode());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getPhoneNumber());
+        self::assertNotNull($obj->getExternalCustomerId());
+        self::assertNotNull($obj->getPhoneSource());
+        self::assertNotNull($obj->getCountryCode());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -54,10 +54,10 @@ class CarrierAccountTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getPhoneNumber(), "TestSample");
-        $this->assertEquals($obj->getExternalCustomerId(), "TestSample");
-        $this->assertEquals($obj->getPhoneSource(), "TestSample");
-        $this->assertEquals($obj->getCountryCode(), CountryCodeTest::getObject());
+        self::assertEquals("TestSample", $obj->getId());
+        self::assertEquals("TestSample", $obj->getPhoneNumber());
+        self::assertEquals("TestSample", $obj->getExternalCustomerId());
+        self::assertEquals("TestSample", $obj->getPhoneSource());
+        self::assertEquals($obj->getCountryCode(), CountryCodeTest::getObject());
     }
 }

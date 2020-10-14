@@ -38,11 +38,11 @@ class InputFieldsTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new InputFields(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getAllowNote());
-        $this->assertNotNull($obj->getNoShipping());
-        $this->assertNotNull($obj->getAddressOverride());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getAllowNote());
+        self::assertNotNull($obj->getNoShipping());
+        self::assertNotNull($obj->getAddressOverride());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -52,9 +52,9 @@ class InputFieldsTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getAllowNote(), true);
-        $this->assertEquals($obj->getNoShipping(), 123);
-        $this->assertEquals($obj->getAddressOverride(), 123);
+        self::assertEquals(true, $obj->getAllowNote());
+        self::assertEquals(123, $obj->getNoShipping());
+        self::assertEquals(123, $obj->getAddressOverride());
     }
 
 

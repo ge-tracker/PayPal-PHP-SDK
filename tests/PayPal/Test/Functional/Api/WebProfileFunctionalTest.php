@@ -24,7 +24,7 @@ class WebProfileFunctionalTest extends TestCase
 
     public $apiContext;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $className = $this->getClassName();
         $testName = $this->getName();
@@ -53,7 +53,7 @@ class WebProfileFunctionalTest extends TestCase
         $obj = new WebProfile($request);
         $obj->setName(uniqid());
         $result = $obj->create($this->apiContext, $this->mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
         return $result;
     }
 
@@ -65,11 +65,11 @@ class WebProfileFunctionalTest extends TestCase
     public function testGet($createProfileResponse)
     {
         $result = WebProfile::get($createProfileResponse->getId(), $this->apiContext, $this->mockPayPalRestCall);
-        $this->assertNotNull($result);
-        $this->assertEquals($createProfileResponse->getId(), $result->getId());
-        $this->assertEquals($this->operation['response']['body']['presentation']['logo_image'], $result->getPresentation()->getLogoImage());
-        $this->assertEquals($this->operation['response']['body']['input_fields']['no_shipping'], $result->getInputFields()->getNoShipping());
-        $this->assertEquals($this->operation['response']['body']['input_fields']['address_override'], $result->getInputFields()->getAddressOverride());
+        self::assertNotNull($result);
+        self::assertEquals($createProfileResponse->getId(), $result->getId());
+        self::assertEquals($this->operation['response']['body']['presentation']['logo_image'], $result->getPresentation()->getLogoImage());
+        self::assertEquals($this->operation['response']['body']['input_fields']['no_shipping'], $result->getInputFields()->getNoShipping());
+        self::assertEquals($this->operation['response']['body']['input_fields']['address_override'], $result->getInputFields()->getAddressOverride());
 
         return $result;
     }
@@ -82,7 +82,7 @@ class WebProfileFunctionalTest extends TestCase
     public function testGetList($webProfile)
     {
         $result = WebProfile::get_list($this->apiContext, $this->mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
         $found = false;
         $foundObject = null;
         foreach ($result as $webProfileObject) {
@@ -92,11 +92,11 @@ class WebProfileFunctionalTest extends TestCase
                 break;
             }
         }
-        $this->assertTrue($found, "The Created Web Profile was not found in the get list");
-        $this->assertEquals($webProfile->getId(), $foundObject->getId());
-        $this->assertEquals($this->operation['response']['body'][0]['presentation']['logo_image'], $foundObject->getPresentation()->getLogoImage());
-        $this->assertEquals($this->operation['response']['body'][0]['input_fields']['no_shipping'], $foundObject->getInputFields()->getNoShipping());
-        $this->assertEquals($this->operation['response']['body'][0]['input_fields']['address_override'], $foundObject->getInputFields()->getAddressOverride());
+        self::assertTrue($found, "The Created Web Profile was not found in the get list");
+        self::assertEquals($webProfile->getId(), $foundObject->getId());
+        self::assertEquals($this->operation['response']['body'][0]['presentation']['logo_image'], $foundObject->getPresentation()->getLogoImage());
+        self::assertEquals($this->operation['response']['body'][0]['input_fields']['no_shipping'], $foundObject->getInputFields()->getNoShipping());
+        self::assertEquals($this->operation['response']['body'][0]['input_fields']['address_override'], $foundObject->getInputFields()->getAddressOverride());
     }
 
     /**
@@ -109,8 +109,8 @@ class WebProfileFunctionalTest extends TestCase
         $newValue = ($boolValue + 1) % 2;
         $webProfile->getInputFields()->setNoShipping($newValue);
         $result = $webProfile->update($this->apiContext, $this->mockPayPalRestCall);
-        $this->assertNotNull($result);
-        $this->assertEquals($webProfile->getInputFields()->getNoShipping(), $newValue);
+        self::assertNotNull($result);
+        self::assertEquals($webProfile->getInputFields()->getNoShipping(), $newValue);
     }
 
     /**
@@ -131,7 +131,7 @@ class WebProfileFunctionalTest extends TestCase
 
           }');
         $result = $webProfile->partial_update($patches, $this->apiContext, $this->mockPayPalRestCall);
-        $this->assertTrue($result);
+        self::assertTrue($result);
     }
 
     /**
@@ -143,6 +143,6 @@ class WebProfileFunctionalTest extends TestCase
         $webProfile = new WebProfile();
         $webProfile->setId($createProfileResponse->getId());
         $result = $webProfile->delete($this->apiContext, $this->mockPayPalRestCall);
-        $this->assertTrue($result);
+        self::assertTrue($result);
     }
 }

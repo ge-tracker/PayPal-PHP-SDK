@@ -38,18 +38,18 @@ class PayerTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Payer(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getPaymentMethod());
-        $this->assertNotNull($obj->getStatus());
-        $this->assertNotNull($obj->getAccountType());
-        $this->assertNotNull($obj->getAccountAge());
-        $this->assertNotNull($obj->getFundingInstruments());
-        $this->assertNotNull($obj->getFundingOptionId());
-        $this->assertNotNull($obj->getFundingOption());
-        $this->assertNotNull($obj->getExternalSelectedFundingInstrumentType());
-        $this->assertNotNull($obj->getRelatedFundingOption());
-        $this->assertNotNull($obj->getPayerInfo());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getPaymentMethod());
+        self::assertNotNull($obj->getStatus());
+        self::assertNotNull($obj->getAccountType());
+        self::assertNotNull($obj->getAccountAge());
+        self::assertNotNull($obj->getFundingInstruments());
+        self::assertNotNull($obj->getFundingOptionId());
+        self::assertNotNull($obj->getFundingOption());
+        self::assertNotNull($obj->getExternalSelectedFundingInstrumentType());
+        self::assertNotNull($obj->getRelatedFundingOption());
+        self::assertNotNull($obj->getPayerInfo());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -59,15 +59,15 @@ class PayerTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getPaymentMethod(), "TestSample");
-        $this->assertEquals($obj->getStatus(), "TestSample");
-        $this->assertEquals($obj->getAccountType(), "TestSample");
-        $this->assertEquals($obj->getAccountAge(), "TestSample");
-        $this->assertEquals($obj->getFundingInstruments(), FundingInstrumentTest::getObject());
-        $this->assertEquals($obj->getFundingOptionId(), "TestSample");
-        $this->assertEquals($obj->getFundingOption(), FundingOptionTest::getObject());
-        $this->assertEquals($obj->getExternalSelectedFundingInstrumentType(), "TestSample");
-        $this->assertEquals($obj->getRelatedFundingOption(), FundingOptionTest::getObject());
-        $this->assertEquals($obj->getPayerInfo(), PayerInfoTest::getObject());
+        self::assertEquals("TestSample", $obj->getPaymentMethod());
+        self::assertEquals("TestSample", $obj->getStatus());
+        self::assertEquals("TestSample", $obj->getAccountType());
+        self::assertEquals("TestSample", $obj->getAccountAge());
+        self::assertEquals($obj->getFundingInstruments(), FundingInstrumentTest::getObject());
+        self::assertEquals("TestSample", $obj->getFundingOptionId());
+        self::assertEquals($obj->getFundingOption(), FundingOptionTest::getObject());
+        self::assertEquals("TestSample", $obj->getExternalSelectedFundingInstrumentType());
+        self::assertEquals($obj->getRelatedFundingOption(), FundingOptionTest::getObject());
+        self::assertEquals($obj->getPayerInfo(), PayerInfoTest::getObject());
     }
 }

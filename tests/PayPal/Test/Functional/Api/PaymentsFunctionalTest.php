@@ -24,7 +24,7 @@ class PaymentsFunctionalTest extends TestCase
 
     public $apiContext;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $className = $this->getClassName();
         $testName = $this->getName();
@@ -51,7 +51,7 @@ class PaymentsFunctionalTest extends TestCase
         $request = $this->operation['request']['body'];
         $obj = new Payment($request);
         $result = $obj->create($this->apiContext, $this->mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
         return $result;
     }
 
@@ -60,7 +60,7 @@ class PaymentsFunctionalTest extends TestCase
         $request = $this->operation['request']['body'];
         $obj = new Payment($request);
         $result = $obj->create($this->apiContext, $this->mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
         return $result;
     }
 
@@ -72,8 +72,8 @@ class PaymentsFunctionalTest extends TestCase
     public function testGet($payment)
     {
         $result = Payment::get($payment->getId(), $this->apiContext, $this->mockPayPalRestCall);
-        $this->assertNotNull($result);
-        $this->assertEquals($payment->getId(), $result->getId());
+        self::assertNotNull($result);
+        self::assertEquals($payment->getId(), $result->getId());
         return $result;
     }
 
@@ -89,8 +89,8 @@ class PaymentsFunctionalTest extends TestCase
         $relatedResources = $transaction->getRelatedResources();
         $resource = $relatedResources[0];
         $result = Sale::get($resource->getSale()->getId(), $this->apiContext, $this->mockPayPalRestCall);
-        $this->assertNotNull($result);
-        $this->assertEquals($resource->getSale()->getId(), $result->getId());
+        self::assertNotNull($result);
+        self::assertEquals($resource->getSale()->getId(), $result->getId());
         return $result;
     }
 
@@ -103,10 +103,10 @@ class PaymentsFunctionalTest extends TestCase
     {
         $refund = new Refund($this->operation['request']['body']);
         $result = $sale->refund($refund, $this->apiContext, $this->mockPayPalRestCall);
-        $this->assertNotNull($result);
-        $this->assertEquals('completed', $result->getState());
-        $this->assertEquals($sale->getId(), $result->getSaleId());
-        $this->assertEquals($sale->getParentPayment(), $result->getParentPayment());
+        self::assertNotNull($result);
+        self::assertEquals('completed', $result->getState());
+        self::assertEquals($sale->getId(), $result->getSaleId());
+        self::assertEquals($sale->getParentPayment(), $result->getParentPayment());
     }
 
     /**
@@ -117,7 +117,9 @@ class PaymentsFunctionalTest extends TestCase
     public function testExecute($payment)
     {
         if (Setup::$mode == 'sandbox') {
-            $this->markTestSkipped('Not executable on sandbox environment. Needs human interaction');
+            self::markTestSkipped('Not executable on sandbox environment. Needs human interaction');
         }
+
+        self::markTestIncomplete();
     }
 }

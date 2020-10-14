@@ -37,18 +37,18 @@ class PayoutItemDetailsTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new PayoutItemDetails(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getPayoutItemId());
-        $this->assertNotNull($obj->getTransactionId());
-        $this->assertNotNull($obj->getTransactionStatus());
-        $this->assertNotNull($obj->getPayoutItemFee());
-        $this->assertNotNull($obj->getPayoutBatchId());
-        $this->assertNotNull($obj->getSenderBatchId());
-        $this->assertNotNull($obj->getPayoutItem());
-        $this->assertNotNull($obj->getTimeProcessed());
-        $this->assertNotNull($obj->getErrors());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getPayoutItemId());
+        self::assertNotNull($obj->getTransactionId());
+        self::assertNotNull($obj->getTransactionStatus());
+        self::assertNotNull($obj->getPayoutItemFee());
+        self::assertNotNull($obj->getPayoutBatchId());
+        self::assertNotNull($obj->getSenderBatchId());
+        self::assertNotNull($obj->getPayoutItem());
+        self::assertNotNull($obj->getTimeProcessed());
+        self::assertNotNull($obj->getErrors());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -58,15 +58,15 @@ class PayoutItemDetailsTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getPayoutItemId(), "TestSample");
-        $this->assertEquals($obj->getTransactionId(), "TestSample");
-        $this->assertEquals($obj->getTransactionStatus(), "TestSample");
-        $this->assertEquals($obj->getPayoutItemFee(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getPayoutBatchId(), "TestSample");
-        $this->assertEquals($obj->getSenderBatchId(), "TestSample");
-        $this->assertEquals($obj->getPayoutItem(), PayoutItemTest::getObject());
-        $this->assertEquals($obj->getTimeProcessed(), "TestSample");
-        $this->assertEquals($obj->getErrors(), ErrorTest::getObject());
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals("TestSample", $obj->getPayoutItemId());
+        self::assertEquals("TestSample", $obj->getTransactionId());
+        self::assertEquals("TestSample", $obj->getTransactionStatus());
+        self::assertEquals($obj->getPayoutItemFee(), CurrencyTest::getObject());
+        self::assertEquals("TestSample", $obj->getPayoutBatchId());
+        self::assertEquals("TestSample", $obj->getSenderBatchId());
+        self::assertEquals($obj->getPayoutItem(), PayoutItemTest::getObject());
+        self::assertEquals("TestSample", $obj->getTimeProcessed());
+        self::assertEquals($obj->getErrors(), ErrorTest::getObject());
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 }

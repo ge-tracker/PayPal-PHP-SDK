@@ -38,11 +38,11 @@ class AlternatePaymentTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new AlternatePayment(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getAlternatePaymentAccountId());
-        $this->assertNotNull($obj->getExternalCustomerId());
-        $this->assertNotNull($obj->getAlternatePaymentProviderId());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getAlternatePaymentAccountId());
+        self::assertNotNull($obj->getExternalCustomerId());
+        self::assertNotNull($obj->getAlternatePaymentProviderId());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -52,8 +52,8 @@ class AlternatePaymentTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getAlternatePaymentAccountId(), "TestSample");
-        $this->assertEquals($obj->getExternalCustomerId(), "TestSample");
-        $this->assertEquals($obj->getAlternatePaymentProviderId(), "TestSample");
+        self::assertEquals("TestSample", $obj->getAlternatePaymentAccountId());
+        self::assertEquals("TestSample", $obj->getExternalCustomerId());
+        self::assertEquals("TestSample", $obj->getAlternatePaymentProviderId());
     }
 }

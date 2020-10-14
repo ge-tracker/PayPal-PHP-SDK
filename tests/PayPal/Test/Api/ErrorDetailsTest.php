@@ -41,12 +41,12 @@ class ErrorDetailsTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new ErrorDetails(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getField());
-        $this->assertNotNull($obj->getIssue());
-        $this->assertNotNull($obj->getPurchaseUnitReferenceId());
-        $this->assertNotNull($obj->getCode());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getField());
+        self::assertNotNull($obj->getIssue());
+        self::assertNotNull($obj->getPurchaseUnitReferenceId());
+        self::assertNotNull($obj->getCode());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -56,9 +56,9 @@ class ErrorDetailsTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getField(), "TestSample");
-        $this->assertEquals($obj->getIssue(), "TestSample");
-        $this->assertEquals($obj->getPurchaseUnitReferenceId(), "TestSample");
-        $this->assertEquals($obj->getCode(), "TestSample");
+        self::assertEquals("TestSample", $obj->getField());
+        self::assertEquals("TestSample", $obj->getIssue());
+        self::assertEquals("TestSample", $obj->getPurchaseUnitReferenceId());
+        self::assertEquals("TestSample", $obj->getCode());
     }
 }

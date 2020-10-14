@@ -39,22 +39,22 @@ class OrderTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Order(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getReferenceId());
-        $this->assertNotNull($obj->getAmount());
-        $this->assertNotNull($obj->getPaymentMode());
-        $this->assertNotNull($obj->getState());
-        $this->assertNotNull($obj->getReasonCode());
-        $this->assertNotNull($obj->getPendingReason());
-        $this->assertNotNull($obj->getProtectionEligibility());
-        $this->assertNotNull($obj->getProtectionEligibilityType());
-        $this->assertNotNull($obj->getParentPayment());
-        $this->assertNotNull($obj->getFmfDetails());
-        $this->assertNotNull($obj->getCreateTime());
-        $this->assertNotNull($obj->getUpdateTime());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getReferenceId());
+        self::assertNotNull($obj->getAmount());
+        self::assertNotNull($obj->getPaymentMode());
+        self::assertNotNull($obj->getState());
+        self::assertNotNull($obj->getReasonCode());
+        self::assertNotNull($obj->getPendingReason());
+        self::assertNotNull($obj->getProtectionEligibility());
+        self::assertNotNull($obj->getProtectionEligibilityType());
+        self::assertNotNull($obj->getParentPayment());
+        self::assertNotNull($obj->getFmfDetails());
+        self::assertNotNull($obj->getCreateTime());
+        self::assertNotNull($obj->getUpdateTime());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -64,20 +64,20 @@ class OrderTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getReferenceId(), "TestSample");
-        $this->assertEquals($obj->getAmount(), AmountTest::getObject());
-        $this->assertEquals($obj->getPaymentMode(), "TestSample");
-        $this->assertEquals($obj->getState(), "TestSample");
-        $this->assertEquals($obj->getReasonCode(), "TestSample");
-        $this->assertEquals($obj->getPendingReason(), "TestSample");
-        $this->assertEquals($obj->getProtectionEligibility(), "TestSample");
-        $this->assertEquals($obj->getProtectionEligibilityType(), "TestSample");
-        $this->assertEquals($obj->getParentPayment(), "TestSample");
-        $this->assertEquals($obj->getFmfDetails(), FmfDetailsTest::getObject());
-        $this->assertEquals($obj->getCreateTime(), "TestSample");
-        $this->assertEquals($obj->getUpdateTime(), "TestSample");
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals("TestSample", $obj->getId());
+        self::assertEquals("TestSample", $obj->getReferenceId());
+        self::assertEquals($obj->getAmount(), AmountTest::getObject());
+        self::assertEquals("TestSample", $obj->getPaymentMode());
+        self::assertEquals("TestSample", $obj->getState());
+        self::assertEquals("TestSample", $obj->getReasonCode());
+        self::assertEquals("TestSample", $obj->getPendingReason());
+        self::assertEquals("TestSample", $obj->getProtectionEligibility());
+        self::assertEquals("TestSample", $obj->getProtectionEligibilityType());
+        self::assertEquals("TestSample", $obj->getParentPayment());
+        self::assertEquals($obj->getFmfDetails(), FmfDetailsTest::getObject());
+        self::assertEquals("TestSample", $obj->getCreateTime());
+        self::assertEquals("TestSample", $obj->getUpdateTime());
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 
     /**
@@ -90,14 +90,14 @@ class OrderTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    OrderTest::getJson()
+            ->will(self::returnValue(
+                    self::getJson()
             ));
 
         $result = $obj->get("orderId", $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -109,15 +109,15 @@ class OrderTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     CaptureTest::getJson()
             ));
         $capture = CaptureTest::getObject();
 
         $result = $obj->capture($capture, $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -129,14 +129,14 @@ class OrderTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     self::getJson()
             ));
 
         $result = $obj->void($mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -148,15 +148,15 @@ class OrderTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     AuthorizationTest::getJson()
             ));
 
         $authorization = new Authorization();
         $result = $obj->authorize($authorization, $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
 
     public function mockProvider()

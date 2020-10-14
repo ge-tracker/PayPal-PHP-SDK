@@ -38,12 +38,12 @@ class FundingDetailTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new FundingDetail(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getClearingTime());
-        $this->assertNotNull($obj->getPaymentHoldDate());
-        $this->assertNotNull($obj->getPaymentDebitDate());
-        $this->assertNotNull($obj->getProcessingType());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getClearingTime());
+        self::assertNotNull($obj->getPaymentHoldDate());
+        self::assertNotNull($obj->getPaymentDebitDate());
+        self::assertNotNull($obj->getProcessingType());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -53,9 +53,9 @@ class FundingDetailTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getClearingTime(), "TestSample");
-        $this->assertEquals($obj->getPaymentHoldDate(), "TestSample");
-        $this->assertEquals($obj->getPaymentDebitDate(), "TestSample");
-        $this->assertEquals($obj->getProcessingType(), "TestSample");
+        self::assertEquals("TestSample", $obj->getClearingTime());
+        self::assertEquals("TestSample", $obj->getPaymentHoldDate());
+        self::assertEquals("TestSample", $obj->getPaymentDebitDate());
+        self::assertEquals("TestSample", $obj->getProcessingType());
     }
 }

@@ -15,7 +15,7 @@ class ApiContextTest extends TestCase
      */
     public $apiContext;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->apiContext = new ApiContext();
     }
@@ -23,29 +23,29 @@ class ApiContextTest extends TestCase
     public function testGetRequestId()
     {
         $requestId = $this->apiContext->getRequestId();
-        $this->assertNull($requestId);
+        self::assertNull($requestId);
     }
 
     public function testSetRequestId()
     {
-        $this->assertNull($this->apiContext->getRequestId());
+        self::assertNull($this->apiContext->getRequestId());
 
         $expectedRequestId = 'random-value';
         $this->apiContext->setRequestId($expectedRequestId);
         $requestId = $this->apiContext->getRequestId();
-        $this->assertEquals($expectedRequestId, $requestId);
+        self::assertEquals($expectedRequestId, $requestId);
     }
 
     public function testResetRequestId()
     {
-        $this->assertNull($this->apiContext->getRequestId());
+        self::assertNull($this->apiContext->getRequestId());
 
         $requestId = $this->apiContext->resetRequestId();
-        $this->assertNotNull($requestId);
+        self::assertNotNull($requestId);
 
         // Tests that another resetRequestId call will generate a new ID
         $newRequestId = $this->apiContext->resetRequestId();
-        $this->assertNotNull($newRequestId);
-        $this->assertNotEquals($newRequestId, $requestId);
+        self::assertNotNull($newRequestId);
+        self::assertNotEquals($newRequestId, $requestId);
     }
 }

@@ -42,12 +42,12 @@ class WebhookTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Webhook(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getUrl());
-        $this->assertNotNull($obj->getEventTypes());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getUrl());
+        self::assertNotNull($obj->getEventTypes());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -57,18 +57,16 @@ class WebhookTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getUrl(), "http://www.google.com");
-        $this->assertEquals($obj->getEventTypes(), WebhookEventTypeTest::getObject());
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals("TestSample", $obj->getId());
+        self::assertEquals("http://www.google.com", $obj->getUrl());
+        self::assertEquals($obj->getEventTypes(), WebhookEventTypeTest::getObject());
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Url is not a fully qualified URL
-     */
     public function testUrlValidationForUrl()
     {
+        $this->expectExceptionMessage("Url is not a fully qualified URL");
+        $this->expectException(\InvalidArgumentException::class);
         $obj = new Webhook();
         $obj->setUrl(null);
     }
@@ -82,14 +80,14 @@ class WebhookTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     self::getJson()
             ));
 
         $result = $obj->create($mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -101,14 +99,14 @@ class WebhookTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    WebhookTest::getJson()
+            ->will(self::returnValue(
+                    self::getJson()
             ));
 
         $result = $obj->get("webhookId", $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -120,15 +118,15 @@ class WebhookTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     WebhookListTest::getJson()
             ));
         $params = array();
 
         $result = $obj->getAllWithParams($params, $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -140,15 +138,15 @@ class WebhookTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     self::getJson()
             ));
         $patchRequest = PatchRequestTest::getObject();
 
         $result = $obj->update($patchRequest, $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -160,14 +158,14 @@ class WebhookTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     true
             ));
 
         $result = $obj->delete($mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
 
     public function mockProvider()

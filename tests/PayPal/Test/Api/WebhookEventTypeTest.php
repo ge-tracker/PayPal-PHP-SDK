@@ -42,11 +42,11 @@ class WebhookEventTypeTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new WebhookEventType(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getName());
-        $this->assertNotNull($obj->getDescription());
-        $this->assertNotNull($obj->getStatus());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getName());
+        self::assertNotNull($obj->getDescription());
+        self::assertNotNull($obj->getStatus());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -56,9 +56,9 @@ class WebhookEventTypeTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getName(), "TestSample");
-        $this->assertEquals($obj->getDescription(), "TestSample");
-        $this->assertEquals($obj->getStatus(), "TestSample");
+        self::assertEquals("TestSample", $obj->getName());
+        self::assertEquals("TestSample", $obj->getDescription());
+        self::assertEquals("TestSample", $obj->getStatus());
     }
 
     /**
@@ -71,14 +71,14 @@ class WebhookEventTypeTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     WebhookEventTypeListTest::getJson()
             ));
 
         $result = $obj->subscribedEventTypes("webhookId", $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -90,14 +90,14 @@ class WebhookEventTypeTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     WebhookEventTypeListTest::getJson()
             ));
 
         $result = $obj->availableEventTypes($mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
 
     public function mockProvider()

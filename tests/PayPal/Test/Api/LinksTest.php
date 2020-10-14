@@ -38,14 +38,14 @@ class LinksTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Links(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getHref());
-        $this->assertNotNull($obj->getRel());
-        $this->assertNotNull($obj->getTargetSchema());
-        $this->assertNotNull($obj->getMethod());
-        $this->assertNotNull($obj->getEnctype());
-        $this->assertNotNull($obj->getSchema());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getHref());
+        self::assertNotNull($obj->getRel());
+        self::assertNotNull($obj->getTargetSchema());
+        self::assertNotNull($obj->getMethod());
+        self::assertNotNull($obj->getEnctype());
+        self::assertNotNull($obj->getSchema());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -55,11 +55,11 @@ class LinksTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getHref(), "TestSample");
-        $this->assertEquals($obj->getRel(), "TestSample");
-        $this->assertEquals($obj->getTargetSchema(), HyperSchemaTest::getObject());
-        $this->assertEquals($obj->getMethod(), "TestSample");
-        $this->assertEquals($obj->getEnctype(), "TestSample");
-        $this->assertEquals($obj->getSchema(), HyperSchemaTest::getObject());
+        self::assertEquals("TestSample", $obj->getHref());
+        self::assertEquals("TestSample", $obj->getRel());
+        self::assertEquals($obj->getTargetSchema(), HyperSchemaTest::getObject());
+        self::assertEquals("TestSample", $obj->getMethod());
+        self::assertEquals("TestSample", $obj->getEnctype());
+        self::assertEquals($obj->getSchema(), HyperSchemaTest::getObject());
     }
 }

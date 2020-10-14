@@ -152,7 +152,7 @@ class PayPalModelTest extends TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
     }
 
@@ -160,7 +160,7 @@ class PayPalModelTest extends TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      */
-    protected function tearDown()
+    protected function teatDown(): void
     {
     }
 
@@ -173,11 +173,11 @@ class PayPalModelTest extends TestCase
         $o->setField1('value 1');
         $o->setField2("value 2");
 
-        $this->assertEquals('{"field1":"value 1","field2":"value 2"}', $o->toJSON());
+        self::assertEquals('{"field1":"value 1","field2":"value 2"}', $o->toJSON());
 
         $oCopy = new SimpleModelTestClass();
         $oCopy->fromJson($o->toJSON());
-        $this->assertEquals($o, $oCopy);
+        self::assertEquals($o, $oCopy);
     }
 
     /**
@@ -192,12 +192,12 @@ class PayPalModelTest extends TestCase
         $parent->setField1("parent");
         $parent->setNested1($child);
 
-        $this->assertEquals('{"field1":"parent","nested1":{}}',
+        self::assertEquals('{"field1":"parent","nested1":{}}',
             $parent->toJSON());
 
         $parentCopy = new ContainerModelTestClass();
         $parentCopy->fromJson($parent->toJSON());
-        $this->assertEquals($parent, $parentCopy);
+        self::assertEquals($parent, $parentCopy);
     }
 
     /**
@@ -209,11 +209,11 @@ class PayPalModelTest extends TestCase
         $o->setField1('value "1');
         $o->setField2("value 2");
 
-        $this->assertEquals('{"field1":"value \"1","field2":"value 2"}', $o->toJSON());
+        self::assertEquals('{"field1":"value \"1","field2":"value 2"}', $o->toJSON());
 
         $oCopy = new SimpleModelTestClass();
         $oCopy->fromJson($o->toJSON());
-        $this->assertEquals($o, $oCopy);
+        self::assertEquals($o, $oCopy);
     }
 
 
@@ -230,12 +230,12 @@ class PayPalModelTest extends TestCase
         $parent->setField1("parent");
         $parent->setNested1($child);
 
-        $this->assertEquals('{"field1":"parent","nested1":{"field1":"value 1","field2":"value 2"}}',
+        self::assertEquals('{"field1":"parent","nested1":{"field1":"value 1","field2":"value 2"}}',
             $parent->toJSON());
 
         $parentCopy = new ContainerModelTestClass();
         $parentCopy->fromJson($parent->toJSON());
-        $this->assertEquals($parent, $parentCopy);
+        self::assertEquals($parent, $parentCopy);
     }
 
 
@@ -256,7 +256,7 @@ class PayPalModelTest extends TestCase
 
         $parentCopy = new ListModelTestClass();
         $parentCopy->fromJson($parent->toJSON());
-        $this->assertEquals($parent, $parentCopy);
+        self::assertEquals($parent, $parentCopy);
     }
 
     public function EmptyNullProvider()
@@ -280,7 +280,7 @@ class PayPalModelTest extends TestCase
     {
         $c1 = new SimpleModelTestClass();
         $c1->setField1("a")->setField2($field2);
-        $this->assertNotSame(strpos($c1->toJSON(), "field2"), !$matches);
+        self::assertNotSame(strpos($c1->toJSON(), "field2"), !$matches);
     }
 
     public function getProvider()
@@ -329,22 +329,25 @@ class PayPalModelTest extends TestCase
     public function testGetList($input, $count, $expected)
     {
         $result = PayPalModel::getList($input);
-        $this->assertEquals($expected, $result);
+        self::assertEquals($expected, $result);
         if ($input) {
-            $this->assertNotNull($result);
-            $this->assertInternalType('array', $result);
-            $this->assertCount($count, $result);
+            self::assertNotNull($result);
+            self::assertIsArray($result);
+            self::assertCount($count, $result);
         }
     }
 
     /**
      * @dataProvider getInvalidProvider
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Invalid JSON String
+     *
+     *
+     *
      * @param string|null $input
      */
     public function testGetListInvalidInput($input)
     {
+        $this->expectExceptionMessage("Invalid JSON String");
+        $this->expectException(InvalidArgumentException::class);
         $result = PayPalModel::getList($input);
     }
 }

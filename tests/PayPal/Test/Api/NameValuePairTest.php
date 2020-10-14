@@ -38,10 +38,10 @@ class NameValuePairTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new NameValuePair(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getName());
-        $this->assertNotNull($obj->getValue());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getName());
+        self::assertNotNull($obj->getValue());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -51,7 +51,7 @@ class NameValuePairTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getName(), "TestSample");
-        $this->assertEquals($obj->getValue(), "TestSample");
+        self::assertEquals("TestSample", $obj->getName());
+        self::assertEquals("TestSample", $obj->getValue());
     }
 }

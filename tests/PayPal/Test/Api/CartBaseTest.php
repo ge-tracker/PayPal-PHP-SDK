@@ -39,23 +39,23 @@ class CartBaseTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new CartBase(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getReferenceId());
-        $this->assertNotNull($obj->getAmount());
-        $this->assertNotNull($obj->getPayee());
-        $this->assertNotNull($obj->getDescription());
-        $this->assertNotNull($obj->getNoteToPayee());
-        $this->assertNotNull($obj->getCustom());
-        $this->assertNotNull($obj->getInvoiceNumber());
-        $this->assertNotNull($obj->getPurchaseOrder());
-        $this->assertNotNull($obj->getSoftDescriptor());
-        $this->assertNotNull($obj->getSoftDescriptorCity());
-        $this->assertNotNull($obj->getPaymentOptions());
-        $this->assertNotNull($obj->getItemList());
-        $this->assertNotNull($obj->getNotifyUrl());
-        $this->assertNotNull($obj->getOrderUrl());
-        $this->assertNotNull($obj->getExternalFunding());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getReferenceId());
+        self::assertNotNull($obj->getAmount());
+        self::assertNotNull($obj->getPayee());
+        self::assertNotNull($obj->getDescription());
+        self::assertNotNull($obj->getNoteToPayee());
+        self::assertNotNull($obj->getCustom());
+        self::assertNotNull($obj->getInvoiceNumber());
+        self::assertNotNull($obj->getPurchaseOrder());
+        self::assertNotNull($obj->getSoftDescriptor());
+        self::assertNotNull($obj->getSoftDescriptorCity());
+        self::assertNotNull($obj->getPaymentOptions());
+        self::assertNotNull($obj->getItemList());
+        self::assertNotNull($obj->getNotifyUrl());
+        self::assertNotNull($obj->getOrderUrl());
+        self::assertNotNull($obj->getExternalFunding());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -65,39 +65,35 @@ class CartBaseTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getReferenceId(), "TestSample");
-        $this->assertEquals($obj->getAmount(), AmountTest::getObject());
-        $this->assertEquals($obj->getPayee(), PayeeTest::getObject());
-        $this->assertEquals($obj->getDescription(), "TestSample");
-        $this->assertEquals($obj->getNoteToPayee(), "TestSample");
-        $this->assertEquals($obj->getCustom(), "TestSample");
-        $this->assertEquals($obj->getInvoiceNumber(), "TestSample");
-        $this->assertEquals($obj->getPurchaseOrder(), "TestSample");
-        $this->assertEquals($obj->getSoftDescriptor(), "TestSample");
-        $this->assertEquals($obj->getSoftDescriptorCity(), "TestSample");
-        $this->assertEquals($obj->getPaymentOptions(), PaymentOptionsTest::getObject());
-        $this->assertEquals($obj->getItemList(), ItemListTest::getObject());
-        $this->assertEquals($obj->getNotifyUrl(), "http://www.google.com");
-        $this->assertEquals($obj->getOrderUrl(), "http://www.google.com");
-        $this->assertEquals($obj->getExternalFunding(), ExternalFundingTest::getObject());
+        self::assertEquals("TestSample", $obj->getReferenceId());
+        self::assertEquals($obj->getAmount(), AmountTest::getObject());
+        self::assertEquals($obj->getPayee(), PayeeTest::getObject());
+        self::assertEquals("TestSample", $obj->getDescription());
+        self::assertEquals("TestSample", $obj->getNoteToPayee());
+        self::assertEquals("TestSample", $obj->getCustom());
+        self::assertEquals("TestSample", $obj->getInvoiceNumber());
+        self::assertEquals("TestSample", $obj->getPurchaseOrder());
+        self::assertEquals("TestSample", $obj->getSoftDescriptor());
+        self::assertEquals("TestSample", $obj->getSoftDescriptorCity());
+        self::assertEquals($obj->getPaymentOptions(), PaymentOptionsTest::getObject());
+        self::assertEquals($obj->getItemList(), ItemListTest::getObject());
+        self::assertEquals("http://www.google.com", $obj->getNotifyUrl());
+        self::assertEquals("http://www.google.com", $obj->getOrderUrl());
+        self::assertEquals($obj->getExternalFunding(), ExternalFundingTest::getObject());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage NotifyUrl is not a fully qualified URL
-     */
     public function testUrlValidationForNotifyUrl()
     {
+        $this->expectExceptionMessage("NotifyUrl is not a fully qualified URL");
+        $this->expectException(\InvalidArgumentException::class);
         $obj = new CartBase();
         $obj->setNotifyUrl(null);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage OrderUrl is not a fully qualified URL
-     */
     public function testUrlValidationForOrderUrl()
     {
+        $this->expectExceptionMessage("OrderUrl is not a fully qualified URL");
+        $this->expectException(\InvalidArgumentException::class);
         $obj = new CartBase();
         $obj->setOrderUrl(null);
     }

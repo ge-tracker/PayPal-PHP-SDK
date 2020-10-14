@@ -38,25 +38,25 @@ class PayerInfoTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new PayerInfo(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getEmail());
-        $this->assertNotNull($obj->getExternalRememberMeId());
-        $this->assertNotNull($obj->getBuyerAccountNumber());
-        $this->assertNotNull($obj->getSalutation());
-        $this->assertNotNull($obj->getFirstName());
-        $this->assertNotNull($obj->getMiddleName());
-        $this->assertNotNull($obj->getLastName());
-        $this->assertNotNull($obj->getSuffix());
-        $this->assertNotNull($obj->getPayerId());
-        $this->assertNotNull($obj->getPhone());
-        $this->assertNotNull($obj->getPhoneType());
-        $this->assertNotNull($obj->getBirthDate());
-        $this->assertNotNull($obj->getTaxId());
-        $this->assertNotNull($obj->getTaxIdType());
-        $this->assertNotNull($obj->getCountryCode());
-        $this->assertNotNull($obj->getBillingAddress());
-        $this->assertNotNull($obj->getShippingAddress());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getEmail());
+        self::assertNotNull($obj->getExternalRememberMeId());
+        self::assertNotNull($obj->getBuyerAccountNumber());
+        self::assertNotNull($obj->getSalutation());
+        self::assertNotNull($obj->getFirstName());
+        self::assertNotNull($obj->getMiddleName());
+        self::assertNotNull($obj->getLastName());
+        self::assertNotNull($obj->getSuffix());
+        self::assertNotNull($obj->getPayerId());
+        self::assertNotNull($obj->getPhone());
+        self::assertNotNull($obj->getPhoneType());
+        self::assertNotNull($obj->getBirthDate());
+        self::assertNotNull($obj->getTaxId());
+        self::assertNotNull($obj->getTaxIdType());
+        self::assertNotNull($obj->getCountryCode());
+        self::assertNotNull($obj->getBillingAddress());
+        self::assertNotNull($obj->getShippingAddress());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -66,22 +66,22 @@ class PayerInfoTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getEmail(), "TestSample");
-        $this->assertEquals($obj->getExternalRememberMeId(), "TestSample");
-        $this->assertEquals($obj->getBuyerAccountNumber(), "TestSample");
-        $this->assertEquals($obj->getSalutation(), "TestSample");
-        $this->assertEquals($obj->getFirstName(), "TestSample");
-        $this->assertEquals($obj->getMiddleName(), "TestSample");
-        $this->assertEquals($obj->getLastName(), "TestSample");
-        $this->assertEquals($obj->getSuffix(), "TestSample");
-        $this->assertEquals($obj->getPayerId(), "TestSample");
-        $this->assertEquals($obj->getPhone(), "TestSample");
-        $this->assertEquals($obj->getPhoneType(), "TestSample");
-        $this->assertEquals($obj->getBirthDate(), "TestSample");
-        $this->assertEquals($obj->getTaxId(), "TestSample");
-        $this->assertEquals($obj->getTaxIdType(), "TestSample");
-        $this->assertEquals($obj->getCountryCode(), "TestSample");
-        $this->assertEquals($obj->getBillingAddress(), AddressTest::getObject());
-        $this->assertEquals($obj->getShippingAddress(), ShippingAddressTest::getObject());
+        self::assertEquals("TestSample", $obj->getEmail());
+        self::assertEquals("TestSample", $obj->getExternalRememberMeId());
+        self::assertEquals("TestSample", $obj->getBuyerAccountNumber());
+        self::assertEquals("TestSample", $obj->getSalutation());
+        self::assertEquals("TestSample", $obj->getFirstName());
+        self::assertEquals("TestSample", $obj->getMiddleName());
+        self::assertEquals("TestSample", $obj->getLastName());
+        self::assertEquals("TestSample", $obj->getSuffix());
+        self::assertEquals("TestSample", $obj->getPayerId());
+        self::assertEquals("TestSample", $obj->getPhone());
+        self::assertEquals("TestSample", $obj->getPhoneType());
+        self::assertEquals("TestSample", $obj->getBirthDate());
+        self::assertEquals("TestSample", $obj->getTaxId());
+        self::assertEquals("TestSample", $obj->getTaxIdType());
+        self::assertEquals("TestSample", $obj->getCountryCode());
+        self::assertEquals($obj->getBillingAddress(), AddressTest::getObject());
+        self::assertEquals($obj->getShippingAddress(), ShippingAddressTest::getObject());
     }
 }

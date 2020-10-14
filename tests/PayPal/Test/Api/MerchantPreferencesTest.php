@@ -38,18 +38,18 @@ class MerchantPreferencesTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new MerchantPreferences(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getSetupFee());
-        $this->assertNotNull($obj->getCancelUrl());
-        $this->assertNotNull($obj->getReturnUrl());
-        $this->assertNotNull($obj->getNotifyUrl());
-        $this->assertNotNull($obj->getMaxFailAttempts());
-        $this->assertNotNull($obj->getAutoBillAmount());
-        $this->assertNotNull($obj->getInitialFailAmountAction());
-        $this->assertNotNull($obj->getAcceptedPaymentType());
-        $this->assertNotNull($obj->getCharSet());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getSetupFee());
+        self::assertNotNull($obj->getCancelUrl());
+        self::assertNotNull($obj->getReturnUrl());
+        self::assertNotNull($obj->getNotifyUrl());
+        self::assertNotNull($obj->getMaxFailAttempts());
+        self::assertNotNull($obj->getAutoBillAmount());
+        self::assertNotNull($obj->getInitialFailAmountAction());
+        self::assertNotNull($obj->getAcceptedPaymentType());
+        self::assertNotNull($obj->getCharSet());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -59,62 +59,63 @@ class MerchantPreferencesTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getSetupFee(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getCancelUrl(), "http://www.google.com");
-        $this->assertEquals($obj->getReturnUrl(), "http://www.google.com");
-        $this->assertEquals($obj->getNotifyUrl(), "http://www.google.com");
-        $this->assertEquals($obj->getMaxFailAttempts(), "TestSample");
-        $this->assertEquals($obj->getAutoBillAmount(), "TestSample");
-        $this->assertEquals($obj->getInitialFailAmountAction(), "TestSample");
-        $this->assertEquals($obj->getAcceptedPaymentType(), "TestSample");
-        $this->assertEquals($obj->getCharSet(), "TestSample");
+        self::assertEquals("TestSample", $obj->getId());
+        self::assertEquals($obj->getSetupFee(), CurrencyTest::getObject());
+        self::assertEquals("http://www.google.com", $obj->getCancelUrl());
+        self::assertEquals("http://www.google.com", $obj->getReturnUrl());
+        self::assertEquals("http://www.google.com", $obj->getNotifyUrl());
+        self::assertEquals("TestSample", $obj->getMaxFailAttempts());
+        self::assertEquals("TestSample", $obj->getAutoBillAmount());
+        self::assertEquals("TestSample", $obj->getInitialFailAmountAction());
+        self::assertEquals("TestSample", $obj->getAcceptedPaymentType());
+        self::assertEquals("TestSample", $obj->getCharSet());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage CancelUrl is not a fully qualified URL
-     */
     public function testUrlValidationForCancelUrl()
     {
+        $this->expectExceptionMessage("CancelUrl is not a fully qualified URL");
+        $this->expectException(\InvalidArgumentException::class);
         $obj = new MerchantPreferences();
         $obj->setCancelUrl(null);
     }
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage ReturnUrl is not a fully qualified URL
-     */
+
     public function testUrlValidationForReturnUrl()
     {
+        $this->expectExceptionMessage("ReturnUrl is not a fully qualified URL");
+        $this->expectException(\InvalidArgumentException::class);
         $obj = new MerchantPreferences();
         $obj->setReturnUrl(null);
     }
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage NotifyUrl is not a fully qualified URL
-     */
+
     public function testUrlValidationForNotifyUrl()
     {
+        $this->expectExceptionMessage("NotifyUrl is not a fully qualified URL");
+        $this->expectException(\InvalidArgumentException::class);
         $obj = new MerchantPreferences();
         $obj->setNotifyUrl(null);
     }
 
     public function testUrlValidationForCancelUrlDeprecated()
     {
+        $this->expectException(\InvalidArgumentException::class);
         $obj = new MerchantPreferences();
         $obj->setCancelUrl(null);
-        $this->assertNull($obj->getCancelUrl());
+        self::assertNull($obj->getCancelUrl());
     }
+
     public function testUrlValidationForReturnUrlDeprecated()
     {
+        $this->expectException(\InvalidArgumentException::class);
         $obj = new MerchantPreferences();
         $obj->setReturnUrl(null);
-        $this->assertNull($obj->getReturnUrl());
+        self::assertNull($obj->getReturnUrl());
     }
+
     public function testUrlValidationForNotifyUrlDeprecated()
     {
+        $this->expectException(\InvalidArgumentException::class);
         $obj = new MerchantPreferences();
         $obj->setNotifyUrl(null);
-        $this->assertNull($obj->getNotifyUrl());
+        self::assertNull($obj->getNotifyUrl());
     }
 }

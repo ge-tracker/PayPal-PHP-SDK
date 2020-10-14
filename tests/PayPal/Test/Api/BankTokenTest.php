@@ -38,11 +38,11 @@ class BankTokenTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new BankToken(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getBankId());
-        $this->assertNotNull($obj->getExternalCustomerId());
-        $this->assertNotNull($obj->getMandateReferenceNumber());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getBankId());
+        self::assertNotNull($obj->getExternalCustomerId());
+        self::assertNotNull($obj->getMandateReferenceNumber());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -52,8 +52,8 @@ class BankTokenTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getBankId(), "TestSample");
-        $this->assertEquals($obj->getExternalCustomerId(), "TestSample");
-        $this->assertEquals($obj->getMandateReferenceNumber(), "TestSample");
+        self::assertEquals("TestSample", $obj->getBankId());
+        self::assertEquals("TestSample", $obj->getExternalCustomerId());
+        self::assertEquals("TestSample", $obj->getMandateReferenceNumber());
     }
 }

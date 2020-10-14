@@ -38,12 +38,12 @@ class TaxTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Tax(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getName());
-        $this->assertNotNull($obj->getPercent());
-        $this->assertNotNull($obj->getAmount());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getName());
+        self::assertNotNull($obj->getPercent());
+        self::assertNotNull($obj->getAmount());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -53,9 +53,9 @@ class TaxTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getName(), "TestSample");
-        $this->assertEquals($obj->getPercent(), "12.34");
-        $this->assertEquals($obj->getAmount(), CurrencyTest::getObject());
+        self::assertEquals("TestSample", $obj->getId());
+        self::assertEquals("TestSample", $obj->getName());
+        self::assertEquals("12.34", $obj->getPercent());
+        self::assertEquals($obj->getAmount(), CurrencyTest::getObject());
     }
 }

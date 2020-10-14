@@ -38,14 +38,14 @@ class TermsTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Terms(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getType());
-        $this->assertNotNull($obj->getMaxBillingAmount());
-        $this->assertNotNull($obj->getOccurrences());
-        $this->assertNotNull($obj->getAmountRange());
-        $this->assertNotNull($obj->getBuyerEditable());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getType());
+        self::assertNotNull($obj->getMaxBillingAmount());
+        self::assertNotNull($obj->getOccurrences());
+        self::assertNotNull($obj->getAmountRange());
+        self::assertNotNull($obj->getBuyerEditable());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -55,11 +55,11 @@ class TermsTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getType(), "TestSample");
-        $this->assertEquals($obj->getMaxBillingAmount(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getOccurrences(), "TestSample");
-        $this->assertEquals($obj->getAmountRange(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getBuyerEditable(), "TestSample");
+        self::assertEquals("TestSample", $obj->getId());
+        self::assertEquals("TestSample", $obj->getType());
+        self::assertEquals($obj->getMaxBillingAmount(), CurrencyTest::getObject());
+        self::assertEquals("TestSample", $obj->getOccurrences());
+        self::assertEquals($obj->getAmountRange(), CurrencyTest::getObject());
+        self::assertEquals("TestSample", $obj->getBuyerEditable());
     }
 }

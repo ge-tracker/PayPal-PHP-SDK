@@ -2,6 +2,7 @@
 
 namespace PayPal\Test\Api;
 
+use PayPal\Api\BaseAddress;
 use PayPal\Api\ShippingInfo;
 use PHPUnit\Framework\TestCase;
 
@@ -38,12 +39,12 @@ class ShippingInfoTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new ShippingInfo(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getFirstName());
-        $this->assertNotNull($obj->getLastName());
-        $this->assertNotNull($obj->getBusinessName());
-        $this->assertNotNull($obj->getAddress());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getFirstName());
+        self::assertNotNull($obj->getLastName());
+        self::assertNotNull($obj->getBusinessName());
+        self::assertNotNull($obj->getAddress());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -53,9 +54,9 @@ class ShippingInfoTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getFirstName(), "TestSample");
-        $this->assertEquals($obj->getLastName(), "TestSample");
-        $this->assertEquals($obj->getBusinessName(), "TestSample");
-        $this->assertEquals($obj->getAddress(), AddressTest::getObject());
+        self::assertEquals("TestSample", $obj->getFirstName());
+        self::assertEquals("TestSample", $obj->getLastName());
+        self::assertEquals("TestSample", $obj->getBusinessName());
+        self::assertInstanceOf(BaseAddress::class, AddressTest::getObject());
     }
 }

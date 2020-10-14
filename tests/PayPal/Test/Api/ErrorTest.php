@@ -39,18 +39,18 @@ class ErrorTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Error(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getName());
-        $this->assertNotNull($obj->getPurchaseUnitReferenceId());
-        $this->assertNotNull($obj->getMessage());
-        $this->assertNotNull($obj->getCode());
-        $this->assertNotNull($obj->getDetails());
-        $this->assertNotNull($obj->getProcessorResponse());
-        $this->assertNotNull($obj->getFmfDetails());
-        $this->assertNotNull($obj->getInformationLink());
-        $this->assertNotNull($obj->getDebugId());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getName());
+        self::assertNotNull($obj->getPurchaseUnitReferenceId());
+        self::assertNotNull($obj->getMessage());
+        self::assertNotNull($obj->getCode());
+        self::assertNotNull($obj->getDetails());
+        self::assertNotNull($obj->getProcessorResponse());
+        self::assertNotNull($obj->getFmfDetails());
+        self::assertNotNull($obj->getInformationLink());
+        self::assertNotNull($obj->getDebugId());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -60,15 +60,15 @@ class ErrorTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getName(), "TestSample");
-        $this->assertEquals($obj->getPurchaseUnitReferenceId(), "TestSample");
-        $this->assertEquals($obj->getMessage(), "TestSample");
-        $this->assertEquals($obj->getCode(), "TestSample");
-        $this->assertEquals($obj->getDetails(), ErrorDetailsTest::getObject());
-        $this->assertEquals($obj->getProcessorResponse(), ProcessorResponseTest::getObject());
-        $this->assertEquals($obj->getFmfDetails(), FmfDetailsTest::getObject());
-        $this->assertEquals($obj->getInformationLink(), "TestSample");
-        $this->assertEquals($obj->getDebugId(), "TestSample");
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals("TestSample", $obj->getName());
+        self::assertEquals("TestSample", $obj->getPurchaseUnitReferenceId());
+        self::assertEquals("TestSample", $obj->getMessage());
+        self::assertEquals("TestSample", $obj->getCode());
+        self::assertEquals($obj->getDetails(), ErrorDetailsTest::getObject());
+        self::assertEquals($obj->getProcessorResponse(), ProcessorResponseTest::getObject());
+        self::assertEquals($obj->getFmfDetails(), FmfDetailsTest::getObject());
+        self::assertEquals("TestSample", $obj->getInformationLink());
+        self::assertEquals("TestSample", $obj->getDebugId());
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 }

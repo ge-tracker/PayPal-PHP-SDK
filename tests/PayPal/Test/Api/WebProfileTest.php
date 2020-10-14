@@ -38,14 +38,14 @@ class WebProfileTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new WebProfile(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getName());
-        $this->assertNotNull($obj->getTemporary());
-        $this->assertNotNull($obj->getFlowConfig());
-        $this->assertNotNull($obj->getInputFields());
-        $this->assertNotNull($obj->getPresentation());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getName());
+        self::assertNotNull($obj->getTemporary());
+        self::assertNotNull($obj->getFlowConfig());
+        self::assertNotNull($obj->getInputFields());
+        self::assertNotNull($obj->getPresentation());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -55,12 +55,12 @@ class WebProfileTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getName(), "TestSample");
-        $this->assertEquals($obj->getTemporary(), true);
-        $this->assertEquals($obj->getFlowConfig(), FlowConfigTest::getObject());
-        $this->assertEquals($obj->getInputFields(), InputFieldsTest::getObject());
-        $this->assertEquals($obj->getPresentation(), PresentationTest::getObject());
+        self::assertEquals("TestSample", $obj->getId());
+        self::assertEquals("TestSample", $obj->getName());
+        self::assertEquals(true, $obj->getTemporary());
+        self::assertEquals($obj->getFlowConfig(), FlowConfigTest::getObject());
+        self::assertEquals($obj->getInputFields(), InputFieldsTest::getObject());
+        self::assertEquals($obj->getPresentation(), PresentationTest::getObject());
     }
 
     /**
@@ -73,14 +73,14 @@ class WebProfileTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     self::getJson()
             ));
 
         $result = $obj->create($mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -92,14 +92,14 @@ class WebProfileTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     true
             ));
 
         $result = $obj->update($mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -111,15 +111,15 @@ class WebProfileTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     true
             ));
         $patch = array(PatchTest::getObject());
 
         $result = $obj->partial_update($patch, $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -131,14 +131,14 @@ class WebProfileTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    WebProfileTest::getJson()
+            ->will(self::returnValue(
+                    self::getJson()
             ));
 
         $result = $obj->get("profileId", $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -150,14 +150,14 @@ class WebProfileTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    json_encode(array(json_decode(WebProfileTest::getJson())))
+            ->will(self::returnValue(
+                    json_encode(array(json_decode(self::getJson())))
             ));
 
         $result = $obj->get_list($mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -169,14 +169,14 @@ class WebProfileTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     true
             ));
 
         $result = $obj->delete($mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
 
     public function mockProvider()

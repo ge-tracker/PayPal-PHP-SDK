@@ -38,17 +38,17 @@ class PayoutBatchHeaderTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new PayoutBatchHeader(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getPayoutBatchId());
-        $this->assertNotNull($obj->getBatchStatus());
-        $this->assertNotNull($obj->getTimeCreated());
-        $this->assertNotNull($obj->getTimeCompleted());
-        $this->assertNotNull($obj->getSenderBatchHeader());
-        $this->assertNotNull($obj->getAmount());
-        $this->assertNotNull($obj->getFees());
-        $this->assertNotNull($obj->getErrors());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getPayoutBatchId());
+        self::assertNotNull($obj->getBatchStatus());
+        self::assertNotNull($obj->getTimeCreated());
+        self::assertNotNull($obj->getTimeCompleted());
+        self::assertNotNull($obj->getSenderBatchHeader());
+        self::assertNotNull($obj->getAmount());
+        self::assertNotNull($obj->getFees());
+        self::assertNotNull($obj->getErrors());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -58,14 +58,14 @@ class PayoutBatchHeaderTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getPayoutBatchId(), "TestSample");
-        $this->assertEquals($obj->getBatchStatus(), "TestSample");
-        $this->assertEquals($obj->getTimeCreated(), "TestSample");
-        $this->assertEquals($obj->getTimeCompleted(), "TestSample");
-        $this->assertEquals($obj->getSenderBatchHeader(), PayoutSenderBatchHeaderTest::getObject());
-        $this->assertEquals($obj->getAmount(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getFees(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getErrors(), ErrorTest::getObject());
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals("TestSample", $obj->getPayoutBatchId());
+        self::assertEquals("TestSample", $obj->getBatchStatus());
+        self::assertEquals("TestSample", $obj->getTimeCreated());
+        self::assertEquals("TestSample", $obj->getTimeCompleted());
+        self::assertEquals($obj->getSenderBatchHeader(), PayoutSenderBatchHeaderTest::getObject());
+        self::assertEquals($obj->getAmount(), CurrencyTest::getObject());
+        self::assertEquals($obj->getFees(), CurrencyTest::getObject());
+        self::assertEquals($obj->getErrors(), ErrorTest::getObject());
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 }

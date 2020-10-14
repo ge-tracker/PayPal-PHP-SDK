@@ -23,7 +23,7 @@ class PayPalHttpConfigTest extends TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
     }
 
@@ -31,7 +31,7 @@ class PayPalHttpConfigTest extends TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      */
-    protected function tearDown()
+    protected function teatDown(): void
     {
     }
 
@@ -45,21 +45,21 @@ class PayPalHttpConfigTest extends TestCase
         $o->addHeader('key2', 'value');
         $o->addHeader('key2', 'overwritten');
 
-        $this->assertCount(2, $o->getHeaders());
-        $this->assertEquals('overwritten', $o->getHeader('key2'));
-        $this->assertNull($o->getHeader('key3'));
+        self::assertCount(2, $o->getHeaders());
+        self::assertEquals('overwritten', $o->getHeader('key2'));
+        self::assertNull($o->getHeader('key3'));
 
         $o = new PayPalHttpConfig();
         $o->addHeader('key1', 'value1');
         $o->addHeader('key2', 'value');
         $o->addHeader('key2', 'and more', false);
 
-        $this->assertCount(2, $o->getHeaders());
-        $this->assertEquals('value;and more', $o->getHeader('key2'));
+        self::assertCount(2, $o->getHeaders());
+        self::assertEquals('value;and more', $o->getHeader('key2'));
 
         $o->removeHeader('key2');
-        $this->assertCount(1, $o->getHeaders());
-        $this->assertNull($o->getHeader('key2'));
+        self::assertCount(1, $o->getHeaders());
+        self::assertNull($o->getHeader('key2'));
     }
 
     /**
@@ -71,8 +71,8 @@ class PayPalHttpConfigTest extends TestCase
         $o->setCurlOptions(array('k' => 'v'));
 
         $curlOpts = $o->getCurlOptions();
-        $this->assertCount(1, $curlOpts);
-        $this->assertEquals('v', $curlOpts['k']);
+        self::assertCount(1, $curlOpts);
+        self::assertEquals('v', $curlOpts['k']);
     }
 
     public function testRemoveCurlOpts()
@@ -80,12 +80,12 @@ class PayPalHttpConfigTest extends TestCase
         $o = new PayPalHttpConfig();
         $o->setCurlOptions(array('k' => 'v'));
         $curlOpts = $o->getCurlOptions();
-        $this->assertCount(1, $curlOpts);
-        $this->assertEquals('v', $curlOpts['k']);
+        self::assertCount(1, $curlOpts);
+        self::assertEquals('v', $curlOpts['k']);
 
         $o->removeCurlOption('k');
         $curlOpts = $o->getCurlOptions();
-        $this->assertCount(0, $curlOpts);
+        self::assertCount(0, $curlOpts);
     }
 
     /**
@@ -98,7 +98,7 @@ class PayPalHttpConfigTest extends TestCase
         $o->setUserAgent($ua);
 
         $curlOpts = $o->getCurlOptions();
-        $this->assertEquals($ua, $curlOpts[CURLOPT_USERAGENT]);
+        self::assertEquals($ua, $curlOpts[CURLOPT_USERAGENT]);
     }
 
     /**
@@ -113,8 +113,8 @@ class PayPalHttpConfigTest extends TestCase
         $o->setSSLCert($sslCert, $sslPass);
 
         $curlOpts = $o->getCurlOptions();
-        $this->assertArrayHasKey(CURLOPT_SSLCERT, $curlOpts);
-        $this->assertEquals($sslPass, $curlOpts[CURLOPT_SSLCERTPASSWD]);
+        self::assertArrayHasKey(CURLOPT_SSLCERT, $curlOpts);
+        self::assertEquals($sslPass, $curlOpts[CURLOPT_SSLCERTPASSWD]);
     }
 
     /**
@@ -128,10 +128,10 @@ class PayPalHttpConfigTest extends TestCase
         $o->setHttpProxy($proxy);
 
         $curlOpts = $o->getCurlOptions();
-        $this->assertEquals('hostname:8081', $curlOpts[CURLOPT_PROXY]);
-        $this->assertEquals('me:secret', $curlOpts[CURLOPT_PROXYUSERPWD]);
+        self::assertEquals('hostname:8081', $curlOpts[CURLOPT_PROXY]);
+        self::assertEquals('me:secret', $curlOpts[CURLOPT_PROXYUSERPWD]);
 
-        $this->setExpectedException('PayPal\Exception\PayPalConfigurationException');
+        $this->expectException('PayPal\Exception\PayPalConfigurationException');
         $o->setHttpProxy('invalid string');
     }
 }

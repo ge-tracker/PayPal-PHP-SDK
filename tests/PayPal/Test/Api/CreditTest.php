@@ -41,10 +41,10 @@ class CreditTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Credit(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getType());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getType());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -54,7 +54,7 @@ class CreditTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getType(), "TestSample");
+        self::assertEquals("TestSample", $obj->getId());
+        self::assertEquals("TestSample", $obj->getType());
     }
 }

@@ -38,11 +38,11 @@ class PaymentHistoryTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new PaymentHistory(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getPayments());
-        $this->assertNotNull($obj->getCount());
-        $this->assertNotNull($obj->getNextId());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getPayments());
+        self::assertNotNull($obj->getCount());
+        self::assertNotNull($obj->getNextId());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -52,8 +52,8 @@ class PaymentHistoryTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getPayments(), PaymentTest::getObject());
-        $this->assertEquals($obj->getCount(), 123);
-        $this->assertEquals($obj->getNextId(), "TestSample");
+        self::assertEquals($obj->getPayments(), PaymentTest::getObject());
+        self::assertEquals(123, $obj->getCount());
+        self::assertEquals("TestSample", $obj->getNextId());
     }
 }

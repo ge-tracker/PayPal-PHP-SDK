@@ -38,13 +38,13 @@ class ExternalFundingTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new ExternalFunding(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getReferenceId());
-        $this->assertNotNull($obj->getCode());
-        $this->assertNotNull($obj->getFundingAccountId());
-        $this->assertNotNull($obj->getDisplayText());
-        $this->assertNotNull($obj->getAmount());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getReferenceId());
+        self::assertNotNull($obj->getCode());
+        self::assertNotNull($obj->getFundingAccountId());
+        self::assertNotNull($obj->getDisplayText());
+        self::assertNotNull($obj->getAmount());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -54,10 +54,10 @@ class ExternalFundingTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getReferenceId(), "TestSample");
-        $this->assertEquals($obj->getCode(), "TestSample");
-        $this->assertEquals($obj->getFundingAccountId(), "TestSample");
-        $this->assertEquals($obj->getDisplayText(), "TestSample");
-        $this->assertEquals($obj->getAmount(), AmountTest::getObject());
+        self::assertEquals("TestSample", $obj->getReferenceId());
+        self::assertEquals("TestSample", $obj->getCode());
+        self::assertEquals("TestSample", $obj->getFundingAccountId());
+        self::assertEquals("TestSample", $obj->getDisplayText());
+        self::assertEquals($obj->getAmount(), AmountTest::getObject());
     }
 }

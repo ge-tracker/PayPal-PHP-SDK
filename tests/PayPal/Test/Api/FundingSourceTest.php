@@ -38,17 +38,17 @@ class FundingSourceTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new FundingSource(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getFundingMode());
-        $this->assertNotNull($obj->getFundingInstrumentType());
-        $this->assertNotNull($obj->getSoftDescriptor());
-        $this->assertNotNull($obj->getAmount());
-        $this->assertNotNull($obj->getNegativeBalanceAmount());
-        $this->assertNotNull($obj->getLegalText());
-        $this->assertNotNull($obj->getFundingDetail());
-        $this->assertNotNull($obj->getAdditionalText());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getFundingMode());
+        self::assertNotNull($obj->getFundingInstrumentType());
+        self::assertNotNull($obj->getSoftDescriptor());
+        self::assertNotNull($obj->getAmount());
+        self::assertNotNull($obj->getNegativeBalanceAmount());
+        self::assertNotNull($obj->getLegalText());
+        self::assertNotNull($obj->getFundingDetail());
+        self::assertNotNull($obj->getAdditionalText());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -58,14 +58,14 @@ class FundingSourceTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getFundingMode(), "TestSample");
-        $this->assertEquals($obj->getFundingInstrumentType(), "TestSample");
-        $this->assertEquals($obj->getSoftDescriptor(), "TestSample");
-        $this->assertEquals($obj->getAmount(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getNegativeBalanceAmount(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getLegalText(), "TestSample");
-        $this->assertEquals($obj->getFundingDetail(), FundingDetailTest::getObject());
-        $this->assertEquals($obj->getAdditionalText(), "TestSample");
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals("TestSample", $obj->getFundingMode());
+        self::assertEquals("TestSample", $obj->getFundingInstrumentType());
+        self::assertEquals("TestSample", $obj->getSoftDescriptor());
+        self::assertEquals($obj->getAmount(), CurrencyTest::getObject());
+        self::assertEquals($obj->getNegativeBalanceAmount(), CurrencyTest::getObject());
+        self::assertEquals("TestSample", $obj->getLegalText());
+        self::assertEquals($obj->getFundingDetail(), FundingDetailTest::getObject());
+        self::assertEquals("TestSample", $obj->getAdditionalText());
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 }

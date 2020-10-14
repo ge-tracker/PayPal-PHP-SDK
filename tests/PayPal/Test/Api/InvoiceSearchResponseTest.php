@@ -38,10 +38,10 @@ class InvoiceSearchResponseTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new InvoiceSearchResponse(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getTotalCount());
-        $this->assertNotNull($obj->getInvoices());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getTotalCount());
+        self::assertNotNull($obj->getInvoices());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -51,7 +51,7 @@ class InvoiceSearchResponseTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getTotalCount(), 123);
-        $this->assertEquals($obj->getInvoices(), InvoiceTest::getObject());
+        self::assertEquals(123, $obj->getTotalCount());
+        self::assertEquals($obj->getInvoices(), InvoiceTest::getObject());
     }
 }

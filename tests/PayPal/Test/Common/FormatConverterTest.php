@@ -73,7 +73,7 @@ class FormatConverterTest extends TestCase
     public function testFormatToTwoDecimalPlaces($input, $expected)
     {
         $result = FormatConverter::formatToNumber($input);
-        $this->assertEquals($expected, $result);
+        self::assertEquals($expected, $result);
     }
 
     /**
@@ -84,7 +84,7 @@ class FormatConverterTest extends TestCase
         try {
             FormatConverter::formatToPrice("1.234", $input);
         } catch (\InvalidArgumentException $ex) {
-            $this->assertContains("value cannot have decimals for", $ex->getMessage());
+            self::assertStringContainsString("value cannot have decimals for", $ex->getMessage());
         }
     }
 
@@ -94,7 +94,7 @@ class FormatConverterTest extends TestCase
     public function testPriceWithNoDecimalCurrencyValid($input)
     {
         $result = FormatConverter::formatToPrice("1.0000000", $input);
-        $this->assertEquals("1", $result);
+        self::assertEquals("1", $result);
     }
 
     /**
@@ -104,20 +104,20 @@ class FormatConverterTest extends TestCase
     public function testFormatToNumber($input, $expected)
     {
         $result = FormatConverter::formatToNumber($input);
-        $this->assertEquals($expected, $result);
+        self::assertEquals($expected, $result);
     }
 
     public function testFormatToNumberDecimals()
     {
         $result = FormatConverter::formatToNumber("0.0", 4);
-        $this->assertEquals("0.0000", $result);
+        self::assertEquals("0.0000", $result);
     }
 
 
     public function testFormat()
     {
         $result = FormatConverter::format("12.0123", "%0.2f");
-        $this->assertEquals("12.01", $result);
+        self::assertEquals("12.01", $result);
     }
 
     /**
@@ -133,15 +133,16 @@ class FormatConverterTest extends TestCase
         $setter = "set" . $method;
         $getter = "get" . $method;
         $result = $obj->$setter($values[0]);
-        $this->assertEquals($values[1], $result->$getter());
+        self::assertEquals($values[1], $result->$getter());
     }
 
     /**
      * @dataProvider apiModelSettersInvalidProvider
-     * @expectedException \InvalidArgumentException
+     *
      */
     public function testSettersOfKnownApiModelInvalid($class, $methodName, $values)
     {
+        $this->expectException(\InvalidArgumentException::class);
         $obj = new $class();
         $setter = "set" . $methodName;
         $obj->$setter($values[0]);

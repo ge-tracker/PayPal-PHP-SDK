@@ -41,17 +41,17 @@ class CurrencyConversionTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new CurrencyConversion(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getConversionDate());
-        $this->assertNotNull($obj->getFromCurrency());
-        $this->assertNotNull($obj->getFromAmount());
-        $this->assertNotNull($obj->getToCurrency());
-        $this->assertNotNull($obj->getToAmount());
-        $this->assertNotNull($obj->getConversionType());
-        $this->assertNotNull($obj->getConversionTypeChangeable());
-        $this->assertNotNull($obj->getWebUrl());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getConversionDate());
+        self::assertNotNull($obj->getFromCurrency());
+        self::assertNotNull($obj->getFromAmount());
+        self::assertNotNull($obj->getToCurrency());
+        self::assertNotNull($obj->getToAmount());
+        self::assertNotNull($obj->getConversionType());
+        self::assertNotNull($obj->getConversionTypeChangeable());
+        self::assertNotNull($obj->getWebUrl());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -61,31 +61,30 @@ class CurrencyConversionTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getConversionDate(), "TestSample");
-        $this->assertEquals($obj->getFromCurrency(), "TestSample");
-        $this->assertEquals($obj->getFromAmount(), "TestSample");
-        $this->assertEquals($obj->getToCurrency(), "TestSample");
-        $this->assertEquals($obj->getToAmount(), "TestSample");
-        $this->assertEquals($obj->getConversionType(), "TestSample");
-        $this->assertEquals($obj->getConversionTypeChangeable(), true);
-        $this->assertEquals($obj->getWebUrl(), "http://www.google.com");
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals("TestSample", $obj->getConversionDate());
+        self::assertEquals("TestSample", $obj->getFromCurrency());
+        self::assertEquals("TestSample", $obj->getFromAmount());
+        self::assertEquals("TestSample", $obj->getToCurrency());
+        self::assertEquals("TestSample", $obj->getToAmount());
+        self::assertEquals("TestSample", $obj->getConversionType());
+        self::assertEquals(true, $obj->getConversionTypeChangeable());
+        self::assertEquals("http://www.google.com", $obj->getWebUrl());
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage WebUrl is not a fully qualified URL
-     */
     public function testUrlValidationForWebUrl()
     {
+        $this->expectExceptionMessage("WebUrl is not a fully qualified URL");
+        $this->expectException(\InvalidArgumentException::class);
         $obj = new CurrencyConversion();
         $obj->setWebUrl(null);
     }
 
     public function testUrlValidationForWebUrlDeprecated()
     {
+        $this->expectException(\InvalidArgumentException::class);
         $obj = new CurrencyConversion();
         $obj->setWebUrl(null);
-        $this->assertNull($obj->getWebUrl());
+        self::assertNull($obj->getWebUrl());
     }
 }

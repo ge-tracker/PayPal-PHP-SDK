@@ -38,9 +38,9 @@ class BillingTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Billing(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getBillingAgreementId());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getBillingAgreementId());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -50,6 +50,6 @@ class BillingTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getBillingAgreementId(), "TestSample");
+        self::assertEquals("TestSample", $obj->getBillingAgreementId());
     }
 }

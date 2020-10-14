@@ -31,7 +31,7 @@ class OauthHandlerTest extends TestCase
      */
     public $config;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->apiContext = new ApiContext(
             new OAuthTokenCredential(
@@ -43,30 +43,39 @@ class OauthHandlerTest extends TestCase
 
     public function modeProvider()
     {
-        return array(
-            array( array('mode' => 'sandbox') ),
-            array( array('mode' => 'live')),
-            array( array( 'mode' => 'sandbox','oauth.EndPoint' => 'http://localhost/')),
-            array( array('mode' => 'sandbox','service.EndPoint' => 'http://service.localhost/'))
-        );
+        return [
+            [['mode' => 'sandbox']],
+            [['mode' => 'live']],
+            [['mode' => 'sandbox', 'oauth.EndPoint' => 'http://localhost/']],
+            [['mode' => 'sandbox', 'service.EndPoint' => 'http://service.localhost/']],
+        ];
     }
 
 
     /**
      * @dataProvider modeProvider
+     *
      * @param $configs
      */
     public function testGetEndpoint($configs)
     {
-        $config = $configs + array(
-            'cache.enabled' => true,
-            'http.headers.header1' => 'header1value'
-        );
+        $config = $configs + [
+                'cache.enabled'        => true,
+                'http.headers.header1' => 'header1value',
+            ];
         $this->apiContext->setConfig($config);
         $this->setConfig();
         $this->httpConfig = new PayPalHttpConfig(null, 'POST', $config);
         $this->handler = new OauthHandler($this->apiContext);
         $this->handler->handle($this->httpConfig, null, $this->config);
+
+        $apiConfig = $this->handler->getApiContext()->getConfig();
+        $apiCredential = $this->handler->getApiContext()->getCredential();
+        $apiRequestHeaders = $this->handler->getApiContext()->getRequestHeaders();
+        $apiRequestId = $this->handler->getApiContext()->getRequestId();
+
+        self::assertSame($config['mode'], $apiConfig['mode']);
+        self::assertTrue($apiConfig['cache.enabled']);
     }
 
     private function setConfig()
@@ -74,7 +83,7 @@ class OauthHandlerTest extends TestCase
         $config = $this->apiContext->getConfig();
 
         $this->config = [
-            'clientId' => $config['acct1.ClientId'],
+            'clientId'     => $config['acct1.ClientId'],
             'clientSecret' => $config['acct1.ClientSecret'],
         ];
     }

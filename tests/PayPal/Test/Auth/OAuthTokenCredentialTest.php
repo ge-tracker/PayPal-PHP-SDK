@@ -19,16 +19,16 @@ class OAuthTokenCredentialTest extends TestCase
     public function testGetAccessToken()
     {
         $cred = new OAuthTokenCredential(Constants::CLIENT_ID, Constants::CLIENT_SECRET);
-        $this->assertEquals(Constants::CLIENT_ID, $cred->getClientId());
-        $this->assertEquals(Constants::CLIENT_SECRET, $cred->getClientSecret());
+        self::assertEquals(Constants::CLIENT_ID, $cred->getClientId());
+        self::assertEquals(Constants::CLIENT_SECRET, $cred->getClientSecret());
         $config = PayPalConfigManager::getInstance()->getConfigHashmap();
         $token = $cred->getAccessToken($config);
-        $this->assertNotNull($token);
+        self::assertNotNull($token);
 
         // Check that we get the same token when issuing a new call before token expiry
         $newToken = $cred->getAccessToken($config);
-        $this->assertNotNull($newToken);
-        $this->assertEquals($token, $newToken);
+        self::assertNotNull($newToken);
+        self::assertEquals($token, $newToken);
     }
 
     /**
@@ -36,9 +36,9 @@ class OAuthTokenCredentialTest extends TestCase
      */
     public function testInvalidCredentials()
     {
-        $this->setExpectedException('PayPal\Exception\PayPalConnectionException');
+        $this->expectException('PayPal\Exception\PayPalConnectionException');
         $cred = new OAuthTokenCredential('dummy', 'secret');
-        $this->assertNull($cred->getAccessToken(PayPalConfigManager::getInstance()->getConfigHashmap()));
+        self::assertNull($cred->getAccessToken(PayPalConfigManager::getInstance()->getConfigHashmap()));
     }
 
     public function testGetAccessTokenUnit()
@@ -55,10 +55,10 @@ class OAuthTokenCredentialTest extends TestCase
 
         $apiContext = new ApiContext($cred);
         $apiContext->setConfig($config);
-        $this->assertEquals('clientId', $cred->getClientId());
-        $this->assertEquals('clientSecret', $cred->getClientSecret());
+        self::assertEquals('clientId', $cred->getClientId());
+        self::assertEquals('clientSecret', $cred->getClientSecret());
         $result = $cred->getAccessToken($config);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
 
     public function testGetAccessTokenUnitMock()
@@ -72,14 +72,14 @@ class OAuthTokenCredentialTest extends TestCase
             ->setMethods(array('getToken'))
             ->getMock();
 
-        $auth->expects($this->any())
+        $auth->expects(self::any())
             ->method('getToken')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                 array('refresh_token' => 'refresh_token_value')
             ));
         $response = $auth->getRefreshToken($config, 'auth_value');
-        $this->assertNotNull($response);
-        $this->assertEquals('refresh_token_value', $response);
+        self::assertNotNull($response);
+        self::assertEquals('refresh_token_value', $response);
     }
 
     public function testUpdateAccessTokenUnitMock()
@@ -93,9 +93,9 @@ class OAuthTokenCredentialTest extends TestCase
             ->setMethods(array('getToken'))
             ->getMock();
 
-        $auth->expects($this->any())
+        $auth->expects(self::any())
             ->method('getToken')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                 array(
                     'access_token' => 'accessToken',
                     'expires_in' => 280
@@ -103,20 +103,18 @@ class OAuthTokenCredentialTest extends TestCase
             ));
 
         $response = $auth->updateAccessToken($config);
-        $this->assertNotNull($response);
-        $this->assertEquals('accessToken', $response);
+        self::assertNotNull($response);
+        self::assertEquals('accessToken', $response);
 
         $response = $auth->updateAccessToken($config, 'refresh_token');
-        $this->assertNotNull($response);
-        $this->assertEquals('accessToken', $response);
+        self::assertNotNull($response);
+        self::assertEquals('accessToken', $response);
     }
 
-    /**
-     * @expectedException \PayPal\Exception\PayPalConnectionException
-     * @expectedExceptionMessage Could not generate new Access token. Invalid response from server:
-     */
     public function testUpdateAccessTokenNullReturnUnitMock()
     {
+        $this->expectExceptionMessage("Could not generate new Access token. Invalid response from server:");
+        $this->expectException(\PayPal\Exception\PayPalConnectionException::class);
         $config = array(
             'mode' => 'sandbox'
         );
@@ -126,15 +124,15 @@ class OAuthTokenCredentialTest extends TestCase
             ->setMethods(array('getToken'))
             ->getMock();
 
-        $auth->expects($this->any())
+        $auth->expects(self::any())
             ->method('getToken')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                 array(
                 )
             ));
 
         $response = $auth->updateAccessToken($config);
-        $this->assertNotNull($response);
-        $this->assertEquals('accessToken', $response);
+        self::assertNotNull($response);
+        self::assertEquals('accessToken', $response);
     }
 }

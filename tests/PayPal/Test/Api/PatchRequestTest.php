@@ -39,8 +39,8 @@ class PatchRequestTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new PatchRequest(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getPatches());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getPatches());
         return $obj;
     }
 
@@ -50,6 +50,6 @@ class PatchRequestTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getPatches(), PatchTest::getObject());
+        self::assertEquals($obj->getPatches(), PatchTest::getObject());
     }
 }

@@ -38,12 +38,12 @@ class CancelNotificationTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new CancelNotification(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getSubject());
-        $this->assertNotNull($obj->getNote());
-        $this->assertNotNull($obj->getSendToMerchant());
-        $this->assertNotNull($obj->getSendToPayer());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getSubject());
+        self::assertNotNull($obj->getNote());
+        self::assertNotNull($obj->getSendToMerchant());
+        self::assertNotNull($obj->getSendToPayer());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -53,9 +53,9 @@ class CancelNotificationTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getSubject(), "TestSample");
-        $this->assertEquals($obj->getNote(), "TestSample");
-        $this->assertEquals($obj->getSendToMerchant(), true);
-        $this->assertEquals($obj->getSendToPayer(), true);
+        self::assertEquals("TestSample", $obj->getSubject());
+        self::assertEquals("TestSample", $obj->getNote());
+        self::assertEquals(true, $obj->getSendToMerchant());
+        self::assertEquals(true, $obj->getSendToPayer());
     }
 }

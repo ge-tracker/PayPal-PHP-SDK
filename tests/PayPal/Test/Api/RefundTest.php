@@ -38,21 +38,21 @@ class RefundTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Refund(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getAmount());
-        $this->assertNotNull($obj->getState());
-        $this->assertNotNull($obj->getReason());
-        $this->assertNotNull($obj->getInvoiceNumber());
-        $this->assertNotNull($obj->getSaleId());
-        $this->assertNotNull($obj->getCaptureId());
-        $this->assertNotNull($obj->getParentPayment());
-        $this->assertNotNull($obj->getDescription());
-        $this->assertNotNull($obj->getCreateTime());
-        $this->assertNotNull($obj->getUpdateTime());
-        $this->assertNotNull($obj->getReasonCode());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getAmount());
+        self::assertNotNull($obj->getState());
+        self::assertNotNull($obj->getReason());
+        self::assertNotNull($obj->getInvoiceNumber());
+        self::assertNotNull($obj->getSaleId());
+        self::assertNotNull($obj->getCaptureId());
+        self::assertNotNull($obj->getParentPayment());
+        self::assertNotNull($obj->getDescription());
+        self::assertNotNull($obj->getCreateTime());
+        self::assertNotNull($obj->getUpdateTime());
+        self::assertNotNull($obj->getReasonCode());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -62,19 +62,19 @@ class RefundTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getAmount(), AmountTest::getObject());
-        $this->assertEquals($obj->getState(), "TestSample");
-        $this->assertEquals($obj->getReason(), "TestSample");
-        $this->assertEquals($obj->getInvoiceNumber(), "TestSample");
-        $this->assertEquals($obj->getSaleId(), "TestSample");
-        $this->assertEquals($obj->getCaptureId(), "TestSample");
-        $this->assertEquals($obj->getParentPayment(), "TestSample");
-        $this->assertEquals($obj->getDescription(), "TestSample");
-        $this->assertEquals($obj->getCreateTime(), "TestSample");
-        $this->assertEquals($obj->getUpdateTime(), "TestSample");
-        $this->assertEquals($obj->getReasonCode(), "TestSample");
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals("TestSample", $obj->getId());
+        self::assertEquals($obj->getAmount(), AmountTest::getObject());
+        self::assertEquals("TestSample", $obj->getState());
+        self::assertEquals("TestSample", $obj->getReason());
+        self::assertEquals("TestSample", $obj->getInvoiceNumber());
+        self::assertEquals("TestSample", $obj->getSaleId());
+        self::assertEquals("TestSample", $obj->getCaptureId());
+        self::assertEquals("TestSample", $obj->getParentPayment());
+        self::assertEquals("TestSample", $obj->getDescription());
+        self::assertEquals("TestSample", $obj->getCreateTime());
+        self::assertEquals("TestSample", $obj->getUpdateTime());
+        self::assertEquals("TestSample", $obj->getReasonCode());
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 
     /**
@@ -87,14 +87,14 @@ class RefundTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    RefundTest::getJson()
+            ->will(self::returnValue(
+                    self::getJson()
             ));
 
         $result = $obj->get("refundId", $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
 
     public function mockProvider()

@@ -38,10 +38,10 @@ class RedirectUrlsTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new RedirectUrls(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getReturnUrl());
-        $this->assertNotNull($obj->getCancelUrl());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getReturnUrl());
+        self::assertNotNull($obj->getCancelUrl());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -51,25 +51,22 @@ class RedirectUrlsTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getReturnUrl(), "http://www.google.com");
-        $this->assertEquals($obj->getCancelUrl(), "http://www.google.com");
+        self::assertEquals("http://www.google.com", $obj->getReturnUrl());
+        self::assertEquals("http://www.google.com", $obj->getCancelUrl());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage ReturnUrl is not a fully qualified URL
-     */
     public function testUrlValidationForReturnUrl()
     {
+        $this->expectExceptionMessage("ReturnUrl is not a fully qualified URL");
+        $this->expectException(\InvalidArgumentException::class);
         $obj = new RedirectUrls();
         $obj->setReturnUrl(null);
     }
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage CancelUrl is not a fully qualified URL
-     */
+
     public function testUrlValidationForCancelUrl()
     {
+        $this->expectExceptionMessage("CancelUrl is not a fully qualified URL");
+        $this->expectException(\InvalidArgumentException::class);
         $obj = new RedirectUrls();
         $obj->setCancelUrl(null);
     }

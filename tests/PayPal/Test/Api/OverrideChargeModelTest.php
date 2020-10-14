@@ -38,10 +38,10 @@ class OverrideChargeModelTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new OverrideChargeModel(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getChargeId());
-        $this->assertNotNull($obj->getAmount());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getChargeId());
+        self::assertNotNull($obj->getAmount());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -51,7 +51,7 @@ class OverrideChargeModelTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getChargeId(), "TestSample");
-        $this->assertEquals($obj->getAmount(), CurrencyTest::getObject());
+        self::assertEquals("TestSample", $obj->getChargeId());
+        self::assertEquals($obj->getAmount(), CurrencyTest::getObject());
     }
 }

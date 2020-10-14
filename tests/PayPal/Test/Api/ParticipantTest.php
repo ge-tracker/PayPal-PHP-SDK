@@ -39,17 +39,17 @@ class ParticipantTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Participant(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getEmail());
-        $this->assertNotNull($obj->getFirstName());
-        $this->assertNotNull($obj->getLastName());
-        $this->assertNotNull($obj->getBusinessName());
-        $this->assertNotNull($obj->getPhone());
-        $this->assertNotNull($obj->getFax());
-        $this->assertNotNull($obj->getWebsite());
-        $this->assertNotNull($obj->getAdditionalInfo());
-        $this->assertNotNull($obj->getAddress());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getEmail());
+        self::assertNotNull($obj->getFirstName());
+        self::assertNotNull($obj->getLastName());
+        self::assertNotNull($obj->getBusinessName());
+        self::assertNotNull($obj->getPhone());
+        self::assertNotNull($obj->getFax());
+        self::assertNotNull($obj->getWebsite());
+        self::assertNotNull($obj->getAdditionalInfo());
+        self::assertNotNull($obj->getAddress());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -59,14 +59,14 @@ class ParticipantTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getEmail(), "TestSample");
-        $this->assertEquals($obj->getFirstName(), "TestSample");
-        $this->assertEquals($obj->getLastName(), "TestSample");
-        $this->assertEquals($obj->getBusinessName(), "TestSample");
-        $this->assertEquals($obj->getPhone(), PhoneTest::getObject());
-        $this->assertEquals($obj->getFax(), PhoneTest::getObject());
-        $this->assertEquals($obj->getWebsite(), "TestSample");
-        $this->assertEquals($obj->getAdditionalInfo(), "TestSample");
-        $this->assertEquals($obj->getAddress(), AddressTest::getObject());
+        self::assertEquals("TestSample", $obj->getEmail());
+        self::assertEquals("TestSample", $obj->getFirstName());
+        self::assertEquals("TestSample", $obj->getLastName());
+        self::assertEquals("TestSample", $obj->getBusinessName());
+        self::assertEquals($obj->getPhone(), PhoneTest::getObject());
+        self::assertEquals($obj->getFax(), PhoneTest::getObject());
+        self::assertEquals("TestSample", $obj->getWebsite());
+        self::assertEquals("TestSample", $obj->getAdditionalInfo());
+        self::assertEquals($obj->getAddress(), AddressTest::getObject());
     }
 }

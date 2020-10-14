@@ -38,9 +38,9 @@ class CountryCodeTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new CountryCode(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getCountryCode());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getCountryCode());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -50,6 +50,6 @@ class CountryCodeTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getCountryCode(), "TestSample");
+        self::assertEquals("TestSample", $obj->getCountryCode());
     }
 }

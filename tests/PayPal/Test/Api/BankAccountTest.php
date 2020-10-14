@@ -38,32 +38,32 @@ class BankAccountTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new BankAccount(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getAccountNumber());
-        $this->assertNotNull($obj->getAccountNumberType());
-        $this->assertNotNull($obj->getRoutingNumber());
-        $this->assertNotNull($obj->getAccountType());
-        $this->assertNotNull($obj->getAccountName());
-        $this->assertNotNull($obj->getCheckType());
-        $this->assertNotNull($obj->getAuthType());
-        $this->assertNotNull($obj->getAuthCaptureTimestamp());
-        $this->assertNotNull($obj->getBankName());
-        $this->assertNotNull($obj->getCountryCode());
-        $this->assertNotNull($obj->getFirstName());
-        $this->assertNotNull($obj->getLastName());
-        $this->assertNotNull($obj->getBirthDate());
-        $this->assertNotNull($obj->getBillingAddress());
-        $this->assertNotNull($obj->getState());
-        $this->assertNotNull($obj->getConfirmationStatus());
-        $this->assertNotNull($obj->getPayerId());
-        $this->assertNotNull($obj->getExternalCustomerId());
-        $this->assertNotNull($obj->getMerchantId());
-        $this->assertNotNull($obj->getCreateTime());
-        $this->assertNotNull($obj->getUpdateTime());
-        $this->assertNotNull($obj->getValidUntil());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getAccountNumber());
+        self::assertNotNull($obj->getAccountNumberType());
+        self::assertNotNull($obj->getRoutingNumber());
+        self::assertNotNull($obj->getAccountType());
+        self::assertNotNull($obj->getAccountName());
+        self::assertNotNull($obj->getCheckType());
+        self::assertNotNull($obj->getAuthType());
+        self::assertNotNull($obj->getAuthCaptureTimestamp());
+        self::assertNotNull($obj->getBankName());
+        self::assertNotNull($obj->getCountryCode());
+        self::assertNotNull($obj->getFirstName());
+        self::assertNotNull($obj->getLastName());
+        self::assertNotNull($obj->getBirthDate());
+        self::assertNotNull($obj->getBillingAddress());
+        self::assertNotNull($obj->getState());
+        self::assertNotNull($obj->getConfirmationStatus());
+        self::assertNotNull($obj->getPayerId());
+        self::assertNotNull($obj->getExternalCustomerId());
+        self::assertNotNull($obj->getMerchantId());
+        self::assertNotNull($obj->getCreateTime());
+        self::assertNotNull($obj->getUpdateTime());
+        self::assertNotNull($obj->getValidUntil());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -73,29 +73,29 @@ class BankAccountTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getAccountNumber(), "TestSample");
-        $this->assertEquals($obj->getAccountNumberType(), "TestSample");
-        $this->assertEquals($obj->getRoutingNumber(), "TestSample");
-        $this->assertEquals($obj->getAccountType(), "TestSample");
-        $this->assertEquals($obj->getAccountName(), "TestSample");
-        $this->assertEquals($obj->getCheckType(), "TestSample");
-        $this->assertEquals($obj->getAuthType(), "TestSample");
-        $this->assertEquals($obj->getAuthCaptureTimestamp(), "TestSample");
-        $this->assertEquals($obj->getBankName(), "TestSample");
-        $this->assertEquals($obj->getCountryCode(), "TestSample");
-        $this->assertEquals($obj->getFirstName(), "TestSample");
-        $this->assertEquals($obj->getLastName(), "TestSample");
-        $this->assertEquals($obj->getBirthDate(), "TestSample");
-        $this->assertEquals($obj->getBillingAddress(), AddressTest::getObject());
-        $this->assertEquals($obj->getState(), "TestSample");
-        $this->assertEquals($obj->getConfirmationStatus(), "TestSample");
-        $this->assertEquals($obj->getPayerId(), "TestSample");
-        $this->assertEquals($obj->getExternalCustomerId(), "TestSample");
-        $this->assertEquals($obj->getMerchantId(), "TestSample");
-        $this->assertEquals($obj->getCreateTime(), "TestSample");
-        $this->assertEquals($obj->getUpdateTime(), "TestSample");
-        $this->assertEquals($obj->getValidUntil(), "TestSample");
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals("TestSample", $obj->getId());
+        self::assertEquals("TestSample", $obj->getAccountNumber());
+        self::assertEquals("TestSample", $obj->getAccountNumberType());
+        self::assertEquals("TestSample", $obj->getRoutingNumber());
+        self::assertEquals("TestSample", $obj->getAccountType());
+        self::assertEquals("TestSample", $obj->getAccountName());
+        self::assertEquals("TestSample", $obj->getCheckType());
+        self::assertEquals("TestSample", $obj->getAuthType());
+        self::assertEquals("TestSample", $obj->getAuthCaptureTimestamp());
+        self::assertEquals("TestSample", $obj->getBankName());
+        self::assertEquals("TestSample", $obj->getCountryCode());
+        self::assertEquals("TestSample", $obj->getFirstName());
+        self::assertEquals("TestSample", $obj->getLastName());
+        self::assertEquals("TestSample", $obj->getBirthDate());
+        self::assertEquals($obj->getBillingAddress(), AddressTest::getObject());
+        self::assertEquals("TestSample", $obj->getState());
+        self::assertEquals("TestSample", $obj->getConfirmationStatus());
+        self::assertEquals("TestSample", $obj->getPayerId());
+        self::assertEquals("TestSample", $obj->getExternalCustomerId());
+        self::assertEquals("TestSample", $obj->getMerchantId());
+        self::assertEquals("TestSample", $obj->getCreateTime());
+        self::assertEquals("TestSample", $obj->getUpdateTime());
+        self::assertEquals("TestSample", $obj->getValidUntil());
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 }

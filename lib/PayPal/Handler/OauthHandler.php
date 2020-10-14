@@ -100,4 +100,12 @@ class OauthHandler implements IPayPalHandler
 
         return $baseEndpoint;
     }
+
+    /**
+     * @return \Paypal\Rest\ApiContext
+     */
+    public function getApiContext(): \Paypal\Rest\ApiContext
+    {
+        return $this->apiContext;
+    }
 }

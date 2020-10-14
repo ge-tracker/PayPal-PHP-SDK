@@ -47,16 +47,17 @@ class NumericValidatorTest extends TestCase
      */
     public function testValidate($input)
     {
-        $this->assertTrue(NumericValidator::validate($input, "Test Value"));
+        self::assertTrue(NumericValidator::validate($input, "Test Value"));
     }
 
     /**
      *
      * @dataProvider invalidProvider
-     * @expectedException \InvalidArgumentException
+     *
      */
     public function testValidateException($input)
     {
+        $this->expectException(\InvalidArgumentException::class);
         NumericValidator::validate($input, "Test Value");
     }
 }

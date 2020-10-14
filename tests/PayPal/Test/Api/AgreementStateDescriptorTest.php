@@ -38,10 +38,10 @@ class AgreementStateDescriptorTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new AgreementStateDescriptor(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getNote());
-        $this->assertNotNull($obj->getAmount());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getNote());
+        self::assertNotNull($obj->getAmount());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -51,7 +51,7 @@ class AgreementStateDescriptorTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getNote(), "TestSample");
-        $this->assertEquals($obj->getAmount(), CurrencyTest::getObject());
+        self::assertEquals("TestSample", $obj->getNote());
+        self::assertEquals($obj->getAmount(), CurrencyTest::getObject());
     }
 }

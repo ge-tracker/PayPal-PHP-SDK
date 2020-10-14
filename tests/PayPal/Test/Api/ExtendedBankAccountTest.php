@@ -38,9 +38,9 @@ class ExtendedBankAccountTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new ExtendedBankAccount(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getMandateReferenceNumber());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getMandateReferenceNumber());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -50,6 +50,6 @@ class ExtendedBankAccountTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getMandateReferenceNumber(), "TestSample");
+        self::assertEquals("TestSample", $obj->getMandateReferenceNumber());
     }
 }

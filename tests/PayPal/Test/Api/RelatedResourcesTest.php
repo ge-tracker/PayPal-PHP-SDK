@@ -38,13 +38,13 @@ class RelatedResourcesTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new RelatedResources(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getSale());
-        $this->assertNotNull($obj->getAuthorization());
-        $this->assertNotNull($obj->getOrder());
-        $this->assertNotNull($obj->getCapture());
-        $this->assertNotNull($obj->getRefund());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getSale());
+        self::assertNotNull($obj->getAuthorization());
+        self::assertNotNull($obj->getOrder());
+        self::assertNotNull($obj->getCapture());
+        self::assertNotNull($obj->getRefund());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -54,10 +54,10 @@ class RelatedResourcesTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getSale(), SaleTest::getObject());
-        $this->assertEquals($obj->getAuthorization(), AuthorizationTest::getObject());
-        $this->assertEquals($obj->getOrder(), OrderTest::getObject());
-        $this->assertEquals($obj->getCapture(), CaptureTest::getObject());
-        $this->assertEquals($obj->getRefund(), RefundTest::getObject());
+        self::assertEquals($obj->getSale(), SaleTest::getObject());
+        self::assertEquals($obj->getAuthorization(), AuthorizationTest::getObject());
+        self::assertEquals($obj->getOrder(), OrderTest::getObject());
+        self::assertEquals($obj->getCapture(), CaptureTest::getObject());
+        self::assertEquals($obj->getRefund(), RefundTest::getObject());
     }
 }

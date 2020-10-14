@@ -38,27 +38,27 @@ class TemplateDataTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new TemplateData(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getMerchantInfo());
-        $this->assertNotNull($obj->getBillingInfo());
-        $this->assertNotNull($obj->getShippingInfo());
-        $this->assertNotNull($obj->getItems());
-        $this->assertNotNull($obj->getPaymentTerm());
-        $this->assertNotNull($obj->getReference());
-        $this->assertNotNull($obj->getDiscount());
-        $this->assertNotNull($obj->getShippingCost());
-        $this->assertNotNull($obj->getCustom());
-        $this->assertNotNull($obj->getAllowPartialPayment());
-        $this->assertNotNull($obj->getMinimumAmountDue());
-        $this->assertNotNull($obj->getTaxCalculatedAfterDiscount());
-        $this->assertNotNull($obj->getTaxInclusive());
-        $this->assertNotNull($obj->getTerms());
-        $this->assertNotNull($obj->getNote());
-        $this->assertNotNull($obj->getMerchantMemo());
-        $this->assertNotNull($obj->getLogoUrl());
-        $this->assertNotNull($obj->getTotalAmount());
-        $this->assertNotNull($obj->getAttachments());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getMerchantInfo());
+        self::assertNotNull($obj->getBillingInfo());
+        self::assertNotNull($obj->getShippingInfo());
+        self::assertNotNull($obj->getItems());
+        self::assertNotNull($obj->getPaymentTerm());
+        self::assertNotNull($obj->getReference());
+        self::assertNotNull($obj->getDiscount());
+        self::assertNotNull($obj->getShippingCost());
+        self::assertNotNull($obj->getCustom());
+        self::assertNotNull($obj->getAllowPartialPayment());
+        self::assertNotNull($obj->getMinimumAmountDue());
+        self::assertNotNull($obj->getTaxCalculatedAfterDiscount());
+        self::assertNotNull($obj->getTaxInclusive());
+        self::assertNotNull($obj->getTerms());
+        self::assertNotNull($obj->getNote());
+        self::assertNotNull($obj->getMerchantMemo());
+        self::assertNotNull($obj->getLogoUrl());
+        self::assertNotNull($obj->getTotalAmount());
+        self::assertNotNull($obj->getAttachments());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -68,33 +68,31 @@ class TemplateDataTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getMerchantInfo(), MerchantInfoTest::getObject());
-        $this->assertEquals($obj->getBillingInfo(), BillingInfoTest::getObject());
-        $this->assertEquals($obj->getShippingInfo(), ShippingInfoTest::getObject());
-        $this->assertEquals($obj->getItems(), InvoiceItemTest::getObject());
-        $this->assertEquals($obj->getPaymentTerm(), PaymentTermTest::getObject());
-        $this->assertEquals($obj->getReference(), "TestSample");
-        $this->assertEquals($obj->getDiscount(), CostTest::getObject());
-        $this->assertEquals($obj->getShippingCost(), ShippingCostTest::getObject());
-        $this->assertEquals($obj->getCustom(), CustomAmountTest::getObject());
-        $this->assertEquals($obj->getAllowPartialPayment(), true);
-        $this->assertEquals($obj->getMinimumAmountDue(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getTaxCalculatedAfterDiscount(), true);
-        $this->assertEquals($obj->getTaxInclusive(), true);
-        $this->assertEquals($obj->getTerms(), "TestSample");
-        $this->assertEquals($obj->getNote(), "TestSample");
-        $this->assertEquals($obj->getMerchantMemo(), "TestSample");
-        $this->assertEquals($obj->getLogoUrl(), "http://www.google.com");
-        $this->assertEquals($obj->getTotalAmount(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getAttachments(), FileAttachmentTest::getObject());
+        self::assertEquals($obj->getMerchantInfo(), MerchantInfoTest::getObject());
+        self::assertEquals($obj->getBillingInfo(), BillingInfoTest::getObject());
+        self::assertEquals($obj->getShippingInfo(), ShippingInfoTest::getObject());
+        self::assertEquals($obj->getItems(), InvoiceItemTest::getObject());
+        self::assertEquals($obj->getPaymentTerm(), PaymentTermTest::getObject());
+        self::assertEquals("TestSample", $obj->getReference());
+        self::assertEquals($obj->getDiscount(), CostTest::getObject());
+        self::assertEquals($obj->getShippingCost(), ShippingCostTest::getObject());
+        self::assertEquals($obj->getCustom(), CustomAmountTest::getObject());
+        self::assertEquals(true, $obj->getAllowPartialPayment());
+        self::assertEquals($obj->getMinimumAmountDue(), CurrencyTest::getObject());
+        self::assertEquals(true, $obj->getTaxCalculatedAfterDiscount());
+        self::assertEquals(true, $obj->getTaxInclusive());
+        self::assertEquals("TestSample", $obj->getTerms());
+        self::assertEquals("TestSample", $obj->getNote());
+        self::assertEquals("TestSample", $obj->getMerchantMemo());
+        self::assertEquals("http://www.google.com", $obj->getLogoUrl());
+        self::assertEquals($obj->getTotalAmount(), CurrencyTest::getObject());
+        self::assertEquals($obj->getAttachments(), FileAttachmentTest::getObject());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage LogoUrl is not a fully qualified URL
-     */
     public function testUrlValidationForLogoUrl()
     {
+        $this->expectExceptionMessage("LogoUrl is not a fully qualified URL");
+        $this->expectException(\InvalidArgumentException::class);
         $obj = new TemplateData();
         $obj->setLogoUrl(null);
     }

@@ -38,14 +38,14 @@ class PayeeTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Payee(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getEmail());
-        $this->assertNotNull($obj->getMerchantId());
-        $this->assertNotNull($obj->getFirstName());
-        $this->assertNotNull($obj->getLastName());
-        $this->assertNotNull($obj->getAccountNumber());
-        $this->assertNotNull($obj->getPhone());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getEmail());
+        self::assertNotNull($obj->getMerchantId());
+        self::assertNotNull($obj->getFirstName());
+        self::assertNotNull($obj->getLastName());
+        self::assertNotNull($obj->getAccountNumber());
+        self::assertNotNull($obj->getPhone());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -55,11 +55,11 @@ class PayeeTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getEmail(), "TestSample");
-        $this->assertEquals($obj->getMerchantId(), "TestSample");
-        $this->assertEquals($obj->getFirstName(), "TestSample");
-        $this->assertEquals($obj->getLastName(), "TestSample");
-        $this->assertEquals($obj->getAccountNumber(), "TestSample");
-        $this->assertEquals($obj->getPhone(), PhoneTest::getObject());
+        self::assertEquals("TestSample", $obj->getEmail());
+        self::assertEquals("TestSample", $obj->getMerchantId());
+        self::assertEquals("TestSample", $obj->getFirstName());
+        self::assertEquals("TestSample", $obj->getLastName());
+        self::assertEquals("TestSample", $obj->getAccountNumber());
+        self::assertEquals($obj->getPhone(), PhoneTest::getObject());
     }
 }

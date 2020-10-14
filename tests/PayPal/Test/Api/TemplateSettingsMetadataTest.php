@@ -39,9 +39,9 @@ class TemplateSettingsMetadataTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new TemplateSettingsMetadata(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getHidden());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getHidden());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -51,6 +51,6 @@ class TemplateSettingsMetadataTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getHidden(), true);
+        self::assertEquals(true, $obj->getHidden());
     }
 }

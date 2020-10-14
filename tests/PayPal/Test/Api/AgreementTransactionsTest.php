@@ -38,9 +38,9 @@ class AgreementTransactionsTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new AgreementTransactions(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getAgreementTransactionList());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getAgreementTransactionList());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -50,6 +50,6 @@ class AgreementTransactionsTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getAgreementTransactionList(), AgreementTransactionTest::getObject());
+        self::assertEquals($obj->getAgreementTransactionList(), AgreementTransactionTest::getObject());
     }
 }

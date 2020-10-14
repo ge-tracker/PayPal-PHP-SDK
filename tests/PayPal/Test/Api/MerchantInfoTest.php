@@ -2,6 +2,7 @@
 
 namespace PayPal\Test\Api;
 
+use PayPal\Api\BaseAddress;
 use PayPal\Api\MerchantInfo;
 use PHPUnit\Framework\TestCase;
 
@@ -38,19 +39,19 @@ class MerchantInfoTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new MerchantInfo(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getEmail());
-        $this->assertNotNull($obj->getFirstName());
-        $this->assertNotNull($obj->getLastName());
-        $this->assertNotNull($obj->getAddress());
-        $this->assertNotNull($obj->getBusinessName());
-        $this->assertNotNull($obj->getPhone());
-        $this->assertNotNull($obj->getFax());
-        $this->assertNotNull($obj->getWebsite());
-        $this->assertNotNull($obj->getTaxId());
-        $this->assertNotNull($obj->getAdditionalInfoLabel());
-        $this->assertNotNull($obj->getAdditionalInfo());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getEmail());
+        self::assertNotNull($obj->getFirstName());
+        self::assertNotNull($obj->getLastName());
+        self::assertNotNull($obj->getAddress());
+        self::assertNotNull($obj->getBusinessName());
+        self::assertNotNull($obj->getPhone());
+        self::assertNotNull($obj->getFax());
+        self::assertNotNull($obj->getWebsite());
+        self::assertNotNull($obj->getTaxId());
+        self::assertNotNull($obj->getAdditionalInfoLabel());
+        self::assertNotNull($obj->getAdditionalInfo());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -60,16 +61,16 @@ class MerchantInfoTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getEmail(), "TestSample");
-        $this->assertEquals($obj->getFirstName(), "TestSample");
-        $this->assertEquals($obj->getLastName(), "TestSample");
-        $this->assertEquals($obj->getAddress(), AddressTest::getObject());
-        $this->assertEquals($obj->getBusinessName(), "TestSample");
-        $this->assertEquals($obj->getPhone(), PhoneTest::getObject());
-        $this->assertEquals($obj->getFax(), PhoneTest::getObject());
-        $this->assertEquals($obj->getWebsite(), "TestSample");
-        $this->assertEquals($obj->getTaxId(), "TestSample");
-        $this->assertEquals($obj->getAdditionalInfoLabel(), "TestSample");
-        $this->assertEquals($obj->getAdditionalInfo(), "TestSample");
+        self::assertEquals("TestSample", $obj->getEmail());
+        self::assertEquals("TestSample", $obj->getFirstName());
+        self::assertEquals("TestSample", $obj->getLastName());
+        self::assertInstanceOf(BaseAddress::class, $obj->getAddress());
+        self::assertEquals("TestSample", $obj->getBusinessName());
+        self::assertEquals($obj->getPhone(), PhoneTest::getObject());
+        self::assertEquals($obj->getFax(), PhoneTest::getObject());
+        self::assertEquals("TestSample", $obj->getWebsite());
+        self::assertEquals("TestSample", $obj->getTaxId());
+        self::assertEquals("TestSample", $obj->getAdditionalInfoLabel());
+        self::assertEquals("TestSample", $obj->getAdditionalInfo());
     }
 }

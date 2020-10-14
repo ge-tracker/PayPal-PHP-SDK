@@ -39,9 +39,9 @@ class WebhookListTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new WebhookList(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getWebhooks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getWebhooks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -51,7 +51,7 @@ class WebhookListTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getWebhooks(), WebhookTest::getObject());
+        self::assertEquals($obj->getWebhooks(), WebhookTest::getObject());
     }
 
 

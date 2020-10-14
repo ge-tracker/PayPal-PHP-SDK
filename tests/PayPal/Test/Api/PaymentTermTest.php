@@ -38,10 +38,10 @@ class PaymentTermTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new PaymentTerm(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getTermType());
-        $this->assertNotNull($obj->getDueDate());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getTermType());
+        self::assertNotNull($obj->getDueDate());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -51,7 +51,7 @@ class PaymentTermTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getTermType(), "TestSample");
-        $this->assertEquals($obj->getDueDate(), "TestSample");
+        self::assertEquals("TestSample", $obj->getTermType());
+        self::assertEquals("TestSample", $obj->getDueDate());
     }
 }

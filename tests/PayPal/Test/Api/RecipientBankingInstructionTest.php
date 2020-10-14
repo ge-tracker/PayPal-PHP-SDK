@@ -38,14 +38,14 @@ class RecipientBankingInstructionTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new RecipientBankingInstruction(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getBankName());
-        $this->assertNotNull($obj->getAccountHolderName());
-        $this->assertNotNull($obj->getAccountNumber());
-        $this->assertNotNull($obj->getRoutingNumber());
-        $this->assertNotNull($obj->getInternationalBankAccountNumber());
-        $this->assertNotNull($obj->getBankIdentifierCode());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getBankName());
+        self::assertNotNull($obj->getAccountHolderName());
+        self::assertNotNull($obj->getAccountNumber());
+        self::assertNotNull($obj->getRoutingNumber());
+        self::assertNotNull($obj->getInternationalBankAccountNumber());
+        self::assertNotNull($obj->getBankIdentifierCode());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -55,11 +55,11 @@ class RecipientBankingInstructionTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getBankName(), "TestSample");
-        $this->assertEquals($obj->getAccountHolderName(), "TestSample");
-        $this->assertEquals($obj->getAccountNumber(), "TestSample");
-        $this->assertEquals($obj->getRoutingNumber(), "TestSample");
-        $this->assertEquals($obj->getInternationalBankAccountNumber(), "TestSample");
-        $this->assertEquals($obj->getBankIdentifierCode(), "TestSample");
+        self::assertEquals("TestSample", $obj->getBankName());
+        self::assertEquals("TestSample", $obj->getAccountHolderName());
+        self::assertEquals("TestSample", $obj->getAccountNumber());
+        self::assertEquals("TestSample", $obj->getRoutingNumber());
+        self::assertEquals("TestSample", $obj->getInternationalBankAccountNumber());
+        self::assertEquals("TestSample", $obj->getBankIdentifierCode());
     }
 }

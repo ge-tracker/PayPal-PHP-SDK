@@ -38,18 +38,18 @@ class AgreementTransactionTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new AgreementTransaction(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getTransactionId());
-        $this->assertNotNull($obj->getStatus());
-        $this->assertNotNull($obj->getTransactionType());
-        $this->assertNotNull($obj->getAmount());
-        $this->assertNotNull($obj->getFeeAmount());
-        $this->assertNotNull($obj->getNetAmount());
-        $this->assertNotNull($obj->getPayerEmail());
-        $this->assertNotNull($obj->getPayerName());
-        $this->assertNotNull($obj->getTimeStamp());
-        $this->assertNotNull($obj->getTimeZone());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getTransactionId());
+        self::assertNotNull($obj->getStatus());
+        self::assertNotNull($obj->getTransactionType());
+        self::assertNotNull($obj->getAmount());
+        self::assertNotNull($obj->getFeeAmount());
+        self::assertNotNull($obj->getNetAmount());
+        self::assertNotNull($obj->getPayerEmail());
+        self::assertNotNull($obj->getPayerName());
+        self::assertNotNull($obj->getTimeStamp());
+        self::assertNotNull($obj->getTimeZone());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -59,15 +59,15 @@ class AgreementTransactionTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getTransactionId(), "TestSample");
-        $this->assertEquals($obj->getStatus(), "TestSample");
-        $this->assertEquals($obj->getTransactionType(), "TestSample");
-        $this->assertEquals($obj->getAmount(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getFeeAmount(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getNetAmount(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getPayerEmail(), "TestSample");
-        $this->assertEquals($obj->getPayerName(), "TestSample");
-        $this->assertEquals($obj->getTimeStamp(), "TestSample");
-        $this->assertEquals($obj->getTimeZone(), "TestSample");
+        self::assertEquals("TestSample", $obj->getTransactionId());
+        self::assertEquals("TestSample", $obj->getStatus());
+        self::assertEquals("TestSample", $obj->getTransactionType());
+        self::assertEquals($obj->getAmount(), CurrencyTest::getObject());
+        self::assertEquals($obj->getFeeAmount(), CurrencyTest::getObject());
+        self::assertEquals($obj->getNetAmount(), CurrencyTest::getObject());
+        self::assertEquals("TestSample", $obj->getPayerEmail());
+        self::assertEquals("TestSample", $obj->getPayerName());
+        self::assertEquals("TestSample", $obj->getTimeStamp());
+        self::assertEquals("TestSample", $obj->getTimeZone());
     }
 }

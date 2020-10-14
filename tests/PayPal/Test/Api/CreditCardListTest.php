@@ -38,12 +38,12 @@ class CreditCardListTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new CreditCardList(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getItems());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertNotNull($obj->getTotalItems());
-        $this->assertNotNull($obj->getTotalPages());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getItems());
+        self::assertNotNull($obj->getLinks());
+        self::assertNotNull($obj->getTotalItems());
+        self::assertNotNull($obj->getTotalPages());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -53,9 +53,9 @@ class CreditCardListTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getItems(), CreditCardTest::getObject());
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
-        $this->assertEquals($obj->getTotalItems(), 123);
-        $this->assertEquals($obj->getTotalPages(), 123);
+        self::assertEquals($obj->getItems(), CreditCardTest::getObject());
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals(123, $obj->getTotalItems());
+        self::assertEquals(123, $obj->getTotalPages());
     }
 }

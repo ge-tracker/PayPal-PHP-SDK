@@ -39,40 +39,40 @@ class InvoiceTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Invoice(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getNumber());
-        $this->assertNotNull($obj->getTemplateId());
-        $this->assertNotNull($obj->getUri());
-        $this->assertNotNull($obj->getStatus());
-        $this->assertNotNull($obj->getMerchantInfo());
-        $this->assertNotNull($obj->getBillingInfo());
-        $this->assertNotNull($obj->getCcInfo());
-        $this->assertNotNull($obj->getShippingInfo());
-        $this->assertNotNull($obj->getItems());
-        $this->assertNotNull($obj->getInvoiceDate());
-        $this->assertNotNull($obj->getPaymentTerm());
-        $this->assertNotNull($obj->getReference());
-        $this->assertNotNull($obj->getDiscount());
-        $this->assertNotNull($obj->getShippingCost());
-        $this->assertNotNull($obj->getCustom());
-        $this->assertNotNull($obj->getAllowPartialPayment());
-        $this->assertNotNull($obj->getMinimumAmountDue());
-        $this->assertNotNull($obj->getTaxCalculatedAfterDiscount());
-        $this->assertNotNull($obj->getTaxInclusive());
-        $this->assertNotNull($obj->getTerms());
-        $this->assertNotNull($obj->getNote());
-        $this->assertNotNull($obj->getMerchantMemo());
-        $this->assertNotNull($obj->getLogoUrl());
-        $this->assertNotNull($obj->getTotalAmount());
-        $this->assertNotNull($obj->getPayments());
-        $this->assertNotNull($obj->getRefunds());
-        $this->assertNotNull($obj->getMetadata());
-        $this->assertNotNull($obj->getAdditionalData());
-        $this->assertNotNull($obj->getPaidAmount());
-        $this->assertNotNull($obj->getRefundedAmount());
-        $this->assertNotNull($obj->getAttachments());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getNumber());
+        self::assertNotNull($obj->getTemplateId());
+        self::assertNotNull($obj->getUri());
+        self::assertNotNull($obj->getStatus());
+        self::assertNotNull($obj->getMerchantInfo());
+        self::assertNotNull($obj->getBillingInfo());
+        self::assertNotNull($obj->getCcInfo());
+        self::assertNotNull($obj->getShippingInfo());
+        self::assertNotNull($obj->getItems());
+        self::assertNotNull($obj->getInvoiceDate());
+        self::assertNotNull($obj->getPaymentTerm());
+        self::assertNotNull($obj->getReference());
+        self::assertNotNull($obj->getDiscount());
+        self::assertNotNull($obj->getShippingCost());
+        self::assertNotNull($obj->getCustom());
+        self::assertNotNull($obj->getAllowPartialPayment());
+        self::assertNotNull($obj->getMinimumAmountDue());
+        self::assertNotNull($obj->getTaxCalculatedAfterDiscount());
+        self::assertNotNull($obj->getTaxInclusive());
+        self::assertNotNull($obj->getTerms());
+        self::assertNotNull($obj->getNote());
+        self::assertNotNull($obj->getMerchantMemo());
+        self::assertNotNull($obj->getLogoUrl());
+        self::assertNotNull($obj->getTotalAmount());
+        self::assertNotNull($obj->getPayments());
+        self::assertNotNull($obj->getRefunds());
+        self::assertNotNull($obj->getMetadata());
+        self::assertNotNull($obj->getAdditionalData());
+        self::assertNotNull($obj->getPaidAmount());
+        self::assertNotNull($obj->getRefundedAmount());
+        self::assertNotNull($obj->getAttachments());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -82,46 +82,44 @@ class InvoiceTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getNumber(), "TestSample");
-        $this->assertEquals($obj->getTemplateId(), "TestSample");
-        $this->assertEquals($obj->getUri(), "TestSample");
-        $this->assertEquals($obj->getStatus(), "TestSample");
-        $this->assertEquals($obj->getMerchantInfo(), MerchantInfoTest::getObject());
-        $this->assertEquals($obj->getBillingInfo(), BillingInfoTest::getObject());
-        $this->assertEquals($obj->getCcInfo(), ParticipantTest::getObject());
-        $this->assertEquals($obj->getShippingInfo(), ShippingInfoTest::getObject());
-        $this->assertEquals($obj->getItems(), InvoiceItemTest::getObject());
-        $this->assertEquals($obj->getInvoiceDate(), "TestSample");
-        $this->assertEquals($obj->getPaymentTerm(), PaymentTermTest::getObject());
-        $this->assertEquals($obj->getReference(), "TestSample");
-        $this->assertEquals($obj->getDiscount(), CostTest::getObject());
-        $this->assertEquals($obj->getShippingCost(), ShippingCostTest::getObject());
-        $this->assertEquals($obj->getCustom(), CustomAmountTest::getObject());
-        $this->assertEquals($obj->getAllowPartialPayment(), true);
-        $this->assertEquals($obj->getMinimumAmountDue(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getTaxCalculatedAfterDiscount(), true);
-        $this->assertEquals($obj->getTaxInclusive(), true);
-        $this->assertEquals($obj->getTerms(), "TestSample");
-        $this->assertEquals($obj->getNote(), "TestSample");
-        $this->assertEquals($obj->getMerchantMemo(), "TestSample");
-        $this->assertEquals($obj->getLogoUrl(), "http://www.google.com");
-        $this->assertEquals($obj->getTotalAmount(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getPayments(), PaymentDetailTest::getObject());
-        $this->assertEquals($obj->getRefunds(), RefundDetailTest::getObject());
-        $this->assertEquals($obj->getMetadata(), MetadataTest::getObject());
-        $this->assertEquals($obj->getAdditionalData(), "TestSample");
-        $this->assertEquals($obj->getPaidAmount(), PaymentSummaryTest::getObject());
-        $this->assertEquals($obj->getRefundedAmount(), PaymentSummaryTest::getObject());
-        $this->assertEquals($obj->getAttachments(), FileAttachmentTest::getObject());
+        self::assertEquals("TestSample", $obj->getId());
+        self::assertEquals("TestSample", $obj->getNumber());
+        self::assertEquals("TestSample", $obj->getTemplateId());
+        self::assertEquals("TestSample", $obj->getUri());
+        self::assertEquals("TestSample", $obj->getStatus());
+        self::assertEquals($obj->getMerchantInfo(), MerchantInfoTest::getObject());
+        self::assertEquals($obj->getBillingInfo(), BillingInfoTest::getObject());
+        self::assertEquals($obj->getCcInfo(), ParticipantTest::getObject());
+        self::assertEquals($obj->getShippingInfo(), ShippingInfoTest::getObject());
+        self::assertEquals($obj->getItems(), InvoiceItemTest::getObject());
+        self::assertEquals("TestSample", $obj->getInvoiceDate());
+        self::assertEquals($obj->getPaymentTerm(), PaymentTermTest::getObject());
+        self::assertEquals("TestSample", $obj->getReference());
+        self::assertEquals($obj->getDiscount(), CostTest::getObject());
+        self::assertEquals($obj->getShippingCost(), ShippingCostTest::getObject());
+        self::assertEquals($obj->getCustom(), CustomAmountTest::getObject());
+        self::assertEquals(true, $obj->getAllowPartialPayment());
+        self::assertEquals($obj->getMinimumAmountDue(), CurrencyTest::getObject());
+        self::assertEquals(true, $obj->getTaxCalculatedAfterDiscount());
+        self::assertEquals(true, $obj->getTaxInclusive());
+        self::assertEquals("TestSample", $obj->getTerms());
+        self::assertEquals("TestSample", $obj->getNote());
+        self::assertEquals("TestSample", $obj->getMerchantMemo());
+        self::assertEquals("http://www.google.com", $obj->getLogoUrl());
+        self::assertEquals($obj->getTotalAmount(), CurrencyTest::getObject());
+        self::assertEquals($obj->getPayments(), PaymentDetailTest::getObject());
+        self::assertEquals($obj->getRefunds(), RefundDetailTest::getObject());
+        self::assertEquals($obj->getMetadata(), MetadataTest::getObject());
+        self::assertEquals("TestSample", $obj->getAdditionalData());
+        self::assertEquals($obj->getPaidAmount(), PaymentSummaryTest::getObject());
+        self::assertEquals($obj->getRefundedAmount(), PaymentSummaryTest::getObject());
+        self::assertEquals($obj->getAttachments(), FileAttachmentTest::getObject());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage LogoUrl is not a fully qualified URL
-     */
     public function testUrlValidationForLogoUrl()
     {
+        $this->expectExceptionMessage("LogoUrl is not a fully qualified URL");
+        $this->expectException(\InvalidArgumentException::class);
         $obj = new Invoice();
         $obj->setLogoUrl(null);
     }
@@ -135,14 +133,14 @@ class InvoiceTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     self::getJson()
             ));
 
         $result = $obj->create($mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -154,15 +152,15 @@ class InvoiceTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     InvoiceSearchResponseTest::getJson()
             ));
         $search = SearchTest::getObject();
 
         $result = $obj->search($search, $mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -174,14 +172,14 @@ class InvoiceTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     true
             ));
 
         $result = $obj->send($mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -193,15 +191,15 @@ class InvoiceTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     true
             ));
         $notification = NotificationTest::getObject();
 
         $result = $obj->remind($notification, $mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -213,15 +211,15 @@ class InvoiceTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     true
             ));
         $cancelNotification = CancelNotificationTest::getObject();
 
         $result = $obj->cancel($cancelNotification, $mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -233,15 +231,15 @@ class InvoiceTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     true
             ));
         $paymentDetail = PaymentDetailTest::getObject();
 
         $result = $obj->recordPayment($paymentDetail, $mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -253,15 +251,15 @@ class InvoiceTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     true
             ));
         $refundDetail = RefundDetailTest::getObject();
 
         $result = $obj->recordRefund($refundDetail, $mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -273,14 +271,14 @@ class InvoiceTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    InvoiceTest::getJson()
+            ->will(self::returnValue(
+                    self::getJson()
             ));
 
         $result = $obj->get("invoiceId", $mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -292,14 +290,14 @@ class InvoiceTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     InvoiceSearchResponseTest::getJson()
             ));
 
         $result = $obj->getAll(array(), $mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -311,14 +309,14 @@ class InvoiceTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                 self::getJson()
             ));
 
         $result = $obj->update($mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -330,14 +328,14 @@ class InvoiceTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                 true
             ));
 
         $result = $obj->delete($mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -349,14 +347,14 @@ class InvoiceTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPayPalRestCall->expects($this->any())
+        $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                 ImageTest::getJson()
             ));
 
         $result = $obj->qrCode("invoiceId", array(), $mockApiContext, $mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -368,14 +366,14 @@ class InvoiceTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     InvoiceNumberTest::getJson()
             ));
 
         $result = $obj->generateNumber($mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
 
     public function mockProvider()

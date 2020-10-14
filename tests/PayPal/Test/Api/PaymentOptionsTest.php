@@ -38,11 +38,11 @@ class PaymentOptionsTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new PaymentOptions(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getAllowedPaymentMethod());
-        $this->assertNotNull($obj->getRecurringFlag());
-        $this->assertNotNull($obj->getSkipFmf());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getAllowedPaymentMethod());
+        self::assertNotNull($obj->getRecurringFlag());
+        self::assertNotNull($obj->getSkipFmf());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -52,8 +52,8 @@ class PaymentOptionsTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getAllowedPaymentMethod(), "TestSample");
-        $this->assertEquals($obj->getRecurringFlag(), true);
-        $this->assertEquals($obj->getSkipFmf(), true);
+        self::assertEquals("TestSample", $obj->getAllowedPaymentMethod());
+        self::assertEquals(true, $obj->getRecurringFlag());
+        self::assertEquals(true, $obj->getSkipFmf());
     }
 }

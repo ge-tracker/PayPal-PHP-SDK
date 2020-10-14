@@ -39,12 +39,12 @@ class ItemListTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new ItemList(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getItems());
-        $this->assertNotNull($obj->getShippingAddress());
-        $this->assertNotNull($obj->getShippingMethod());
-        $this->assertNotNull($obj->getShippingPhoneNumber());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getItems());
+        self::assertNotNull($obj->getShippingAddress());
+        self::assertNotNull($obj->getShippingMethod());
+        self::assertNotNull($obj->getShippingPhoneNumber());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -54,12 +54,12 @@ class ItemListTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getItems(), array(ItemTest::getObject()));
-        $this->assertEquals($obj->getShippingAddress(), ShippingAddressTest::getObject());
-        $this->assertEquals($obj->getShippingMethod(), "TestSample");
-        $this->assertEquals($obj->getShippingPhoneNumber(), "TestSample");
+        self::assertEquals($obj->getItems(), array(ItemTest::getObject()));
+        self::assertEquals($obj->getShippingAddress(), ShippingAddressTest::getObject());
+        self::assertEquals("TestSample", $obj->getShippingMethod());
+        self::assertEquals("TestSample", $obj->getShippingPhoneNumber());
     }
-	
+
 	/**
      * @depends testSerializationDeserialization
      * @param ItemList $obj
@@ -72,10 +72,10 @@ class ItemListTest extends TestCase
 		$item3->setSku('TestSample3');
 		$obj->addItem($item2);
 		$obj->addItem($item3);
-		$this->assertCount(3, $obj->getItems());
+		self::assertCount(3, $obj->getItems());
 		$obj->removeItem($item2);
-		
-		$this->assertCount(2, $obj->getItems());
-		$this->assertContains('"items":[', $obj->toJSON());
+
+		self::assertCount(2, $obj->getItems());
+		self::assertStringContainsString('"items":[', $obj->toJSON());
     }
 }

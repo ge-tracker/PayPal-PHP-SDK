@@ -13,8 +13,10 @@ class UrlValidator
     /**
      * Helper method for validating URLs that will be used by this API in any requests.
      *
-     * @param      $url
+     * @param             $url
      * @param string|null $urlName
+     *
+     * @return bool
      * @throws \InvalidArgumentException
      */
     public static function validate($url, $urlName = null)
@@ -22,5 +24,7 @@ class UrlValidator
         if (filter_var($url, FILTER_VALIDATE_URL) === false) {
             throw new \InvalidArgumentException("$urlName is not a fully qualified URL");
         }
+
+        return true;
     }
 }

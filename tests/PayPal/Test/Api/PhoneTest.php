@@ -38,11 +38,11 @@ class PhoneTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Phone(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getCountryCode());
-        $this->assertNotNull($obj->getNationalNumber());
-        $this->assertNotNull($obj->getExtension());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getCountryCode());
+        self::assertNotNull($obj->getNationalNumber());
+        self::assertNotNull($obj->getExtension());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -52,8 +52,8 @@ class PhoneTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getCountryCode(), "TestSample");
-        $this->assertEquals($obj->getNationalNumber(), "TestSample");
-        $this->assertEquals($obj->getExtension(), "TestSample");
+        self::assertEquals("TestSample", $obj->getCountryCode());
+        self::assertEquals("TestSample", $obj->getNationalNumber());
+        self::assertEquals("TestSample", $obj->getExtension());
     }
 }

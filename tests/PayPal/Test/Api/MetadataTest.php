@@ -38,18 +38,18 @@ class MetadataTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Metadata(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getCreatedDate());
-        $this->assertNotNull($obj->getCreatedBy());
-        $this->assertNotNull($obj->getCancelledDate());
-        $this->assertNotNull($obj->getCancelledBy());
-        $this->assertNotNull($obj->getLastUpdatedDate());
-        $this->assertNotNull($obj->getLastUpdatedBy());
-        $this->assertNotNull($obj->getFirstSentDate());
-        $this->assertNotNull($obj->getLastSentDate());
-        $this->assertNotNull($obj->getLastSentBy());
-        $this->assertNotNull($obj->getPayerViewUrl());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getCreatedDate());
+        self::assertNotNull($obj->getCreatedBy());
+        self::assertNotNull($obj->getCancelledDate());
+        self::assertNotNull($obj->getCancelledBy());
+        self::assertNotNull($obj->getLastUpdatedDate());
+        self::assertNotNull($obj->getLastUpdatedBy());
+        self::assertNotNull($obj->getFirstSentDate());
+        self::assertNotNull($obj->getLastSentDate());
+        self::assertNotNull($obj->getLastSentBy());
+        self::assertNotNull($obj->getPayerViewUrl());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -59,32 +59,31 @@ class MetadataTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getCreatedDate(), "TestSample");
-        $this->assertEquals($obj->getCreatedBy(), "TestSample");
-        $this->assertEquals($obj->getCancelledDate(), "TestSample");
-        $this->assertEquals($obj->getCancelledBy(), "TestSample");
-        $this->assertEquals($obj->getLastUpdatedDate(), "TestSample");
-        $this->assertEquals($obj->getLastUpdatedBy(), "TestSample");
-        $this->assertEquals($obj->getFirstSentDate(), "TestSample");
-        $this->assertEquals($obj->getLastSentDate(), "TestSample");
-        $this->assertEquals($obj->getLastSentBy(), "TestSample");
-        $this->assertEquals($obj->getPayerViewUrl(), "http://www.google.com");
+        self::assertEquals("TestSample", $obj->getCreatedDate());
+        self::assertEquals("TestSample", $obj->getCreatedBy());
+        self::assertEquals("TestSample", $obj->getCancelledDate());
+        self::assertEquals("TestSample", $obj->getCancelledBy());
+        self::assertEquals("TestSample", $obj->getLastUpdatedDate());
+        self::assertEquals("TestSample", $obj->getLastUpdatedBy());
+        self::assertEquals("TestSample", $obj->getFirstSentDate());
+        self::assertEquals("TestSample", $obj->getLastSentDate());
+        self::assertEquals("TestSample", $obj->getLastSentBy());
+        self::assertEquals("http://www.google.com", $obj->getPayerViewUrl());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage PayerViewUrl is not a fully qualified URL
-     */
     public function testUrlValidationForPayerViewUrl()
     {
+        $this->expectExceptionMessage("PayerViewUrl is not a fully qualified URL");
+        $this->expectException(\InvalidArgumentException::class);
         $obj = new Metadata();
         $obj->setPayerViewUrl(null);
     }
 
     public function testUrlValidationForPayerViewUrlDeprecated()
     {
+        $this->expectException(\InvalidArgumentException::class);
         $obj = new Metadata();
-        $obj->setPayer_view_url(null);
-        $this->assertNull($obj->getPayer_view_url());
+        $obj->setPayerViewUrl(null);
+        self::assertNull($obj->getPayerViewUrl());
     }
 }

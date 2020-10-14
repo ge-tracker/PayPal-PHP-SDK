@@ -38,11 +38,11 @@ class PayoutTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Payout(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getSenderBatchHeader());
-        $this->assertNotNull($obj->getItems());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getSenderBatchHeader());
+        self::assertNotNull($obj->getItems());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -52,9 +52,9 @@ class PayoutTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getSenderBatchHeader(), PayoutSenderBatchHeaderTest::getObject());
-        $this->assertEquals($obj->getItems(), PayoutItemTest::getObject());
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals($obj->getSenderBatchHeader(), PayoutSenderBatchHeaderTest::getObject());
+        self::assertEquals($obj->getItems(), PayoutItemTest::getObject());
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 
     /**
@@ -67,15 +67,15 @@ class PayoutTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     PayoutBatchTest::getJson()
             ));
         $params = array();
 
         $result = $obj->create($params, $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -87,14 +87,14 @@ class PayoutTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     PayoutBatchTest::getJson()
             ));
 
         $result = $obj->get("payoutBatchId", $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
 
     public function mockProvider()

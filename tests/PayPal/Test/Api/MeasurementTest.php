@@ -38,10 +38,10 @@ class MeasurementTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Measurement(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getValue());
-        $this->assertNotNull($obj->getUnit());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getValue());
+        self::assertNotNull($obj->getUnit());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -51,7 +51,7 @@ class MeasurementTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getValue(), "TestSample");
-        $this->assertEquals($obj->getUnit(), "TestSample");
+        self::assertEquals("TestSample", $obj->getValue());
+        self::assertEquals("TestSample", $obj->getUnit());
     }
 }

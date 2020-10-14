@@ -38,17 +38,17 @@ class IncentiveTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Incentive(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getCode());
-        $this->assertNotNull($obj->getName());
-        $this->assertNotNull($obj->getDescription());
-        $this->assertNotNull($obj->getMinimumPurchaseAmount());
-        $this->assertNotNull($obj->getLogoImageUrl());
-        $this->assertNotNull($obj->getExpiryDate());
-        $this->assertNotNull($obj->getType());
-        $this->assertNotNull($obj->getTerms());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getCode());
+        self::assertNotNull($obj->getName());
+        self::assertNotNull($obj->getDescription());
+        self::assertNotNull($obj->getMinimumPurchaseAmount());
+        self::assertNotNull($obj->getLogoImageUrl());
+        self::assertNotNull($obj->getExpiryDate());
+        self::assertNotNull($obj->getType());
+        self::assertNotNull($obj->getTerms());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -58,23 +58,21 @@ class IncentiveTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getCode(), "TestSample");
-        $this->assertEquals($obj->getName(), "TestSample");
-        $this->assertEquals($obj->getDescription(), "TestSample");
-        $this->assertEquals($obj->getMinimumPurchaseAmount(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getLogoImageUrl(), "http://www.google.com");
-        $this->assertEquals($obj->getExpiryDate(), "TestSample");
-        $this->assertEquals($obj->getType(), "TestSample");
-        $this->assertEquals($obj->getTerms(), "TestSample");
+        self::assertEquals("TestSample", $obj->getId());
+        self::assertEquals("TestSample", $obj->getCode());
+        self::assertEquals("TestSample", $obj->getName());
+        self::assertEquals("TestSample", $obj->getDescription());
+        self::assertEquals($obj->getMinimumPurchaseAmount(), CurrencyTest::getObject());
+        self::assertEquals("http://www.google.com", $obj->getLogoImageUrl());
+        self::assertEquals("TestSample", $obj->getExpiryDate());
+        self::assertEquals("TestSample", $obj->getType());
+        self::assertEquals("TestSample", $obj->getTerms());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage LogoImageUrl is not a fully qualified URL
-     */
     public function testUrlValidationForLogoImageUrl()
     {
+        $this->expectExceptionMessage("LogoImageUrl is not a fully qualified URL");
+        $this->expectException(\InvalidArgumentException::class);
         $obj = new Incentive();
         $obj->setLogoImageUrl(null);
     }

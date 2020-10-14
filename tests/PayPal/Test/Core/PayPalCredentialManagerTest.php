@@ -33,7 +33,7 @@ class PayPalCredentialManagerTest extends TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->object = PayPalCredentialManager::getInstance($this->config);
     }
@@ -42,7 +42,7 @@ class PayPalCredentialManagerTest extends TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      */
-    protected function tearDown()
+    protected function teatDown(): void
     {
     }
 
@@ -51,8 +51,8 @@ class PayPalCredentialManagerTest extends TestCase
      */
     public function testGetInstance()
     {
-        $instance = $this->object->getInstance($this->config);
-        $this->assertInstanceOf('PayPal\Core\PayPalCredentialManager', $instance);
+        $instance = $this->object::getInstance($this->config);
+        self::assertInstanceOf('PayPal\Core\PayPalCredentialManager', $instance);
     }
 
     /**
@@ -61,9 +61,9 @@ class PayPalCredentialManagerTest extends TestCase
     public function testGetSpecificCredentialObject()
     {
         $cred = $this->object->getCredentialObject('acct1');
-        $this->assertNotNull($cred);
-        $this->assertAttributeEquals('client-id', 'clientId', $cred);
-        $this->assertAttributeEquals('client-secret', 'clientSecret', $cred);
+        self::assertNotNull($cred);
+        self::assertSame('client-id', $cred->getClientId());
+        self::assertSame('client-secret', $cred->getClientSecret());
     }
 
     /**
@@ -78,8 +78,8 @@ class PayPalCredentialManagerTest extends TestCase
             ->getMock();
         $cred = $this->object->setCredentialObject($authObject)->getCredentialObject();
 
-        $this->assertNotNull($cred);
-        $this->assertSame($this->object->getCredentialObject(), $authObject);
+        self::assertNotNull($cred);
+        self::assertSame($this->object->getCredentialObject(), $authObject);
     }
 
     /**
@@ -93,8 +93,8 @@ class PayPalCredentialManagerTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
         $cred = $this->object->setCredentialObject($authObject, 'sample')->getCredentialObject('sample');
-        $this->assertNotNull($cred);
-        $this->assertSame($this->object->getCredentialObject(), $authObject);
+        self::assertNotNull($cred);
+        self::assertSame($this->object->getCredentialObject(), $authObject);
     }
 
     /**
@@ -108,8 +108,8 @@ class PayPalCredentialManagerTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
         $cred = $this->object->setCredentialObject($authObject, null, false)->getCredentialObject();
-        $this->assertNotNull($cred);
-        $this->assertNotSame($this->object->getCredentialObject(), $authObject);
+        self::assertNotNull($cred);
+        self::assertNotSame($this->object->getCredentialObject(), $authObject);
     }
 
 
@@ -118,7 +118,7 @@ class PayPalCredentialManagerTest extends TestCase
      */
     public function testGetInvalidCredentialObject()
     {
-        $this->setExpectedException('PayPal\Exception\PayPalInvalidCredentialException');
+        $this->expectException('PayPal\Exception\PayPalInvalidCredentialException');
         $cred = $this->object->getCredentialObject('invalid_biz_api1.gmail.com');
     }
 
@@ -128,9 +128,9 @@ class PayPalCredentialManagerTest extends TestCase
     public function testGetDefaultCredentialObject()
     {
         $cred = $this->object->getCredentialObject();
-        $this->assertNotNull($cred);
-        $this->assertAttributeEquals('client-id', 'clientId', $cred);
-        $this->assertAttributeEquals('client-secret', 'clientSecret', $cred);
+        self::assertNotNull($cred);
+        self::assertSame('client-id', $cred->getClientId());
+        self::assertSame('client-secret', $cred->getClientSecret());
     }
 
     /**
@@ -140,10 +140,9 @@ class PayPalCredentialManagerTest extends TestCase
     {
         $cred = $this->object->getCredentialObject('acct1');
 
-        $this->assertNotNull($cred);
+        self::assertNotNull($cred);
 
-        $this->assertAttributeEquals($this->config['acct1.ClientId'], 'clientId', $cred);
-
-        $this->assertAttributeEquals($this->config['acct1.ClientSecret'], 'clientSecret', $cred);
+        self::assertSame($this->config['acct1.ClientId'], $cred->getClientId());
+        self::assertSame($this->config['acct1.ClientSecret'], $cred->getClientSecret());
     }
 }

@@ -39,10 +39,10 @@ class PaymentSummaryTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new PaymentSummary(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getPaypal());
-        $this->assertNotNull($obj->getOther());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getPaypal());
+        self::assertNotNull($obj->getOther());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -52,7 +52,7 @@ class PaymentSummaryTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getPaypal(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getOther(), CurrencyTest::getObject());
+        self::assertEquals($obj->getPaypal(), CurrencyTest::getObject());
+        self::assertEquals($obj->getOther(), CurrencyTest::getObject());
     }
 }

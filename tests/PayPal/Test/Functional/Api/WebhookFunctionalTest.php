@@ -29,7 +29,7 @@ class WebhookFunctionalTest extends TestCase
 
     public $apiContext;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $className = $this->getClassName();
         $testName = $this->getName();
@@ -66,10 +66,10 @@ class WebhookFunctionalTest extends TestCase
                 $this->deleteAll();
                 $result = $obj->create($this->apiContext, $this->mockPayPalRestCall);
             } else {
-                $this->fail($ex->getMessage());
+                self::fail($ex->getMessage());
             }
         }
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
         return $result;
     }
 
@@ -89,8 +89,8 @@ class WebhookFunctionalTest extends TestCase
     public function testGet($webhook)
     {
         $result = Webhook::get($webhook->getId(), $this->apiContext, $this->mockPayPalRestCall);
-        $this->assertNotNull($result);
-        $this->assertEquals($webhook->getId(), $result->getId());
+        self::assertNotNull($result);
+        self::assertEquals($webhook->getId(), $result->getId());
         return $result;
     }
 
@@ -102,8 +102,8 @@ class WebhookFunctionalTest extends TestCase
     public function testGetSubscribedEventTypes($webhook)
     {
         $result = WebhookEventType::subscribedEventTypes($webhook->getId(), $this->apiContext, $this->mockPayPalRestCall);
-        $this->assertNotNull($result);
-        $this->assertCount(2, $result->getEventTypes());
+        self::assertNotNull($result);
+        self::assertCount(2, $result->getEventTypes());
         return $result;
     }
 
@@ -115,7 +115,7 @@ class WebhookFunctionalTest extends TestCase
     public function testGetAll($webhook)
     {
         $result = Webhook::getAll($this->apiContext, $this->mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
         $found = false;
         $foundObject = null;
         foreach ($result->getWebhooks() as $webhookObject) {
@@ -125,8 +125,8 @@ class WebhookFunctionalTest extends TestCase
                 break;
             }
         }
-        $this->assertTrue($found, "The Created Webhook was not found in the get list");
-        $this->assertEquals($webhook->getId(), $foundObject->getId());
+        self::assertTrue($found, "The Created Webhook was not found in the get list");
+        self::assertEquals($webhook->getId(), $foundObject->getId());
         return $result;
     }
 
@@ -153,7 +153,7 @@ class WebhookFunctionalTest extends TestCase
         $patchRequest = new PatchRequest();
         $patchRequest->setPatches($patches);
         $result = $webhook->update($patchRequest, $this->apiContext, $this->mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
         $found = false;
         $foundObject = null;
         foreach ($result->getEventTypes() as $eventType) {
@@ -162,7 +162,7 @@ class WebhookFunctionalTest extends TestCase
                 break;
             }
         }
-        $this->assertTrue($found);
+        self::assertTrue($found);
     }
 
     /**
@@ -172,13 +172,13 @@ class WebhookFunctionalTest extends TestCase
     public function testDelete($webhook)
     {
         $result = $webhook->delete($this->apiContext, $this->mockPayPalRestCall);
-        $this->assertTrue($result);
+        self::assertTrue($result);
     }
 
     public function testEventSearch()
     {
         $result = WebhookEvent::all(array(), $this->apiContext, $this->mockPayPalRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
         return $result;
     }
 }

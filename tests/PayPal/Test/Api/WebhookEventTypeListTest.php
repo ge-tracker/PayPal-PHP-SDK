@@ -39,9 +39,9 @@ class WebhookEventTypeListTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new WebhookEventTypeList(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getEventTypes());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getEventTypes());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -51,7 +51,7 @@ class WebhookEventTypeListTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getEventTypes(), WebhookEventTypeTest::getObject());
+        self::assertEquals($obj->getEventTypes(), WebhookEventTypeTest::getObject());
     }
 
 

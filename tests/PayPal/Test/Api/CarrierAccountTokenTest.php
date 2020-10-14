@@ -41,10 +41,10 @@ class CarrierAccountTokenTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new CarrierAccountToken(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getCarrierAccountId());
-        $this->assertNotNull($obj->getExternalCustomerId());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getCarrierAccountId());
+        self::assertNotNull($obj->getExternalCustomerId());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -54,7 +54,7 @@ class CarrierAccountTokenTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getCarrierAccountId(), "TestSample");
-        $this->assertEquals($obj->getExternalCustomerId(), "TestSample");
+        self::assertEquals("TestSample", $obj->getCarrierAccountId());
+        self::assertEquals("TestSample", $obj->getExternalCustomerId());
     }
 }

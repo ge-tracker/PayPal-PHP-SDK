@@ -39,15 +39,15 @@ class PaymentInstructionTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new PaymentInstruction(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getReferenceNumber());
-        $this->assertNotNull($obj->getInstructionType());
-        $this->assertNotNull($obj->getRecipientBankingInstruction());
-        $this->assertNotNull($obj->getAmount());
-        $this->assertNotNull($obj->getPaymentDueDate());
-        $this->assertNotNull($obj->getNote());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getReferenceNumber());
+        self::assertNotNull($obj->getInstructionType());
+        self::assertNotNull($obj->getRecipientBankingInstruction());
+        self::assertNotNull($obj->getAmount());
+        self::assertNotNull($obj->getPaymentDueDate());
+        self::assertNotNull($obj->getNote());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -57,13 +57,13 @@ class PaymentInstructionTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getReferenceNumber(), "TestSample");
-        $this->assertEquals($obj->getInstructionType(), "TestSample");
-        $this->assertEquals($obj->getRecipientBankingInstruction(), RecipientBankingInstructionTest::getObject());
-        $this->assertEquals($obj->getAmount(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getPaymentDueDate(), "TestSample");
-        $this->assertEquals($obj->getNote(), "TestSample");
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals("TestSample", $obj->getReferenceNumber());
+        self::assertEquals("TestSample", $obj->getInstructionType());
+        self::assertEquals($obj->getRecipientBankingInstruction(), RecipientBankingInstructionTest::getObject());
+        self::assertEquals($obj->getAmount(), CurrencyTest::getObject());
+        self::assertEquals("TestSample", $obj->getPaymentDueDate());
+        self::assertEquals("TestSample", $obj->getNote());
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 
     /**
@@ -76,14 +76,14 @@ class PaymentInstructionTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    PaymentInstructionTest::getJson()
+            ->will(self::returnValue(
+                    self::getJson()
             ));
 
         $result = $obj->get("paymentId", $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
 
     public function mockProvider()

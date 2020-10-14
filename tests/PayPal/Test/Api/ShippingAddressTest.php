@@ -38,11 +38,11 @@ class ShippingAddressTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new ShippingAddress(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getRecipientName());
-        $this->assertNotNull($obj->getDefaultAddress());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getRecipientName());
+        self::assertNotNull($obj->getDefaultAddress());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -52,8 +52,8 @@ class ShippingAddressTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getRecipientName(), "TestSample");
-        $this->assertEquals($obj->getDefaultAddress(), true);
+        self::assertEquals("TestSample", $obj->getId());
+        self::assertEquals("TestSample", $obj->getRecipientName());
+        self::assertEquals(true, $obj->getDefaultAddress());
     }
 }

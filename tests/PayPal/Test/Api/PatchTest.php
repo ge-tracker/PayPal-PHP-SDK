@@ -39,12 +39,12 @@ class PatchTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Patch(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getOp());
-        $this->assertNotNull($obj->getPath());
-        $this->assertNotNull($obj->getValue());
-        $this->assertNotNull($obj->getFrom());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getOp());
+        self::assertNotNull($obj->getPath());
+        self::assertNotNull($obj->getValue());
+        self::assertNotNull($obj->getFrom());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -54,10 +54,10 @@ class PatchTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getOp(), "TestSample");
-        $this->assertEquals($obj->getPath(), "TestSample");
-        $this->assertEquals($obj->getValue(), "TestSample");
-        $this->assertEquals($obj->getFrom(), "TestSample");
+        self::assertEquals("TestSample", $obj->getOp());
+        self::assertEquals("TestSample", $obj->getPath());
+        self::assertEquals("TestSample", $obj->getValue());
+        self::assertEquals("TestSample", $obj->getFrom());
     }
 
 

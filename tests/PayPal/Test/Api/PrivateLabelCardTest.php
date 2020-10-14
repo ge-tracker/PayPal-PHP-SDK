@@ -38,13 +38,13 @@ class PrivateLabelCardTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new PrivateLabelCard(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getCardNumber());
-        $this->assertNotNull($obj->getIssuerId());
-        $this->assertNotNull($obj->getIssuerName());
-        $this->assertNotNull($obj->getImageKey());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getCardNumber());
+        self::assertNotNull($obj->getIssuerId());
+        self::assertNotNull($obj->getIssuerName());
+        self::assertNotNull($obj->getImageKey());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -54,10 +54,10 @@ class PrivateLabelCardTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getCardNumber(), "TestSample");
-        $this->assertEquals($obj->getIssuerId(), "TestSample");
-        $this->assertEquals($obj->getIssuerName(), "TestSample");
-        $this->assertEquals($obj->getImageKey(), "TestSample");
+        self::assertEquals("TestSample", $obj->getId());
+        self::assertEquals("TestSample", $obj->getCardNumber());
+        self::assertEquals("TestSample", $obj->getIssuerId());
+        self::assertEquals("TestSample", $obj->getIssuerName());
+        self::assertEquals("TestSample", $obj->getImageKey());
     }
 }

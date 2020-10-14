@@ -38,9 +38,9 @@ class CreateProfileResponseTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new CreateProfileResponse(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -50,6 +50,6 @@ class CreateProfileResponseTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getId(), "TestSample");
+        self::assertEquals("TestSample", $obj->getId());
     }
 }

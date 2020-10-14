@@ -41,14 +41,14 @@ class CreditCardTokenTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new CreditCardToken(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getCreditCardId());
-        $this->assertNotNull($obj->getPayerId());
-        $this->assertNotNull($obj->getLast4());
-        $this->assertNotNull($obj->getType());
-        $this->assertNotNull($obj->getExpireMonth());
-        $this->assertNotNull($obj->getExpireYear());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getCreditCardId());
+        self::assertNotNull($obj->getPayerId());
+        self::assertNotNull($obj->getLast4());
+        self::assertNotNull($obj->getType());
+        self::assertNotNull($obj->getExpireMonth());
+        self::assertNotNull($obj->getExpireYear());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -58,11 +58,11 @@ class CreditCardTokenTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getCreditCardId(), "TestSample");
-        $this->assertEquals($obj->getPayerId(), "TestSample");
-        $this->assertEquals($obj->getLast4(), "TestSample");
-        $this->assertEquals($obj->getType(), "TestSample");
-        $this->assertEquals($obj->getExpireMonth(), 123);
-        $this->assertEquals($obj->getExpireYear(), 123);
+        self::assertEquals("TestSample", $obj->getCreditCardId());
+        self::assertEquals("TestSample", $obj->getPayerId());
+        self::assertEquals("TestSample", $obj->getLast4());
+        self::assertEquals("TestSample", $obj->getType());
+        self::assertEquals(123, $obj->getExpireMonth());
+        self::assertEquals(123, $obj->getExpireYear());
     }
 }

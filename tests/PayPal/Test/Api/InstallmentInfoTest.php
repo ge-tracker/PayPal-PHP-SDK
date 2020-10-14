@@ -38,12 +38,12 @@ class InstallmentInfoTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new InstallmentInfo(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getInstallmentId());
-        $this->assertNotNull($obj->getNetwork());
-        $this->assertNotNull($obj->getIssuer());
-        $this->assertNotNull($obj->getInstallmentOptions());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getInstallmentId());
+        self::assertNotNull($obj->getNetwork());
+        self::assertNotNull($obj->getIssuer());
+        self::assertNotNull($obj->getInstallmentOptions());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -53,9 +53,9 @@ class InstallmentInfoTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getInstallmentId(), "TestSample");
-        $this->assertEquals($obj->getNetwork(), "TestSample");
-        $this->assertEquals($obj->getIssuer(), "TestSample");
-        $this->assertEquals($obj->getInstallmentOptions(), InstallmentOptionTest::getObject());
+        self::assertEquals("TestSample", $obj->getInstallmentId());
+        self::assertEquals("TestSample", $obj->getNetwork());
+        self::assertEquals("TestSample", $obj->getIssuer());
+        self::assertEquals($obj->getInstallmentOptions(), InstallmentOptionTest::getObject());
     }
 }

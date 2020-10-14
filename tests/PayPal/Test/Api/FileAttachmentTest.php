@@ -39,10 +39,10 @@ class FileAttachmentTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new FileAttachment(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getName());
-        $this->assertNotNull($obj->getUrl());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getName());
+        self::assertNotNull($obj->getUrl());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -52,16 +52,14 @@ class FileAttachmentTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getName(), "TestSample");
-        $this->assertEquals($obj->getUrl(), "http://www.google.com");
+        self::assertEquals("TestSample", $obj->getName());
+        self::assertEquals("http://www.google.com", $obj->getUrl());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Url is not a fully qualified URL
-     */
     public function testUrlValidationForUrl()
     {
+        $this->expectExceptionMessage("Url is not a fully qualified URL");
+        $this->expectException(\InvalidArgumentException::class);
         $obj = new FileAttachment();
         $obj->setUrl(null);
     }

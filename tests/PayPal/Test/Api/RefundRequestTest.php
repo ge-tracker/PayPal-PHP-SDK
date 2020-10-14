@@ -38,14 +38,14 @@ class RefundRequestTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new RefundRequest(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getAmount());
-        $this->assertNotNull($obj->getDescription());
-        $this->assertNotNull($obj->getRefundSource());
-        $this->assertNotNull($obj->getReason());
-        $this->assertNotNull($obj->getInvoiceNumber());
-        $this->assertNotNull($obj->getRefundAdvice());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getAmount());
+        self::assertNotNull($obj->getDescription());
+        self::assertNotNull($obj->getRefundSource());
+        self::assertNotNull($obj->getReason());
+        self::assertNotNull($obj->getInvoiceNumber());
+        self::assertNotNull($obj->getRefundAdvice());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -55,12 +55,12 @@ class RefundRequestTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getAmount(), AmountTest::getObject());
-        $this->assertEquals($obj->getDescription(), "TestSample");
-        $this->assertEquals($obj->getRefundSource(), "TestSample");
-        $this->assertEquals($obj->getReason(), "TestSample");
-        $this->assertEquals($obj->getInvoiceNumber(), "TestSample");
-        $this->assertEquals($obj->getRefundAdvice(), true);
+        self::assertEquals($obj->getAmount(), AmountTest::getObject());
+        self::assertEquals("TestSample", $obj->getDescription());
+        self::assertEquals("TestSample", $obj->getRefundSource());
+        self::assertEquals("TestSample", $obj->getReason());
+        self::assertEquals("TestSample", $obj->getInvoiceNumber());
+        self::assertEquals(true, $obj->getRefundAdvice());
     }
 
 

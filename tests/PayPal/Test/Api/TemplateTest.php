@@ -39,15 +39,15 @@ class TemplateTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Template(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getTemplateId());
-        $this->assertNotNull($obj->getName());
-        $this->assertNotNull($obj->getDefault());
-        $this->assertNotNull($obj->getTemplateData());
-        $this->assertNotNull($obj->getSettings());
-        $this->assertNotNull($obj->getUnitOfMeasure());
-        $this->assertNotNull($obj->getCustom());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getTemplateId());
+        self::assertNotNull($obj->getName());
+        self::assertNotNull($obj->getDefault());
+        self::assertNotNull($obj->getTemplateData());
+        self::assertNotNull($obj->getSettings());
+        self::assertNotNull($obj->getUnitOfMeasure());
+        self::assertNotNull($obj->getCustom());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -57,12 +57,12 @@ class TemplateTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getTemplateId(), "TestSample");
-        $this->assertEquals($obj->getName(), "TestSample");
-        $this->assertEquals($obj->getDefault(), true);
-        $this->assertEquals($obj->getTemplateData(), TemplateDataTest::getObject());
-        $this->assertEquals($obj->getSettings(), TemplateSettingsTest::getObject());
-        $this->assertEquals($obj->getUnitOfMeasure(), "TestSample");
-        $this->assertEquals($obj->getCustom(), true);
+        self::assertEquals("TestSample", $obj->getTemplateId());
+        self::assertEquals("TestSample", $obj->getName());
+        self::assertEquals(true, $obj->getDefault());
+        self::assertEquals($obj->getTemplateData(), TemplateDataTest::getObject());
+        self::assertEquals($obj->getSettings(), TemplateSettingsTest::getObject());
+        self::assertEquals("TestSample", $obj->getUnitOfMeasure());
+        self::assertEquals(true, $obj->getCustom());
     }
 }

@@ -38,9 +38,9 @@ class ImageTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Image(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getImage());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getImage());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -50,6 +50,6 @@ class ImageTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getImage(), "TestSample");
+        self::assertEquals("TestSample", $obj->getImage());
     }
 }

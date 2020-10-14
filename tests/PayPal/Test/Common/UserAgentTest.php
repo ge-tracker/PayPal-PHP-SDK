@@ -9,20 +9,20 @@ class UserAgentTest extends TestCase
     public function testGetValue()
     {
         $ua = PayPalUserAgent::getValue("name", "version");
-        list($id, $version, $features) = sscanf($ua, "PayPalSDK/%s %s (%[^[]])");
+        [$id, $version, $features] = sscanf($ua, "PayPalSDK/%s %s (%[^[]])");
 
         // Check that we pass the useragent in the expected format
-        $this->assertNotNull($id);
-        $this->assertNotNull($version);
-        $this->assertNotNull($features);
+        self::assertNotNull($id);
+        self::assertNotNull($version);
+        self::assertNotNull($features);
 
-        $this->assertEquals("name", $id);
-        $this->assertEquals("version", $version);
+        self::assertEquals("name", $id);
+        self::assertEquals("version", $version);
 
         // Check that we pass in these mininal features
-        $this->assertThat($features, $this->stringContains("os="));
-        $this->assertThat($features, $this->stringContains("bit="));
-        $this->assertThat($features, $this->stringContains("platform-ver="));
-        $this->assertGreaterThan(5, count(explode(';', $features)));
+        self::assertThat($features, self::stringContains("os="));
+        self::assertThat($features, self::stringContains("bit="));
+        self::assertThat($features, self::stringContains("platform-ver="));
+        self::assertGreaterThan(5, count(explode(';', $features)));
     }
 }

@@ -38,14 +38,14 @@ class ProcessorResponseTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new ProcessorResponse(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getResponseCode());
-        $this->assertNotNull($obj->getAvsCode());
-        $this->assertNotNull($obj->getCvvCode());
-        $this->assertNotNull($obj->getAdviceCode());
-        $this->assertNotNull($obj->getEciSubmitted());
-        $this->assertNotNull($obj->getVpas());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getResponseCode());
+        self::assertNotNull($obj->getAvsCode());
+        self::assertNotNull($obj->getCvvCode());
+        self::assertNotNull($obj->getAdviceCode());
+        self::assertNotNull($obj->getEciSubmitted());
+        self::assertNotNull($obj->getVpas());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -55,11 +55,11 @@ class ProcessorResponseTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getResponseCode(), "TestSample");
-        $this->assertEquals($obj->getAvsCode(), "TestSample");
-        $this->assertEquals($obj->getCvvCode(), "TestSample");
-        $this->assertEquals($obj->getAdviceCode(), "TestSample");
-        $this->assertEquals($obj->getEciSubmitted(), "TestSample");
-        $this->assertEquals($obj->getVpas(), "TestSample");
+        self::assertEquals("TestSample", $obj->getResponseCode());
+        self::assertEquals("TestSample", $obj->getAvsCode());
+        self::assertEquals("TestSample", $obj->getCvvCode());
+        self::assertEquals("TestSample", $obj->getAdviceCode());
+        self::assertEquals("TestSample", $obj->getEciSubmitted());
+        self::assertEquals("TestSample", $obj->getVpas());
     }
 }

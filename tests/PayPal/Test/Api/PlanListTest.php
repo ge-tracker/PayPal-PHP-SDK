@@ -38,12 +38,12 @@ class PlanListTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new PlanList(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getPlans());
-        $this->assertNotNull($obj->getTotalItems());
-        $this->assertNotNull($obj->getTotalPages());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getPlans());
+        self::assertNotNull($obj->getTotalItems());
+        self::assertNotNull($obj->getTotalPages());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -53,9 +53,9 @@ class PlanListTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getPlans(), PlanTest::getObject());
-        $this->assertEquals($obj->getTotalItems(), "TestSample");
-        $this->assertEquals($obj->getTotalPages(), "TestSample");
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals($obj->getPlans(), PlanTest::getObject());
+        self::assertEquals("TestSample", $obj->getTotalItems());
+        self::assertEquals("TestSample", $obj->getTotalPages());
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 }

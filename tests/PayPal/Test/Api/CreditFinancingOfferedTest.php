@@ -38,14 +38,14 @@ class CreditFinancingOfferedTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new CreditFinancingOffered(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getTotalCost());
-        $this->assertNotNull($obj->getTerm());
-        $this->assertNotNull($obj->getMonthlyPayment());
-        $this->assertNotNull($obj->getTotalInterest());
-        $this->assertNotNull($obj->getPayerAcceptance());
-        $this->assertNotNull($obj->getCartAmountImmutable());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getTotalCost());
+        self::assertNotNull($obj->getTerm());
+        self::assertNotNull($obj->getMonthlyPayment());
+        self::assertNotNull($obj->getTotalInterest());
+        self::assertNotNull($obj->getPayerAcceptance());
+        self::assertNotNull($obj->getCartAmountImmutable());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -55,11 +55,11 @@ class CreditFinancingOfferedTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getTotalCost(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getTerm(), "12.34");
-        $this->assertEquals($obj->getMonthlyPayment(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getTotalInterest(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getPayerAcceptance(), true);
-        $this->assertEquals($obj->getCartAmountImmutable(), true);
+        self::assertEquals($obj->getTotalCost(), CurrencyTest::getObject());
+        self::assertEquals("12.34", $obj->getTerm());
+        self::assertEquals($obj->getMonthlyPayment(), CurrencyTest::getObject());
+        self::assertEquals($obj->getTotalInterest(), CurrencyTest::getObject());
+        self::assertEquals(true, $obj->getPayerAcceptance());
+        self::assertEquals(true, $obj->getCartAmountImmutable());
     }
 }

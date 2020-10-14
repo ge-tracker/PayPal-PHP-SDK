@@ -26,7 +26,7 @@ class PayoutsFunctionalTest extends TestCase
 
     public static $batchId;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $className = $this->getClassName();
         $testName = $this->getName();
@@ -56,16 +56,16 @@ class PayoutsFunctionalTest extends TestCase
         if (Setup::$mode != 'mock') {
             $obj->getSenderBatchHeader()->setSenderBatchId(uniqid());
         }
-        PayoutsFunctionalTest::$batchId = $obj->getSenderBatchHeader()->getSenderBatchId();
+        self::$batchId = $obj->getSenderBatchHeader()->getSenderBatchId();
         $params = array('sync_mode' => 'true');
         $result = $obj->create($params, $this->apiContext, $this->mockPayPalRestCall);
-        $this->assertNotNull($result);
-        $this->assertEquals(PayoutsFunctionalTest::$batchId, $result->getBatchHeader()->getSenderBatchHeader()->getSenderBatchId());
-        $this->assertEquals('SUCCESS', $result->getBatchHeader()->getBatchStatus());
+        self::assertNotNull($result);
+        self::assertEquals(self::$batchId, $result->getBatchHeader()->getSenderBatchHeader()->getSenderBatchId());
+        self::assertEquals('SUCCESS', $result->getBatchHeader()->getBatchStatus());
         $items = $result->getItems();
-        $this->assertGreaterThan(0, sizeof($items));
+        self::assertGreaterThan(0, sizeof($items));
         $item = $items[0];
-        $this->assertEquals('UNCLAIMED', $item->getTransactionStatus());
+        self::assertEquals('UNCLAIMED', $item->getTransactionStatus());
         return $result;
     }
 
@@ -77,9 +77,9 @@ class PayoutsFunctionalTest extends TestCase
     public function testGet($payoutBatch)
     {
         $result = Payout::get($payoutBatch->getBatchHeader()->getPayoutBatchId(), $this->apiContext, $this->mockPayPalRestCall);
-        $this->assertNotNull($result);
-        $this->assertNotNull($result->getBatchHeader()->getBatchStatus());
-        $this->assertEquals(PayoutsFunctionalTest::$batchId, $result->getBatchHeader()->getSenderBatchHeader()->getSenderBatchId());
+        self::assertNotNull($result);
+        self::assertNotNull($result->getBatchHeader()->getBatchStatus());
+        self::assertEquals(self::$batchId, $result->getBatchHeader()->getSenderBatchHeader()->getSenderBatchId());
         return $result;
     }
 
@@ -93,11 +93,11 @@ class PayoutsFunctionalTest extends TestCase
         $items = $payoutBatch->getItems();
         $item = $items[0];
         $result = PayoutItem::get($item->getPayoutItemId(), $this->apiContext, $this->mockPayPalRestCall);
-        $this->assertNotNull($result);
-        $this->assertEquals($item->getPayoutItemId(), $result->getPayoutItemId());
-        $this->assertEquals($item->getPayoutBatchId(), $result->getPayoutBatchId());
-        $this->assertEquals($item->getTransactionId(), $result->getTransactionId());
-        $this->assertEquals($item->getPayoutItemFee(), $result->getPayoutItemFee());
+        self::assertNotNull($result);
+        self::assertEquals($item->getPayoutItemId(), $result->getPayoutItemId());
+        self::assertEquals($item->getPayoutBatchId(), $result->getPayoutBatchId());
+        self::assertEquals($item->getTransactionId(), $result->getTransactionId());
+        self::assertEquals($item->getPayoutItemFee(), $result->getPayoutItemFee());
     }
 
     /**
@@ -110,15 +110,15 @@ class PayoutsFunctionalTest extends TestCase
         $items = $payoutBatch->getItems();
         $item = $items[0];
         if ($item->getTransactionStatus() != 'UNCLAIMED') {
-            $this->markTestSkipped('Transaction status needs to be Unclaimed for this test ');
+            self::markTestSkipped('Transaction status needs to be Unclaimed for this test ');
             return;
         }
         $result = PayoutItem::cancel($item->getPayoutItemId(), $this->apiContext, $this->mockPayPalRestCall);
-        $this->assertNotNull($result);
-        $this->assertEquals($item->getPayoutItemId(), $result->getPayoutItemId());
-        $this->assertEquals($item->getPayoutBatchId(), $result->getPayoutBatchId());
-        $this->assertEquals($item->getTransactionId(), $result->getTransactionId());
-        $this->assertEquals($item->getPayoutItemFee(), $result->getPayoutItemFee());
-        $this->assertEquals('RETURNED', $result->getTransactionStatus());
+        self::assertNotNull($result);
+        self::assertEquals($item->getPayoutItemId(), $result->getPayoutItemId());
+        self::assertEquals($item->getPayoutBatchId(), $result->getPayoutBatchId());
+        self::assertEquals($item->getTransactionId(), $result->getTransactionId());
+        self::assertEquals($item->getPayoutItemFee(), $result->getPayoutItemFee());
+        self::assertEquals('RETURNED', $result->getTransactionStatus());
     }
 }

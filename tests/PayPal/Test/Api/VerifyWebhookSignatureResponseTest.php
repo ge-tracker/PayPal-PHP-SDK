@@ -39,9 +39,9 @@ class VerifyWebhookSignatureResponseTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new VerifyWebhookSignatureResponse(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getVerificationStatus());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getVerificationStatus());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -51,7 +51,7 @@ class VerifyWebhookSignatureResponseTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getVerificationStatus(), "TestSample");
+        self::assertEquals("TestSample", $obj->getVerificationStatus());
     }
 
 }

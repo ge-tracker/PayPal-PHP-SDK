@@ -15,47 +15,45 @@ class ModelTest extends TestCase
         $o->setName("test");
         $o->setDescription("description");
 
-        $this->assertEquals("test", $o->getName());
-        $this->assertEquals("description", $o->getDescription());
+        self::assertEquals("test", $o->getName());
+        self::assertEquals("description", $o->getDescription());
 
         $json = $o->toJSON();
-        $this->assertEquals('{"name":"test","description":"description"}', $json);
+        self::assertEquals('{"name":"test","description":"description"}', $json);
 
         $newO = new SimpleClass();
         $newO->fromJson($json);
-        $this->assertEquals($o, $newO);
+        self::assertEquals($o, $newO);
     }
 
     public function testConstructorJSON()
     {
         $obj = new SimpleClass('{"name":"test","description":"description"}');
-        $this->assertEquals($obj->getName(), "test");
-        $this->assertEquals($obj->getDescription(), "description");
+        self::assertEquals("test", $obj->getName());
+        self::assertEquals("description", $obj->getDescription());
     }
 
     public function testConstructorArray()
     {
         $arr = array('name' => 'test', 'description' => 'description');
         $obj = new SimpleClass($arr);
-        $this->assertEquals($obj->getName(), "test");
-        $this->assertEquals($obj->getDescription(), "description");
+        self::assertEquals("test", $obj->getName());
+        self::assertEquals("description", $obj->getDescription());
     }
 
     public function testConstructorNull()
     {
         $obj = new SimpleClass(null);
-        $this->assertNotEquals($obj->getName(), "test");
-        $this->assertNotEquals($obj->getDescription(), "description");
-        $this->assertNull($obj->getName());
-        $this->assertNull($obj->getDescription());
+        self::assertNotEquals("test", $obj->getName());
+        self::assertNotEquals("description", $obj->getDescription());
+        self::assertNull($obj->getName());
+        self::assertNull($obj->getDescription());
     }
 
-    /**
-     * @expectedException        \InvalidArgumentException
-     * @expectedExceptionMessage Invalid JSON String
-     */
     public function testConstructorInvalidInput()
     {
+        $this->expectExceptionMessage("Invalid JSON String");
+        $this->expectException(\InvalidArgumentException::class);
         new SimpleClass("Something that is not even correct");
     }
 
@@ -66,8 +64,8 @@ class ModelTest extends TestCase
         $obj = new SimpleClass();
         $obj->fromJson($json);
 
-        $this->assertEquals("test", $obj->getName());
-        $this->assertEquals("description", $obj->getDescription());
+        self::assertEquals("test", $obj->getName());
+        self::assertEquals("description", $obj->getDescription());
     }
 
     public function testSimpleClassObjectInvalidConversion()
@@ -78,8 +76,8 @@ class ModelTest extends TestCase
             $obj = new SimpleClass();
             $obj->fromJson($json);
 
-            $this->assertEquals("test", $obj->getName());
-            $this->assertEquals("description", $obj->getDescription());
+            self::assertEquals("test", $obj->getName());
+            self::assertEquals("description", $obj->getDescription());
         } catch (\PHPUnit_Framework_Error_Notice $ex) {
             // No need to do anything
         }
@@ -96,14 +94,14 @@ class ModelTest extends TestCase
         $obj = new SimpleClass();
         $obj->fromJson($json);
 
-        $this->assertEquals("test", $obj->getName());
-        $this->assertEquals("description", $obj->getDescription());
+        self::assertEquals("test", $obj->getName());
+        self::assertEquals("description", $obj->getDescription());
         $resultJson = $obj->toJSON();
-        $this->assertContains("unknown", $resultJson);
-        $this->assertContains("id", $resultJson);
-        $this->assertContains("object", $resultJson);
-        $this->assertContains("123", $resultJson);
-        $this->assertContains("456", $resultJson);
+        self::assertStringContainsString("unknown", $resultJson);
+        self::assertStringContainsString("id", $resultJson);
+        self::assertStringContainsString("object", $resultJson);
+        self::assertStringContainsString("123", $resultJson);
+        self::assertStringContainsString("456", $resultJson);
         PayPalConfigManager::getInstance()->addConfigs(array('validation.level' => 'strict'));
     }
 
@@ -118,14 +116,14 @@ class ModelTest extends TestCase
         $obj = new SimpleClass();
         $obj->fromJson($json);
 
-        $this->assertEquals("test", $obj->getName());
-        $this->assertEquals("description", $obj->getDescription());
+        self::assertEquals("test", $obj->getName());
+        self::assertEquals("description", $obj->getDescription());
         $resultJson = $obj->toJSON();
-        $this->assertContains("unknown", $resultJson);
-        $this->assertContains("id", $resultJson);
-        $this->assertContains("object", $resultJson);
-        $this->assertContains("123", $resultJson);
-        $this->assertContains("456", $resultJson);
+        self::assertStringContainsString("unknown", $resultJson);
+        self::assertStringContainsString("id", $resultJson);
+        self::assertStringContainsString("object", $resultJson);
+        self::assertStringContainsString("123", $resultJson);
+        self::assertStringContainsString("456", $resultJson);
         PayPalConfigManager::getInstance()->addConfigs(array('validation.level' => 'strict'));
     }
 
@@ -134,8 +132,8 @@ class ModelTest extends TestCase
         $json = '{"id":"PAY-5DW86196ER176274EKT3AEYA","transactions":[{"related_resources":[]}]}';
         $payment = new Payment($json);
         $result = $payment->toJSON();
-        $this->assertContains('"related_resources":[]', $result);
-        $this->assertNotNull($result);
+        self::assertStringContainsString('"related_resources":[]', $result);
+        self::assertNotNull($result);
     }
 
     public function testMultipleEmptyArrayConversion()
@@ -143,8 +141,8 @@ class ModelTest extends TestCase
         $json = '{"id":"PAY-5DW86196ER176274EKT3AEYA","transactions":[{"related_resources":[{},{}]}]}';
         $payment = new Payment($json);
         $result = $payment->toJSON();
-        $this->assertContains('"related_resources":[{},{}]', $result);
-        $this->assertNotNull($result);
+        self::assertStringContainsString('"related_resources":[{},{}]', $result);
+        self::assertNotNull($result);
     }
 
     public function testSetterMagicMethod()
@@ -155,12 +153,12 @@ class ModelTest extends TestCase
         $obj->there = null;
         $obj->obj = '{}';
         $obj->objs = array('{}');
-        $this->assertEquals("other", $obj->something);
-        $this->assertInternalType('array', $obj->else);
-        $this->assertNull($obj->there);
-        $this->assertEquals('{}', $obj->obj);
-        $this->assertInternalType('array', $obj->objs);
-        $this->assertEquals('{}', $obj->objs[0]);
+        self::assertEquals("other", $obj->something);
+        self::assertIsArray($obj->else);
+        self::assertNull($obj->there);
+        self::assertEquals('{}', $obj->obj);
+        self::assertIsArray($obj->objs);
+        self::assertEquals('{}', $obj->objs[0]);
     }
 
     public function testInvalidMagicMethodWithDisabledValidation()
@@ -169,9 +167,9 @@ class ModelTest extends TestCase
         $obj = new SimpleClass();
         try {
             $obj->invalid = "value2";
-            $this->assertEquals($obj->invalid, "value2");
+            self::assertEquals("value2", $obj->invalid);
         } catch (\PHPUnit_Framework_Error_Notice $ex) {
-            $this->fail("It should not have thrown a Notice Error as it is disabled.");
+            self::fail("It should not have thrown a Notice Error as it is disabled.");
         }
         PayPalConfigManager::getInstance()->addConfigs(array('validation.level' => 'strict'));
     }
@@ -181,7 +179,7 @@ class ModelTest extends TestCase
         PayPalConfigManager::getInstance()->addConfigs(array('validation.level' => 'log'));
         $obj = new SimpleClass();
         $obj->invalid2 = "value2";
-        $this->assertEquals($obj->invalid2, "value2");
+        self::assertEquals("value2", $obj->invalid2);
         PayPalConfigManager::getInstance()->addConfigs(array('validation.level' => 'strict'));
     }
 
@@ -192,16 +190,16 @@ class ModelTest extends TestCase
         $o->setDescription("description");
         $o->setTags(array('payment', 'info', 'test'));
 
-        $this->assertEquals("test", $o->getName());
-        $this->assertEquals("description", $o->getDescription());
-        $this->assertEquals(array('payment', 'info', 'test'), $o->getTags());
+        self::assertEquals("test", $o->getName());
+        self::assertEquals("description", $o->getDescription());
+        self::assertEquals(array('payment', 'info', 'test'), $o->getTags());
 
         $json = $o->toJSON();
-        $this->assertEquals('{"name":"test","description":"description","tags":["payment","info","test"]}', $json);
+        self::assertEquals('{"name":"test","description":"description","tags":["payment","info","test"]}', $json);
 
         $newO = new ArrayClass();
         $newO->fromJson($json);
-        $this->assertEquals($o, $newO);
+        self::assertEquals($o, $newO);
     }
 
     public function testNestedClassConversion()
@@ -213,14 +211,14 @@ class ModelTest extends TestCase
         $o->setId('123');
         $o->setInfo($n);
 
-        $this->assertEquals("123", $o->getId());
-        $this->assertEquals("test", $o->getInfo()->getName());
+        self::assertEquals("123", $o->getId());
+        self::assertEquals("test", $o->getInfo()->getName());
 
         $json = $o->toJSON();
-        $this->assertEquals('{"id":"123","info":{"name":"test","description":"description"}}', $json);
+        self::assertEquals('{"id":"123","info":{"name":"test","description":"description"}}', $json);
 
         $newO = new NestedClass();
         $newO->fromJson($json);
-        $this->assertEquals($o, $newO);
+        self::assertEquals($o, $newO);
     }
 }

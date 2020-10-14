@@ -34,22 +34,22 @@ class PaymentTest extends TestCase
     {
         $payment = new Payment();
         $token = $payment->getToken();
-        $this->assertNull($token);
+        self::assertNull($token);
     }
 
     public function testGetToken_returnsNullIfApprovalLinkDoesNotHaveToken()
     {
         $payment = new Payment('{"links": [ { "href": "https://api.sandbox.paypal.com/v1/payments//cgi-bin/webscr?cmd=_express-checkout", "rel": "approval_url", "method": "REDIRECT" } ]}');
         $token = $payment->getToken();
-        $this->assertNull($token);
+        self::assertNull($token);
     }
 
     public function testGetToken_returnsNullIfApprovalLinkHasAToken()
     {
         $payment = new Payment('{"links": [ { "href": "https://api.sandbox.paypal.com/v1/payments//cgi-bin/webscr?cmd=_express-checkout&token=EC-60385559L1062554J", "rel": "approval_url", "method": "REDIRECT" } ]}');
         $token = $payment->getToken();
-        $this->assertNotNull($token);
-        $this->assertEquals($token, 'EC-60385559L1062554J');
+        self::assertNotNull($token);
+        self::assertEquals('EC-60385559L1062554J', $token);
     }
 
     /**
@@ -59,27 +59,27 @@ class PaymentTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Payment(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getIntent());
-        $this->assertNotNull($obj->getPayer());
-        $this->assertNotNull($obj->getPotentialPayerInfo());
-        $this->assertNotNull($obj->getPayee());
-        $this->assertNotNull($obj->getCart());
-        $this->assertNotNull($obj->getTransactions());
-        $this->assertNotNull($obj->getFailedTransactions());
-        $this->assertNotNull($obj->getBillingAgreementTokens());
-        $this->assertNotNull($obj->getCreditFinancingOffered());
-        $this->assertNotNull($obj->getPaymentInstruction());
-        $this->assertNotNull($obj->getState());
-        $this->assertNotNull($obj->getExperienceProfileId());
-        $this->assertNotNull($obj->getNoteToPayer());
-        $this->assertNotNull($obj->getRedirectUrls());
-        $this->assertNotNull($obj->getFailureReason());
-        $this->assertNotNull($obj->getCreateTime());
-        $this->assertNotNull($obj->getUpdateTime());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getIntent());
+        self::assertNotNull($obj->getPayer());
+        self::assertNotNull($obj->getPotentialPayerInfo());
+        self::assertNotNull($obj->getPayee());
+        self::assertNotNull($obj->getCart());
+        self::assertNotNull($obj->getTransactions());
+        self::assertNotNull($obj->getFailedTransactions());
+        self::assertNotNull($obj->getBillingAgreementTokens());
+        self::assertNotNull($obj->getCreditFinancingOffered());
+        self::assertNotNull($obj->getPaymentInstruction());
+        self::assertNotNull($obj->getState());
+        self::assertNotNull($obj->getExperienceProfileId());
+        self::assertNotNull($obj->getNoteToPayer());
+        self::assertNotNull($obj->getRedirectUrls());
+        self::assertNotNull($obj->getFailureReason());
+        self::assertNotNull($obj->getCreateTime());
+        self::assertNotNull($obj->getUpdateTime());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -89,25 +89,25 @@ class PaymentTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getIntent(), "TestSample");
-        $this->assertEquals($obj->getPayer(), PayerTest::getObject());
-        $this->assertEquals($obj->getPotentialPayerInfo(), PotentialPayerInfoTest::getObject());
-        $this->assertEquals($obj->getPayee(), PayeeTest::getObject());
-        $this->assertEquals($obj->getCart(), "TestSample");
-        $this->assertEquals($obj->getTransactions(), array(TransactionTest::getObject()));
-        $this->assertEquals($obj->getFailedTransactions(), ErrorTest::getObject());
-        $this->assertEquals($obj->getBillingAgreementTokens(), array("TestSample"));
-        $this->assertEquals($obj->getCreditFinancingOffered(), CreditFinancingOfferedTest::getObject());
-        $this->assertEquals($obj->getPaymentInstruction(), PaymentInstructionTest::getObject());
-        $this->assertEquals($obj->getState(), "TestSample");
-        $this->assertEquals($obj->getExperienceProfileId(), "TestSample");
-        $this->assertEquals($obj->getNoteToPayer(), "TestSample");
-        $this->assertEquals($obj->getRedirectUrls(), RedirectUrlsTest::getObject());
-        $this->assertEquals($obj->getFailureReason(), "TestSample");
-        $this->assertEquals($obj->getCreateTime(), "TestSample");
-        $this->assertEquals($obj->getUpdateTime(), "TestSample");
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals("TestSample", $obj->getId());
+        self::assertEquals("TestSample", $obj->getIntent());
+        self::assertEquals($obj->getPayer(), PayerTest::getObject());
+        self::assertEquals($obj->getPotentialPayerInfo(), PotentialPayerInfoTest::getObject());
+        self::assertEquals($obj->getPayee(), PayeeTest::getObject());
+        self::assertEquals("TestSample", $obj->getCart());
+        self::assertEquals($obj->getTransactions(), array(TransactionTest::getObject()));
+        self::assertEquals($obj->getFailedTransactions(), ErrorTest::getObject());
+        self::assertEquals(array("TestSample"), $obj->getBillingAgreementTokens());
+        self::assertEquals($obj->getCreditFinancingOffered(), CreditFinancingOfferedTest::getObject());
+        self::assertEquals($obj->getPaymentInstruction(), PaymentInstructionTest::getObject());
+        self::assertEquals("TestSample", $obj->getState());
+        self::assertEquals("TestSample", $obj->getExperienceProfileId());
+        self::assertEquals("TestSample", $obj->getNoteToPayer());
+        self::assertEquals($obj->getRedirectUrls(), RedirectUrlsTest::getObject());
+        self::assertEquals("TestSample", $obj->getFailureReason());
+        self::assertEquals("TestSample", $obj->getCreateTime());
+        self::assertEquals("TestSample", $obj->getUpdateTime());
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 
     /**
@@ -120,14 +120,14 @@ class PaymentTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     self::getJson()
             ));
 
         $result = $obj->create($mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -139,14 +139,14 @@ class PaymentTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
-                    PaymentTest::getJson()
+            ->will(self::returnValue(
+                    self::getJson()
             ));
 
         $result = $obj->get("paymentId", $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -158,15 +158,15 @@ class PaymentTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     true
             ));
         $patchRequest = PatchRequestTest::getObject();
 
         $result = $obj->update($patchRequest, $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -178,15 +178,15 @@ class PaymentTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     self::getJson()
             ));
         $paymentExecution = PaymentExecutionTest::getObject();
 
         $result = $obj->execute($paymentExecution, $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
     /**
      * @dataProvider mockProvider
@@ -198,15 +198,15 @@ class PaymentTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockPPRestCall->expects($this->any())
+        $mockPPRestCall->expects(self::any())
             ->method('execute')
-            ->will($this->returnValue(
+            ->will(self::returnValue(
                     PaymentHistoryTest::getJson()
             ));
         $params = array();
 
         $result = $obj->all($params, $mockApiContext, $mockPPRestCall);
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
 
     public function mockProvider()

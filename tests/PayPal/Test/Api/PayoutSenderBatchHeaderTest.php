@@ -38,12 +38,12 @@ class PayoutSenderBatchHeaderTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new PayoutSenderBatchHeader(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getSenderBatchId());
-        $this->assertNotNull($obj->getEmailSubject());
-        $this->assertNotNull($obj->getRecipientType());
-        $this->assertNotNull($obj->getBatchStatus());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getSenderBatchId());
+        self::assertNotNull($obj->getEmailSubject());
+        self::assertNotNull($obj->getRecipientType());
+        self::assertNotNull($obj->getBatchStatus());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -53,9 +53,9 @@ class PayoutSenderBatchHeaderTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getSenderBatchId(), "TestSample");
-        $this->assertEquals($obj->getEmailSubject(), "TestSample");
-        $this->assertEquals($obj->getRecipientType(), "TestSample");
-        $this->assertEquals($obj->getBatchStatus(), "TestSample");
+        self::assertEquals("TestSample", $obj->getSenderBatchId());
+        self::assertEquals("TestSample", $obj->getEmailSubject());
+        self::assertEquals("TestSample", $obj->getRecipientType());
+        self::assertEquals("TestSample", $obj->getBatchStatus());
     }
 }

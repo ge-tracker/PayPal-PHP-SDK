@@ -38,14 +38,14 @@ class FundingOptionTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new FundingOption(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getId());
-        $this->assertNotNull($obj->getFundingSources());
-        $this->assertNotNull($obj->getBackupFundingInstrument());
-        $this->assertNotNull($obj->getCurrencyConversion());
-        $this->assertNotNull($obj->getInstallmentInfo());
-        $this->assertNotNull($obj->getLinks());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getId());
+        self::assertNotNull($obj->getFundingSources());
+        self::assertNotNull($obj->getBackupFundingInstrument());
+        self::assertNotNull($obj->getCurrencyConversion());
+        self::assertNotNull($obj->getInstallmentInfo());
+        self::assertNotNull($obj->getLinks());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -55,11 +55,11 @@ class FundingOptionTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getId(), "TestSample");
-        $this->assertEquals($obj->getFundingSources(), FundingSourceTest::getObject());
-        $this->assertEquals($obj->getBackupFundingInstrument(), FundingInstrumentTest::getObject());
-        $this->assertEquals($obj->getCurrencyConversion(), CurrencyConversionTest::getObject());
-        $this->assertEquals($obj->getInstallmentInfo(), InstallmentInfoTest::getObject());
-        $this->assertEquals($obj->getLinks(), LinksTest::getObject());
+        self::assertEquals("TestSample", $obj->getId());
+        self::assertEquals($obj->getFundingSources(), FundingSourceTest::getObject());
+        self::assertEquals($obj->getBackupFundingInstrument(), FundingInstrumentTest::getObject());
+        self::assertEquals($obj->getCurrencyConversion(), CurrencyConversionTest::getObject());
+        self::assertEquals($obj->getInstallmentInfo(), InstallmentInfoTest::getObject());
+        self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 }

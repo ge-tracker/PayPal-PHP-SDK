@@ -39,16 +39,16 @@ class TransactionTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Transaction(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
-    /**
-     * @depends testSerializationDeserialization
-     * @param Transaction $obj
-     */
-    public function testGetters($obj)
-    {
-    }
+//    /**
+//     * @depends testSerializationDeserialization
+//     * @param Transaction $obj
+//     */
+//    public function testGetters($obj)
+//    {
+//    }
 }

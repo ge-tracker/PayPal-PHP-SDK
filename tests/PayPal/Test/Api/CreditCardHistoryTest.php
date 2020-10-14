@@ -38,7 +38,7 @@ class CreditCardHistoryTest extends TestCase
         return $card;
     }
 
-    public function setup()
+    protected function setUp(): void
     {
         $card = self::createCreditCard();
         $card->setBillingAddress(AddressTest::getObject());
@@ -55,7 +55,7 @@ class CreditCardHistoryTest extends TestCase
         $cardHistory->setCreditCards(array($this->cards['partial'], $this->cards['full']));
         $cardHistory->setCount(2);
 
-        $this->assertCount(2, $cardHistory->getCreditCards());
+        self::assertCount(2, $cardHistory->getCreditCards());
     }
 
 
@@ -68,6 +68,6 @@ class CreditCardHistoryTest extends TestCase
         $cardHistoryCopy = new CreditCardHistory();
         $cardHistoryCopy->fromJson($cardHistory->toJSON());
 
-        $this->assertEquals($cardHistory, $cardHistoryCopy);
+        self::assertEquals($cardHistory, $cardHistoryCopy);
     }
 }

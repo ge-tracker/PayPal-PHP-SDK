@@ -38,10 +38,10 @@ class PayoutBatchTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new PayoutBatch(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getBatchHeader());
-        $this->assertNotNull($obj->getItems());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getBatchHeader());
+        self::assertNotNull($obj->getItems());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -51,7 +51,7 @@ class PayoutBatchTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getBatchHeader(), PayoutBatchHeaderTest::getObject());
-        $this->assertEquals($obj->getItems(), PayoutItemDetailsTest::getObject());
+        self::assertEquals($obj->getBatchHeader(), PayoutBatchHeaderTest::getObject());
+        self::assertEquals($obj->getItems(), PayoutItemDetailsTest::getObject());
     }
 }

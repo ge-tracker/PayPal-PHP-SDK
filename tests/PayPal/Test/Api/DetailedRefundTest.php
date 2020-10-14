@@ -38,15 +38,15 @@ class DetailedRefundTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new DetailedRefund(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getCustom());
-        $this->assertNotNull($obj->getInvoiceNumber());
-        $this->assertNotNull($obj->getRefundToPayer());
-        $this->assertNotNull($obj->getRefundToExternalFunding());
-        $this->assertNotNull($obj->getRefundFromTransactionFee());
-        $this->assertNotNull($obj->getRefundFromReceivedAmount());
-        $this->assertNotNull($obj->getTotalRefundedAmount());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getCustom());
+        self::assertNotNull($obj->getInvoiceNumber());
+        self::assertNotNull($obj->getRefundToPayer());
+        self::assertNotNull($obj->getRefundToExternalFunding());
+        self::assertNotNull($obj->getRefundFromTransactionFee());
+        self::assertNotNull($obj->getRefundFromReceivedAmount());
+        self::assertNotNull($obj->getTotalRefundedAmount());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -56,13 +56,13 @@ class DetailedRefundTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getCustom(), "TestSample");
-        $this->assertEquals($obj->getInvoiceNumber(), "TestSample");
-        $this->assertEquals($obj->getRefundToPayer(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getRefundToExternalFunding(), ExternalFundingTest::getObject());
-        $this->assertEquals($obj->getRefundFromTransactionFee(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getRefundFromReceivedAmount(), CurrencyTest::getObject());
-        $this->assertEquals($obj->getTotalRefundedAmount(), CurrencyTest::getObject());
+        self::assertEquals("TestSample", $obj->getCustom());
+        self::assertEquals("TestSample", $obj->getInvoiceNumber());
+        self::assertEquals($obj->getRefundToPayer(), CurrencyTest::getObject());
+        self::assertEquals($obj->getRefundToExternalFunding(), ExternalFundingTest::getObject());
+        self::assertEquals($obj->getRefundFromTransactionFee(), CurrencyTest::getObject());
+        self::assertEquals($obj->getRefundFromReceivedAmount(), CurrencyTest::getObject());
+        self::assertEquals($obj->getTotalRefundedAmount(), CurrencyTest::getObject());
     }
 
 

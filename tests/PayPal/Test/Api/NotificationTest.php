@@ -38,11 +38,11 @@ class NotificationTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Notification(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getSubject());
-        $this->assertNotNull($obj->getNote());
-        $this->assertNotNull($obj->getSendToMerchant());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getSubject());
+        self::assertNotNull($obj->getNote());
+        self::assertNotNull($obj->getSendToMerchant());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -52,8 +52,8 @@ class NotificationTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getSubject(), "TestSample");
-        $this->assertEquals($obj->getNote(), "TestSample");
-        $this->assertEquals($obj->getSendToMerchant(), true);
+        self::assertEquals("TestSample", $obj->getSubject());
+        self::assertEquals("TestSample", $obj->getNote());
+        self::assertEquals(true, $obj->getSendToMerchant());
     }
 }

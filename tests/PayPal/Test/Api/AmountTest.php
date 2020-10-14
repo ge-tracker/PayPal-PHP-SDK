@@ -38,11 +38,11 @@ class AmountTest extends TestCase
     public function testSerializationDeserialization()
     {
         $obj = new Amount(self::getJson());
-        $this->assertNotNull($obj);
-        $this->assertNotNull($obj->getCurrency());
-        $this->assertNotNull($obj->getTotal());
-        $this->assertNotNull($obj->getDetails());
-        $this->assertEquals(self::getJson(), $obj->toJson());
+        self::assertNotNull($obj);
+        self::assertNotNull($obj->getCurrency());
+        self::assertNotNull($obj->getTotal());
+        self::assertNotNull($obj->getDetails());
+        self::assertEquals(self::getJson(), $obj->toJson());
         return $obj;
     }
 
@@ -52,8 +52,8 @@ class AmountTest extends TestCase
      */
     public function testGetters($obj)
     {
-        $this->assertEquals($obj->getCurrency(), "TestSample");
-        $this->assertEquals($obj->getTotal(), "12.34");
-        $this->assertEquals($obj->getDetails(), DetailsTest::getObject());
+        self::assertEquals("TestSample", $obj->getCurrency());
+        self::assertEquals("12.34", $obj->getTotal());
+        self::assertEquals($obj->getDetails(), DetailsTest::getObject());
     }
 }
