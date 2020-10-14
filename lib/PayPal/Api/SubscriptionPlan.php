@@ -400,7 +400,7 @@ class SubscriptionPlan extends PayPalResourceModel
      * @param ApiContext     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
      * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
      *
-     * @return PlanList
+     * @return \PayPal\Api\SubscriptionPlanList
      */
     public static function all($params, $apiContext = null, $restCall = null)
     {
@@ -420,7 +420,7 @@ class SubscriptionPlan extends PayPalResourceModel
             $apiContext,
             $restCall
         );
-        $ret = new PlanList();
+        $ret = new SubscriptionPlanList();
         $ret->fromJson($json);
 
         return $ret;
