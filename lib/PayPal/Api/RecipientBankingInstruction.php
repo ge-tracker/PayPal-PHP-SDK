@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * Recipient bank Details.
  *
- * @package PayPal\Api
  *
  * @property string bank_name
  * @property string account_holder_name
@@ -24,12 +23,13 @@ class RecipientBankingInstruction extends PayPalModel
      * Name of the financial institution.
      *
      * @param string $bank_name
-     * 
+     *
      * @return $this
      */
     public function setBankName($bank_name)
     {
         $this->bank_name = $bank_name;
+
         return $this;
     }
 
@@ -47,12 +47,13 @@ class RecipientBankingInstruction extends PayPalModel
      * Name of the account holder
      *
      * @param string $account_holder_name
-     * 
+     *
      * @return $this
      */
     public function setAccountHolderName($account_holder_name)
     {
         $this->account_holder_name = $account_holder_name;
+
         return $this;
     }
 
@@ -70,12 +71,13 @@ class RecipientBankingInstruction extends PayPalModel
      * bank account number
      *
      * @param string $account_number
-     * 
+     *
      * @return $this
      */
     public function setAccountNumber($account_number)
     {
         $this->account_number = $account_number;
+
         return $this;
     }
 
@@ -93,12 +95,13 @@ class RecipientBankingInstruction extends PayPalModel
      * bank routing number
      *
      * @param string $routing_number
-     * 
+     *
      * @return $this
      */
     public function setRoutingNumber($routing_number)
     {
         $this->routing_number = $routing_number;
+
         return $this;
     }
 
@@ -116,12 +119,13 @@ class RecipientBankingInstruction extends PayPalModel
      * IBAN equivalent of the bank
      *
      * @param string $international_bank_account_number
-     * 
+     *
      * @return $this
      */
     public function setInternationalBankAccountNumber($international_bank_account_number)
     {
         $this->international_bank_account_number = $international_bank_account_number;
+
         return $this;
     }
 
@@ -139,12 +143,13 @@ class RecipientBankingInstruction extends PayPalModel
      * BIC identifier of the financial institution
      *
      * @param string $bank_identifier_code
-     * 
+     *
      * @return $this
      */
     public function setBankIdentifierCode($bank_identifier_code)
     {
         $this->bank_identifier_code = $bank_identifier_code;
+
         return $this;
     }
 
@@ -157,5 +162,4 @@ class RecipientBankingInstruction extends PayPalModel
     {
         return $this->bank_identifier_code;
     }
-
 }

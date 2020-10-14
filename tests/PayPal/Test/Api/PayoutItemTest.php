@@ -4,14 +4,12 @@ namespace PayPal\Test\Api;
 
 use PayPal\Api\ItemsArray;
 use PayPal\Api\PayoutItem;
+use PayPal\Transport\PayPalRestCall;
 use PayPal\Transport\PPRestCall;
 use PHPUnit\Framework\TestCase;
-use PayPal\Transport\PayPalRestCall;
 
 /**
  * Class PayoutItem
- *
- * @package PayPal\Test\Api
  */
 class PayoutItemTest extends TestCase
 {
@@ -21,7 +19,7 @@ class PayoutItemTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"recipient_type":"TestSample","amount":' .CurrencyTest::getJson() . ',"note":"TestSample","receiver":"TestSample","sender_item_id":"TestSample"}';
+        return '{"recipient_type":"TestSample","amount":' . CurrencyTest::getJson() . ',"note":"TestSample","receiver":"TestSample","sender_item_id":"TestSample"}';
     }
 
     /**
@@ -32,7 +30,6 @@ class PayoutItemTest extends TestCase
     {
         return new PayoutItem(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -48,6 +45,7 @@ class PayoutItemTest extends TestCase
         self::assertNotNull($obj->getReceiver());
         self::assertNotNull($obj->getSenderItemId());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -57,11 +55,11 @@ class PayoutItemTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getRecipientType());
+        self::assertEquals('TestSample', $obj->getRecipientType());
         self::assertEquals($obj->getAmount(), CurrencyTest::getObject());
-        self::assertEquals("TestSample", $obj->getNote());
-        self::assertEquals("TestSample", $obj->getReceiver());
-        self::assertEquals("TestSample", $obj->getSenderItemId());
+        self::assertEquals('TestSample', $obj->getNote());
+        self::assertEquals('TestSample', $obj->getReceiver());
+        self::assertEquals('TestSample', $obj->getSenderItemId());
     }
 
     /**
@@ -78,7 +76,7 @@ class PayoutItemTest extends TestCase
             ->method('execute')
             ->willReturn(PayoutItemDetailsTest::getJson());
 
-        $result = $obj->get("payoutItemId", $mockApiContext, $mockPPRestCall);
+        $result = $obj->get('payoutItemId', $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
 
@@ -96,7 +94,7 @@ class PayoutItemTest extends TestCase
             ->method('execute')
             ->willReturn(PayoutItemDetailsTest::getJson());
 
-        $result = $obj->cancel("payoutItemId", $mockApiContext, $mockPPRestCall);
+        $result = $obj->cancel('payoutItemId', $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
 
@@ -106,9 +104,10 @@ class PayoutItemTest extends TestCase
         $mockApiContext = $this->getMockBuilder('ApiContext')
                     ->disableOriginalConstructor()
                     ->getMock();
-        return array(
-            array($obj, $mockApiContext),
-            array($obj, null)
-        );
+
+        return [
+            [$obj, $mockApiContext],
+            [$obj, null],
+        ];
     }
 }

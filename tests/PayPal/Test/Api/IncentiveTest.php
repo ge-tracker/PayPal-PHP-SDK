@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class Incentive
- *
- * @package PayPal\Test\Api
  */
 class IncentiveTest extends TestCase
 {
@@ -30,7 +28,6 @@ class IncentiveTest extends TestCase
         return new Incentive(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return Incentive
@@ -49,6 +46,7 @@ class IncentiveTest extends TestCase
         self::assertNotNull($obj->getType());
         self::assertNotNull($obj->getTerms());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -58,20 +56,20 @@ class IncentiveTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getId());
-        self::assertEquals("TestSample", $obj->getCode());
-        self::assertEquals("TestSample", $obj->getName());
-        self::assertEquals("TestSample", $obj->getDescription());
+        self::assertEquals('TestSample', $obj->getId());
+        self::assertEquals('TestSample', $obj->getCode());
+        self::assertEquals('TestSample', $obj->getName());
+        self::assertEquals('TestSample', $obj->getDescription());
         self::assertEquals($obj->getMinimumPurchaseAmount(), CurrencyTest::getObject());
-        self::assertEquals("http://www.google.com", $obj->getLogoImageUrl());
-        self::assertEquals("TestSample", $obj->getExpiryDate());
-        self::assertEquals("TestSample", $obj->getType());
-        self::assertEquals("TestSample", $obj->getTerms());
+        self::assertEquals('http://www.google.com', $obj->getLogoImageUrl());
+        self::assertEquals('TestSample', $obj->getExpiryDate());
+        self::assertEquals('TestSample', $obj->getType());
+        self::assertEquals('TestSample', $obj->getTerms());
     }
 
     public function testUrlValidationForLogoImageUrl()
     {
-        $this->expectExceptionMessage("LogoImageUrl is not a fully qualified URL");
+        $this->expectExceptionMessage('LogoImageUrl is not a fully qualified URL');
         $this->expectException(\InvalidArgumentException::class);
         $obj = new Incentive();
         $obj->setLogoImageUrl(null);

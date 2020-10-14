@@ -3,13 +3,11 @@
 namespace PayPal\Test\Api;
 
 use PayPal\Api\Sale;
-use PHPUnit\Framework\TestCase;
 use PayPal\Transport\PayPalRestCall;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class Sale
- *
- * @package PayPal\Test\Api
  */
 class SaleTest extends TestCase
 {
@@ -30,7 +28,6 @@ class SaleTest extends TestCase
     {
         return new Sale(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -63,6 +60,7 @@ class SaleTest extends TestCase
         self::assertNotNull($obj->getUpdateTime());
         self::assertNotNull($obj->getLinks());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -72,27 +70,27 @@ class SaleTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getId());
-        self::assertEquals("TestSample", $obj->getPurchaseUnitReferenceId());
+        self::assertEquals('TestSample', $obj->getId());
+        self::assertEquals('TestSample', $obj->getPurchaseUnitReferenceId());
         self::assertEquals($obj->getAmount(), AmountTest::getObject());
-        self::assertEquals("TestSample", $obj->getPaymentMode());
-        self::assertEquals("TestSample", $obj->getState());
-        self::assertEquals("TestSample", $obj->getReasonCode());
-        self::assertEquals("TestSample", $obj->getProtectionEligibility());
-        self::assertEquals("TestSample", $obj->getProtectionEligibilityType());
-        self::assertEquals("TestSample", $obj->getClearingTime());
-        self::assertEquals("TestSample", $obj->getPaymentHoldStatus());
-        self::assertEquals("TestSample", $obj->getPaymentHoldReasons());
+        self::assertEquals('TestSample', $obj->getPaymentMode());
+        self::assertEquals('TestSample', $obj->getState());
+        self::assertEquals('TestSample', $obj->getReasonCode());
+        self::assertEquals('TestSample', $obj->getProtectionEligibility());
+        self::assertEquals('TestSample', $obj->getProtectionEligibilityType());
+        self::assertEquals('TestSample', $obj->getClearingTime());
+        self::assertEquals('TestSample', $obj->getPaymentHoldStatus());
+        self::assertEquals('TestSample', $obj->getPaymentHoldReasons());
         self::assertEquals($obj->getTransactionFee(), CurrencyTest::getObject());
         self::assertEquals($obj->getReceivableAmount(), CurrencyTest::getObject());
-        self::assertEquals("TestSample", $obj->getExchangeRate());
+        self::assertEquals('TestSample', $obj->getExchangeRate());
         self::assertEquals($obj->getFmfDetails(), FmfDetailsTest::getObject());
-        self::assertEquals("TestSample", $obj->getReceiptId());
-        self::assertEquals("TestSample", $obj->getParentPayment());
+        self::assertEquals('TestSample', $obj->getReceiptId());
+        self::assertEquals('TestSample', $obj->getParentPayment());
         self::assertEquals($obj->getProcessorResponse(), ProcessorResponseTest::getObject());
-        self::assertEquals("TestSample", $obj->getBillingAgreementId());
-        self::assertEquals("TestSample", $obj->getCreateTime());
-        self::assertEquals("TestSample", $obj->getUpdateTime());
+        self::assertEquals('TestSample', $obj->getBillingAgreementId());
+        self::assertEquals('TestSample', $obj->getCreateTime());
+        self::assertEquals('TestSample', $obj->getUpdateTime());
         self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 
@@ -110,9 +108,10 @@ class SaleTest extends TestCase
             ->method('execute')
             ->willReturn(self::getJson());
 
-        $result = $obj->get("saleId", $mockApiContext, $mockPPRestCall);
+        $result = $obj->get('saleId', $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param Sale $obj
@@ -138,9 +137,10 @@ class SaleTest extends TestCase
         $mockApiContext = $this->getMockBuilder('ApiContext')
             ->disableOriginalConstructor()
             ->getMock();
-        return array(
-            array($obj, $mockApiContext),
-            array($obj, null)
-        );
+
+        return [
+            [$obj, $mockApiContext],
+            [$obj, null],
+        ];
     }
 }

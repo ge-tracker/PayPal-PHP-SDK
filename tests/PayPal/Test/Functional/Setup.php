@@ -5,24 +5,23 @@ namespace PayPal\Test\Functional;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Core\PayPalCredentialManager;
 use PayPal\Rest\ApiContext;
-use PHPUnit\Framework\TestCase;
 use PayPal\Transport\PayPalRestCall;
+use PHPUnit\Framework\TestCase;
 
 class Setup
 {
-
     public static $mode = 'mock';
 
     public static function SetUpForFunctionalTests(TestCase $test)
     {
-        $configs = array(
+        $configs = [
             'mode' => 'sandbox',
             'http.ConnectionTimeOut' => 30,
             'log.LogEnabled' => true,
             'log.FileName' => '../PayPal.log',
             'log.LogLevel' => 'FINE',
-            'validation.level' => 'log'
-        );
+            'validation.level' => 'log',
+        ];
         $test->apiContext = new ApiContext(
             new OAuthTokenCredential('AYSq3RDGsmBLJE-otTkBtM-jBRd1TCQwFf9RGfwddNXWz0uFU9ztymylOhRS', 'EGnHDxD_qRPdaLdZz8iCr8N7_MzF-YHPTkjs6NKYQvQSBngp4PTTVWkPZRbL')
         );

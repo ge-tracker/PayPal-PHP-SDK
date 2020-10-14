@@ -6,9 +6,6 @@ namespace PayPal\Api;
  * Class Transaction
  *
  * A transaction defines the contract of a payment - what is the payment for and who is fulfilling it.
- *
- * @package PayPal\Api
- *
  */
 class Transaction extends TransactionBase
 {
@@ -23,6 +20,7 @@ class Transaction extends TransactionBase
     public function setTransactions($transactions)
     {
         $this->transactions = $transactions;
+
         return $this;
     }
 
@@ -46,6 +44,7 @@ class Transaction extends TransactionBase
     public function setPurchaseUnitReferenceId($purchase_unit_reference_id)
     {
         $this->purchase_unit_reference_id = $purchase_unit_reference_id;
+
         return $this;
     }
 
@@ -59,5 +58,4 @@ class Transaction extends TransactionBase
     {
         return $this->purchase_unit_reference_id;
     }
-
 }

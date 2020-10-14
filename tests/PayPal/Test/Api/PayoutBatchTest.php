@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class PayoutBatch
- *
- * @package PayPal\Test\Api
  */
 class PayoutBatchTest extends TestCase
 {
@@ -18,7 +16,7 @@ class PayoutBatchTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"batch_header":' .PayoutBatchHeaderTest::getJson() . ',"items":' .PayoutItemDetailsTest::getJson() . '}';
+        return '{"batch_header":' . PayoutBatchHeaderTest::getJson() . ',"items":' . PayoutItemDetailsTest::getJson() . '}';
     }
 
     /**
@@ -29,7 +27,6 @@ class PayoutBatchTest extends TestCase
     {
         return new PayoutBatch(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -42,6 +39,7 @@ class PayoutBatchTest extends TestCase
         self::assertNotNull($obj->getBatchHeader());
         self::assertNotNull($obj->getItems());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 

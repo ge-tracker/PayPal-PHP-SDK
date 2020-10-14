@@ -6,12 +6,9 @@ use InvalidArgumentException;
 
 /**
  * Class JsonValidator
- *
- * @package PayPal\Validation
  */
 class JsonValidator
 {
-
     /**
      * Helper method for validating if string provided is a valid json.
      *
@@ -28,10 +25,12 @@ class JsonValidator
             }
             if ($silent == false) {
                 //Throw an Exception for string or array
-                throw new InvalidArgumentException("Invalid JSON String");
+                throw new InvalidArgumentException('Invalid JSON String');
             }
+
             return false;
         }
+
         return true;
     }
 }

@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class AgreementTransactions
- *
- * @package PayPal\Test\Api
  */
 class AgreementTransactionsTest extends TestCase
 {
@@ -18,7 +16,7 @@ class AgreementTransactionsTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"agreement_transaction_list":' .AgreementTransactionTest::getJson() . '}';
+        return '{"agreement_transaction_list":' . AgreementTransactionTest::getJson() . '}';
     }
 
     /**
@@ -30,7 +28,6 @@ class AgreementTransactionsTest extends TestCase
         return new AgreementTransactions(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return AgreementTransactions
@@ -41,6 +38,7 @@ class AgreementTransactionsTest extends TestCase
         self::assertNotNull($obj);
         self::assertNotNull($obj->getAgreementTransactionList());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 

@@ -2,14 +2,12 @@
 
 namespace PayPal\Test\Api;
 
-use PayPal\Common\PayPalModel;
 use PayPal\Api\FileAttachment;
+use PayPal\Common\PayPalModel;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class FileAttachment
- *
- * @package PayPal\Test\Api
  */
 class FileAttachmentTest extends TestCase
 {
@@ -31,7 +29,6 @@ class FileAttachmentTest extends TestCase
         return new FileAttachment(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return FileAttachment
@@ -43,6 +40,7 @@ class FileAttachmentTest extends TestCase
         self::assertNotNull($obj->getName());
         self::assertNotNull($obj->getUrl());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -52,13 +50,13 @@ class FileAttachmentTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getName());
-        self::assertEquals("http://www.google.com", $obj->getUrl());
+        self::assertEquals('TestSample', $obj->getName());
+        self::assertEquals('http://www.google.com', $obj->getUrl());
     }
 
     public function testUrlValidationForUrl()
     {
-        $this->expectExceptionMessage("Url is not a fully qualified URL");
+        $this->expectExceptionMessage('Url is not a fully qualified URL');
         $this->expectException(\InvalidArgumentException::class);
         $obj = new FileAttachment();
         $obj->setUrl(null);

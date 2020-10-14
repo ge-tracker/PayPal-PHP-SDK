@@ -2,14 +2,12 @@
 
 namespace PayPal\Test\Api;
 
-use PayPal\Common\PayPalModel;
 use PayPal\Api\Participant;
+use PayPal\Common\PayPalModel;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class Participant
- *
- * @package PayPal\Test\Api
  */
 class ParticipantTest extends TestCase
 {
@@ -19,7 +17,7 @@ class ParticipantTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"email":"TestSample","first_name":"TestSample","last_name":"TestSample","business_name":"TestSample","phone":' .PhoneTest::getJson() . ',"fax":' .PhoneTest::getJson() . ',"website":"TestSample","additional_info":"TestSample","address":' .AddressTest::getJson() . '}';
+        return '{"email":"TestSample","first_name":"TestSample","last_name":"TestSample","business_name":"TestSample","phone":' . PhoneTest::getJson() . ',"fax":' . PhoneTest::getJson() . ',"website":"TestSample","additional_info":"TestSample","address":' . AddressTest::getJson() . '}';
     }
 
     /**
@@ -30,7 +28,6 @@ class ParticipantTest extends TestCase
     {
         return new Participant(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -50,6 +47,7 @@ class ParticipantTest extends TestCase
         self::assertNotNull($obj->getAdditionalInfo());
         self::assertNotNull($obj->getAddress());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -59,14 +57,14 @@ class ParticipantTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getEmail());
-        self::assertEquals("TestSample", $obj->getFirstName());
-        self::assertEquals("TestSample", $obj->getLastName());
-        self::assertEquals("TestSample", $obj->getBusinessName());
+        self::assertEquals('TestSample', $obj->getEmail());
+        self::assertEquals('TestSample', $obj->getFirstName());
+        self::assertEquals('TestSample', $obj->getLastName());
+        self::assertEquals('TestSample', $obj->getBusinessName());
         self::assertEquals($obj->getPhone(), PhoneTest::getObject());
         self::assertEquals($obj->getFax(), PhoneTest::getObject());
-        self::assertEquals("TestSample", $obj->getWebsite());
-        self::assertEquals("TestSample", $obj->getAdditionalInfo());
+        self::assertEquals('TestSample', $obj->getWebsite());
+        self::assertEquals('TestSample', $obj->getAdditionalInfo());
         self::assertEquals($obj->getAddress(), AddressTest::getObject());
     }
 }

@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class PaymentCardToken
- *
- * @package PayPal\Test\Api
  */
 class PaymentCardTokenTest extends TestCase
 {
@@ -30,7 +28,6 @@ class PaymentCardTokenTest extends TestCase
         return new PaymentCardToken(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return PaymentCardToken
@@ -46,6 +43,7 @@ class PaymentCardTokenTest extends TestCase
         self::assertNotNull($obj->getExpireMonth());
         self::assertNotNull($obj->getExpireYear());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -55,10 +53,10 @@ class PaymentCardTokenTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getPaymentCardId());
-        self::assertEquals("TestSample", $obj->getExternalCustomerId());
-        self::assertEquals("TestSample", $obj->getLast4());
-        self::assertEquals("TestSample", $obj->getType());
+        self::assertEquals('TestSample', $obj->getPaymentCardId());
+        self::assertEquals('TestSample', $obj->getExternalCustomerId());
+        self::assertEquals('TestSample', $obj->getLast4());
+        self::assertEquals('TestSample', $obj->getType());
         self::assertEquals(123, $obj->getExpireMonth());
         self::assertEquals(123, $obj->getExpireYear());
     }

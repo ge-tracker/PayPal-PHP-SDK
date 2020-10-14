@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class AlternatePayment
- *
- * @package PayPal\Test\Api
  */
 class AlternatePaymentTest extends TestCase
 {
@@ -30,7 +28,6 @@ class AlternatePaymentTest extends TestCase
         return new AlternatePayment(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return AlternatePayment
@@ -43,6 +40,7 @@ class AlternatePaymentTest extends TestCase
         self::assertNotNull($obj->getExternalCustomerId());
         self::assertNotNull($obj->getAlternatePaymentProviderId());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -52,8 +50,8 @@ class AlternatePaymentTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getAlternatePaymentAccountId());
-        self::assertEquals("TestSample", $obj->getExternalCustomerId());
-        self::assertEquals("TestSample", $obj->getAlternatePaymentProviderId());
+        self::assertEquals('TestSample', $obj->getAlternatePaymentAccountId());
+        self::assertEquals('TestSample', $obj->getExternalCustomerId());
+        self::assertEquals('TestSample', $obj->getAlternatePaymentProviderId());
     }
 }

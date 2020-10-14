@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * A resource representing a carrier account that can be used to fund a payment.
  *
- * @package PayPal\Api
  *
  * @property string carrier_account_id
  * @property string external_customer_id
@@ -20,12 +19,13 @@ class CarrierAccountToken extends PayPalModel
      * ID of a previously saved carrier account resource.
      *
      * @param string $carrier_account_id
-     * 
+     *
      * @return $this
      */
     public function setCarrierAccountId($carrier_account_id)
     {
         $this->carrier_account_id = $carrier_account_id;
+
         return $this;
     }
 
@@ -43,12 +43,13 @@ class CarrierAccountToken extends PayPalModel
      * The unique identifier of the payer used when saving this carrier account instrument.
      *
      * @param string $external_customer_id
-     * 
+     *
      * @return $this
      */
     public function setExternalCustomerId($external_customer_id)
     {
         $this->external_customer_id = $external_customer_id;
+
         return $this;
     }
 
@@ -61,5 +62,4 @@ class CarrierAccountToken extends PayPalModel
     {
         return $this->external_customer_id;
     }
-
 }

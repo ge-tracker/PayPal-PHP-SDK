@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * A resource representing an external funding object.
  *
- * @package PayPal\Api
  *
  * @property string reference_id
  * @property string code
@@ -24,12 +23,13 @@ class ExternalFunding extends PayPalModel
      * Unique identifier for the external funding
      *
      * @param string $reference_id
-     * 
+     *
      * @return $this
      */
     public function setReferenceId($reference_id)
     {
         $this->reference_id = $reference_id;
+
         return $this;
     }
 
@@ -47,12 +47,13 @@ class ExternalFunding extends PayPalModel
      * Generic identifier for the external funding
      *
      * @param string $code
-     * 
+     *
      * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+
         return $this;
     }
 
@@ -70,12 +71,13 @@ class ExternalFunding extends PayPalModel
      * Encrypted PayPal Account identifier for the funding account
      *
      * @param string $funding_account_id
-     * 
+     *
      * @return $this
      */
     public function setFundingAccountId($funding_account_id)
     {
         $this->funding_account_id = $funding_account_id;
+
         return $this;
     }
 
@@ -93,12 +95,13 @@ class ExternalFunding extends PayPalModel
      * Description of the external funding being applied
      *
      * @param string $display_text
-     * 
+     *
      * @return $this
      */
     public function setDisplayText($display_text)
     {
         $this->display_text = $display_text;
+
         return $this;
     }
 
@@ -116,12 +119,13 @@ class ExternalFunding extends PayPalModel
      * Amount being funded by the external funding account
      *
      * @param \PayPal\Api\Amount $amount
-     * 
+     *
      * @return $this
      */
     public function setAmount($amount)
     {
         $this->amount = $amount;
+
         return $this;
     }
 
@@ -146,6 +150,7 @@ class ExternalFunding extends PayPalModel
     public function setFundingInstruction($funding_instruction)
     {
         $this->funding_instruction = $funding_instruction;
+
         return $this;
     }
 

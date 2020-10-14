@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * Collection of payment response related fields returned from a payment request
  *
- * @package PayPal\Api
  *
  * @property string response_code
  * @property string avs_code
@@ -30,6 +29,7 @@ class ProcessorResponse extends PayPalModel
     public function setResponseCode($response_code)
     {
         $this->response_code = $response_code;
+
         return $this;
     }
 
@@ -53,6 +53,7 @@ class ProcessorResponse extends PayPalModel
     public function setAvsCode($avs_code)
     {
         $this->avs_code = $avs_code;
+
         return $this;
     }
 
@@ -76,6 +77,7 @@ class ProcessorResponse extends PayPalModel
     public function setCvvCode($cvv_code)
     {
         $this->cvv_code = $cvv_code;
+
         return $this;
     }
 
@@ -100,6 +102,7 @@ class ProcessorResponse extends PayPalModel
     public function setAdviceCode($advice_code)
     {
         $this->advice_code = $advice_code;
+
         return $this;
     }
 
@@ -123,6 +126,7 @@ class ProcessorResponse extends PayPalModel
     public function setEciSubmitted($eci_submitted)
     {
         $this->eci_submitted = $eci_submitted;
+
         return $this;
     }
 
@@ -146,6 +150,7 @@ class ProcessorResponse extends PayPalModel
     public function setVpas($vpas)
     {
         $this->vpas = $vpas;
+
         return $this;
     }
 
@@ -158,5 +163,4 @@ class ProcessorResponse extends PayPalModel
     {
         return $this->vpas;
     }
-
 }

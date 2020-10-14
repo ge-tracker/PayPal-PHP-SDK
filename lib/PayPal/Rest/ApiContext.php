@@ -9,18 +9,15 @@ use PayPal\Core\PayPalCredentialManager;
  * Class ApiContext
  *
  * Call level parameters such as request id, credentials etc
- *
- * @package PayPal\Rest
  */
 class ApiContext
 {
-
     /**
      * Unique request id to be used for this call
      * The user can either generate one as per application
      * needs or let the SDK generate one
      *
-     * @var null|string $requestId
+     * @var null|string
      */
     private $requestId;
 
@@ -31,7 +28,6 @@ class ApiContext
      * @var \PayPal\Auth\OAuthTokenCredential
      */
     private $credential;
-
 
     /**
      * Construct
@@ -55,17 +51,19 @@ class ApiContext
         if ($this->credential == null) {
             return PayPalCredentialManager::getInstance()->getCredentialObject();
         }
+
         return $this->credential;
     }
 
     public function getRequestHeaders()
     {
         $result = PayPalConfigManager::getInstance()->get('http.headers');
-        $headers = array();
+        $headers = [];
         foreach ($result as $header => $value) {
             $headerName = ltrim($header, 'http.headers');
             $headers[$headerName] = $value;
         }
+
         return $headers;
     }
 
@@ -75,7 +73,7 @@ class ApiContext
         if (!(strpos($name, 'http.headers') === 0)) {
             $name = 'http.headers.' . $name;
         }
-        PayPalConfigManager::getInstance()->addConfigs(array($name => $value));
+        PayPalConfigManager::getInstance()->addConfigs([$name => $value]);
     }
 
     /**
@@ -109,6 +107,7 @@ class ApiContext
     public function resetRequestId()
     {
         $this->requestId = $this->generateRequestId();
+
         return $this->getRequestId();
     }
 

@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class CarrierAccount
- *
- * @package PayPal\Test\Api
  */
 class CarrierAccountTest extends TestCase
 {
@@ -18,7 +16,7 @@ class CarrierAccountTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"id":"TestSample","phone_number":"TestSample","external_customer_id":"TestSample","phone_source":"TestSample","country_code":' .CountryCodeTest::getJson() . '}';
+        return '{"id":"TestSample","phone_number":"TestSample","external_customer_id":"TestSample","phone_source":"TestSample","country_code":' . CountryCodeTest::getJson() . '}';
     }
 
     /**
@@ -29,7 +27,6 @@ class CarrierAccountTest extends TestCase
     {
         return new CarrierAccount(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -45,6 +42,7 @@ class CarrierAccountTest extends TestCase
         self::assertNotNull($obj->getPhoneSource());
         self::assertNotNull($obj->getCountryCode());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -54,10 +52,10 @@ class CarrierAccountTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getId());
-        self::assertEquals("TestSample", $obj->getPhoneNumber());
-        self::assertEquals("TestSample", $obj->getExternalCustomerId());
-        self::assertEquals("TestSample", $obj->getPhoneSource());
+        self::assertEquals('TestSample', $obj->getId());
+        self::assertEquals('TestSample', $obj->getPhoneNumber());
+        self::assertEquals('TestSample', $obj->getExternalCustomerId());
+        self::assertEquals('TestSample', $obj->getPhoneSource());
         self::assertEquals($obj->getCountryCode(), CountryCodeTest::getObject());
     }
 }

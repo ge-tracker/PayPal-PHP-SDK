@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class InvoiceAddress
- *
- * @package PayPal\Test\Api
  */
 class InvoiceAddressTest extends TestCase
 {
@@ -18,7 +16,7 @@ class InvoiceAddressTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"line1":"TestSample","line2":"TestSample","city":"TestSample","country_code":"TestSample","postal_code":"TestSample","state":"TestSample","phone":'. PhoneTest::getJson() . "}";
+        return '{"line1":"TestSample","line2":"TestSample","city":"TestSample","country_code":"TestSample","postal_code":"TestSample","state":"TestSample","phone":' . PhoneTest::getJson() . '}';
     }
 
     /**
@@ -29,7 +27,6 @@ class InvoiceAddressTest extends TestCase
     {
         return new InvoiceAddress(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -47,6 +44,7 @@ class InvoiceAddressTest extends TestCase
         self::assertNotNull($obj->getState());
         self::assertNotNull($obj->getPhone());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -56,12 +54,12 @@ class InvoiceAddressTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getLine1());
-        self::assertEquals("TestSample", $obj->getLine2());
-        self::assertEquals("TestSample", $obj->getCity());
-        self::assertEquals("TestSample", $obj->getCountryCode());
-        self::assertEquals("TestSample", $obj->getPostalCode());
-        self::assertEquals("TestSample", $obj->getState());
+        self::assertEquals('TestSample', $obj->getLine1());
+        self::assertEquals('TestSample', $obj->getLine2());
+        self::assertEquals('TestSample', $obj->getCity());
+        self::assertEquals('TestSample', $obj->getCountryCode());
+        self::assertEquals('TestSample', $obj->getPostalCode());
+        self::assertEquals('TestSample', $obj->getState());
         self::assertEquals($obj->getPhone(), PhoneTest::getObject());
     }
 }

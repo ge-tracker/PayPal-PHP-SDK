@@ -1,4 +1,5 @@
 <?php
+
 namespace PayPal\Api;
 
 use PayPal\Common\PayPalResourceModel;
@@ -19,7 +20,6 @@ use PayPal\Transport\PayPalRestCall;
  */
 class OpenIdTokeninfo extends PayPalResourceModel
 {
-
     /**
      * OPTIONAL, if identical to the scope requested by the client; otherwise, REQUIRED.
      *
@@ -29,6 +29,7 @@ class OpenIdTokeninfo extends PayPalResourceModel
     public function setScope($scope)
     {
         $this->scope = $scope;
+
         return $this;
     }
 
@@ -51,6 +52,7 @@ class OpenIdTokeninfo extends PayPalResourceModel
     public function setAccessToken($access_token)
     {
         $this->access_token = $access_token;
+
         return $this;
     }
 
@@ -73,6 +75,7 @@ class OpenIdTokeninfo extends PayPalResourceModel
     public function setRefreshToken($refresh_token)
     {
         $this->refresh_token = $refresh_token;
+
         return $this;
     }
 
@@ -95,6 +98,7 @@ class OpenIdTokeninfo extends PayPalResourceModel
     public function setTokenType($token_type)
     {
         $this->token_type = $token_type;
+
         return $this;
     }
 
@@ -117,6 +121,7 @@ class OpenIdTokeninfo extends PayPalResourceModel
     public function setIdToken($id_token)
     {
         $this->id_token = $id_token;
+
         return $this;
     }
 
@@ -133,25 +138,25 @@ class OpenIdTokeninfo extends PayPalResourceModel
     /**
      * The lifetime in seconds of the access token.
      *
-     * @param integer $expires_in
+     * @param int $expires_in
      * @return self
      */
     public function setExpiresIn($expires_in)
     {
         $this->expires_in = $expires_in;
+
         return $this;
     }
 
     /**
      * The lifetime in seconds of the access token.
      *
-     * @return integer
+     * @return int
      */
     public function getExpiresIn()
     {
         return $this->expires_in;
     }
-
 
     /**
      * Creates an Access Token from an Authorization Code.
@@ -173,7 +178,7 @@ class OpenIdTokeninfo extends PayPalResourceModel
      */
     public static function createFromAuthorizationCode($params, $clientId = null, $clientSecret = null, $apiContext = null, $restCall = null)
     {
-        static $allowedParams = array('grant_type' => 1, 'code' => 1, 'redirect_uri' => 1);
+        static $allowedParams = ['grant_type' => 1, 'code' => 1, 'redirect_uri' => 1];
 
         if (!array_key_exists('grant_type', $params)) {
             $params['grant_type'] = 'authorization_code';
@@ -192,18 +197,19 @@ class OpenIdTokeninfo extends PayPalResourceModel
         $clientSecret = $clientSecret ?: $apiContext->getCredential()->getClientSecret();
 
         $json = self::executeCall(
-            "/v1/identity/openidconnect/tokenservice",
-            "POST",
+            '/v1/identity/openidconnect/tokenservice',
+            'POST',
             http_build_query(array_intersect_key($params, $allowedParams)),
-            array(
+            [
                 'Content-Type' => 'application/x-www-form-urlencoded',
-                'Authorization' => 'Basic ' . base64_encode($clientId . ":" . $clientSecret)
-            ),
+                'Authorization' => 'Basic ' . base64_encode($clientId . ':' . $clientSecret),
+            ],
             $apiContext,
             $restCall
         );
         $token = new self();
         $token->fromJson($json);
+
         return $token;
     }
 
@@ -224,7 +230,7 @@ class OpenIdTokeninfo extends PayPalResourceModel
      */
     public function createFromRefreshToken($params, $apiContext = null, $restCall = null)
     {
-        static $allowedParams = array('grant_type' => 1, 'refresh_token' => 1, 'scope' => 1);
+        static $allowedParams = ['grant_type' => 1, 'refresh_token' => 1, 'scope' => 1];
         $apiContext = $apiContext ?: new ApiContext(self::$credential);
 
         if (!array_key_exists('grant_type', $params)) {
@@ -238,18 +244,19 @@ class OpenIdTokeninfo extends PayPalResourceModel
         $clientSecret = $params['client_secret'] ?? $apiContext->getCredential()->getClientSecret();
 
         $json = self::executeCall(
-            "/v1/identity/openidconnect/tokenservice",
-            "POST",
+            '/v1/identity/openidconnect/tokenservice',
+            'POST',
             http_build_query(array_intersect_key($params, $allowedParams)),
-            array(
+            [
                 'Content-Type' => 'application/x-www-form-urlencoded',
-                'Authorization' => 'Basic ' . base64_encode($clientId . ":" . $clientSecret)
-            ),
+                'Authorization' => 'Basic ' . base64_encode($clientId . ':' . $clientSecret),
+            ],
             $apiContext,
             $restCall
         );
 
         $this->fromJson($json);
+
         return $this;
     }
 }

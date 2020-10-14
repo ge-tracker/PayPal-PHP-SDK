@@ -43,6 +43,7 @@ abstract class AuthorizationCache
                 }
             }
         }
+
         return $tokens;
     }
 
@@ -56,7 +57,7 @@ abstract class AuthorizationCache
      * @param      $tokenExpiresIn
      * @throws \Exception
      */
-    public static function push($config = null, $clientId, $accessToken, $tokenCreateTime, $tokenExpiresIn)
+    public static function push($config, $clientId, $accessToken, $tokenCreateTime, $tokenExpiresIn)
     {
         // Return if not enabled
         if (!self::isEnabled($config)) {
@@ -72,15 +73,15 @@ abstract class AuthorizationCache
         $tokens = self::pull();
         $tokens = $tokens ?: [];
         if (is_array($tokens)) {
-            $tokens[$clientId] = array(
+            $tokens[$clientId] = [
                 'clientId' => $clientId,
                 'accessTokenEncrypted' => $accessToken,
                 'tokenCreateTime' => $tokenCreateTime,
-                'tokenExpiresIn' => $tokenExpiresIn
-            );
+                'tokenExpiresIn' => $tokenExpiresIn,
+            ];
         }
         if (!file_put_contents($cachePath, json_encode($tokens))) {
-            throw new \RuntimeException("Failed to write cache");
+            throw new \RuntimeException('Failed to write cache');
         }
     }
 
@@ -93,6 +94,7 @@ abstract class AuthorizationCache
     public static function isEnabled($config)
     {
         $value = self::getConfigValue('cache.enabled', $config);
+
         return empty($value) ? false : ((trim($value) == true || trim($value) == 'true'));
     }
 
@@ -105,6 +107,7 @@ abstract class AuthorizationCache
     public static function cachePath($config)
     {
         $cachePath = self::getConfigValue('cache.FileName', $config);
+
         return empty($cachePath) ? __DIR__ . self::$CACHE_PATH : $cachePath;
     }
 
@@ -119,6 +122,7 @@ abstract class AuthorizationCache
     private static function getConfigValue($key, $config)
     {
         $config = ($config && is_array($config)) ? $config : PayPalConfigManager::getInstance()->getConfigHashmap();
+
         return (array_key_exists($key, $config)) ? trim($config[$key]) : null;
     }
 }

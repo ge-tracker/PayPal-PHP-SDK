@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class FundingInstrument
- *
- * @package PayPal\Test\Api
  */
 class FundingInstrumentTest extends TestCase
 {
@@ -29,7 +27,6 @@ class FundingInstrumentTest extends TestCase
     {
         return new FundingInstrument(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -52,6 +49,7 @@ class FundingInstrumentTest extends TestCase
         self::assertNotNull($obj->getPrivateLabelCard());
         self::assertNotNull($obj->getBilling());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 

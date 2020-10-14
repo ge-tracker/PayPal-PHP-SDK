@@ -3,15 +3,14 @@
 namespace PayPal\Api;
 
 use PayPal\Common\PayPalResourceModel;
-use PayPal\Validation\ArgumentValidator;
 use PayPal\Rest\ApiContext;
+use PayPal\Validation\ArgumentValidator;
 
 /**
  * Class Order
  *
  * An order transaction.
  *
- * @package PayPal\Api
  *
  * @property string id
  * @property string reference_id
@@ -40,6 +39,7 @@ class Order extends PayPalResourceModel
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -65,6 +65,7 @@ class Order extends PayPalResourceModel
     public function setPurchaseUnitReferenceId($purchase_unit_reference_id)
     {
         $this->purchase_unit_reference_id = $purchase_unit_reference_id;
+
         return $this;
     }
 
@@ -89,6 +90,7 @@ class Order extends PayPalResourceModel
     public function setReferenceId($reference_id)
     {
         $this->reference_id = $reference_id;
+
         return $this;
     }
 
@@ -112,6 +114,7 @@ class Order extends PayPalResourceModel
     public function setAmount($amount)
     {
         $this->amount = $amount;
+
         return $this;
     }
 
@@ -136,6 +139,7 @@ class Order extends PayPalResourceModel
     public function setPaymentMode($payment_mode)
     {
         $this->payment_mode = $payment_mode;
+
         return $this;
     }
 
@@ -160,6 +164,7 @@ class Order extends PayPalResourceModel
     public function setState($state)
     {
         $this->state = $state;
+
         return $this;
     }
 
@@ -184,6 +189,7 @@ class Order extends PayPalResourceModel
     public function setReasonCode($reason_code)
     {
         $this->reason_code = $reason_code;
+
         return $this;
     }
 
@@ -208,6 +214,7 @@ class Order extends PayPalResourceModel
     public function setPendingReason($pending_reason)
     {
         $this->pending_reason = $pending_reason;
+
         return $this;
     }
 
@@ -232,6 +239,7 @@ class Order extends PayPalResourceModel
     public function setProtectionEligibility($protection_eligibility)
     {
         $this->protection_eligibility = $protection_eligibility;
+
         return $this;
     }
 
@@ -256,6 +264,7 @@ class Order extends PayPalResourceModel
     public function setProtectionEligibilityType($protection_eligibility_type)
     {
         $this->protection_eligibility_type = $protection_eligibility_type;
+
         return $this;
     }
 
@@ -279,6 +288,7 @@ class Order extends PayPalResourceModel
     public function setParentPayment($parent_payment)
     {
         $this->parent_payment = $parent_payment;
+
         return $this;
     }
 
@@ -302,6 +312,7 @@ class Order extends PayPalResourceModel
     public function setFmfDetails($fmf_details)
     {
         $this->fmf_details = $fmf_details;
+
         return $this;
     }
 
@@ -325,6 +336,7 @@ class Order extends PayPalResourceModel
     public function setCreateTime($create_time)
     {
         $this->create_time = $create_time;
+
         return $this;
     }
 
@@ -348,6 +360,7 @@ class Order extends PayPalResourceModel
     public function setUpdateTime($update_time)
     {
         $this->update_time = $update_time;
+
         return $this;
     }
 
@@ -372,10 +385,10 @@ class Order extends PayPalResourceModel
     public static function get($orderId, $apiContext = null, $restCall = null)
     {
         ArgumentValidator::validate($orderId, 'orderId');
-        $payLoad = "";
+        $payLoad = '';
         $json = self::executeCall(
             "/v1/payments/orders/$orderId",
-            "GET",
+            'GET',
             $payLoad,
             null,
             $apiContext,
@@ -383,6 +396,7 @@ class Order extends PayPalResourceModel
         );
         $ret = new self();
         $ret->fromJson($json);
+
         return $ret;
     }
 
@@ -396,12 +410,12 @@ class Order extends PayPalResourceModel
      */
     public function capture($capture, $apiContext = null, $restCall = null)
     {
-        ArgumentValidator::validate($this->getId(), "Id");
+        ArgumentValidator::validate($this->getId(), 'Id');
         ArgumentValidator::validate($capture, 'capture');
         $payLoad = $capture->toJSON();
         $json = self::executeCall(
             "/v1/payments/orders/{$this->getId()}/capture",
-            "POST",
+            'POST',
             $payLoad,
             null,
             $apiContext,
@@ -409,6 +423,7 @@ class Order extends PayPalResourceModel
         );
         $ret = new Capture();
         $ret->fromJson($json);
+
         return $ret;
     }
 
@@ -421,17 +436,18 @@ class Order extends PayPalResourceModel
      */
     public function void($apiContext = null, $restCall = null)
     {
-        ArgumentValidator::validate($this->getId(), "Id");
-        $payLoad = "";
+        ArgumentValidator::validate($this->getId(), 'Id');
+        $payLoad = '';
         $json = self::executeCall(
             "/v1/payments/orders/{$this->getId()}/do-void",
-            "POST",
+            'POST',
             $payLoad,
             null,
             $apiContext,
             $restCall
         );
         $this->fromJson($json);
+
         return $this;
     }
 
@@ -445,12 +461,12 @@ class Order extends PayPalResourceModel
      */
     public function authorize($authorization, $apiContext = null, $restCall = null)
     {
-        ArgumentValidator::validate($this->getId(), "Id");
+        ArgumentValidator::validate($this->getId(), 'Id');
         ArgumentValidator::validate($authorization, 'Authorization');
         $payLoad = $authorization->toJSON();
         $json = self::executeCall(
             "/v1/payments/orders/{$this->getId()}/authorize",
-            "POST",
+            'POST',
             $payLoad,
             null,
             $apiContext,
@@ -458,7 +474,7 @@ class Order extends PayPalResourceModel
         );
         $ret = new Authorization();
         $ret->fromJson($json);
+
         return $ret;
     }
-
 }

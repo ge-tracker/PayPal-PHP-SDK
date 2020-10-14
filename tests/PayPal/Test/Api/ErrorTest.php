@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class Error
- *
- * @package PayPal\Test\Api
  */
 class ErrorTest extends TestCase
 {
@@ -31,7 +29,6 @@ class ErrorTest extends TestCase
         return new Error(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return Error
@@ -51,6 +48,7 @@ class ErrorTest extends TestCase
         self::assertNotNull($obj->getDebugId());
         self::assertNotNull($obj->getLinks());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -60,15 +58,15 @@ class ErrorTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getName());
-        self::assertEquals("TestSample", $obj->getPurchaseUnitReferenceId());
-        self::assertEquals("TestSample", $obj->getMessage());
-        self::assertEquals("TestSample", $obj->getCode());
+        self::assertEquals('TestSample', $obj->getName());
+        self::assertEquals('TestSample', $obj->getPurchaseUnitReferenceId());
+        self::assertEquals('TestSample', $obj->getMessage());
+        self::assertEquals('TestSample', $obj->getCode());
         self::assertEquals($obj->getDetails(), ErrorDetailsTest::getObject());
         self::assertEquals($obj->getProcessorResponse(), ProcessorResponseTest::getObject());
         self::assertEquals($obj->getFmfDetails(), FmfDetailsTest::getObject());
-        self::assertEquals("TestSample", $obj->getInformationLink());
-        self::assertEquals("TestSample", $obj->getDebugId());
+        self::assertEquals('TestSample', $obj->getInformationLink());
+        self::assertEquals('TestSample', $obj->getDebugId());
         self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 }

@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class InvoiceItem
- *
- * @package PayPal\Test\Api
  */
 class InvoiceItemTest extends TestCase
 {
@@ -18,7 +16,7 @@ class InvoiceItemTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"name":"TestSample","description":"TestSample","quantity":"12.34","unit_price":' .CurrencyTest::getJson() . ',"tax":' .TaxTest::getJson() . ',"date":"TestSample","discount":' .CostTest::getJson() . ',"image_url":"http://www.google.com","unit_of_measure":"TestSample"}';
+        return '{"name":"TestSample","description":"TestSample","quantity":"12.34","unit_price":' . CurrencyTest::getJson() . ',"tax":' . TaxTest::getJson() . ',"date":"TestSample","discount":' . CostTest::getJson() . ',"image_url":"http://www.google.com","unit_of_measure":"TestSample"}';
     }
 
     /**
@@ -29,7 +27,6 @@ class InvoiceItemTest extends TestCase
     {
         return new InvoiceItem(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -49,6 +46,7 @@ class InvoiceItemTest extends TestCase
         self::assertNotNull($obj->getImageUrl());
         self::assertNotNull($obj->getUnitOfMeasure());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -58,20 +56,20 @@ class InvoiceItemTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getName());
-        self::assertEquals("TestSample", $obj->getDescription());
-        self::assertEquals("12.34", $obj->getQuantity());
+        self::assertEquals('TestSample', $obj->getName());
+        self::assertEquals('TestSample', $obj->getDescription());
+        self::assertEquals('12.34', $obj->getQuantity());
         self::assertEquals($obj->getUnitPrice(), CurrencyTest::getObject());
         self::assertEquals($obj->getTax(), TaxTest::getObject());
-        self::assertEquals("TestSample", $obj->getDate());
+        self::assertEquals('TestSample', $obj->getDate());
         self::assertEquals($obj->getDiscount(), CostTest::getObject());
-        self::assertEquals("http://www.google.com", $obj->getImageUrl());
-        self::assertEquals("TestSample", $obj->getUnitOfMeasure());
+        self::assertEquals('http://www.google.com', $obj->getImageUrl());
+        self::assertEquals('TestSample', $obj->getUnitOfMeasure());
     }
 
     public function testUrlValidationForImageUrl()
     {
-        $this->expectExceptionMessage("ImageUrl is not a fully qualified URL");
+        $this->expectExceptionMessage('ImageUrl is not a fully qualified URL');
         $this->expectException(\InvalidArgumentException::class);
         $obj = new InvoiceItem();
         $obj->setImageUrl(null);

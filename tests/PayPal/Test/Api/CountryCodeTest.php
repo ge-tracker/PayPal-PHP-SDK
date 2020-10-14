@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class CountryCode
- *
- * @package PayPal\Test\Api
  */
 class CountryCodeTest extends TestCase
 {
@@ -30,7 +28,6 @@ class CountryCodeTest extends TestCase
         return new CountryCode(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return CountryCode
@@ -41,6 +38,7 @@ class CountryCodeTest extends TestCase
         self::assertNotNull($obj);
         self::assertNotNull($obj->getCountryCode());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -50,6 +48,6 @@ class CountryCodeTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getCountryCode());
+        self::assertEquals('TestSample', $obj->getCountryCode());
     }
 }

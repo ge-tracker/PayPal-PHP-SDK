@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class PotentialPayerInfo
- *
- * @package PayPal\Test\Api
  */
 class PotentialPayerInfoTest extends TestCase
 {
@@ -18,7 +16,7 @@ class PotentialPayerInfoTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"email":"TestSample","external_remember_me_id":"TestSample","account_number":"TestSample","billing_address":' .AddressTest::getJson() . '}';
+        return '{"email":"TestSample","external_remember_me_id":"TestSample","account_number":"TestSample","billing_address":' . AddressTest::getJson() . '}';
     }
 
     /**
@@ -29,7 +27,6 @@ class PotentialPayerInfoTest extends TestCase
     {
         return new PotentialPayerInfo(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -44,6 +41,7 @@ class PotentialPayerInfoTest extends TestCase
         self::assertNotNull($obj->getAccountNumber());
         self::assertNotNull($obj->getBillingAddress());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -53,9 +51,9 @@ class PotentialPayerInfoTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getEmail());
-        self::assertEquals("TestSample", $obj->getExternalRememberMeId());
-        self::assertEquals("TestSample", $obj->getAccountNumber());
+        self::assertEquals('TestSample', $obj->getEmail());
+        self::assertEquals('TestSample', $obj->getExternalRememberMeId());
+        self::assertEquals('TestSample', $obj->getAccountNumber());
         self::assertEquals($obj->getBillingAddress(), AddressTest::getObject());
     }
 }

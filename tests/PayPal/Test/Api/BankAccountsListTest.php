@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class BankAccountsList
- *
- * @package PayPal\Test\Api
  */
 class BankAccountsListTest extends TestCase
 {
@@ -18,7 +16,7 @@ class BankAccountsListTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"bank-accounts":' .BankAccountTest::getJson() . ',"count":123,"next_id":"TestSample"}';
+        return '{"bank-accounts":' . BankAccountTest::getJson() . ',"count":123,"next_id":"TestSample"}';
     }
 
     /**
@@ -29,7 +27,6 @@ class BankAccountsListTest extends TestCase
     {
         return new BankAccountsList(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -43,6 +40,7 @@ class BankAccountsListTest extends TestCase
         self::assertNotNull($obj->getCount());
         self::assertNotNull($obj->getNextId());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -54,6 +52,6 @@ class BankAccountsListTest extends TestCase
     {
         self::assertEquals($obj->getBankAccounts(), BankAccountTest::getObject());
         self::assertEquals(123, $obj->getCount());
-        self::assertEquals("TestSample", $obj->getNextId());
+        self::assertEquals('TestSample', $obj->getNextId());
     }
 }

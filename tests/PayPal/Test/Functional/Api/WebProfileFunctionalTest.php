@@ -10,12 +10,9 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class WebProfile
- *
- * @package PayPal\Test\Api
  */
 class WebProfileFunctionalTest extends TestCase
 {
-
     public $operation;
 
     public $response;
@@ -54,6 +51,7 @@ class WebProfileFunctionalTest extends TestCase
         $obj->setName(uniqid());
         $result = $obj->create($this->apiContext, $this->mockPayPalRestCall);
         self::assertNotNull($result);
+
         return $result;
     }
 
@@ -74,7 +72,6 @@ class WebProfileFunctionalTest extends TestCase
         return $result;
     }
 
-
     /**
      * @depends testGet
      * @param $webProfile WebProfile
@@ -89,10 +86,11 @@ class WebProfileFunctionalTest extends TestCase
             if ($webProfileObject->getId() == $webProfile->getId()) {
                 $found = true;
                 $foundObject = $webProfileObject;
+
                 break;
             }
         }
-        self::assertTrue($found, "The Created Web Profile was not found in the get list");
+        self::assertTrue($found, 'The Created Web Profile was not found in the get list');
         self::assertEquals($webProfile->getId(), $foundObject->getId());
         self::assertEquals($this->operation['response']['body'][0]['presentation']['logo_image'], $foundObject->getPresentation()->getLogoImage());
         self::assertEquals($this->operation['response']['body'][0]['input_fields']['no_shipping'], $foundObject->getInputFields()->getNoShipping());
@@ -119,7 +117,7 @@ class WebProfileFunctionalTest extends TestCase
      */
     public function testPartialUpdate($webProfile)
     {
-        $patches = array();
+        $patches = [];
         $patches[] = new Patch('{
              "op": "add",
              "path": "/presentation/brand_name",

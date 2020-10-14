@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * A list of Bank Account Resources
  *
- * @package PayPal\Api
  *
  * @property \PayPal\Api\BankAccount[] bank_accounts
  * @property int count
@@ -26,7 +25,8 @@ class BankAccountsList extends PayPalModel
      */
     public function setBankAccounts($bank_accounts)
     {
-        $this->{"bank-accounts"} = $bank_accounts;
+        $this->{'bank-accounts'} = $bank_accounts;
+
         return $this;
     }
 
@@ -37,7 +37,7 @@ class BankAccountsList extends PayPalModel
      */
     public function getBankAccounts()
     {
-        return $this->{"bank-accounts"};
+        return $this->{'bank-accounts'};
     }
 
     /**
@@ -49,11 +49,11 @@ class BankAccountsList extends PayPalModel
     public function addBankAccount($bankAccount)
     {
         if (!$this->getBankAccounts()) {
-            return $this->setBankAccounts(array($bankAccount));
+            return $this->setBankAccounts([$bankAccount]);
         }
 
         return $this->setBankAccounts(
-            array_merge($this->getBankAccounts(), array($bankAccount))
+            array_merge($this->getBankAccounts(), [$bankAccount])
         );
     }
 
@@ -66,7 +66,7 @@ class BankAccountsList extends PayPalModel
     public function removeBankAccount($bankAccount)
     {
         return $this->setBankAccounts(
-            array_diff($this->getBankAccounts(), array($bankAccount))
+            array_diff($this->getBankAccounts(), [$bankAccount])
         );
     }
 
@@ -80,6 +80,7 @@ class BankAccountsList extends PayPalModel
     public function setCount($count)
     {
         $this->count = $count;
+
         return $this;
     }
 
@@ -103,6 +104,7 @@ class BankAccountsList extends PayPalModel
     public function setNextId($next_id)
     {
         $this->next_id = $next_id;
+
         return $this;
     }
 
@@ -115,5 +117,4 @@ class BankAccountsList extends PayPalModel
     {
         return $this->next_id;
     }
-
 }

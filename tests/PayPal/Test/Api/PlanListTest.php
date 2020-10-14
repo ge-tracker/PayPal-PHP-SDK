@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class PlanList
- *
- * @package PayPal\Test\Api
  */
 class PlanListTest extends TestCase
 {
@@ -18,7 +16,7 @@ class PlanListTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"plans":' .PlanTest::getJson() . ',"total_items":"TestSample","total_pages":"TestSample","links":' .LinksTest::getJson() . '}';
+        return '{"plans":' . PlanTest::getJson() . ',"total_items":"TestSample","total_pages":"TestSample","links":' . LinksTest::getJson() . '}';
     }
 
     /**
@@ -29,7 +27,6 @@ class PlanListTest extends TestCase
     {
         return new PlanList(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -44,6 +41,7 @@ class PlanListTest extends TestCase
         self::assertNotNull($obj->getTotalPages());
         self::assertNotNull($obj->getLinks());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -54,8 +52,8 @@ class PlanListTest extends TestCase
     public function testGetters($obj)
     {
         self::assertEquals($obj->getPlans(), PlanTest::getObject());
-        self::assertEquals("TestSample", $obj->getTotalItems());
-        self::assertEquals("TestSample", $obj->getTotalPages());
+        self::assertEquals('TestSample', $obj->getTotalItems());
+        self::assertEquals('TestSample', $obj->getTotalPages());
         self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 }

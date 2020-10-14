@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class CarrierAccountToken
- *
- * @package PayPal\Test\Api
  */
 class CarrierAccountTokenTest extends TestCase
 {
@@ -32,7 +30,6 @@ class CarrierAccountTokenTest extends TestCase
         return new CarrierAccountToken(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      *
@@ -45,6 +42,7 @@ class CarrierAccountTokenTest extends TestCase
         self::assertNotNull($obj->getCarrierAccountId());
         self::assertNotNull($obj->getExternalCustomerId());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -54,7 +52,7 @@ class CarrierAccountTokenTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getCarrierAccountId());
-        self::assertEquals("TestSample", $obj->getExternalCustomerId());
+        self::assertEquals('TestSample', $obj->getCarrierAccountId());
+        self::assertEquals('TestSample', $obj->getExternalCustomerId());
     }
 }

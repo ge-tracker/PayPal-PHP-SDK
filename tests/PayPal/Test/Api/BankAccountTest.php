@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class BankAccount
- *
- * @package PayPal\Test\Api
  */
 class BankAccountTest extends TestCase
 {
@@ -18,7 +16,7 @@ class BankAccountTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"id":"TestSample","account_number":"TestSample","account_number_type":"TestSample","routing_number":"TestSample","account_type":"TestSample","account_name":"TestSample","check_type":"TestSample","auth_type":"TestSample","auth_capture_timestamp":"TestSample","bank_name":"TestSample","country_code":"TestSample","first_name":"TestSample","last_name":"TestSample","birth_date":"TestSample","billing_address":' .AddressTest::getJson() . ',"state":"TestSample","confirmation_status":"TestSample","payer_id":"TestSample","external_customer_id":"TestSample","merchant_id":"TestSample","create_time":"TestSample","update_time":"TestSample","valid_until":"TestSample","links":' .LinksTest::getJson() . '}';
+        return '{"id":"TestSample","account_number":"TestSample","account_number_type":"TestSample","routing_number":"TestSample","account_type":"TestSample","account_name":"TestSample","check_type":"TestSample","auth_type":"TestSample","auth_capture_timestamp":"TestSample","bank_name":"TestSample","country_code":"TestSample","first_name":"TestSample","last_name":"TestSample","birth_date":"TestSample","billing_address":' . AddressTest::getJson() . ',"state":"TestSample","confirmation_status":"TestSample","payer_id":"TestSample","external_customer_id":"TestSample","merchant_id":"TestSample","create_time":"TestSample","update_time":"TestSample","valid_until":"TestSample","links":' . LinksTest::getJson() . '}';
     }
 
     /**
@@ -29,7 +27,6 @@ class BankAccountTest extends TestCase
     {
         return new BankAccount(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -64,6 +61,7 @@ class BankAccountTest extends TestCase
         self::assertNotNull($obj->getValidUntil());
         self::assertNotNull($obj->getLinks());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -73,29 +71,29 @@ class BankAccountTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getId());
-        self::assertEquals("TestSample", $obj->getAccountNumber());
-        self::assertEquals("TestSample", $obj->getAccountNumberType());
-        self::assertEquals("TestSample", $obj->getRoutingNumber());
-        self::assertEquals("TestSample", $obj->getAccountType());
-        self::assertEquals("TestSample", $obj->getAccountName());
-        self::assertEquals("TestSample", $obj->getCheckType());
-        self::assertEquals("TestSample", $obj->getAuthType());
-        self::assertEquals("TestSample", $obj->getAuthCaptureTimestamp());
-        self::assertEquals("TestSample", $obj->getBankName());
-        self::assertEquals("TestSample", $obj->getCountryCode());
-        self::assertEquals("TestSample", $obj->getFirstName());
-        self::assertEquals("TestSample", $obj->getLastName());
-        self::assertEquals("TestSample", $obj->getBirthDate());
+        self::assertEquals('TestSample', $obj->getId());
+        self::assertEquals('TestSample', $obj->getAccountNumber());
+        self::assertEquals('TestSample', $obj->getAccountNumberType());
+        self::assertEquals('TestSample', $obj->getRoutingNumber());
+        self::assertEquals('TestSample', $obj->getAccountType());
+        self::assertEquals('TestSample', $obj->getAccountName());
+        self::assertEquals('TestSample', $obj->getCheckType());
+        self::assertEquals('TestSample', $obj->getAuthType());
+        self::assertEquals('TestSample', $obj->getAuthCaptureTimestamp());
+        self::assertEquals('TestSample', $obj->getBankName());
+        self::assertEquals('TestSample', $obj->getCountryCode());
+        self::assertEquals('TestSample', $obj->getFirstName());
+        self::assertEquals('TestSample', $obj->getLastName());
+        self::assertEquals('TestSample', $obj->getBirthDate());
         self::assertEquals($obj->getBillingAddress(), AddressTest::getObject());
-        self::assertEquals("TestSample", $obj->getState());
-        self::assertEquals("TestSample", $obj->getConfirmationStatus());
-        self::assertEquals("TestSample", $obj->getPayerId());
-        self::assertEquals("TestSample", $obj->getExternalCustomerId());
-        self::assertEquals("TestSample", $obj->getMerchantId());
-        self::assertEquals("TestSample", $obj->getCreateTime());
-        self::assertEquals("TestSample", $obj->getUpdateTime());
-        self::assertEquals("TestSample", $obj->getValidUntil());
+        self::assertEquals('TestSample', $obj->getState());
+        self::assertEquals('TestSample', $obj->getConfirmationStatus());
+        self::assertEquals('TestSample', $obj->getPayerId());
+        self::assertEquals('TestSample', $obj->getExternalCustomerId());
+        self::assertEquals('TestSample', $obj->getMerchantId());
+        self::assertEquals('TestSample', $obj->getCreateTime());
+        self::assertEquals('TestSample', $obj->getUpdateTime());
+        self::assertEquals('TestSample', $obj->getValidUntil());
         self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 }

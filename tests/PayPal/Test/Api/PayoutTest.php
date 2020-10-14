@@ -3,13 +3,11 @@
 namespace PayPal\Test\Api;
 
 use PayPal\Api\Payout;
-use PHPUnit\Framework\TestCase;
 use PayPal\Transport\PayPalRestCall;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class Payout
- *
- * @package PayPal\Test\Api
  */
 class PayoutTest extends TestCase
 {
@@ -19,7 +17,7 @@ class PayoutTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"sender_batch_header":' .PayoutSenderBatchHeaderTest::getJson() . ',"items":' .PayoutItemTest::getJson() . ',"links":' .LinksTest::getJson() . '}';
+        return '{"sender_batch_header":' . PayoutSenderBatchHeaderTest::getJson() . ',"items":' . PayoutItemTest::getJson() . ',"links":' . LinksTest::getJson() . '}';
     }
 
     /**
@@ -30,7 +28,6 @@ class PayoutTest extends TestCase
     {
         return new Payout(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -44,6 +41,7 @@ class PayoutTest extends TestCase
         self::assertNotNull($obj->getItems());
         self::assertNotNull($obj->getLinks());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -71,11 +69,12 @@ class PayoutTest extends TestCase
         $mockPPRestCall->expects(self::any())
             ->method('execute')
             ->willReturn(PayoutBatchTest::getJson());
-        $params = array();
+        $params = [];
 
         $result = $obj->create($params, $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param Payout $obj
@@ -90,7 +89,7 @@ class PayoutTest extends TestCase
             ->method('execute')
             ->willReturn(PayoutBatchTest::getJson());
 
-        $result = $obj->get("payoutBatchId", $mockApiContext, $mockPPRestCall);
+        $result = $obj->get('payoutBatchId', $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
 
@@ -100,9 +99,10 @@ class PayoutTest extends TestCase
         $mockApiContext = $this->getMockBuilder('ApiContext')
                     ->disableOriginalConstructor()
                     ->getMock();
-        return array(
-            array($obj, $mockApiContext),
-            array($obj, null)
-        );
+
+        return [
+            [$obj, $mockApiContext],
+            [$obj, null],
+        ];
     }
 }

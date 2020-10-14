@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * Billing information for the invoice recipient.
  *
- * @package PayPal\Api
  *
  * @property string email
  * @property string first_name
@@ -27,12 +26,13 @@ class BillingInfo extends PayPalModel
      * The invoice recipient email address. Maximum length is 260 characters.
      *
      * @param string $email
-     * 
+     *
      * @return $this
      */
     public function setEmail($email)
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -50,12 +50,13 @@ class BillingInfo extends PayPalModel
      * The invoice recipient first name. Maximum length is 30 characters.
      *
      * @param string $first_name
-     * 
+     *
      * @return $this
      */
     public function setFirstName($first_name)
     {
         $this->first_name = $first_name;
+
         return $this;
     }
 
@@ -73,12 +74,13 @@ class BillingInfo extends PayPalModel
      * The invoice recipient last name. Maximum length is 30 characters.
      *
      * @param string $last_name
-     * 
+     *
      * @return $this
      */
     public function setLastName($last_name)
     {
         $this->last_name = $last_name;
+
         return $this;
     }
 
@@ -96,12 +98,13 @@ class BillingInfo extends PayPalModel
      * The invoice recipient company business name. Maximum length is 100 characters.
      *
      * @param string $business_name
-     * 
+     *
      * @return $this
      */
     public function setBusinessName($business_name)
     {
         $this->business_name = $business_name;
+
         return $this;
     }
 
@@ -119,12 +122,13 @@ class BillingInfo extends PayPalModel
      * The invoice recipient address.
      *
      * @param \PayPal\Api\InvoiceAddress $address
-     * 
+     *
      * @return $this
      */
     public function setAddress($address)
     {
         $this->address = $address;
+
         return $this;
     }
 
@@ -143,12 +147,13 @@ class BillingInfo extends PayPalModel
      * Valid Values: ["da_DK", "de_DE", "en_AU", "en_GB", "en_US", "es_ES", "es_XC", "fr_CA", "fr_FR", "fr_XC", "he_IL", "id_ID", "it_IT", "ja_JP", "nl_NL", "no_NO", "pl_PL", "pt_BR", "pt_PT", "ru_RU", "sv_SE", "th_TH", "tr_TR", "zh_CN", "zh_HK", "zh_TW", "zh_XC"]
      *
      * @param string $language
-     * 
+     *
      * @return $this
      */
     public function setLanguage($language)
     {
         $this->language = $language;
+
         return $this;
     }
 
@@ -166,12 +171,13 @@ class BillingInfo extends PayPalModel
      * Additional information, such as business hours. Maximum length is 40 characters.
      *
      * @param string $additional_info
-     * 
+     *
      * @return $this
      */
     public function setAdditionalInfo($additional_info)
     {
         $this->additional_info = $additional_info;
+
         return $this;
     }
 
@@ -190,12 +196,13 @@ class BillingInfo extends PayPalModel
      * Valid Values: ["SMS", "EMAIL"]
      *
      * @param string $notification_channel
-     * 
+     *
      * @return $this
      */
     public function setNotificationChannel($notification_channel)
     {
         $this->notification_channel = $notification_channel;
+
         return $this;
     }
 
@@ -213,12 +220,13 @@ class BillingInfo extends PayPalModel
      * Mobile Phone number of the recipient to which SMS will be sent if notification_channel is SMS.
      *
      * @param \PayPal\Api\Phone $phone
-     * 
+     *
      * @return $this
      */
     public function setPhone($phone)
     {
         $this->phone = $phone;
+
         return $this;
     }
 
@@ -231,5 +239,4 @@ class BillingInfo extends PayPalModel
     {
         return $this->phone;
     }
-
 }

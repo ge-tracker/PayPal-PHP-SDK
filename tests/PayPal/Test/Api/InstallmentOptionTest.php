@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class InstallmentOption
- *
- * @package PayPal\Test\Api
  */
 class InstallmentOptionTest extends TestCase
 {
@@ -30,7 +28,6 @@ class InstallmentOptionTest extends TestCase
         return new InstallmentOption(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return InstallmentOption
@@ -44,6 +41,7 @@ class InstallmentOptionTest extends TestCase
         self::assertNotNull($obj->getDiscountAmount());
         self::assertNotNull($obj->getDiscountPercentage());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -56,6 +54,6 @@ class InstallmentOptionTest extends TestCase
         self::assertEquals(123, $obj->getTerm());
         self::assertEquals($obj->getMonthlyPayment(), CurrencyTest::getObject());
         self::assertEquals($obj->getDiscountAmount(), CurrencyTest::getObject());
-        self::assertEquals("TestSample", $obj->getDiscountPercentage());
+        self::assertEquals('TestSample', $obj->getDiscountPercentage());
     }
 }

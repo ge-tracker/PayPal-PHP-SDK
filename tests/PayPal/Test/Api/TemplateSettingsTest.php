@@ -2,14 +2,12 @@
 
 namespace PayPal\Test\Api;
 
-use PayPal\Common\PayPalModel;
 use PayPal\Api\TemplateSettings;
+use PayPal\Common\PayPalModel;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class TemplateSettings
- *
- * @package PayPal\Test\Api
  */
 class TemplateSettingsTest extends TestCase
 {
@@ -19,7 +17,7 @@ class TemplateSettingsTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"field_name":"TestSample","display_preference":' .TemplateSettingsMetadataTest::getJson() . '}';
+        return '{"field_name":"TestSample","display_preference":' . TemplateSettingsMetadataTest::getJson() . '}';
     }
 
     /**
@@ -30,7 +28,6 @@ class TemplateSettingsTest extends TestCase
     {
         return new TemplateSettings(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -43,6 +40,7 @@ class TemplateSettingsTest extends TestCase
         self::assertNotNull($obj->getFieldName());
         self::assertNotNull($obj->getDisplayPreference());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -52,7 +50,7 @@ class TemplateSettingsTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getFieldName());
+        self::assertEquals('TestSample', $obj->getFieldName());
         self::assertEquals($obj->getDisplayPreference(), TemplateSettingsMetadataTest::getObject());
     }
 }

@@ -10,12 +10,9 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class WebProfile
- *
- * @package PayPal\Test\Api
  */
 class PaymentsFunctionalTest extends TestCase
 {
-
     public $operation;
 
     public $response;
@@ -52,6 +49,7 @@ class PaymentsFunctionalTest extends TestCase
         $obj = new Payment($request);
         $result = $obj->create($this->apiContext, $this->mockPayPalRestCall);
         self::assertNotNull($result);
+
         return $result;
     }
 
@@ -61,6 +59,7 @@ class PaymentsFunctionalTest extends TestCase
         $obj = new Payment($request);
         $result = $obj->create($this->apiContext, $this->mockPayPalRestCall);
         self::assertNotNull($result);
+
         return $result;
     }
 
@@ -74,6 +73,7 @@ class PaymentsFunctionalTest extends TestCase
         $result = Payment::get($payment->getId(), $this->apiContext, $this->mockPayPalRestCall);
         self::assertNotNull($result);
         self::assertEquals($payment->getId(), $result->getId());
+
         return $result;
     }
 
@@ -91,6 +91,7 @@ class PaymentsFunctionalTest extends TestCase
         $result = Sale::get($resource->getSale()->getId(), $this->apiContext, $this->mockPayPalRestCall);
         self::assertNotNull($result);
         self::assertEquals($resource->getSale()->getId(), $result->getId());
+
         return $result;
     }
 

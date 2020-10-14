@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class AgreementTransaction
- *
- * @package PayPal\Test\Api
  */
 class AgreementTransactionTest extends TestCase
 {
@@ -18,7 +16,7 @@ class AgreementTransactionTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"transaction_id":"TestSample","status":"TestSample","transaction_type":"TestSample","amount":' .CurrencyTest::getJson() . ',"fee_amount":' .CurrencyTest::getJson() . ',"net_amount":' .CurrencyTest::getJson() . ',"payer_email":"TestSample","payer_name":"TestSample","time_stamp":"TestSample","time_zone":"TestSample"}';
+        return '{"transaction_id":"TestSample","status":"TestSample","transaction_type":"TestSample","amount":' . CurrencyTest::getJson() . ',"fee_amount":' . CurrencyTest::getJson() . ',"net_amount":' . CurrencyTest::getJson() . ',"payer_email":"TestSample","payer_name":"TestSample","time_stamp":"TestSample","time_zone":"TestSample"}';
     }
 
     /**
@@ -29,7 +27,6 @@ class AgreementTransactionTest extends TestCase
     {
         return new AgreementTransaction(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -50,6 +47,7 @@ class AgreementTransactionTest extends TestCase
         self::assertNotNull($obj->getTimeStamp());
         self::assertNotNull($obj->getTimeZone());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -59,15 +57,15 @@ class AgreementTransactionTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getTransactionId());
-        self::assertEquals("TestSample", $obj->getStatus());
-        self::assertEquals("TestSample", $obj->getTransactionType());
+        self::assertEquals('TestSample', $obj->getTransactionId());
+        self::assertEquals('TestSample', $obj->getStatus());
+        self::assertEquals('TestSample', $obj->getTransactionType());
         self::assertEquals($obj->getAmount(), CurrencyTest::getObject());
         self::assertEquals($obj->getFeeAmount(), CurrencyTest::getObject());
         self::assertEquals($obj->getNetAmount(), CurrencyTest::getObject());
-        self::assertEquals("TestSample", $obj->getPayerEmail());
-        self::assertEquals("TestSample", $obj->getPayerName());
-        self::assertEquals("TestSample", $obj->getTimeStamp());
-        self::assertEquals("TestSample", $obj->getTimeZone());
+        self::assertEquals('TestSample', $obj->getPayerEmail());
+        self::assertEquals('TestSample', $obj->getPayerName());
+        self::assertEquals('TestSample', $obj->getTimeStamp());
+        self::assertEquals('TestSample', $obj->getTimeZone());
     }
 }

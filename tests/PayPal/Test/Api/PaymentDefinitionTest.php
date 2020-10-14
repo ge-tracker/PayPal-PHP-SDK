@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class PaymentDefinition
- *
- * @package PayPal\Test\Api
  */
 class PaymentDefinitionTest extends TestCase
 {
@@ -18,7 +16,7 @@ class PaymentDefinitionTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"id":"TestSample","name":"TestSample","type":"TestSample","frequency_interval":"TestSample","frequency":"TestSample","cycles":"TestSample","amount":' .CurrencyTest::getJson() . ',"charge_models":' .ChargeModelTest::getJson() . '}';
+        return '{"id":"TestSample","name":"TestSample","type":"TestSample","frequency_interval":"TestSample","frequency":"TestSample","cycles":"TestSample","amount":' . CurrencyTest::getJson() . ',"charge_models":' . ChargeModelTest::getJson() . '}';
     }
 
     /**
@@ -29,7 +27,6 @@ class PaymentDefinitionTest extends TestCase
     {
         return new PaymentDefinition(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -48,6 +45,7 @@ class PaymentDefinitionTest extends TestCase
         self::assertNotNull($obj->getAmount());
         self::assertNotNull($obj->getChargeModels());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -57,12 +55,12 @@ class PaymentDefinitionTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getId());
-        self::assertEquals("TestSample", $obj->getName());
-        self::assertEquals("TestSample", $obj->getType());
-        self::assertEquals("TestSample", $obj->getFrequencyInterval());
-        self::assertEquals("TestSample", $obj->getFrequency());
-        self::assertEquals("TestSample", $obj->getCycles());
+        self::assertEquals('TestSample', $obj->getId());
+        self::assertEquals('TestSample', $obj->getName());
+        self::assertEquals('TestSample', $obj->getType());
+        self::assertEquals('TestSample', $obj->getFrequencyInterval());
+        self::assertEquals('TestSample', $obj->getFrequency());
+        self::assertEquals('TestSample', $obj->getCycles());
         self::assertEquals($obj->getAmount(), CurrencyTest::getObject());
         self::assertEquals($obj->getChargeModels(), ChargeModelTest::getObject());
     }

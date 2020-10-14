@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class RelatedResources
- *
- * @package PayPal\Test\Api
  */
 class RelatedResourcesTest extends TestCase
 {
@@ -30,7 +28,6 @@ class RelatedResourcesTest extends TestCase
         return new RelatedResources(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return RelatedResources
@@ -45,6 +42,7 @@ class RelatedResourcesTest extends TestCase
         self::assertNotNull($obj->getCapture());
         self::assertNotNull($obj->getRefund());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 

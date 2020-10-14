@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * List of Payments made by the seller.
  *
- * @package PayPal\Api
  *
  * @property \PayPal\Api\Payment[] payments
  * @property int count
@@ -27,6 +26,7 @@ class PaymentHistory extends PayPalModel
     public function setPayments($payments)
     {
         $this->payments = $payments;
+
         return $this;
     }
 
@@ -49,11 +49,11 @@ class PaymentHistory extends PayPalModel
     public function addPayment($payment)
     {
         if (!$this->getPayments()) {
-            return $this->setPayments(array($payment));
+            return $this->setPayments([$payment]);
         }
 
         return $this->setPayments(
-            array_merge($this->getPayments(), array($payment))
+            array_merge($this->getPayments(), [$payment])
         );
     }
 
@@ -66,7 +66,7 @@ class PaymentHistory extends PayPalModel
     public function removePayment($payment)
     {
         return $this->setPayments(
-            array_diff($this->getPayments(), array($payment))
+            array_diff($this->getPayments(), [$payment])
         );
     }
 
@@ -80,6 +80,7 @@ class PaymentHistory extends PayPalModel
     public function setCount($count)
     {
         $this->count = $count;
+
         return $this;
     }
 
@@ -103,6 +104,7 @@ class PaymentHistory extends PayPalModel
     public function setNextId($next_id)
     {
         $this->next_id = $next_id;
+
         return $this;
     }
 
@@ -115,5 +117,4 @@ class PaymentHistory extends PayPalModel
     {
         return $this->next_id;
     }
-
 }

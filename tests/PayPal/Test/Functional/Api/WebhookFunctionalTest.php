@@ -15,12 +15,9 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class WebhookFunctionalTest
- *
- * @package PayPal\Test\Api
  */
 class WebhookFunctionalTest extends TestCase
 {
-
     public $operation;
 
     public $response;
@@ -58,6 +55,7 @@ class WebhookFunctionalTest extends TestCase
         // Adding a random url request to make it unique
         $obj->setUrl($obj->getUrl() . '?rand=' . uniqid());
         $result = null;
+
         try {
             $result = $obj->create($this->apiContext, $this->mockPayPalRestCall);
         } catch (PayPalConnectionException $ex) {
@@ -70,6 +68,7 @@ class WebhookFunctionalTest extends TestCase
             }
         }
         self::assertNotNull($result);
+
         return $result;
     }
 
@@ -91,6 +90,7 @@ class WebhookFunctionalTest extends TestCase
         $result = Webhook::get($webhook->getId(), $this->apiContext, $this->mockPayPalRestCall);
         self::assertNotNull($result);
         self::assertEquals($webhook->getId(), $result->getId());
+
         return $result;
     }
 
@@ -104,6 +104,7 @@ class WebhookFunctionalTest extends TestCase
         $result = WebhookEventType::subscribedEventTypes($webhook->getId(), $this->apiContext, $this->mockPayPalRestCall);
         self::assertNotNull($result);
         self::assertCount(2, $result->getEventTypes());
+
         return $result;
     }
 
@@ -122,11 +123,13 @@ class WebhookFunctionalTest extends TestCase
             if ($webhookObject->getId() == $webhook->getId()) {
                 $found = true;
                 $foundObject = $webhookObject;
+
                 break;
             }
         }
-        self::assertTrue($found, "The Created Webhook was not found in the get list");
+        self::assertTrue($found, 'The Created Webhook was not found in the get list');
         self::assertEquals($webhook->getId(), $foundObject->getId());
+
         return $result;
     }
 
@@ -136,15 +139,15 @@ class WebhookFunctionalTest extends TestCase
      */
     public function testUpdate($webhook)
     {
-        $patches = array();
+        $patches = [];
         foreach ($this->operation['request']['body'] as $request) {
             /** @var Patch[] $request */
             $patch = new Patch();
             $patch->setOp($request['op']);
             $patch->setPath($request['path']);
             $patch->setValue($request['value']);
-            if ($request['path'] == "/url") {
-                $new_url = $request['value'] . '?rand=' .uniqid();
+            if ($request['path'] == '/url') {
+                $new_url = $request['value'] . '?rand=' . uniqid();
                 $patch->setValue($new_url);
             }
             $patches[] = $patch;
@@ -157,8 +160,9 @@ class WebhookFunctionalTest extends TestCase
         $found = false;
         $foundObject = null;
         foreach ($result->getEventTypes() as $eventType) {
-            if ($eventType->getName() == "PAYMENT.SALE.REFUNDED") {
+            if ($eventType->getName() == 'PAYMENT.SALE.REFUNDED') {
                 $found = true;
+
                 break;
             }
         }
@@ -177,8 +181,9 @@ class WebhookFunctionalTest extends TestCase
 
     public function testEventSearch()
     {
-        $result = WebhookEvent::all(array(), $this->apiContext, $this->mockPayPalRestCall);
+        $result = WebhookEvent::all([], $this->apiContext, $this->mockPayPalRestCall);
         self::assertNotNull($result);
+
         return $result;
     }
 }

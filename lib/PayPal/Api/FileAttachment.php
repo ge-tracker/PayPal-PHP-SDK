@@ -10,7 +10,6 @@ use PayPal\Validation\UrlValidator;
  *
  * File attached to an invoice or template
  *
- * @package PayPal\Api
  *
  * @property string name
  * @property string url
@@ -21,12 +20,13 @@ class FileAttachment extends PayPalModel
      * Name of the file attached.
      *
      * @param string $name
-     * 
+     *
      * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -49,8 +49,9 @@ class FileAttachment extends PayPalModel
      */
     public function setUrl($url)
     {
-        UrlValidator::validate($url, "Url");
+        UrlValidator::validate($url, 'Url');
         $this->url = $url;
+
         return $this;
     }
 
@@ -63,5 +64,4 @@ class FileAttachment extends PayPalModel
     {
         return $this->url;
     }
-
 }

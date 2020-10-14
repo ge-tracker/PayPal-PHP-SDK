@@ -22,7 +22,7 @@ class RestHandler implements IPayPalHandler
     /**
      * Private Variable
      *
-     * @var \Paypal\Rest\ApiContext $apiContext
+     * @var \Paypal\Rest\ApiContext
      */
     private $apiContext;
 
@@ -56,14 +56,14 @@ class RestHandler implements IPayPalHandler
             $credValues = $credMgr->getCredentialObject();
 
             if (!is_array($credValues)) {
-                throw new PayPalMissingCredentialException("Empty or invalid credentials passed");
+                throw new PayPalMissingCredentialException('Empty or invalid credentials passed');
             }
 
             $credential = new OAuthTokenCredential($credValues['clientId'], $credValues['clientSecret']);
         }
 
         if ($credential == null || !($credential instanceof OAuthTokenCredential)) {
-            throw new PayPalInvalidCredentialException("Invalid credentials passed");
+            throw new PayPalInvalidCredentialException('Invalid credentials passed');
         }
 
         $httpConfig->setUrl(
@@ -72,17 +72,17 @@ class RestHandler implements IPayPalHandler
         );
 
         // Overwrite Expect Header to disable 100 Continue Issue
-        $httpConfig->addHeader("Expect", null);
+        $httpConfig->addHeader('Expect', null);
 
-        if (!array_key_exists("User-Agent", $httpConfig->getHeaders())) {
-            $httpConfig->addHeader("User-Agent", PayPalUserAgent::getValue(PayPalConstants::SDK_NAME, PayPalConstants::SDK_VERSION));
+        if (!array_key_exists('User-Agent', $httpConfig->getHeaders())) {
+            $httpConfig->addHeader('User-Agent', PayPalUserAgent::getValue(PayPalConstants::SDK_NAME, PayPalConstants::SDK_VERSION));
         }
 
-        if (!is_null($credential) && $credential instanceof OAuthTokenCredential && is_null($httpConfig->getHeader('Authorization'))) {
-            $httpConfig->addHeader('Authorization', "Bearer " . $credential->getAccessToken($config), false);
+        if ($credential !== null && $credential instanceof OAuthTokenCredential && $httpConfig->getHeader('Authorization') === null) {
+            $httpConfig->addHeader('Authorization', 'Bearer ' . $credential->getAccessToken($config), false);
         }
 
-        if (($httpConfig->getMethod() == 'POST' || $httpConfig->getMethod() == 'PUT') && !is_null($this->apiContext->getRequestId())) {
+        if (($httpConfig->getMethod() == 'POST' || $httpConfig->getMethod() == 'PUT') && $this->apiContext->getRequestId() !== null) {
             $httpConfig->addHeader('PayPal-Request-Id', $this->apiContext->getRequestId());
         }
         // Add any additional Headers that they may have provided

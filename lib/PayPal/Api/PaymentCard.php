@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * A payment card that can fund a payment.
  *
- * @package PayPal\Api
  *
  * @property string id
  * @property string number
@@ -42,6 +41,7 @@ class PaymentCard extends PayPalModel
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -65,6 +65,7 @@ class PaymentCard extends PayPalModel
     public function setNumber($number)
     {
         $this->number = $number;
+
         return $this;
     }
 
@@ -89,6 +90,7 @@ class PaymentCard extends PayPalModel
     public function setType($type)
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -112,6 +114,7 @@ class PaymentCard extends PayPalModel
     public function setExpireMonth($expire_month)
     {
         $this->expire_month = $expire_month;
+
         return $this;
     }
 
@@ -135,6 +138,7 @@ class PaymentCard extends PayPalModel
     public function setExpireYear($expire_year)
     {
         $this->expire_year = $expire_year;
+
         return $this;
     }
 
@@ -158,6 +162,7 @@ class PaymentCard extends PayPalModel
     public function setStartMonth($start_month)
     {
         $this->start_month = $start_month;
+
         return $this;
     }
 
@@ -181,6 +186,7 @@ class PaymentCard extends PayPalModel
     public function setStartYear($start_year)
     {
         $this->start_year = $start_year;
+
         return $this;
     }
 
@@ -204,6 +210,7 @@ class PaymentCard extends PayPalModel
     public function setCvv2($cvv2)
     {
         $this->cvv2 = $cvv2;
+
         return $this;
     }
 
@@ -227,6 +234,7 @@ class PaymentCard extends PayPalModel
     public function setFirstName($first_name)
     {
         $this->first_name = $first_name;
+
         return $this;
     }
 
@@ -250,6 +258,7 @@ class PaymentCard extends PayPalModel
     public function setLastName($last_name)
     {
         $this->last_name = $last_name;
+
         return $this;
     }
 
@@ -273,6 +282,7 @@ class PaymentCard extends PayPalModel
     public function setBillingCountry($billing_country)
     {
         $this->billing_country = $billing_country;
+
         return $this;
     }
 
@@ -296,6 +306,7 @@ class PaymentCard extends PayPalModel
     public function setBillingAddress($billing_address)
     {
         $this->billing_address = $billing_address;
+
         return $this;
     }
 
@@ -319,6 +330,7 @@ class PaymentCard extends PayPalModel
     public function setExternalCustomerId($external_customer_id)
     {
         $this->external_customer_id = $external_customer_id;
+
         return $this;
     }
 
@@ -343,6 +355,7 @@ class PaymentCard extends PayPalModel
     public function setStatus($status)
     {
         $this->status = $status;
+
         return $this;
     }
 
@@ -367,6 +380,7 @@ class PaymentCard extends PayPalModel
     public function setCardProductClass($card_product_class)
     {
         $this->card_product_class = $card_product_class;
+
         return $this;
     }
 
@@ -390,6 +404,7 @@ class PaymentCard extends PayPalModel
     public function setValidUntil($valid_until)
     {
         $this->valid_until = $valid_until;
+
         return $this;
     }
 
@@ -413,6 +428,7 @@ class PaymentCard extends PayPalModel
     public function setIssueNumber($issue_number)
     {
         $this->issue_number = $issue_number;
+
         return $this;
     }
 
@@ -436,6 +452,7 @@ class PaymentCard extends PayPalModel
     public function setLinks($links)
     {
         $this->links = $links;
+
         return $this;
     }
 
@@ -458,11 +475,11 @@ class PaymentCard extends PayPalModel
     public function addLink($links)
     {
         if (!$this->getLinks()) {
-            return $this->setLinks(array($links));
+            return $this->setLinks([$links]);
         }
 
         return $this->setLinks(
-            array_merge($this->getLinks(), array($links))
+            array_merge($this->getLinks(), [$links])
         );
     }
 
@@ -475,8 +492,7 @@ class PaymentCard extends PayPalModel
     public function removeLink($links)
     {
         return $this->setLinks(
-            array_diff($this->getLinks(), array($links))
+            array_diff($this->getLinks(), [$links])
         );
     }
-
 }

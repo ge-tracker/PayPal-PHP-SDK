@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class Search
- *
- * @package PayPal\Test\Api
  */
 class SearchTest extends TestCase
 {
@@ -18,7 +16,7 @@ class SearchTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"email":"TestSample","recipient_first_name":"TestSample","recipient_last_name":"TestSample","recipient_business_name":"TestSample","number":"TestSample","status":"TestSample","lower_total_amount":' .CurrencyTest::getJson() . ',"upper_total_amount":' .CurrencyTest::getJson() . ',"start_invoice_date":"TestSample","end_invoice_date":"TestSample","start_due_date":"TestSample","end_due_date":"TestSample","start_payment_date":"TestSample","end_payment_date":"TestSample","start_creation_date":"TestSample","end_creation_date":"TestSample","page":"12.34","page_size":"12.34","total_count_required":true,"archived":true}';
+        return '{"email":"TestSample","recipient_first_name":"TestSample","recipient_last_name":"TestSample","recipient_business_name":"TestSample","number":"TestSample","status":"TestSample","lower_total_amount":' . CurrencyTest::getJson() . ',"upper_total_amount":' . CurrencyTest::getJson() . ',"start_invoice_date":"TestSample","end_invoice_date":"TestSample","start_due_date":"TestSample","end_due_date":"TestSample","start_payment_date":"TestSample","end_payment_date":"TestSample","start_creation_date":"TestSample","end_creation_date":"TestSample","page":"12.34","page_size":"12.34","total_count_required":true,"archived":true}';
     }
 
     /**
@@ -29,7 +27,6 @@ class SearchTest extends TestCase
     {
         return new Search(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -60,6 +57,7 @@ class SearchTest extends TestCase
         self::assertNotNull($obj->getTotalCountRequired());
         self::assertNotNull($obj->getArchived());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -69,24 +67,24 @@ class SearchTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getEmail());
-        self::assertEquals("TestSample", $obj->getRecipientFirstName());
-        self::assertEquals("TestSample", $obj->getRecipientLastName());
-        self::assertEquals("TestSample", $obj->getRecipientBusinessName());
-        self::assertEquals("TestSample", $obj->getNumber());
-        self::assertEquals("TestSample", $obj->getStatus());
+        self::assertEquals('TestSample', $obj->getEmail());
+        self::assertEquals('TestSample', $obj->getRecipientFirstName());
+        self::assertEquals('TestSample', $obj->getRecipientLastName());
+        self::assertEquals('TestSample', $obj->getRecipientBusinessName());
+        self::assertEquals('TestSample', $obj->getNumber());
+        self::assertEquals('TestSample', $obj->getStatus());
         self::assertEquals($obj->getLowerTotalAmount(), CurrencyTest::getObject());
         self::assertEquals($obj->getUpperTotalAmount(), CurrencyTest::getObject());
-        self::assertEquals("TestSample", $obj->getStartInvoiceDate());
-        self::assertEquals("TestSample", $obj->getEndInvoiceDate());
-        self::assertEquals("TestSample", $obj->getStartDueDate());
-        self::assertEquals("TestSample", $obj->getEndDueDate());
-        self::assertEquals("TestSample", $obj->getStartPaymentDate());
-        self::assertEquals("TestSample", $obj->getEndPaymentDate());
-        self::assertEquals("TestSample", $obj->getStartCreationDate());
-        self::assertEquals("TestSample", $obj->getEndCreationDate());
-        self::assertEquals("12.34", $obj->getPage());
-        self::assertEquals("12.34", $obj->getPageSize());
+        self::assertEquals('TestSample', $obj->getStartInvoiceDate());
+        self::assertEquals('TestSample', $obj->getEndInvoiceDate());
+        self::assertEquals('TestSample', $obj->getStartDueDate());
+        self::assertEquals('TestSample', $obj->getEndDueDate());
+        self::assertEquals('TestSample', $obj->getStartPaymentDate());
+        self::assertEquals('TestSample', $obj->getEndPaymentDate());
+        self::assertEquals('TestSample', $obj->getStartCreationDate());
+        self::assertEquals('TestSample', $obj->getEndCreationDate());
+        self::assertEquals('12.34', $obj->getPage());
+        self::assertEquals('12.34', $obj->getPageSize());
         self::assertEquals(true, $obj->getTotalCountRequired());
         self::assertEquals(true, $obj->getArchived());
     }

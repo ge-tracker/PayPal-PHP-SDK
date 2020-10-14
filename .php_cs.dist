@@ -1,0 +1,18 @@
+<?php
+
+use PhpCsFixer\Finder;
+
+$project_path = getcwd();
+$finder = Finder::create()
+    ->notPath('sample/*')
+    ->notPath('docs/*')
+    ->in([
+        $project_path . '/lib',
+        $project_path . '/tests',
+    ])
+    ->name('*.php')
+    ->notName('*.blade.php')
+    ->ignoreDotFiles(true)
+    ->ignoreVCS(true);
+
+return JamesAusten\styles($finder);

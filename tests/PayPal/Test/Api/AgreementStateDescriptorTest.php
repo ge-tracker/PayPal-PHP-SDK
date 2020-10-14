@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class AgreementStateDescriptor
- *
- * @package PayPal\Test\Api
  */
 class AgreementStateDescriptorTest extends TestCase
 {
@@ -18,7 +16,7 @@ class AgreementStateDescriptorTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"note":"TestSample","amount":' .CurrencyTest::getJson() . '}';
+        return '{"note":"TestSample","amount":' . CurrencyTest::getJson() . '}';
     }
 
     /**
@@ -29,7 +27,6 @@ class AgreementStateDescriptorTest extends TestCase
     {
         return new AgreementStateDescriptor(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -42,6 +39,7 @@ class AgreementStateDescriptorTest extends TestCase
         self::assertNotNull($obj->getNote());
         self::assertNotNull($obj->getAmount());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -51,7 +49,7 @@ class AgreementStateDescriptorTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getNote());
+        self::assertEquals('TestSample', $obj->getNote());
         self::assertEquals($obj->getAmount(), CurrencyTest::getObject());
     }
 }

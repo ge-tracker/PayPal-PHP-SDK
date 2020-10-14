@@ -6,8 +6,6 @@ use Exception;
 
 /**
  * Class PayPalConnectionException
- *
- * @package PayPal\Exception
  */
 class PayPalConnectionException extends Exception
 {

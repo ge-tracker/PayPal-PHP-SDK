@@ -2,14 +2,12 @@
 
 namespace PayPal\Test\Api;
 
-use PayPal\Common\PayPalModel;
 use PayPal\Api\WebhookList;
+use PayPal\Common\PayPalModel;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class WebhookList
- *
- * @package PayPal\Test\Api
  */
 class WebhookListTest extends TestCase
 {
@@ -19,7 +17,7 @@ class WebhookListTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"webhooks":' .WebhookTest::getJson() . '}';
+        return '{"webhooks":' . WebhookTest::getJson() . '}';
     }
 
     /**
@@ -31,7 +29,6 @@ class WebhookListTest extends TestCase
         return new WebhookList(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return WebhookList
@@ -42,6 +39,7 @@ class WebhookListTest extends TestCase
         self::assertNotNull($obj);
         self::assertNotNull($obj->getWebhooks());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -53,6 +51,4 @@ class WebhookListTest extends TestCase
     {
         self::assertEquals($obj->getWebhooks(), WebhookTest::getObject());
     }
-
-
 }

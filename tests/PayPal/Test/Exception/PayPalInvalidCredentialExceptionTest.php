@@ -1,10 +1,10 @@
 <?php
+
 use PayPal\Exception\PayPalInvalidCredentialException;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for PayPalInvalidCredentialException.
- *
  */
 class PayPalInvalidCredentialExceptionTest extends TestCase
 {
@@ -30,8 +30,6 @@ class PayPalInvalidCredentialExceptionTest extends TestCase
     {
     }
 
-    /**
-     */
     public function testErrorMessage()
     {
         $msg = $this->object->errorMessage();

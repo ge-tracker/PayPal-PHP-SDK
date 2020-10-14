@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * The PayPal-generated batch status.
  *
- * @package PayPal\Api
  *
  * @property \PayPal\Api\PayoutBatchHeader batch_header
  * @property \PayPal\Api\PayoutItemDetails[] items
@@ -27,6 +26,7 @@ class PayoutBatch extends PayPalModel
     public function setBatchHeader($batch_header)
     {
         $this->batch_header = $batch_header;
+
         return $this;
     }
 
@@ -50,6 +50,7 @@ class PayoutBatch extends PayPalModel
     public function setItems($items)
     {
         $this->items = $items;
+
         return $this;
     }
 
@@ -72,11 +73,11 @@ class PayoutBatch extends PayPalModel
     public function addItem($payoutItemDetails)
     {
         if (!$this->getItems()) {
-            return $this->setItems(array($payoutItemDetails));
+            return $this->setItems([$payoutItemDetails]);
         }
 
         return $this->setItems(
-            array_merge($this->getItems(), array($payoutItemDetails))
+            array_merge($this->getItems(), [$payoutItemDetails])
         );
     }
 
@@ -89,10 +90,9 @@ class PayoutBatch extends PayPalModel
     public function removeItem($payoutItemDetails)
     {
         return $this->setItems(
-            array_diff($this->getItems(), array($payoutItemDetails))
+            array_diff($this->getItems(), [$payoutItemDetails])
         );
     }
-
 
     /**
      * Sets Links
@@ -104,6 +104,7 @@ class PayoutBatch extends PayPalModel
     public function setLinks($links)
     {
         $this->links = $links;
+
         return $this;
     }
 
@@ -116,5 +117,4 @@ class PayoutBatch extends PayPalModel
     {
         return $this->links;
     }
-
 }

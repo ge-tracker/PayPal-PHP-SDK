@@ -7,7 +7,6 @@ namespace PayPal\Api;
  *
  * Base Address object used as billing address in a payment or extended for Shipping Address.
  *
- * @package PayPal\Api
  *
  * @property string phone
  * @property string type
@@ -18,12 +17,13 @@ class Address extends BaseAddress
      * Phone number in E.123 format. 50 characters max.
      *
      * @param string $phone
-     * 
+     *
      * @return $this
      */
     public function setPhone($phone)
     {
         $this->phone = $phone;
+
         return $this;
     }
 
@@ -47,6 +47,7 @@ class Address extends BaseAddress
     public function setType($type)
     {
         $this->type = $type;
+
         return $this;
     }
 

@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * Measurement to represent item dimensions like length, width, height and weight etc.
  *
- * @package PayPal\Api
  *
  * @property string value
  * @property string unit
@@ -20,12 +19,13 @@ class Measurement extends PayPalModel
      * Value this measurement represents.
      *
      * @param string $value
-     * 
+     *
      * @return $this
      */
     public function setValue($value)
     {
         $this->value = $value;
+
         return $this;
     }
 
@@ -43,12 +43,13 @@ class Measurement extends PayPalModel
      * Unit in which the value is represented.
      *
      * @param string $unit
-     * 
+     *
      * @return $this
      */
     public function setUnit($unit)
     {
         $this->unit = $unit;
+
         return $this;
     }
 
@@ -61,5 +62,4 @@ class Measurement extends PayPalModel
     {
         return $this->unit;
     }
-
 }

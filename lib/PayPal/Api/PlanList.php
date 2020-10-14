@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * Resource representing a list of billing plans with basic information and get link.
  *
- * @package PayPal\Api
  *
  * @property \PayPal\Api\Plan[] plans
  * @property string total_items
@@ -28,6 +27,7 @@ class PlanList extends PayPalModel
     public function setPlans($plans)
     {
         $this->plans = $plans;
+
         return $this;
     }
 
@@ -50,11 +50,11 @@ class PlanList extends PayPalModel
     public function addPlan($plan)
     {
         if (!$this->getPlans()) {
-            return $this->setPlans(array($plan));
+            return $this->setPlans([$plan]);
         }
 
         return $this->setPlans(
-            array_merge($this->getPlans(), array($plan))
+            array_merge($this->getPlans(), [$plan])
         );
     }
 
@@ -67,7 +67,7 @@ class PlanList extends PayPalModel
     public function removePlan($plan)
     {
         return $this->setPlans(
-            array_diff($this->getPlans(), array($plan))
+            array_diff($this->getPlans(), [$plan])
         );
     }
 
@@ -81,6 +81,7 @@ class PlanList extends PayPalModel
     public function setTotalItems($total_items)
     {
         $this->total_items = $total_items;
+
         return $this;
     }
 
@@ -104,6 +105,7 @@ class PlanList extends PayPalModel
     public function setTotalPages($total_pages)
     {
         $this->total_pages = $total_pages;
+
         return $this;
     }
 
@@ -127,6 +129,7 @@ class PlanList extends PayPalModel
     public function setLinks($links)
     {
         $this->links = $links;
+
         return $this;
     }
 
@@ -149,11 +152,11 @@ class PlanList extends PayPalModel
     public function addLink($links)
     {
         if (!$this->getLinks()) {
-            return $this->setLinks(array($links));
+            return $this->setLinks([$links]);
         }
 
         return $this->setLinks(
-            array_merge($this->getLinks(), array($links))
+            array_merge($this->getLinks(), [$links])
         );
     }
 
@@ -166,8 +169,7 @@ class PlanList extends PayPalModel
     public function removeLink($links)
     {
         return $this->setLinks(
-            array_diff($this->getLinks(), array($links))
+            array_diff($this->getLinks(), [$links])
         );
     }
-
 }

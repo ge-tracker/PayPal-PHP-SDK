@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * Invoicing refund information.
  *
- * @package PayPal\Api
  *
  * @property string type
  * @property string transaction_id
@@ -24,12 +23,13 @@ class RefundDetail extends PayPalModel
      * Valid Values: ["PAYPAL", "EXTERNAL"]
      *
      * @param string $type
-     * 
+     *
      * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -47,12 +47,13 @@ class RefundDetail extends PayPalModel
      * The PayPal refund transaction ID. Required with the `PAYPAL` refund type.
      *
      * @param string $transaction_id
-     * 
+     *
      * @return $this
      */
     public function setTransactionId($transaction_id)
     {
         $this->transaction_id = $transaction_id;
+
         return $this;
     }
 
@@ -70,12 +71,13 @@ class RefundDetail extends PayPalModel
      * Date on which the invoice was refunded. Date format: yyyy-MM-dd z. For example, 2014-02-27 PST.
      *
      * @param string $date
-     * 
+     *
      * @return $this
      */
     public function setDate($date)
     {
         $this->date = $date;
+
         return $this;
     }
 
@@ -93,12 +95,13 @@ class RefundDetail extends PayPalModel
      * Optional note associated with the refund.
      *
      * @param string $note
-     * 
+     *
      * @return $this
      */
     public function setNote($note)
     {
         $this->note = $note;
+
         return $this;
     }
 
@@ -116,12 +119,13 @@ class RefundDetail extends PayPalModel
      * Amount to be recorded as refund against invoice. If this field is not passed, the total invoice paid amount is recorded as refund.
      *
      * @param \PayPal\Api\Currency $amount
-     * 
+     *
      * @return $this
      */
     public function setAmount($amount)
     {
         $this->amount = $amount;
+
         return $this;
     }
 
@@ -134,5 +138,4 @@ class RefundDetail extends PayPalModel
     {
         return $this->amount;
     }
-
 }

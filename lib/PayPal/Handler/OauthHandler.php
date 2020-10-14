@@ -21,7 +21,7 @@ class OauthHandler implements IPayPalHandler
     /**
      * Private Variable
      *
-     * @var \Paypal\Rest\ApiContext $apiContext
+     * @var \Paypal\Rest\ApiContext
      */
     private $apiContext;
 
@@ -53,11 +53,11 @@ class OauthHandler implements IPayPalHandler
             ($options['path'] ?? '')
         );
 
-        $headers = array(
-            "User-Agent"    => PayPalUserAgent::getValue(PayPalConstants::SDK_NAME, PayPalConstants::SDK_VERSION),
-            "Authorization" => "Basic " . base64_encode($options['clientId'] . ":" . $options['clientSecret']),
-            "Accept"        => "*/*"
-        );
+        $headers = [
+            'User-Agent'    => PayPalUserAgent::getValue(PayPalConstants::SDK_NAME, PayPalConstants::SDK_VERSION),
+            'Authorization' => 'Basic ' . base64_encode($options['clientId'] . ':' . $options['clientSecret']),
+            'Accept'        => '*/*',
+        ];
         $httpConfig->setHeaders($headers);
 
         // Add any additional Headers that they may have provided
@@ -85,9 +85,11 @@ class OauthHandler implements IPayPalHandler
             switch (strtoupper($config['mode'])) {
                 case 'SANDBOX':
                     $baseEndpoint = PayPalConstants::REST_SANDBOX_ENDPOINT;
+
                     break;
                 case 'LIVE':
                     $baseEndpoint = PayPalConstants::REST_LIVE_ENDPOINT;
+
                     break;
                 default:
                     throw new PayPalConfigurationException('The mode config parameter must be set to either sandbox/live');
@@ -97,7 +99,7 @@ class OauthHandler implements IPayPalHandler
             $baseEndpoint = PayPalConstants::REST_SANDBOX_ENDPOINT;
         }
 
-        $baseEndpoint = rtrim(trim($baseEndpoint), '/') . "/v1/oauth2/token";
+        $baseEndpoint = rtrim(trim($baseEndpoint), '/') . '/v1/oauth2/token';
 
         return $baseEndpoint;
     }

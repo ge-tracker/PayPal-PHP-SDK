@@ -1,4 +1,5 @@
 <?php
+
 namespace PayPal\Test\Common;
 
 use PayPal\Api\Payment;
@@ -8,15 +9,14 @@ use PHPUnit\Framework\TestCase;
 
 class ModelTest extends TestCase
 {
-
     public function testSimpleClassConversion()
     {
         $o = new SimpleClass();
-        $o->setName("test");
-        $o->setDescription("description");
+        $o->setName('test');
+        $o->setDescription('description');
 
-        self::assertEquals("test", $o->getName());
-        self::assertEquals("description", $o->getDescription());
+        self::assertEquals('test', $o->getName());
+        self::assertEquals('description', $o->getDescription());
 
         $json = $o->toJSON();
         self::assertEquals('{"name":"test","description":"description"}', $json);
@@ -29,32 +29,32 @@ class ModelTest extends TestCase
     public function testConstructorJSON()
     {
         $obj = new SimpleClass('{"name":"test","description":"description"}');
-        self::assertEquals("test", $obj->getName());
-        self::assertEquals("description", $obj->getDescription());
+        self::assertEquals('test', $obj->getName());
+        self::assertEquals('description', $obj->getDescription());
     }
 
     public function testConstructorArray()
     {
-        $arr = array('name' => 'test', 'description' => 'description');
+        $arr = ['name' => 'test', 'description' => 'description'];
         $obj = new SimpleClass($arr);
-        self::assertEquals("test", $obj->getName());
-        self::assertEquals("description", $obj->getDescription());
+        self::assertEquals('test', $obj->getName());
+        self::assertEquals('description', $obj->getDescription());
     }
 
     public function testConstructorNull()
     {
         $obj = new SimpleClass(null);
-        self::assertNotEquals("test", $obj->getName());
-        self::assertNotEquals("description", $obj->getDescription());
+        self::assertNotEquals('test', $obj->getName());
+        self::assertNotEquals('description', $obj->getDescription());
         self::assertNull($obj->getName());
         self::assertNull($obj->getDescription());
     }
 
     public function testConstructorInvalidInput()
     {
-        $this->expectExceptionMessage("Invalid JSON String");
+        $this->expectExceptionMessage('Invalid JSON String');
         $this->expectException(\InvalidArgumentException::class);
-        new SimpleClass("Something that is not even correct");
+        new SimpleClass('Something that is not even correct');
     }
 
     public function testSimpleClassObjectConversion()
@@ -64,8 +64,8 @@ class ModelTest extends TestCase
         $obj = new SimpleClass();
         $obj->fromJson($json);
 
-        self::assertEquals("test", $obj->getName());
-        self::assertEquals("description", $obj->getDescription());
+        self::assertEquals('test', $obj->getName());
+        self::assertEquals('description', $obj->getDescription());
     }
 
     public function testSimpleClassObjectInvalidConversion()
@@ -76,8 +76,8 @@ class ModelTest extends TestCase
             $obj = new SimpleClass();
             $obj->fromJson($json);
 
-            self::assertEquals("test", $obj->getName());
-            self::assertEquals("description", $obj->getDescription());
+            self::assertEquals('test', $obj->getName());
+            self::assertEquals('description', $obj->getDescription());
         } catch (\PHPUnit_Framework_Error_Notice $ex) {
             // No need to do anything
         }
@@ -88,21 +88,21 @@ class ModelTest extends TestCase
      */
     public function testUnknownObjectConversion()
     {
-        PayPalConfigManager::getInstance()->addConfigs(array('validation.level' => 'disabled'));
+        PayPalConfigManager::getInstance()->addConfigs(['validation.level' => 'disabled']);
         $json = '{"name":"test","unknown":{ "id" : "123", "object": "456"},"description":"description"}';
 
         $obj = new SimpleClass();
         $obj->fromJson($json);
 
-        self::assertEquals("test", $obj->getName());
-        self::assertEquals("description", $obj->getDescription());
+        self::assertEquals('test', $obj->getName());
+        self::assertEquals('description', $obj->getDescription());
         $resultJson = $obj->toJSON();
-        self::assertStringContainsString("unknown", $resultJson);
-        self::assertStringContainsString("id", $resultJson);
-        self::assertStringContainsString("object", $resultJson);
-        self::assertStringContainsString("123", $resultJson);
-        self::assertStringContainsString("456", $resultJson);
-        PayPalConfigManager::getInstance()->addConfigs(array('validation.level' => 'strict'));
+        self::assertStringContainsString('unknown', $resultJson);
+        self::assertStringContainsString('id', $resultJson);
+        self::assertStringContainsString('object', $resultJson);
+        self::assertStringContainsString('123', $resultJson);
+        self::assertStringContainsString('456', $resultJson);
+        PayPalConfigManager::getInstance()->addConfigs(['validation.level' => 'strict']);
     }
 
     /**
@@ -110,21 +110,21 @@ class ModelTest extends TestCase
      */
     public function testUnknownArrayConversion()
     {
-        PayPalConfigManager::getInstance()->addConfigs(array('validation.level' => 'disabled'));
+        PayPalConfigManager::getInstance()->addConfigs(['validation.level' => 'disabled']);
         $json = '{"name":"test","unknown":[{"object": { "id" : "123", "object": "456"}}, {"more": { "id" : "123", "object": "456"}}],"description":"description"}';
 
         $obj = new SimpleClass();
         $obj->fromJson($json);
 
-        self::assertEquals("test", $obj->getName());
-        self::assertEquals("description", $obj->getDescription());
+        self::assertEquals('test', $obj->getName());
+        self::assertEquals('description', $obj->getDescription());
         $resultJson = $obj->toJSON();
-        self::assertStringContainsString("unknown", $resultJson);
-        self::assertStringContainsString("id", $resultJson);
-        self::assertStringContainsString("object", $resultJson);
-        self::assertStringContainsString("123", $resultJson);
-        self::assertStringContainsString("456", $resultJson);
-        PayPalConfigManager::getInstance()->addConfigs(array('validation.level' => 'strict'));
+        self::assertStringContainsString('unknown', $resultJson);
+        self::assertStringContainsString('id', $resultJson);
+        self::assertStringContainsString('object', $resultJson);
+        self::assertStringContainsString('123', $resultJson);
+        self::assertStringContainsString('456', $resultJson);
+        PayPalConfigManager::getInstance()->addConfigs(['validation.level' => 'strict']);
     }
 
     public function testEmptyArrayConversion()
@@ -148,12 +148,12 @@ class ModelTest extends TestCase
     public function testSetterMagicMethod()
     {
         $obj = new PayPalModel();
-        $obj->something = "other";
-        $obj->else = array();
+        $obj->something = 'other';
+        $obj->else = [];
         $obj->there = null;
         $obj->obj = '{}';
-        $obj->objs = array('{}');
-        self::assertEquals("other", $obj->something);
+        $obj->objs = ['{}'];
+        self::assertEquals('other', $obj->something);
         self::assertIsArray($obj->else);
         self::assertNull($obj->there);
         self::assertEquals('{}', $obj->obj);
@@ -163,36 +163,37 @@ class ModelTest extends TestCase
 
     public function testInvalidMagicMethodWithDisabledValidation()
     {
-        PayPalConfigManager::getInstance()->addConfigs(array('validation.level' => 'disabled'));
+        PayPalConfigManager::getInstance()->addConfigs(['validation.level' => 'disabled']);
         $obj = new SimpleClass();
+
         try {
-            $obj->invalid = "value2";
-            self::assertEquals("value2", $obj->invalid);
+            $obj->invalid = 'value2';
+            self::assertEquals('value2', $obj->invalid);
         } catch (\PHPUnit_Framework_Error_Notice $ex) {
-            self::fail("It should not have thrown a Notice Error as it is disabled.");
+            self::fail('It should not have thrown a Notice Error as it is disabled.');
         }
-        PayPalConfigManager::getInstance()->addConfigs(array('validation.level' => 'strict'));
+        PayPalConfigManager::getInstance()->addConfigs(['validation.level' => 'strict']);
     }
 
     public function testInvalidMagicMethodWithValidationLevel()
     {
-        PayPalConfigManager::getInstance()->addConfigs(array('validation.level' => 'log'));
+        PayPalConfigManager::getInstance()->addConfigs(['validation.level' => 'log']);
         $obj = new SimpleClass();
-        $obj->invalid2 = "value2";
-        self::assertEquals("value2", $obj->invalid2);
-        PayPalConfigManager::getInstance()->addConfigs(array('validation.level' => 'strict'));
+        $obj->invalid2 = 'value2';
+        self::assertEquals('value2', $obj->invalid2);
+        PayPalConfigManager::getInstance()->addConfigs(['validation.level' => 'strict']);
     }
 
     public function testArrayClassConversion()
     {
         $o = new ArrayClass();
-        $o->setName("test");
-        $o->setDescription("description");
-        $o->setTags(array('payment', 'info', 'test'));
+        $o->setName('test');
+        $o->setDescription('description');
+        $o->setTags(['payment', 'info', 'test']);
 
-        self::assertEquals("test", $o->getName());
-        self::assertEquals("description", $o->getDescription());
-        self::assertEquals(array('payment', 'info', 'test'), $o->getTags());
+        self::assertEquals('test', $o->getName());
+        self::assertEquals('description', $o->getDescription());
+        self::assertEquals(['payment', 'info', 'test'], $o->getTags());
 
         $json = $o->toJSON();
         self::assertEquals('{"name":"test","description":"description","tags":["payment","info","test"]}', $json);
@@ -205,14 +206,14 @@ class ModelTest extends TestCase
     public function testNestedClassConversion()
     {
         $n = new ArrayClass();
-        $n->setName("test");
-        $n->setDescription("description");
+        $n->setName('test');
+        $n->setDescription('description');
         $o = new NestedClass();
         $o->setId('123');
         $o->setInfo($n);
 
-        self::assertEquals("123", $o->getId());
-        self::assertEquals("test", $o->getInfo()->getName());
+        self::assertEquals('123', $o->getId());
+        self::assertEquals('test', $o->getInfo()->getName());
 
         $json = $o->toJSON();
         self::assertEquals('{"id":"123","info":{"name":"test","description":"description"}}', $json);

@@ -3,13 +3,11 @@
 namespace PayPal\Test\Api;
 
 use PayPal\Api\WebProfile;
-use PHPUnit\Framework\TestCase;
 use PayPal\Transport\PayPalRestCall;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class WebProfile
- *
- * @package PayPal\Test\Api
  */
 class WebProfileTest extends TestCase
 {
@@ -19,7 +17,7 @@ class WebProfileTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"id":"TestSample","name":"TestSample","temporary":true,"flow_config":' .FlowConfigTest::getJson() . ',"input_fields":' .InputFieldsTest::getJson() . ',"presentation":' .PresentationTest::getJson() . '}';
+        return '{"id":"TestSample","name":"TestSample","temporary":true,"flow_config":' . FlowConfigTest::getJson() . ',"input_fields":' . InputFieldsTest::getJson() . ',"presentation":' . PresentationTest::getJson() . '}';
     }
 
     /**
@@ -30,7 +28,6 @@ class WebProfileTest extends TestCase
     {
         return new WebProfile(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -47,6 +44,7 @@ class WebProfileTest extends TestCase
         self::assertNotNull($obj->getInputFields());
         self::assertNotNull($obj->getPresentation());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -56,8 +54,8 @@ class WebProfileTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getId());
-        self::assertEquals("TestSample", $obj->getName());
+        self::assertEquals('TestSample', $obj->getId());
+        self::assertEquals('TestSample', $obj->getName());
         self::assertEquals(true, $obj->getTemporary());
         self::assertEquals($obj->getFlowConfig(), FlowConfigTest::getObject());
         self::assertEquals($obj->getInputFields(), InputFieldsTest::getObject());
@@ -81,6 +79,7 @@ class WebProfileTest extends TestCase
         $result = $obj->create($mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param WebProfile $obj
@@ -98,6 +97,7 @@ class WebProfileTest extends TestCase
         $result = $obj->update($mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param WebProfile $obj
@@ -111,11 +111,12 @@ class WebProfileTest extends TestCase
         $mockPPRestCall->expects(self::any())
             ->method('execute')
             ->willReturn(true);
-        $patch = array(PatchTest::getObject());
+        $patch = [PatchTest::getObject()];
 
         $result = $obj->partial_update($patch, $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param WebProfile $obj
@@ -130,9 +131,10 @@ class WebProfileTest extends TestCase
             ->method('execute')
             ->willReturn(self::getJson());
 
-        $result = $obj->get("profileId", $mockApiContext, $mockPPRestCall);
+        $result = $obj->get('profileId', $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param WebProfile $obj
@@ -150,6 +152,7 @@ class WebProfileTest extends TestCase
         $result = $obj->get_list($mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param WebProfile $obj
@@ -174,9 +177,10 @@ class WebProfileTest extends TestCase
         $mockApiContext = $this->getMockBuilder('ApiContext')
                     ->disableOriginalConstructor()
                     ->getMock();
-        return array(
-            array($obj, $mockApiContext),
-            array($obj, null)
-        );
+
+        return [
+            [$obj, $mockApiContext],
+            [$obj, null],
+        ];
     }
 }

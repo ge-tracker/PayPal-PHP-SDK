@@ -10,7 +10,6 @@ use PayPal\Validation\UrlValidator;
  *
  * Set of redirect URLs you provide only for PayPal-based payments.
  *
- * @package PayPal\Api
  *
  * @property string return_url
  * @property string cancel_url
@@ -26,8 +25,9 @@ class RedirectUrls extends PayPalModel
      */
     public function setReturnUrl($return_url)
     {
-        UrlValidator::validate($return_url, "ReturnUrl");
+        UrlValidator::validate($return_url, 'ReturnUrl');
         $this->return_url = $return_url;
+
         return $this;
     }
 
@@ -50,8 +50,9 @@ class RedirectUrls extends PayPalModel
      */
     public function setCancelUrl($cancel_url)
     {
-        UrlValidator::validate($cancel_url, "CancelUrl");
+        UrlValidator::validate($cancel_url, 'CancelUrl');
         $this->cancel_url = $cancel_url;
+
         return $this;
     }
 
@@ -64,5 +65,4 @@ class RedirectUrls extends PayPalModel
     {
         return $this->cancel_url;
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace PayPal\Test\Api;
 
 use PayPal\Api\Address;
@@ -6,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class Address
- *
- * @package PayPal\Test\Api
  */
 class AddressTest extends TestCase
 {
@@ -48,6 +47,7 @@ class AddressTest extends TestCase
         self::assertNotNull($obj->getStatus());
         self::assertNotNull($obj->getType());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -57,15 +57,15 @@ class AddressTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getLine1());
-        self::assertEquals("TestSample", $obj->getLine2());
-        self::assertEquals("TestSample", $obj->getCity());
-        self::assertEquals("TestSample", $obj->getCountryCode());
-        self::assertEquals("TestSample", $obj->getPostalCode());
-        self::assertEquals("TestSample", $obj->getState());
-        self::assertEquals("TestSample", $obj->getPhone());
-        self::assertEquals("TestSample", $obj->getNormalizationStatus());
-        self::assertEquals("TestSample", $obj->getStatus());
-        self::assertEquals("TestSample", $obj->getType());
+        self::assertEquals('TestSample', $obj->getLine1());
+        self::assertEquals('TestSample', $obj->getLine2());
+        self::assertEquals('TestSample', $obj->getCity());
+        self::assertEquals('TestSample', $obj->getCountryCode());
+        self::assertEquals('TestSample', $obj->getPostalCode());
+        self::assertEquals('TestSample', $obj->getState());
+        self::assertEquals('TestSample', $obj->getPhone());
+        self::assertEquals('TestSample', $obj->getNormalizationStatus());
+        self::assertEquals('TestSample', $obj->getStatus());
+        self::assertEquals('TestSample', $obj->getType());
     }
 }

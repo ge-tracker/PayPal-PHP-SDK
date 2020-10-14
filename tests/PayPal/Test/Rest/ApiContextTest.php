@@ -5,11 +5,9 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for ApiContextTest.
- *
  */
 class ApiContextTest extends TestCase
 {
-
     /**
      * @var ApiContext
      */

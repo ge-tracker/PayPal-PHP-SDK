@@ -2,18 +2,16 @@
 
 namespace PayPal\Test\Api;
 
-use PayPal\Common\PayPalResourceModel;
-use PayPal\Validation\ArgumentValidator;
-use PayPal\Api\WebhookEventList;
-use PayPal\Rest\ApiContext;
 use PayPal\Api\WebhookEvent;
-use PHPUnit\Framework\TestCase;
+use PayPal\Api\WebhookEventList;
+use PayPal\Common\PayPalResourceModel;
+use PayPal\Rest\ApiContext;
 use PayPal\Transport\PayPalRestCall;
+use PayPal\Validation\ArgumentValidator;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class WebhookEvent
- *
- * @package PayPal\Test\Api
  */
 class WebhookEventTest extends TestCase
 {
@@ -23,7 +21,7 @@ class WebhookEventTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"id":"TestSample","create_time":"TestSample","resource_type":"TestSample","event_version":"TestSample","event_type":"TestSample","summary":"TestSample","resource":"TestSampleObject","status":"TestSample","transmissions":"TestSampleObject","links":' .LinksTest::getJson() . '}';
+        return '{"id":"TestSample","create_time":"TestSample","resource_type":"TestSample","event_version":"TestSample","event_type":"TestSample","summary":"TestSample","resource":"TestSampleObject","status":"TestSample","transmissions":"TestSampleObject","links":' . LinksTest::getJson() . '}';
     }
 
     /**
@@ -34,7 +32,6 @@ class WebhookEventTest extends TestCase
     {
         return new WebhookEvent(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -55,6 +52,7 @@ class WebhookEventTest extends TestCase
 //        self::assertNotNull($obj->getTransmissions());
         self::assertNotNull($obj->getLinks());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -64,13 +62,13 @@ class WebhookEventTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getId());
-        self::assertEquals("TestSample", $obj->getCreateTime());
-        self::assertEquals("TestSample", $obj->getResourceType());
-        self::assertEquals("TestSample", $obj->getEventVersion());
-        self::assertEquals("TestSample", $obj->getEventType());
-        self::assertEquals("TestSample", $obj->getSummary());
-        self::assertEquals("TestSampleObject", $obj->getResource());
+        self::assertEquals('TestSample', $obj->getId());
+        self::assertEquals('TestSample', $obj->getCreateTime());
+        self::assertEquals('TestSample', $obj->getResourceType());
+        self::assertEquals('TestSample', $obj->getEventVersion());
+        self::assertEquals('TestSample', $obj->getEventType());
+        self::assertEquals('TestSample', $obj->getSummary());
+        self::assertEquals('TestSampleObject', $obj->getResource());
 //        self::assertEquals("TestSample", $obj->getStatus());
 //        self::assertEquals("TestSampleObject", $obj->getTransmissions());
         self::assertEquals($obj->getLinks(), LinksTest::getObject());
@@ -90,9 +88,10 @@ class WebhookEventTest extends TestCase
             ->method('execute')
             ->willReturn(self::getJson());
 
-        $result = $obj->get("eventId", $mockApiContext, $mockPPRestCall);
+        $result = $obj->get('eventId', $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param WebhookEvent $obj
@@ -112,6 +111,7 @@ class WebhookEventTest extends TestCase
         $result = $obj->resend($eventResend, $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param WebhookEvent $obj
@@ -125,7 +125,7 @@ class WebhookEventTest extends TestCase
         $mockPPRestCall->expects(self::any())
             ->method('execute')
             ->willReturn(WebhookEventListTest::getJson());
-        $params = array();
+        $params = [];
 
         $result = $obj->all($params, $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
@@ -137,9 +137,10 @@ class WebhookEventTest extends TestCase
         $mockApiContext = $this->getMockBuilder('ApiContext')
                     ->disableOriginalConstructor()
                     ->getMock();
-        return array(
-            array($obj, $mockApiContext),
-            array($obj, null)
-        );
+
+        return [
+            [$obj, $mockApiContext],
+            [$obj, null],
+        ];
     }
 }

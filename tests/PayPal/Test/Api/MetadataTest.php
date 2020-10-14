@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class Metadata
- *
- * @package PayPal\Test\Api
  */
 class MetadataTest extends TestCase
 {
@@ -30,7 +28,6 @@ class MetadataTest extends TestCase
         return new Metadata(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return Metadata
@@ -50,6 +47,7 @@ class MetadataTest extends TestCase
         self::assertNotNull($obj->getLastSentBy());
         self::assertNotNull($obj->getPayerViewUrl());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -59,21 +57,21 @@ class MetadataTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getCreatedDate());
-        self::assertEquals("TestSample", $obj->getCreatedBy());
-        self::assertEquals("TestSample", $obj->getCancelledDate());
-        self::assertEquals("TestSample", $obj->getCancelledBy());
-        self::assertEquals("TestSample", $obj->getLastUpdatedDate());
-        self::assertEquals("TestSample", $obj->getLastUpdatedBy());
-        self::assertEquals("TestSample", $obj->getFirstSentDate());
-        self::assertEquals("TestSample", $obj->getLastSentDate());
-        self::assertEquals("TestSample", $obj->getLastSentBy());
-        self::assertEquals("http://www.google.com", $obj->getPayerViewUrl());
+        self::assertEquals('TestSample', $obj->getCreatedDate());
+        self::assertEquals('TestSample', $obj->getCreatedBy());
+        self::assertEquals('TestSample', $obj->getCancelledDate());
+        self::assertEquals('TestSample', $obj->getCancelledBy());
+        self::assertEquals('TestSample', $obj->getLastUpdatedDate());
+        self::assertEquals('TestSample', $obj->getLastUpdatedBy());
+        self::assertEquals('TestSample', $obj->getFirstSentDate());
+        self::assertEquals('TestSample', $obj->getLastSentDate());
+        self::assertEquals('TestSample', $obj->getLastSentBy());
+        self::assertEquals('http://www.google.com', $obj->getPayerViewUrl());
     }
 
     public function testUrlValidationForPayerViewUrl()
     {
-        $this->expectExceptionMessage("PayerViewUrl is not a fully qualified URL");
+        $this->expectExceptionMessage('PayerViewUrl is not a fully qualified URL');
         $this->expectException(\InvalidArgumentException::class);
         $obj = new Metadata();
         $obj->setPayerViewUrl(null);

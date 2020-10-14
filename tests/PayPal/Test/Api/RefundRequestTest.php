@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class RefundRequest
- *
- * @package PayPal\Test\Api
  */
 class RefundRequestTest extends TestCase
 {
@@ -18,7 +16,7 @@ class RefundRequestTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"amount":' .AmountTest::getJson() . ',"description":"TestSample","refund_type":"TestSample","refund_source":"TestSample","reason":"TestSample","invoice_number":"TestSample","refund_advice":true,"is_non_platform_transaction":"TestSample"}';
+        return '{"amount":' . AmountTest::getJson() . ',"description":"TestSample","refund_type":"TestSample","refund_source":"TestSample","reason":"TestSample","invoice_number":"TestSample","refund_advice":true,"is_non_platform_transaction":"TestSample"}';
     }
 
     /**
@@ -29,7 +27,6 @@ class RefundRequestTest extends TestCase
     {
         return new RefundRequest(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -46,6 +43,7 @@ class RefundRequestTest extends TestCase
         self::assertNotNull($obj->getInvoiceNumber());
         self::assertNotNull($obj->getRefundAdvice());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -56,12 +54,10 @@ class RefundRequestTest extends TestCase
     public function testGetters($obj)
     {
         self::assertEquals($obj->getAmount(), AmountTest::getObject());
-        self::assertEquals("TestSample", $obj->getDescription());
-        self::assertEquals("TestSample", $obj->getRefundSource());
-        self::assertEquals("TestSample", $obj->getReason());
-        self::assertEquals("TestSample", $obj->getInvoiceNumber());
+        self::assertEquals('TestSample', $obj->getDescription());
+        self::assertEquals('TestSample', $obj->getRefundSource());
+        self::assertEquals('TestSample', $obj->getReason());
+        self::assertEquals('TestSample', $obj->getInvoiceNumber());
         self::assertEquals(true, $obj->getRefundAdvice());
     }
-
-
 }

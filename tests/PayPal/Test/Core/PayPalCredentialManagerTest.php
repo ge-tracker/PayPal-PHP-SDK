@@ -1,7 +1,7 @@
 <?php
 
-use PayPal\Exception\PayPalInvalidCredentialException;
 use PayPal\Core\PayPalCredentialManager;
+use PayPal\Exception\PayPalInvalidCredentialException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -16,7 +16,7 @@ class PayPalCredentialManagerTest extends TestCase
      */
     protected $object;
 
-    private $config = array(
+    private $config = [
         'acct1.ClientId' => 'client-id',
         'acct1.ClientSecret' => 'client-secret',
         'http.ConnectionTimeOut' => '30',
@@ -29,7 +29,7 @@ class PayPalCredentialManagerTest extends TestCase
         'log.FileName' => 'PayPal.log',
         'log.LogLevel' => 'INFO',
         'log.LogEnabled' => '1',
-    );
+    ];
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -48,16 +48,12 @@ class PayPalCredentialManagerTest extends TestCase
     {
     }
 
-    /**
-     */
     public function testGetInstance()
     {
         $instance = $this->object::getInstance($this->config);
         self::assertInstanceOf(PayPalCredentialManager::class, $instance);
     }
 
-    /**
-     */
     public function testGetSpecificCredentialObject()
     {
         $cred = $this->object->getCredentialObject('acct1');
@@ -112,18 +108,12 @@ class PayPalCredentialManagerTest extends TestCase
         self::assertNotSame($this->object->getCredentialObject(), $authObject);
     }
 
-
-    /**
-     */
     public function testGetInvalidCredentialObject()
     {
         $this->expectException(PayPalInvalidCredentialException::class);
         $cred = $this->object->getCredentialObject('invalid_biz_api1.gmail.com');
     }
 
-    /**
-     *
-     */
     public function testGetDefaultCredentialObject()
     {
         $cred = $this->object->getCredentialObject();
@@ -132,8 +122,6 @@ class PayPalCredentialManagerTest extends TestCase
         self::assertSame('client-secret', $cred->getClientSecret());
     }
 
-    /**
-     */
     public function testGetRestCredentialObject()
     {
         $cred = $this->object->getCredentialObject('acct1');

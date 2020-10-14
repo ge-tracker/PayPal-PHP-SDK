@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class Item
- *
- * @package PayPal\Test\Api
  */
 class ItemTest extends TestCase
 {
@@ -29,7 +27,6 @@ class ItemTest extends TestCase
     {
         return new Item(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -55,6 +52,7 @@ class ItemTest extends TestCase
         self::assertNotNull($obj->getSupplementaryData());
         self::assertNotNull($obj->getPostbackData());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -64,15 +62,15 @@ class ItemTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getSku());
-        self::assertEquals("TestSample", $obj->getName());
-        self::assertEquals("TestSample", $obj->getDescription());
-        self::assertEquals("12.34", $obj->getQuantity());
-        self::assertEquals("12.34", $obj->getPrice());
-        self::assertEquals("TestSample", $obj->getCurrency());
-        self::assertEquals("12.34", $obj->getTax());
-        self::assertEquals("http://www.google.com", $obj->getUrl());
-        self::assertEquals("TestSample", $obj->getCategory());
+        self::assertEquals('TestSample', $obj->getSku());
+        self::assertEquals('TestSample', $obj->getName());
+        self::assertEquals('TestSample', $obj->getDescription());
+        self::assertEquals('12.34', $obj->getQuantity());
+        self::assertEquals('12.34', $obj->getPrice());
+        self::assertEquals('TestSample', $obj->getCurrency());
+        self::assertEquals('12.34', $obj->getTax());
+        self::assertEquals('http://www.google.com', $obj->getUrl());
+        self::assertEquals('TestSample', $obj->getCategory());
         self::assertEquals($obj->getWeight(), MeasurementTest::getObject());
         self::assertEquals($obj->getLength(), MeasurementTest::getObject());
         self::assertEquals($obj->getHeight(), MeasurementTest::getObject());
@@ -83,7 +81,7 @@ class ItemTest extends TestCase
 
     public function testUrlValidationForUrl()
     {
-        $this->expectExceptionMessage("Url is not a fully qualified URL");
+        $this->expectExceptionMessage('Url is not a fully qualified URL');
         $this->expectException(\InvalidArgumentException::class);
         $obj = new Item();
         $obj->setUrl(null);

@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class Transaction
- *
- * @package PayPal\Test\Api
  */
 class TransactionTest extends TestCase
 {
@@ -31,7 +29,6 @@ class TransactionTest extends TestCase
         return new Transaction(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return Transaction
@@ -41,6 +38,7 @@ class TransactionTest extends TestCase
         $obj = new Transaction(self::getJson());
         self::assertNotNull($obj);
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 

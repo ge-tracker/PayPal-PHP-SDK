@@ -2,18 +2,16 @@
 
 namespace PayPal\Test\Api;
 
-use PayPal\Common\PayPalResourceModel;
-use PayPal\Validation\ArgumentValidator;
-use PayPal\Api\WebhookList;
-use PayPal\Rest\ApiContext;
 use PayPal\Api\Webhook;
-use PHPUnit\Framework\TestCase;
+use PayPal\Api\WebhookList;
+use PayPal\Common\PayPalResourceModel;
+use PayPal\Rest\ApiContext;
 use PayPal\Transport\PayPalRestCall;
+use PayPal\Validation\ArgumentValidator;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class Webhook
- *
- * @package PayPal\Test\Api
  */
 class WebhookTest extends TestCase
 {
@@ -23,7 +21,7 @@ class WebhookTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"id":"TestSample","url":"http://www.google.com","event_types":' .WebhookEventTypeTest::getJson() . ',"links":' .LinksTest::getJson() . '}';
+        return '{"id":"TestSample","url":"http://www.google.com","event_types":' . WebhookEventTypeTest::getJson() . ',"links":' . LinksTest::getJson() . '}';
     }
 
     /**
@@ -34,7 +32,6 @@ class WebhookTest extends TestCase
     {
         return new Webhook(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -49,6 +46,7 @@ class WebhookTest extends TestCase
         self::assertNotNull($obj->getEventTypes());
         self::assertNotNull($obj->getLinks());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -58,19 +56,20 @@ class WebhookTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getId());
-        self::assertEquals("http://www.google.com", $obj->getUrl());
+        self::assertEquals('TestSample', $obj->getId());
+        self::assertEquals('http://www.google.com', $obj->getUrl());
         self::assertEquals($obj->getEventTypes(), WebhookEventTypeTest::getObject());
         self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 
     public function testUrlValidationForUrl()
     {
-        $this->expectExceptionMessage("Url is not a fully qualified URL");
+        $this->expectExceptionMessage('Url is not a fully qualified URL');
         $this->expectException(\InvalidArgumentException::class);
         $obj = new Webhook();
         $obj->setUrl(null);
     }
+
     /**
      * @dataProvider mockProvider
      * @param Webhook $obj
@@ -88,6 +87,7 @@ class WebhookTest extends TestCase
         $result = $obj->create($mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param Webhook $obj
@@ -102,9 +102,10 @@ class WebhookTest extends TestCase
             ->method('execute')
             ->willReturn(self::getJson());
 
-        $result = $obj->get("webhookId", $mockApiContext, $mockPPRestCall);
+        $result = $obj->get('webhookId', $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param Webhook $obj
@@ -118,11 +119,12 @@ class WebhookTest extends TestCase
         $mockPPRestCall->expects(self::any())
             ->method('execute')
             ->willReturn(WebhookListTest::getJson());
-        $params = array();
+        $params = [];
 
         $result = $obj->getAllWithParams($params, $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param Webhook $obj
@@ -141,6 +143,7 @@ class WebhookTest extends TestCase
         $result = $obj->update($patchRequest, $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param Webhook $obj
@@ -165,9 +168,10 @@ class WebhookTest extends TestCase
         $mockApiContext = $this->getMockBuilder('ApiContext')
                     ->disableOriginalConstructor()
                     ->getMock();
-        return array(
-            array($obj, $mockApiContext),
-            array($obj, null)
-        );
+
+        return [
+            [$obj, $mockApiContext],
+            [$obj, null],
+        ];
     }
 }

@@ -3,13 +3,11 @@
 namespace PayPal\Test\Api;
 
 use PayPal\Api\Payment;
-use PHPUnit\Framework\TestCase;
 use PayPal\Transport\PayPalRestCall;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class Payment
- *
- * @package PayPal\Test\Api
  */
 class PaymentTest extends TestCase
 {
@@ -81,6 +79,7 @@ class PaymentTest extends TestCase
         self::assertNotNull($obj->getUpdateTime());
         self::assertNotNull($obj->getLinks());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -90,24 +89,24 @@ class PaymentTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getId());
-        self::assertEquals("TestSample", $obj->getIntent());
+        self::assertEquals('TestSample', $obj->getId());
+        self::assertEquals('TestSample', $obj->getIntent());
         self::assertEquals($obj->getPayer(), PayerTest::getObject());
         self::assertEquals($obj->getPotentialPayerInfo(), PotentialPayerInfoTest::getObject());
         self::assertEquals($obj->getPayee(), PayeeTest::getObject());
-        self::assertEquals("TestSample", $obj->getCart());
-        self::assertEquals($obj->getTransactions(), array(TransactionTest::getObject()));
+        self::assertEquals('TestSample', $obj->getCart());
+        self::assertEquals($obj->getTransactions(), [TransactionTest::getObject()]);
         self::assertEquals($obj->getFailedTransactions(), ErrorTest::getObject());
-        self::assertEquals(array("TestSample"), $obj->getBillingAgreementTokens());
+        self::assertEquals(['TestSample'], $obj->getBillingAgreementTokens());
         self::assertEquals($obj->getCreditFinancingOffered(), CreditFinancingOfferedTest::getObject());
         self::assertEquals($obj->getPaymentInstruction(), PaymentInstructionTest::getObject());
-        self::assertEquals("TestSample", $obj->getState());
-        self::assertEquals("TestSample", $obj->getExperienceProfileId());
-        self::assertEquals("TestSample", $obj->getNoteToPayer());
+        self::assertEquals('TestSample', $obj->getState());
+        self::assertEquals('TestSample', $obj->getExperienceProfileId());
+        self::assertEquals('TestSample', $obj->getNoteToPayer());
         self::assertEquals($obj->getRedirectUrls(), RedirectUrlsTest::getObject());
-        self::assertEquals("TestSample", $obj->getFailureReason());
-        self::assertEquals("TestSample", $obj->getCreateTime());
-        self::assertEquals("TestSample", $obj->getUpdateTime());
+        self::assertEquals('TestSample', $obj->getFailureReason());
+        self::assertEquals('TestSample', $obj->getCreateTime());
+        self::assertEquals('TestSample', $obj->getUpdateTime());
         self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 
@@ -128,6 +127,7 @@ class PaymentTest extends TestCase
         $result = $obj->create($mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param Payment $obj
@@ -142,9 +142,10 @@ class PaymentTest extends TestCase
             ->method('execute')
             ->willReturn(self::getJson());
 
-        $result = $obj->get("paymentId", $mockApiContext, $mockPPRestCall);
+        $result = $obj->get('paymentId', $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param Payment $obj
@@ -163,6 +164,7 @@ class PaymentTest extends TestCase
         $result = $obj->update($patchRequest, $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param Payment $obj
@@ -181,6 +183,7 @@ class PaymentTest extends TestCase
         $result = $obj->execute($paymentExecution, $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param Payment $obj
@@ -194,7 +197,7 @@ class PaymentTest extends TestCase
         $mockPPRestCall->expects(self::any())
             ->method('execute')
             ->willReturn(PaymentHistoryTest::getJson());
-        $params = array();
+        $params = [];
 
         $result = $obj->all($params, $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
@@ -206,9 +209,10 @@ class PaymentTest extends TestCase
         $mockApiContext = $this->getMockBuilder('ApiContext')
                     ->disableOriginalConstructor()
                     ->getMock();
-        return array(
-            array($obj, $mockApiContext),
-            array($obj, null)
-        );
+
+        return [
+            [$obj, $mockApiContext],
+            [$obj, null],
+        ];
     }
 }

@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  *  A resource representing installment information available for a transaction
  *
- * @package PayPal\Api
  *
  * @property string installment_id
  * @property string network
@@ -28,6 +27,7 @@ class InstallmentInfo extends PayPalModel
     public function setInstallmentId($installment_id)
     {
         $this->installment_id = $installment_id;
+
         return $this;
     }
 
@@ -52,6 +52,7 @@ class InstallmentInfo extends PayPalModel
     public function setNetwork($network)
     {
         $this->network = $network;
+
         return $this;
     }
 
@@ -75,6 +76,7 @@ class InstallmentInfo extends PayPalModel
     public function setIssuer($issuer)
     {
         $this->issuer = $issuer;
+
         return $this;
     }
 
@@ -98,6 +100,7 @@ class InstallmentInfo extends PayPalModel
     public function setInstallmentOptions($installment_options)
     {
         $this->installment_options = $installment_options;
+
         return $this;
     }
 
@@ -120,11 +123,11 @@ class InstallmentInfo extends PayPalModel
     public function addInstallmentOption($installmentOption)
     {
         if (!$this->getInstallmentOptions()) {
-            return $this->setInstallmentOptions(array($installmentOption));
+            return $this->setInstallmentOptions([$installmentOption]);
         }
 
         return $this->setInstallmentOptions(
-            array_merge($this->getInstallmentOptions(), array($installmentOption))
+            array_merge($this->getInstallmentOptions(), [$installmentOption])
         );
     }
 
@@ -137,8 +140,7 @@ class InstallmentInfo extends PayPalModel
     public function removeInstallmentOption($installmentOption)
     {
         return $this->setInstallmentOptions(
-            array_diff($this->getInstallmentOptions(), array($installmentOption))
+            array_diff($this->getInstallmentOptions(), [$installmentOption])
         );
     }
-
 }

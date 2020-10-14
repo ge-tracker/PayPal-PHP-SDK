@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class NameValuePair
- *
- * @package PayPal\Test\Api
  */
 class NameValuePairTest extends TestCase
 {
@@ -30,7 +28,6 @@ class NameValuePairTest extends TestCase
         return new NameValuePair(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return NameValuePair
@@ -42,6 +39,7 @@ class NameValuePairTest extends TestCase
         self::assertNotNull($obj->getName());
         self::assertNotNull($obj->getValue());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -51,7 +49,7 @@ class NameValuePairTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getName());
-        self::assertEquals("TestSample", $obj->getValue());
+        self::assertEquals('TestSample', $obj->getName());
+        self::assertEquals('TestSample', $obj->getValue());
     }
 }

@@ -2,17 +2,16 @@
 
 namespace PayPal\Api;
 
-use PayPal\Common\PayPalResourceModel;
-use PayPal\Validation\ArgumentValidator;
 use PayPal\Api\WebhookEventTypeList;
+use PayPal\Common\PayPalResourceModel;
 use PayPal\Rest\ApiContext;
+use PayPal\Validation\ArgumentValidator;
 
 /**
  * Class WebhookEventType
  *
  * A list of events.
  *
- * @package PayPal\Api
  *
  * @property string name
  * @property string description
@@ -24,12 +23,13 @@ class WebhookEventType extends PayPalResourceModel
      * The unique event name.
      *
      * @param string $name
-     * 
+     *
      * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -47,12 +47,13 @@ class WebhookEventType extends PayPalResourceModel
      * A human-readable description of the event.
      *
      * @param string $description
-     * 
+     *
      * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -70,12 +71,13 @@ class WebhookEventType extends PayPalResourceModel
      * The status of a webhook event.
      *
      * @param string $status
-     * 
+     *
      * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
+
         return $this;
     }
 
@@ -100,10 +102,10 @@ class WebhookEventType extends PayPalResourceModel
     public static function subscribedEventTypes($webhookId, $apiContext = null, $restCall = null)
     {
         ArgumentValidator::validate($webhookId, 'webhookId');
-        $payLoad = "";
+        $payLoad = '';
         $json = self::executeCall(
             "/v1/notifications/webhooks/$webhookId/event-types",
-            "GET",
+            'GET',
             $payLoad,
             null,
             $apiContext,
@@ -111,6 +113,7 @@ class WebhookEventType extends PayPalResourceModel
         );
         $ret = new WebhookEventTypeList();
         $ret->fromJson($json);
+
         return $ret;
     }
 
@@ -123,10 +126,10 @@ class WebhookEventType extends PayPalResourceModel
      */
     public static function availableEventTypes($apiContext = null, $restCall = null)
     {
-        $payLoad = "";
+        $payLoad = '';
         $json = self::executeCall(
-            "/v1/notifications/webhooks-event-types",
-            "GET",
+            '/v1/notifications/webhooks-event-types',
+            'GET',
             $payLoad,
             null,
             $apiContext,
@@ -134,7 +137,7 @@ class WebhookEventType extends PayPalResourceModel
         );
         $ret = new WebhookEventTypeList();
         $ret->fromJson($json);
+
         return $ret;
     }
-
 }

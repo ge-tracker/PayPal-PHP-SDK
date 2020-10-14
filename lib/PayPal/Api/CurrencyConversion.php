@@ -10,7 +10,6 @@ use PayPal\Validation\UrlValidator;
  *
  * Object used to store the currency conversion rate.
  *
- * @package PayPal\Api
  *
  * @property string conversion_date
  * @property string from_currency
@@ -33,6 +32,7 @@ class CurrencyConversion extends PayPalModel
     public function setConversionDate($conversion_date)
     {
         $this->conversion_date = $conversion_date;
+
         return $this;
     }
 
@@ -56,6 +56,7 @@ class CurrencyConversion extends PayPalModel
     public function setFromCurrency($from_currency)
     {
         $this->from_currency = $from_currency;
+
         return $this;
     }
 
@@ -79,6 +80,7 @@ class CurrencyConversion extends PayPalModel
     public function setFromAmount($from_amount)
     {
         $this->from_amount = $from_amount;
+
         return $this;
     }
 
@@ -102,6 +104,7 @@ class CurrencyConversion extends PayPalModel
     public function setToCurrency($to_currency)
     {
         $this->to_currency = $to_currency;
+
         return $this;
     }
 
@@ -125,6 +128,7 @@ class CurrencyConversion extends PayPalModel
     public function setToAmount($to_amount)
     {
         $this->to_amount = $to_amount;
+
         return $this;
     }
 
@@ -149,6 +153,7 @@ class CurrencyConversion extends PayPalModel
     public function setConversionType($conversion_type)
     {
         $this->conversion_type = $conversion_type;
+
         return $this;
     }
 
@@ -172,6 +177,7 @@ class CurrencyConversion extends PayPalModel
     public function setConversionTypeChangeable($conversion_type_changeable)
     {
         $this->conversion_type_changeable = $conversion_type_changeable;
+
         return $this;
     }
 
@@ -195,8 +201,9 @@ class CurrencyConversion extends PayPalModel
      */
     public function setWebUrl($web_url)
     {
-        UrlValidator::validate($web_url, "WebUrl");
+        UrlValidator::validate($web_url, 'WebUrl');
         $this->web_url = $web_url;
+
         return $this;
     }
 
@@ -220,6 +227,7 @@ class CurrencyConversion extends PayPalModel
     public function setLinks($links)
     {
         $this->links = $links;
+
         return $this;
     }
 
@@ -242,11 +250,11 @@ class CurrencyConversion extends PayPalModel
     public function addLink($links)
     {
         if (!$this->getLinks()) {
-            return $this->setLinks(array($links));
+            return $this->setLinks([$links]);
         }
 
         return $this->setLinks(
-            array_merge($this->getLinks(), array($links))
+            array_merge($this->getLinks(), [$links])
         );
     }
 
@@ -259,8 +267,7 @@ class CurrencyConversion extends PayPalModel
     public function removeLink($links)
     {
         return $this->setLinks(
-            array_diff($this->getLinks(), array($links))
+            array_diff($this->getLinks(), [$links])
         );
     }
-
 }

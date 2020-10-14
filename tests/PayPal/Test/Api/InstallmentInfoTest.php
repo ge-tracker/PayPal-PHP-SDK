@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class InstallmentInfo
- *
- * @package PayPal\Test\Api
  */
 class InstallmentInfoTest extends TestCase
 {
@@ -30,7 +28,6 @@ class InstallmentInfoTest extends TestCase
         return new InstallmentInfo(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return InstallmentInfo
@@ -44,6 +41,7 @@ class InstallmentInfoTest extends TestCase
         self::assertNotNull($obj->getIssuer());
         self::assertNotNull($obj->getInstallmentOptions());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -53,9 +51,9 @@ class InstallmentInfoTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getInstallmentId());
-        self::assertEquals("TestSample", $obj->getNetwork());
-        self::assertEquals("TestSample", $obj->getIssuer());
+        self::assertEquals('TestSample', $obj->getInstallmentId());
+        self::assertEquals('TestSample', $obj->getNetwork());
+        self::assertEquals('TestSample', $obj->getIssuer());
         self::assertEquals($obj->getInstallmentOptions(), InstallmentOptionTest::getObject());
     }
 }

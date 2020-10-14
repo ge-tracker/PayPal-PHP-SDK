@@ -6,12 +6,9 @@ use InvalidArgumentException;
 
 /**
  * Class UrlValidator
- *
- * @package PayPal\Validation
  */
 class UrlValidator
 {
-
     /**
      * Helper method for validating URLs that will be used by this API in any requests.
      *

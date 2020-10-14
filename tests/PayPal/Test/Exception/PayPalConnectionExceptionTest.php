@@ -1,10 +1,10 @@
 <?php
+
 use PayPal\Exception\PayPalConnectionException;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for PayPalConnectionException.
- *
  */
 class PayPalConnectionExceptionTest extends TestCase
 {
@@ -31,15 +31,11 @@ class PayPalConnectionExceptionTest extends TestCase
     {
     }
 
-    /**
-     */
     public function testGetUrl()
     {
         self::assertEquals('http://testURL', $this->object->getUrl());
     }
 
-    /**
-     */
     public function testGetData()
     {
         self::assertEquals('response payload for connection', $this->object->getData());

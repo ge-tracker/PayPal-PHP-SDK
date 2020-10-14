@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class ExternalFunding
- *
- * @package PayPal\Test\Api
  */
 class ExternalFundingTest extends TestCase
 {
@@ -18,7 +16,7 @@ class ExternalFundingTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"reference_id":"TestSample","code":"TestSample","funding_account_id":"TestSample","display_text":"TestSample","amount":' .AmountTest::getJson() . '}';
+        return '{"reference_id":"TestSample","code":"TestSample","funding_account_id":"TestSample","display_text":"TestSample","amount":' . AmountTest::getJson() . '}';
     }
 
     /**
@@ -29,7 +27,6 @@ class ExternalFundingTest extends TestCase
     {
         return new ExternalFunding(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -45,6 +42,7 @@ class ExternalFundingTest extends TestCase
         self::assertNotNull($obj->getDisplayText());
         self::assertNotNull($obj->getAmount());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -54,10 +52,10 @@ class ExternalFundingTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getReferenceId());
-        self::assertEquals("TestSample", $obj->getCode());
-        self::assertEquals("TestSample", $obj->getFundingAccountId());
-        self::assertEquals("TestSample", $obj->getDisplayText());
+        self::assertEquals('TestSample', $obj->getReferenceId());
+        self::assertEquals('TestSample', $obj->getCode());
+        self::assertEquals('TestSample', $obj->getFundingAccountId());
+        self::assertEquals('TestSample', $obj->getDisplayText());
         self::assertEquals($obj->getAmount(), AmountTest::getObject());
     }
 }

@@ -10,7 +10,6 @@ use PayPal\Validation\UrlValidator;
  *
  * A resource representing a incentive.
  *
- * @package PayPal\Api
  *
  * @property string id
  * @property string code
@@ -28,12 +27,13 @@ class Incentive extends PayPalModel
      * Identifier of the instrument in PayPal Wallet
      *
      * @param string $id
-     * 
+     *
      * @return $this
      */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -51,12 +51,13 @@ class Incentive extends PayPalModel
      * Code that identifies the incentive.
      *
      * @param string $code
-     * 
+     *
      * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+
         return $this;
     }
 
@@ -74,12 +75,13 @@ class Incentive extends PayPalModel
      * Name of the incentive.
      *
      * @param string $name
-     * 
+     *
      * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -97,12 +99,13 @@ class Incentive extends PayPalModel
      * Description of the incentive.
      *
      * @param string $description
-     * 
+     *
      * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -120,12 +123,13 @@ class Incentive extends PayPalModel
      * Indicates incentive is applicable for this minimum purchase amount.
      *
      * @param \PayPal\Api\Currency $minimum_purchase_amount
-     * 
+     *
      * @return $this
      */
     public function setMinimumPurchaseAmount($minimum_purchase_amount)
     {
         $this->minimum_purchase_amount = $minimum_purchase_amount;
+
         return $this;
     }
 
@@ -148,8 +152,9 @@ class Incentive extends PayPalModel
      */
     public function setLogoImageUrl($logo_image_url)
     {
-        UrlValidator::validate($logo_image_url, "LogoImageUrl");
+        UrlValidator::validate($logo_image_url, 'LogoImageUrl');
         $this->logo_image_url = $logo_image_url;
+
         return $this;
     }
 
@@ -167,12 +172,13 @@ class Incentive extends PayPalModel
      * expiry date of the incentive.
      *
      * @param string $expiry_date
-     * 
+     *
      * @return $this
      */
     public function setExpiryDate($expiry_date)
     {
         $this->expiry_date = $expiry_date;
+
         return $this;
     }
 
@@ -191,12 +197,13 @@ class Incentive extends PayPalModel
      * Valid Values: ["COUPON", "GIFT_CARD", "MERCHANT_SPECIFIC_BALANCE", "VOUCHER"]
      *
      * @param string $type
-     * 
+     *
      * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -214,12 +221,13 @@ class Incentive extends PayPalModel
      * URI to the associated terms
      *
      * @param string $terms
-     * 
+     *
      * @return $this
      */
     public function setTerms($terms)
     {
         $this->terms = $terms;
+
         return $this;
     }
 
@@ -232,5 +240,4 @@ class Incentive extends PayPalModel
     {
         return $this->terms;
     }
-
 }

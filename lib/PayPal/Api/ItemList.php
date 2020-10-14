@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * List of items being paid for.
  *
- * @package PayPal\Api
  *
  * @property \PayPal\Api\Item[] items
  * @property \PayPal\Api\ShippingAddress shipping_address
@@ -28,6 +27,7 @@ class ItemList extends PayPalModel
     public function setItems($items)
     {
         $this->items = array_values($items);
+
         return $this;
     }
 
@@ -50,11 +50,11 @@ class ItemList extends PayPalModel
     public function addItem($item)
     {
         if (!$this->getItems()) {
-            return $this->setItems(array($item));
+            return $this->setItems([$item]);
         }
 
         return $this->setItems(
-            array_merge($this->getItems(), array($item))
+            array_merge($this->getItems(), [$item])
         );
     }
 
@@ -67,7 +67,7 @@ class ItemList extends PayPalModel
     public function removeItem($item)
     {
         return $this->setItems(
-            array_diff($this->getItems(), array($item))
+            array_diff($this->getItems(), [$item])
         );
     }
 
@@ -81,6 +81,7 @@ class ItemList extends PayPalModel
     public function setShippingAddress($shipping_address)
     {
         $this->shipping_address = $shipping_address;
+
         return $this;
     }
 
@@ -104,6 +105,7 @@ class ItemList extends PayPalModel
     public function setShippingMethod($shipping_method)
     {
         $this->shipping_method = $shipping_method;
+
         return $this;
     }
 
@@ -127,6 +129,7 @@ class ItemList extends PayPalModel
     public function setShippingPhoneNumber($shipping_phone_number)
     {
         $this->shipping_phone_number = $shipping_phone_number;
+
         return $this;
     }
 
@@ -139,5 +142,4 @@ class ItemList extends PayPalModel
     {
         return $this->shipping_phone_number;
     }
-
 }

@@ -2,14 +2,12 @@
 
 namespace PayPal\Test\Api;
 
-use PayPal\Common\PayPalModel;
 use PayPal\Api\PaymentSummary;
+use PayPal\Common\PayPalModel;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class PaymentSummary
- *
- * @package PayPal\Test\Api
  */
 class PaymentSummaryTest extends TestCase
 {
@@ -19,7 +17,7 @@ class PaymentSummaryTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"paypal":' .CurrencyTest::getJson() . ',"other":' .CurrencyTest::getJson() . '}';
+        return '{"paypal":' . CurrencyTest::getJson() . ',"other":' . CurrencyTest::getJson() . '}';
     }
 
     /**
@@ -30,7 +28,6 @@ class PaymentSummaryTest extends TestCase
     {
         return new PaymentSummary(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -43,6 +40,7 @@ class PaymentSummaryTest extends TestCase
         self::assertNotNull($obj->getPaypal());
         self::assertNotNull($obj->getOther());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 

@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class PaymentOptions
- *
- * @package PayPal\Test\Api
  */
 class PaymentOptionsTest extends TestCase
 {
@@ -30,7 +28,6 @@ class PaymentOptionsTest extends TestCase
         return new PaymentOptions(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return PaymentOptions
@@ -43,6 +40,7 @@ class PaymentOptionsTest extends TestCase
         self::assertNotNull($obj->getRecurringFlag());
         self::assertNotNull($obj->getSkipFmf());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -52,7 +50,7 @@ class PaymentOptionsTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getAllowedPaymentMethod());
+        self::assertEquals('TestSample', $obj->getAllowedPaymentMethod());
         self::assertEquals(true, $obj->getRecurringFlag());
         self::assertEquals(true, $obj->getSkipFmf());
     }

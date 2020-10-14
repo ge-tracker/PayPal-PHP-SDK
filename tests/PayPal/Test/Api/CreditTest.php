@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class Credit
- *
- * @package PayPal\Test\Api
  */
 class CreditTest extends TestCase
 {
@@ -32,7 +30,6 @@ class CreditTest extends TestCase
         return new Credit(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      *
@@ -45,6 +42,7 @@ class CreditTest extends TestCase
         self::assertNotNull($obj->getId());
         self::assertNotNull($obj->getType());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -54,7 +52,7 @@ class CreditTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getId());
-        self::assertEquals("TestSample", $obj->getType());
+        self::assertEquals('TestSample', $obj->getId());
+        self::assertEquals('TestSample', $obj->getType());
     }
 }

@@ -2,14 +2,12 @@
 
 namespace PayPal\Test\Api;
 
-use PayPal\Common\PayPalModel;
 use PayPal\Api\VerifyWebhookSignatureResponse;
+use PayPal\Common\PayPalModel;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class VerifyWebhookSignatureResponse
- *
- * @package PayPal\Test\Api
  */
 class VerifyWebhookSignatureResponseTest extends TestCase
 {
@@ -31,7 +29,6 @@ class VerifyWebhookSignatureResponseTest extends TestCase
         return new VerifyWebhookSignatureResponse(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return VerifyWebhookSignatureResponse
@@ -42,6 +39,7 @@ class VerifyWebhookSignatureResponseTest extends TestCase
         self::assertNotNull($obj);
         self::assertNotNull($obj->getVerificationStatus());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -51,7 +49,6 @@ class VerifyWebhookSignatureResponseTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getVerificationStatus());
+        self::assertEquals('TestSample', $obj->getVerificationStatus());
     }
-
 }

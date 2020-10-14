@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class ProcessorResponse
- *
- * @package PayPal\Test\Api
  */
 class ProcessorResponseTest extends TestCase
 {
@@ -30,7 +28,6 @@ class ProcessorResponseTest extends TestCase
         return new ProcessorResponse(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return ProcessorResponse
@@ -46,6 +43,7 @@ class ProcessorResponseTest extends TestCase
         self::assertNotNull($obj->getEciSubmitted());
         self::assertNotNull($obj->getVpas());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -55,11 +53,11 @@ class ProcessorResponseTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getResponseCode());
-        self::assertEquals("TestSample", $obj->getAvsCode());
-        self::assertEquals("TestSample", $obj->getCvvCode());
-        self::assertEquals("TestSample", $obj->getAdviceCode());
-        self::assertEquals("TestSample", $obj->getEciSubmitted());
-        self::assertEquals("TestSample", $obj->getVpas());
+        self::assertEquals('TestSample', $obj->getResponseCode());
+        self::assertEquals('TestSample', $obj->getAvsCode());
+        self::assertEquals('TestSample', $obj->getCvvCode());
+        self::assertEquals('TestSample', $obj->getAdviceCode());
+        self::assertEquals('TestSample', $obj->getEciSubmitted());
+        self::assertEquals('TestSample', $obj->getVpas());
     }
 }

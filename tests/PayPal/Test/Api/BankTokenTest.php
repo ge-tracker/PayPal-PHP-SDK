@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class BankToken
- *
- * @package PayPal\Test\Api
  */
 class BankTokenTest extends TestCase
 {
@@ -30,7 +28,6 @@ class BankTokenTest extends TestCase
         return new BankToken(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return BankToken
@@ -43,6 +40,7 @@ class BankTokenTest extends TestCase
         self::assertNotNull($obj->getExternalCustomerId());
         self::assertNotNull($obj->getMandateReferenceNumber());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -52,8 +50,8 @@ class BankTokenTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getBankId());
-        self::assertEquals("TestSample", $obj->getExternalCustomerId());
-        self::assertEquals("TestSample", $obj->getMandateReferenceNumber());
+        self::assertEquals('TestSample', $obj->getBankId());
+        self::assertEquals('TestSample', $obj->getExternalCustomerId());
+        self::assertEquals('TestSample', $obj->getMandateReferenceNumber());
     }
 }

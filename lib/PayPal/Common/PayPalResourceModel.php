@@ -2,21 +2,19 @@
 
 namespace PayPal\Common;
 
+use PayPal\Handler\RestHandler;
 use PayPal\Rest\ApiContext;
 use PayPal\Rest\IResource;
 use PayPal\Transport\PayPalRestCall;
-use PayPal\Handler\RestHandler;
 
 /**
  * Class PayPalResourceModel
  * An Executable PayPalModel Class
  *
  * @property \PayPal\Api\Links[] links
- * @package PayPal\Common
  */
 class PayPalResourceModel extends PayPalModel implements IResource
 {
-
     /**
      * Sets Links
      *
@@ -27,6 +25,7 @@ class PayPalResourceModel extends PayPalModel implements IResource
     public function setLinks($links)
     {
         $this->links = $links;
+
         return $this;
     }
 
@@ -49,6 +48,7 @@ class PayPalResourceModel extends PayPalModel implements IResource
                 }
             }
         }
+
         return null;
     }
 
@@ -61,11 +61,11 @@ class PayPalResourceModel extends PayPalModel implements IResource
     public function addLink($links)
     {
         if (!$this->getLinks()) {
-            return $this->setLinks(array($links));
+            return $this->setLinks([$links]);
         }
 
         return $this->setLinks(
-            array_merge($this->getLinks(), array($links))
+            array_merge($this->getLinks(), [$links])
         );
     }
 
@@ -78,10 +78,9 @@ class PayPalResourceModel extends PayPalModel implements IResource
     public function removeLink($links)
     {
         return $this->setLinks(
-            array_diff($this->getLinks(), array($links))
+            array_diff($this->getLinks(), [$links])
         );
     }
-
 
     /**
      * Execute SDK Call to Paypal services
@@ -95,7 +94,7 @@ class PayPalResourceModel extends PayPalModel implements IResource
      * @param array $handlers
      * @return string json response of the object
      */
-    protected static function executeCall($url, $method, $payLoad, $headers = array(), $apiContext = null, $restCall = null, $handlers = array(RestHandler::class))
+    protected static function executeCall($url, $method, $payLoad, $headers = [], $apiContext = null, $restCall = null, $handlers = [RestHandler::class])
     {
         //Initialize the context and rest call object if not provided explicitly
         $apiContext = $apiContext ?: new ApiContext(self::$credential);

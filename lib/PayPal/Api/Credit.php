@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * A resource representing a credit instrument.
  *
- * @package PayPal\Api
  *
  * @property string id
  * @property string type
@@ -20,12 +19,13 @@ class Credit extends PayPalModel
      * Unique identifier of credit resource.
      *
      * @param string $id
-     * 
+     *
      * @return $this
      */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -44,12 +44,13 @@ class Credit extends PayPalModel
      * Valid Values: ["BILL_ME_LATER", "PAYPAL_EXTRAS_MASTERCARD", "EBAY_MASTERCARD", "PAYPAL_SMART_CONNECT"]
      *
      * @param string $type
-     * 
+     *
      * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -62,5 +63,4 @@ class Credit extends PayPalModel
     {
         return $this->type;
     }
-
 }

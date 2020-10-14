@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * specifies the funding source details.
  *
- * @package PayPal\Api
  *
  * @property string funding_mode
  * @property string funding_instrument_type
@@ -34,6 +33,7 @@ class FundingSource extends FundingInstrument
     public function setFundingMode($funding_mode)
     {
         $this->funding_mode = $funding_mode;
+
         return $this;
     }
 
@@ -58,6 +58,7 @@ class FundingSource extends FundingInstrument
     public function setFundingInstrumentType($funding_instrument_type)
     {
         $this->funding_instrument_type = $funding_instrument_type;
+
         return $this;
     }
 
@@ -81,6 +82,7 @@ class FundingSource extends FundingInstrument
     public function setSoftDescriptor($soft_descriptor)
     {
         $this->soft_descriptor = $soft_descriptor;
+
         return $this;
     }
 
@@ -104,6 +106,7 @@ class FundingSource extends FundingInstrument
     public function setAmount($amount)
     {
         $this->amount = $amount;
+
         return $this;
     }
 
@@ -127,6 +130,7 @@ class FundingSource extends FundingInstrument
     public function setNegativeBalanceAmount($negative_balance_amount)
     {
         $this->negative_balance_amount = $negative_balance_amount;
+
         return $this;
     }
 
@@ -150,6 +154,7 @@ class FundingSource extends FundingInstrument
     public function setLegalText($legal_text)
     {
         $this->legal_text = $legal_text;
+
         return $this;
     }
 
@@ -173,6 +178,7 @@ class FundingSource extends FundingInstrument
     public function setFundingDetail($funding_detail)
     {
         $this->funding_detail = $funding_detail;
+
         return $this;
     }
 
@@ -196,6 +202,7 @@ class FundingSource extends FundingInstrument
     public function setAdditionalText($additional_text)
     {
         $this->additional_text = $additional_text;
+
         return $this;
     }
 
@@ -221,6 +228,7 @@ class FundingSource extends FundingInstrument
     public function setExtends($extends)
     {
         $this->extends = $extends;
+
         return $this;
     }
 
@@ -246,6 +254,7 @@ class FundingSource extends FundingInstrument
     public function setLinks($links)
     {
         $this->links = $links;
+
         return $this;
     }
 
@@ -268,11 +277,11 @@ class FundingSource extends FundingInstrument
     public function addLink($links)
     {
         if (!$this->getLinks()) {
-            return $this->setLinks(array($links));
+            return $this->setLinks([$links]);
         }
 
         return $this->setLinks(
-            array_merge($this->getLinks(), array($links))
+            array_merge($this->getLinks(), [$links])
         );
     }
 
@@ -285,8 +294,7 @@ class FundingSource extends FundingInstrument
     public function removeLink($links)
     {
         return $this->setLinks(
-            array_diff($this->getLinks(), array($links))
+            array_diff($this->getLinks(), [$links])
         );
     }
-
 }

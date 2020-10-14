@@ -1,10 +1,10 @@
 <?php
+
 use PayPal\Exception\PayPalConfigurationException;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for PayPalConfigurationException.
- *
  */
 class PayPalConfigurationExceptionTest extends TestCase
 {

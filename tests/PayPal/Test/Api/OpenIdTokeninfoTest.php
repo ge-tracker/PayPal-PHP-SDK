@@ -1,4 +1,5 @@
 <?php
+
 namespace PayPal\Test\Api;
 
 use PayPal\Api\OpenIdTokeninfo;
@@ -6,12 +7,10 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for OpenIdTokeninfo.
- *
  */
 class OpenIdTokeninfoTest extends TestCase
 {
-
-    /** @var  OpenIdTokeninfo */
+    /** @var OpenIdTokeninfo */
     public $token;
 
     /**
@@ -21,12 +20,12 @@ class OpenIdTokeninfoTest extends TestCase
     protected function setUp(): void
     {
         $this->token = new OpenIdTokeninfo();
-        $this->token->setAccessToken("Access token")
+        $this->token->setAccessToken('Access token')
             ->setExpiresIn(900)
-            ->setRefreshToken("Refresh token")
-            ->setIdToken("id token")
-            ->setScope("openid address")
-            ->setTokenType("Bearer");
+            ->setRefreshToken('Refresh token')
+            ->setIdToken('id token')
+            ->setScope('openid address')
+            ->setTokenType('Bearer');
     }
 
     /**
@@ -37,8 +36,6 @@ class OpenIdTokeninfoTest extends TestCase
     {
     }
 
-    /**
-     */
     public function testSerializationDeserialization()
     {
         $tokenCopy = new OpenIdTokeninfo();
@@ -56,20 +53,20 @@ class OpenIdTokeninfoTest extends TestCase
         $clientId = 'AQkquBDf1zctJOWGKWUEtKXm6qVhueUEMvXO_-MCI4DQQ4-LWvkDLIN2fGsd';
         $clientSecret = 'ELtVxAjhT7cJimnz5-Nsx9k2reTKSVfErNQF-CmrwJgxRtylkGTKlU4RvrX';
 
-        $params = array(
+        $params = [
             'code' => '<FILLME>',
             'redirect_uri' => 'https://devtools-paypal.com/',
             'client_id' => $clientId,
-            'client_secret' => $clientSecret
-        );
+            'client_secret' => $clientSecret,
+        ];
         $accessToken = OpenIdTokeninfo::createFromAuthorizationCode($params);
         self::assertNotNull($accessToken);
 
-        $params = array(
+        $params = [
             'refresh_token' => $accessToken->getRefreshToken(),
             'client_id' => $clientId,
-            'client_secret' => $clientSecret
-        );
+            'client_secret' => $clientSecret,
+        ];
         $accessToken = $accessToken->createFromRefreshToken($params);
         self::assertNotNull($accessToken);
     }

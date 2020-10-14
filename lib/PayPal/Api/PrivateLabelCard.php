@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * A resource representing a type of merchant branded payment card. To promote customer value (convenience and earning rewards) and retailer value (merchants drive business using the store cards), PayPal will support as payment method.
  *
- * @package PayPal\Api
  *
  * @property string id
  * @property string card_number
@@ -23,12 +22,13 @@ class PrivateLabelCard extends PayPalModel
      * encrypted identifier of the private label card instrument.
      *
      * @param string $id
-     * 
+     *
      * @return $this
      */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -46,12 +46,13 @@ class PrivateLabelCard extends PayPalModel
      * last 4 digits of the card number.
      *
      * @param string $card_number
-     * 
+     *
      * @return $this
      */
     public function setCardNumber($card_number)
     {
         $this->card_number = $card_number;
+
         return $this;
     }
 
@@ -69,12 +70,13 @@ class PrivateLabelCard extends PayPalModel
      * Merchants providing private label store cards have associated issuer account. This value indicates encrypted account number of the associated issuer account.
      *
      * @param string $issuer_id
-     * 
+     *
      * @return $this
      */
     public function setIssuerId($issuer_id)
     {
         $this->issuer_id = $issuer_id;
+
         return $this;
     }
 
@@ -92,12 +94,13 @@ class PrivateLabelCard extends PayPalModel
      * Merchants providing private label store cards have associated issuer account. This value indicates name on the issuer account.
      *
      * @param string $issuer_name
-     * 
+     *
      * @return $this
      */
     public function setIssuerName($issuer_name)
     {
         $this->issuer_name = $issuer_name;
+
         return $this;
     }
 
@@ -115,12 +118,13 @@ class PrivateLabelCard extends PayPalModel
      * This value indicates URL to access PLCC program logo image
      *
      * @param string $image_key
-     * 
+     *
      * @return $this
      */
     public function setImageKey($image_key)
     {
         $this->image_key = $image_key;
+
         return $this;
     }
 
@@ -133,5 +137,4 @@ class PrivateLabelCard extends PayPalModel
     {
         return $this->image_key;
     }
-
 }

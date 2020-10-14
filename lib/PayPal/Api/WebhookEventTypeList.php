@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * List of webhook events.
  *
- * @package PayPal\Api
  *
  * @property \PayPal\Api\WebhookEventType[] event_types
  */
@@ -25,6 +24,7 @@ class WebhookEventTypeList extends PayPalModel
     public function setEventTypes($event_types)
     {
         $this->event_types = $event_types;
+
         return $this;
     }
 
@@ -47,11 +47,11 @@ class WebhookEventTypeList extends PayPalModel
     public function addEventType($webhookEventType)
     {
         if (!$this->getEventTypes()) {
-            return $this->setEventTypes(array($webhookEventType));
+            return $this->setEventTypes([$webhookEventType]);
         }
 
         return $this->setEventTypes(
-            array_merge($this->getEventTypes(), array($webhookEventType))
+            array_merge($this->getEventTypes(), [$webhookEventType])
         );
     }
 
@@ -64,8 +64,7 @@ class WebhookEventTypeList extends PayPalModel
     public function removeEventType($webhookEventType)
     {
         return $this->setEventTypes(
-            array_diff($this->getEventTypes(), array($webhookEventType))
+            array_diff($this->getEventTypes(), [$webhookEventType])
         );
     }
-
 }

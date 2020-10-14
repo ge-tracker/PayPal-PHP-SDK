@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class DetailedRefund
- *
- * @package PayPal\Test\Api
  */
 class DetailedRefundTest extends TestCase
 {
@@ -18,7 +16,7 @@ class DetailedRefundTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"custom":"TestSample","invoice_number":"TestSample","refund_to_payer":' .CurrencyTest::getJson() . ',"refund_to_external_funding":' .ExternalFundingTest::getJson() . ',"refund_from_transaction_fee":' .CurrencyTest::getJson() . ',"refund_from_received_amount":' .CurrencyTest::getJson() . ',"total_refunded_amount":' .CurrencyTest::getJson() . '}';
+        return '{"custom":"TestSample","invoice_number":"TestSample","refund_to_payer":' . CurrencyTest::getJson() . ',"refund_to_external_funding":' . ExternalFundingTest::getJson() . ',"refund_from_transaction_fee":' . CurrencyTest::getJson() . ',"refund_from_received_amount":' . CurrencyTest::getJson() . ',"total_refunded_amount":' . CurrencyTest::getJson() . '}';
     }
 
     /**
@@ -29,7 +27,6 @@ class DetailedRefundTest extends TestCase
     {
         return new DetailedRefund(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -47,6 +44,7 @@ class DetailedRefundTest extends TestCase
         self::assertNotNull($obj->getRefundFromReceivedAmount());
         self::assertNotNull($obj->getTotalRefundedAmount());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -56,14 +54,12 @@ class DetailedRefundTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getCustom());
-        self::assertEquals("TestSample", $obj->getInvoiceNumber());
+        self::assertEquals('TestSample', $obj->getCustom());
+        self::assertEquals('TestSample', $obj->getInvoiceNumber());
         self::assertEquals($obj->getRefundToPayer(), CurrencyTest::getObject());
         self::assertEquals($obj->getRefundToExternalFunding(), ExternalFundingTest::getObject());
         self::assertEquals($obj->getRefundFromTransactionFee(), CurrencyTest::getObject());
         self::assertEquals($obj->getRefundFromReceivedAmount(), CurrencyTest::getObject());
         self::assertEquals($obj->getTotalRefundedAmount(), CurrencyTest::getObject());
     }
-
-
 }

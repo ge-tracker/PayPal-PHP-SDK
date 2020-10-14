@@ -1,11 +1,11 @@
 <?php
+
 namespace PayPal\Test\Common;
 
 use PayPal\Common\PayPalModel;
 
 class ArrayClass extends PayPalModel
 {
-
     public function setName($name)
     {
         $this->name = $name;
@@ -29,7 +29,7 @@ class ArrayClass extends PayPalModel
     public function setTags($tags)
     {
         if (!is_array($tags)) {
-            $tags = array($tags);
+            $tags = [$tags];
         }
         $this->tags = $tags;
     }

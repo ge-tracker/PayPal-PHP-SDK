@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class CurrencyConversion
- *
- * @package PayPal\Test\Api
  */
 class CurrencyConversionTest extends TestCase
 {
@@ -32,7 +30,6 @@ class CurrencyConversionTest extends TestCase
         return new CurrencyConversion(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      *
@@ -52,6 +49,7 @@ class CurrencyConversionTest extends TestCase
         self::assertNotNull($obj->getWebUrl());
         self::assertNotNull($obj->getLinks());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -61,20 +59,20 @@ class CurrencyConversionTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getConversionDate());
-        self::assertEquals("TestSample", $obj->getFromCurrency());
-        self::assertEquals("TestSample", $obj->getFromAmount());
-        self::assertEquals("TestSample", $obj->getToCurrency());
-        self::assertEquals("TestSample", $obj->getToAmount());
-        self::assertEquals("TestSample", $obj->getConversionType());
+        self::assertEquals('TestSample', $obj->getConversionDate());
+        self::assertEquals('TestSample', $obj->getFromCurrency());
+        self::assertEquals('TestSample', $obj->getFromAmount());
+        self::assertEquals('TestSample', $obj->getToCurrency());
+        self::assertEquals('TestSample', $obj->getToAmount());
+        self::assertEquals('TestSample', $obj->getConversionType());
         self::assertEquals(true, $obj->getConversionTypeChangeable());
-        self::assertEquals("http://www.google.com", $obj->getWebUrl());
+        self::assertEquals('http://www.google.com', $obj->getWebUrl());
         self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 
     public function testUrlValidationForWebUrl()
     {
-        $this->expectExceptionMessage("WebUrl is not a fully qualified URL");
+        $this->expectExceptionMessage('WebUrl is not a fully qualified URL');
         $this->expectException(\InvalidArgumentException::class);
         $obj = new CurrencyConversion();
         $obj->setWebUrl(null);

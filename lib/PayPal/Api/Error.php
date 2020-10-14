@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * Details of an Error
  *
- * @package PayPal\Api
  *
  * @property string                     name
  * @property string                     message
@@ -30,6 +29,7 @@ class Error extends PayPalModel
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -54,6 +54,7 @@ class Error extends PayPalModel
     public function setPurchaseUnitReferenceId($purchase_unit_reference_id)
     {
         $this->purchase_unit_reference_id = $purchase_unit_reference_id;
+
         return $this;
     }
 
@@ -79,6 +80,7 @@ class Error extends PayPalModel
     public function setCode($code)
     {
         $this->code = $code;
+
         return $this;
     }
 
@@ -103,6 +105,7 @@ class Error extends PayPalModel
     public function setDebugId($debug_id)
     {
         $this->debug_id = $debug_id;
+
         return $this;
     }
 
@@ -126,6 +129,7 @@ class Error extends PayPalModel
     public function setMessage($message)
     {
         $this->message = $message;
+
         return $this;
     }
 
@@ -149,6 +153,7 @@ class Error extends PayPalModel
     public function setInformationLink($information_link)
     {
         $this->information_link = $information_link;
+
         return $this;
     }
 
@@ -172,6 +177,7 @@ class Error extends PayPalModel
     public function setDetails($details)
     {
         $this->details = $details;
+
         return $this;
     }
 
@@ -194,11 +200,11 @@ class Error extends PayPalModel
     public function addDetail($errorDetails)
     {
         if (!$this->getDetails()) {
-            return $this->setDetails(array($errorDetails));
+            return $this->setDetails([$errorDetails]);
         }
 
         return $this->setDetails(
-            array_merge($this->getDetails(), array($errorDetails))
+            array_merge($this->getDetails(), [$errorDetails])
         );
     }
 
@@ -211,7 +217,7 @@ class Error extends PayPalModel
     public function removeDetail($errorDetails)
     {
         return $this->setDetails(
-            array_diff($this->getDetails(), array($errorDetails))
+            array_diff($this->getDetails(), [$errorDetails])
         );
     }
 
@@ -226,6 +232,7 @@ class Error extends PayPalModel
     public function setProcessorResponse($processor_response)
     {
         $this->processor_response = $processor_response;
+
         return $this;
     }
 
@@ -251,6 +258,7 @@ class Error extends PayPalModel
     public function setFmfDetails($fmf_details)
     {
         $this->fmf_details = $fmf_details;
+
         return $this;
     }
 
@@ -275,6 +283,7 @@ class Error extends PayPalModel
     public function setLinks($links)
     {
         $this->links = $links;
+
         return $this;
     }
 
@@ -297,11 +306,11 @@ class Error extends PayPalModel
     public function addLink($links)
     {
         if (!$this->getLinks()) {
-            return $this->setLinks(array($links));
+            return $this->setLinks([$links]);
         }
 
         return $this->setLinks(
-            array_merge($this->getLinks(), array($links))
+            array_merge($this->getLinks(), [$links])
         );
     }
 
@@ -314,7 +323,7 @@ class Error extends PayPalModel
     public function removeLink($links)
     {
         return $this->setLinks(
-            array_diff($this->getLinks(), array($links))
+            array_diff($this->getLinks(), [$links])
         );
     }
 }

@@ -10,7 +10,6 @@ use PayPal\Validation\UrlValidator;
  *
  * Base properties of a cart resource
  *
- * @package PayPal\Api
  *
  * @property string reference_id
  * @property \PayPal\Api\Amount amount
@@ -38,6 +37,7 @@ class CartBase extends PayPalModel
     public function setReferenceId($reference_id)
     {
         $this->reference_id = $reference_id;
+
         return $this;
     }
 
@@ -61,6 +61,7 @@ class CartBase extends PayPalModel
     public function setAmount($amount)
     {
         $this->amount = $amount;
+
         return $this;
     }
 
@@ -84,6 +85,7 @@ class CartBase extends PayPalModel
     public function setPayee($payee)
     {
         $this->payee = $payee;
+
         return $this;
     }
 
@@ -107,6 +109,7 @@ class CartBase extends PayPalModel
     public function setDescription($description)
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -130,6 +133,7 @@ class CartBase extends PayPalModel
     public function setNoteToPayee($note_to_payee)
     {
         $this->note_to_payee = $note_to_payee;
+
         return $this;
     }
 
@@ -153,6 +157,7 @@ class CartBase extends PayPalModel
     public function setCustom($custom)
     {
         $this->custom = $custom;
+
         return $this;
     }
 
@@ -176,6 +181,7 @@ class CartBase extends PayPalModel
     public function setInvoiceNumber($invoice_number)
     {
         $this->invoice_number = $invoice_number;
+
         return $this;
     }
 
@@ -199,6 +205,7 @@ class CartBase extends PayPalModel
     public function setPurchaseOrder($purchase_order)
     {
         $this->purchase_order = $purchase_order;
+
         return $this;
     }
 
@@ -222,6 +229,7 @@ class CartBase extends PayPalModel
     public function setSoftDescriptor($soft_descriptor)
     {
         $this->soft_descriptor = $soft_descriptor;
+
         return $this;
     }
 
@@ -245,6 +253,7 @@ class CartBase extends PayPalModel
     public function setSoftDescriptorCity($soft_descriptor_city)
     {
         $this->soft_descriptor_city = $soft_descriptor_city;
+
         return $this;
     }
 
@@ -268,6 +277,7 @@ class CartBase extends PayPalModel
     public function setPaymentOptions($payment_options)
     {
         $this->payment_options = $payment_options;
+
         return $this;
     }
 
@@ -291,6 +301,7 @@ class CartBase extends PayPalModel
     public function setItemList($item_list)
     {
         $this->item_list = $item_list;
+
         return $this;
     }
 
@@ -313,8 +324,9 @@ class CartBase extends PayPalModel
      */
     public function setNotifyUrl($notify_url)
     {
-        UrlValidator::validate($notify_url, "NotifyUrl");
+        UrlValidator::validate($notify_url, 'NotifyUrl');
         $this->notify_url = $notify_url;
+
         return $this;
     }
 
@@ -337,8 +349,9 @@ class CartBase extends PayPalModel
      */
     public function setOrderUrl($order_url)
     {
-        UrlValidator::validate($order_url, "OrderUrl");
+        UrlValidator::validate($order_url, 'OrderUrl');
         $this->order_url = $order_url;
+
         return $this;
     }
 
@@ -362,6 +375,7 @@ class CartBase extends PayPalModel
     public function setExternalFunding($external_funding)
     {
         $this->external_funding = $external_funding;
+
         return $this;
     }
 
@@ -384,11 +398,11 @@ class CartBase extends PayPalModel
     public function addExternalFunding($externalFunding)
     {
         if (!$this->getExternalFunding()) {
-            return $this->setExternalFunding(array($externalFunding));
+            return $this->setExternalFunding([$externalFunding]);
         }
 
         return $this->setExternalFunding(
-            array_merge($this->getExternalFunding(), array($externalFunding))
+            array_merge($this->getExternalFunding(), [$externalFunding])
         );
     }
 
@@ -401,8 +415,7 @@ class CartBase extends PayPalModel
     public function removeExternalFunding($externalFunding)
     {
         return $this->setExternalFunding(
-            array_diff($this->getExternalFunding(), array($externalFunding))
+            array_diff($this->getExternalFunding(), [$externalFunding])
         );
     }
-
 }

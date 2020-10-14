@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class CreditCard
- *
- * @package PayPal\Test\Api
  */
 class CreditCardTest extends TestCase
 {
@@ -30,7 +28,6 @@ class CreditCardTest extends TestCase
     {
         return new CreditCard(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -55,6 +52,7 @@ class CreditCardTest extends TestCase
         self::assertNotNull($obj->getValidUntil());
         self::assertNotNull($obj->getLinks());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -64,18 +62,18 @@ class CreditCardTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getId());
-        self::assertEquals("TestSample", $obj->getNumber());
-        self::assertEquals("TestSample", $obj->getType());
+        self::assertEquals('TestSample', $obj->getId());
+        self::assertEquals('TestSample', $obj->getNumber());
+        self::assertEquals('TestSample', $obj->getType());
         self::assertEquals(123, $obj->getExpireMonth());
         self::assertEquals(123, $obj->getExpireYear());
-        self::assertEquals("TestSample", $obj->getCvv2());
-        self::assertEquals("TestSample", $obj->getFirstName());
-        self::assertEquals("TestSample", $obj->getLastName());
+        self::assertEquals('TestSample', $obj->getCvv2());
+        self::assertEquals('TestSample', $obj->getFirstName());
+        self::assertEquals('TestSample', $obj->getLastName());
         self::assertEquals($obj->getBillingAddress(), AddressTest::getObject());
-        self::assertEquals("TestSample", $obj->getExternalCustomerId());
-        self::assertEquals("TestSample", $obj->getState());
-        self::assertEquals("TestSample", $obj->getValidUntil());
+        self::assertEquals('TestSample', $obj->getExternalCustomerId());
+        self::assertEquals('TestSample', $obj->getState());
+        self::assertEquals('TestSample', $obj->getValidUntil());
         self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 }

@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * Resource representing payment definition scheduling information.
  *
- * @package PayPal\Api
  *
  * @property string id
  * @property string name
@@ -32,6 +31,7 @@ class PaymentDefinition extends PayPalModel
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -55,6 +55,7 @@ class PaymentDefinition extends PayPalModel
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -78,6 +79,7 @@ class PaymentDefinition extends PayPalModel
     public function setType($type)
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -101,6 +103,7 @@ class PaymentDefinition extends PayPalModel
     public function setFrequencyInterval($frequency_interval)
     {
         $this->frequency_interval = $frequency_interval;
+
         return $this;
     }
 
@@ -124,6 +127,7 @@ class PaymentDefinition extends PayPalModel
     public function setFrequency($frequency)
     {
         $this->frequency = $frequency;
+
         return $this;
     }
 
@@ -147,6 +151,7 @@ class PaymentDefinition extends PayPalModel
     public function setCycles($cycles)
     {
         $this->cycles = $cycles;
+
         return $this;
     }
 
@@ -170,6 +175,7 @@ class PaymentDefinition extends PayPalModel
     public function setAmount($amount)
     {
         $this->amount = $amount;
+
         return $this;
     }
 
@@ -193,6 +199,7 @@ class PaymentDefinition extends PayPalModel
     public function setChargeModels($charge_models)
     {
         $this->charge_models = $charge_models;
+
         return $this;
     }
 
@@ -215,11 +222,11 @@ class PaymentDefinition extends PayPalModel
     public function addChargeModel($chargeModel)
     {
         if (!$this->getChargeModels()) {
-            return $this->setChargeModels(array($chargeModel));
+            return $this->setChargeModels([$chargeModel]);
         }
 
         return $this->setChargeModels(
-            array_merge($this->getChargeModels(), array($chargeModel))
+            array_merge($this->getChargeModels(), [$chargeModel])
         );
     }
 
@@ -232,8 +239,7 @@ class PaymentDefinition extends PayPalModel
     public function removeChargeModel($chargeModel)
     {
         return $this->setChargeModels(
-            array_diff($this->getChargeModels(), array($chargeModel))
+            array_diff($this->getChargeModels(), [$chargeModel])
         );
     }
-
 }

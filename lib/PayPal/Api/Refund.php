@@ -3,15 +3,14 @@
 namespace PayPal\Api;
 
 use PayPal\Common\PayPalResourceModel;
-use PayPal\Validation\ArgumentValidator;
 use PayPal\Rest\ApiContext;
+use PayPal\Validation\ArgumentValidator;
 
 /**
  * Class Refund
  *
  * A refund transaction.
  *
- * @package PayPal\Api
  *
  * @property string id
  * @property \PayPal\Api\Amount amount
@@ -39,6 +38,7 @@ class Refund extends PayPalResourceModel
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -62,6 +62,7 @@ class Refund extends PayPalResourceModel
     public function setAmount($amount)
     {
         $this->amount = $amount;
+
         return $this;
     }
 
@@ -86,6 +87,7 @@ class Refund extends PayPalResourceModel
     public function setState($state)
     {
         $this->state = $state;
+
         return $this;
     }
 
@@ -109,6 +111,7 @@ class Refund extends PayPalResourceModel
     public function setReason($reason)
     {
         $this->reason = $reason;
+
         return $this;
     }
 
@@ -132,6 +135,7 @@ class Refund extends PayPalResourceModel
     public function setInvoiceNumber($invoice_number)
     {
         $this->invoice_number = $invoice_number;
+
         return $this;
     }
 
@@ -155,6 +159,7 @@ class Refund extends PayPalResourceModel
     public function setSaleId($sale_id)
     {
         $this->sale_id = $sale_id;
+
         return $this;
     }
 
@@ -178,6 +183,7 @@ class Refund extends PayPalResourceModel
     public function setCaptureId($capture_id)
     {
         $this->capture_id = $capture_id;
+
         return $this;
     }
 
@@ -201,6 +207,7 @@ class Refund extends PayPalResourceModel
     public function setParentPayment($parent_payment)
     {
         $this->parent_payment = $parent_payment;
+
         return $this;
     }
 
@@ -224,6 +231,7 @@ class Refund extends PayPalResourceModel
     public function setDescription($description)
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -247,6 +255,7 @@ class Refund extends PayPalResourceModel
     public function setCreateTime($create_time)
     {
         $this->create_time = $create_time;
+
         return $this;
     }
 
@@ -270,6 +279,7 @@ class Refund extends PayPalResourceModel
     public function setUpdateTime($update_time)
     {
         $this->update_time = $update_time;
+
         return $this;
     }
 
@@ -294,6 +304,7 @@ class Refund extends PayPalResourceModel
     public function setReasonCode($reason_code)
     {
         $this->reason_code = $reason_code;
+
         return $this;
     }
 
@@ -318,10 +329,10 @@ class Refund extends PayPalResourceModel
     public static function get($refundId, $apiContext = null, $restCall = null)
     {
         ArgumentValidator::validate($refundId, 'refundId');
-        $payLoad = "";
+        $payLoad = '';
         $json = self::executeCall(
             "/v1/payments/refund/$refundId",
-            "GET",
+            'GET',
             $payLoad,
             null,
             $apiContext,
@@ -329,7 +340,7 @@ class Refund extends PayPalResourceModel
         );
         $ret = new self();
         $ret->fromJson($json);
+
         return $ret;
     }
-
 }

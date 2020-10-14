@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * A resource representing an agreement_transaction that is returned during a transaction search.
  *
- * @package PayPal\Api
  *
  * @property string transaction_id
  * @property string status
@@ -28,12 +27,13 @@ class AgreementTransaction extends PayPalModel
      * Id corresponding to this transaction.
      *
      * @param string $transaction_id
-     * 
+     *
      * @return $this
      */
     public function setTransactionId($transaction_id)
     {
         $this->transaction_id = $transaction_id;
+
         return $this;
     }
 
@@ -51,12 +51,13 @@ class AgreementTransaction extends PayPalModel
      * State of the subscription at this time.
      *
      * @param string $status
-     * 
+     *
      * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
+
         return $this;
     }
 
@@ -74,12 +75,13 @@ class AgreementTransaction extends PayPalModel
      * Type of transaction, usually Recurring Payment.
      *
      * @param string $transaction_type
-     * 
+     *
      * @return $this
      */
     public function setTransactionType($transaction_type)
     {
         $this->transaction_type = $transaction_type;
+
         return $this;
     }
 
@@ -97,12 +99,13 @@ class AgreementTransaction extends PayPalModel
      * Amount for this transaction.
      *
      * @param \PayPal\Api\Currency $amount
-     * 
+     *
      * @return $this
      */
     public function setAmount($amount)
     {
         $this->amount = $amount;
+
         return $this;
     }
 
@@ -120,12 +123,13 @@ class AgreementTransaction extends PayPalModel
      * Fee amount for this transaction.
      *
      * @param \PayPal\Api\Currency $fee_amount
-     * 
+     *
      * @return $this
      */
     public function setFeeAmount($fee_amount)
     {
         $this->fee_amount = $fee_amount;
+
         return $this;
     }
 
@@ -143,12 +147,13 @@ class AgreementTransaction extends PayPalModel
      * Net amount for this transaction.
      *
      * @param \PayPal\Api\Currency $net_amount
-     * 
+     *
      * @return $this
      */
     public function setNetAmount($net_amount)
     {
         $this->net_amount = $net_amount;
+
         return $this;
     }
 
@@ -166,12 +171,13 @@ class AgreementTransaction extends PayPalModel
      * Email id of payer.
      *
      * @param string $payer_email
-     * 
+     *
      * @return $this
      */
     public function setPayerEmail($payer_email)
     {
         $this->payer_email = $payer_email;
+
         return $this;
     }
 
@@ -189,12 +195,13 @@ class AgreementTransaction extends PayPalModel
      * Business name of payer.
      *
      * @param string $payer_name
-     * 
+     *
      * @return $this
      */
     public function setPayerName($payer_name)
     {
         $this->payer_name = $payer_name;
+
         return $this;
     }
 
@@ -212,12 +219,13 @@ class AgreementTransaction extends PayPalModel
      * Time at which this transaction happened.
      *
      * @param string $time_stamp
-     * 
+     *
      * @return $this
      */
     public function setTimeStamp($time_stamp)
     {
         $this->time_stamp = $time_stamp;
+
         return $this;
     }
 
@@ -235,12 +243,13 @@ class AgreementTransaction extends PayPalModel
      * Time zone of time_updated field.
      *
      * @param string $time_zone
-     * 
+     *
      * @return $this
      */
     public function setTimeZone($time_zone)
     {
         $this->time_zone = $time_zone;
+
         return $this;
     }
 
@@ -253,5 +262,4 @@ class AgreementTransaction extends PayPalModel
     {
         return $this->time_zone;
     }
-
 }

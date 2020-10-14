@@ -2,14 +2,12 @@
 
 namespace PayPal\Test\Api;
 
-use PayPal\Common\PayPalModel;
 use PayPal\Api\PayoutSenderBatchHeader;
+use PayPal\Common\PayPalModel;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class PayoutSenderBatchHeader
- *
- * @package PayPal\Test\Api
  */
 class PayoutSenderBatchHeaderTest extends TestCase
 {
@@ -44,6 +42,7 @@ class PayoutSenderBatchHeaderTest extends TestCase
         self::assertNotNull($obj->getRecipientType());
         self::assertNotNull($obj->getBatchStatus());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -53,9 +52,9 @@ class PayoutSenderBatchHeaderTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getSenderBatchId());
-        self::assertEquals("TestSample", $obj->getEmailSubject());
-        self::assertEquals("TestSample", $obj->getRecipientType());
-        self::assertEquals("TestSample", $obj->getBatchStatus());
+        self::assertEquals('TestSample', $obj->getSenderBatchId());
+        self::assertEquals('TestSample', $obj->getEmailSubject());
+        self::assertEquals('TestSample', $obj->getRecipientType());
+        self::assertEquals('TestSample', $obj->getBatchStatus());
     }
 }

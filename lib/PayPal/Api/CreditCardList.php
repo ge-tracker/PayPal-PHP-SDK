@@ -9,7 +9,6 @@ use PayPal\Common\PayPalResourceModel;
  *
  * A list of Credit Card Resources
  *
- * @package PayPal\Api
  *
  * @property \PayPal\Api\CreditCard[] items
  * @property \PayPal\Api\Links[] links
@@ -28,6 +27,7 @@ class CreditCardList extends PayPalResourceModel
     public function setItems($items)
     {
         $this->items = $items;
+
         return $this;
     }
 
@@ -50,11 +50,11 @@ class CreditCardList extends PayPalResourceModel
     public function addItem($creditCard)
     {
         if (!$this->getItems()) {
-            return $this->setItems(array($creditCard));
+            return $this->setItems([$creditCard]);
         }
 
         return $this->setItems(
-            array_merge($this->getItems(), array($creditCard))
+            array_merge($this->getItems(), [$creditCard])
         );
     }
 
@@ -67,7 +67,7 @@ class CreditCardList extends PayPalResourceModel
     public function removeItem($creditCard)
     {
         return $this->setItems(
-            array_diff($this->getItems(), array($creditCard))
+            array_diff($this->getItems(), [$creditCard])
         );
     }
 
@@ -81,6 +81,7 @@ class CreditCardList extends PayPalResourceModel
     public function setTotalItems($total_items)
     {
         $this->total_items = $total_items;
+
         return $this;
     }
 
@@ -104,6 +105,7 @@ class CreditCardList extends PayPalResourceModel
     public function setTotalPages($total_pages)
     {
         $this->total_pages = $total_pages;
+
         return $this;
     }
 
@@ -116,5 +118,4 @@ class CreditCardList extends PayPalResourceModel
     {
         return $this->total_pages;
     }
-
 }

@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class ChargeModel
- *
- * @package PayPal\Test\Api
  */
 class ChargeModelTest extends TestCase
 {
@@ -18,7 +16,7 @@ class ChargeModelTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"id":"TestSample","type":"TestSample","amount":' .CurrencyTest::getJson() . '}';
+        return '{"id":"TestSample","type":"TestSample","amount":' . CurrencyTest::getJson() . '}';
     }
 
     /**
@@ -29,7 +27,6 @@ class ChargeModelTest extends TestCase
     {
         return new ChargeModel(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -43,6 +40,7 @@ class ChargeModelTest extends TestCase
         self::assertNotNull($obj->getType());
         self::assertNotNull($obj->getAmount());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -52,8 +50,8 @@ class ChargeModelTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getId());
-        self::assertEquals("TestSample", $obj->getType());
+        self::assertEquals('TestSample', $obj->getId());
+        self::assertEquals('TestSample', $obj->getType());
         self::assertEquals($obj->getAmount(), CurrencyTest::getObject());
     }
 }

@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class InvoiceSearchResponse
- *
- * @package PayPal\Test\Api
  */
 class InvoiceSearchResponseTest extends TestCase
 {
@@ -18,7 +16,7 @@ class InvoiceSearchResponseTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"total_count":123,"invoices":' .InvoiceTest::getJson() . '}';
+        return '{"total_count":123,"invoices":' . InvoiceTest::getJson() . '}';
     }
 
     /**
@@ -29,7 +27,6 @@ class InvoiceSearchResponseTest extends TestCase
     {
         return new InvoiceSearchResponse(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -42,6 +39,7 @@ class InvoiceSearchResponseTest extends TestCase
         self::assertNotNull($obj->getTotalCount());
         self::assertNotNull($obj->getInvoices());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 

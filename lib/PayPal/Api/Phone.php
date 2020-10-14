@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * Information related to the Payee.
  *
- * @package PayPal\Api
  *
  * @property string country_code
  * @property string national_number
@@ -21,12 +20,13 @@ class Phone extends PayPalModel
      * Country code (from in E.164 format)
      *
      * @param string $country_code
-     * 
+     *
      * @return $this
      */
     public function setCountryCode($country_code)
     {
         $this->country_code = $country_code;
+
         return $this;
     }
 
@@ -44,12 +44,13 @@ class Phone extends PayPalModel
      * In-country phone number (from in E.164 format)
      *
      * @param string $national_number
-     * 
+     *
      * @return $this
      */
     public function setNationalNumber($national_number)
     {
         $this->national_number = $national_number;
+
         return $this;
     }
 
@@ -67,12 +68,13 @@ class Phone extends PayPalModel
      * Phone extension
      *
      * @param string $extension
-     * 
+     *
      * @return $this
      */
     public function setExtension($extension)
     {
         $this->extension = $extension;
+
         return $this;
     }
 
@@ -85,5 +87,4 @@ class Phone extends PayPalModel
     {
         return $this->extension;
     }
-
 }

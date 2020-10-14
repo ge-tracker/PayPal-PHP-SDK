@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class InputFields
- *
- * @package PayPal\Test\Api
  */
 class InputFieldsTest extends TestCase
 {
@@ -30,7 +28,6 @@ class InputFieldsTest extends TestCase
         return new InputFields(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return InputFields
@@ -43,6 +40,7 @@ class InputFieldsTest extends TestCase
         self::assertNotNull($obj->getNoShipping());
         self::assertNotNull($obj->getAddressOverride());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -56,6 +54,4 @@ class InputFieldsTest extends TestCase
         self::assertEquals(123, $obj->getNoShipping());
         self::assertEquals(123, $obj->getAddressOverride());
     }
-
-
 }

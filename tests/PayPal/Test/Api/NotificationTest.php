@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class Notification
- *
- * @package PayPal\Test\Api
  */
 class NotificationTest extends TestCase
 {
@@ -30,7 +28,6 @@ class NotificationTest extends TestCase
         return new Notification(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return Notification
@@ -43,6 +40,7 @@ class NotificationTest extends TestCase
         self::assertNotNull($obj->getNote());
         self::assertNotNull($obj->getSendToMerchant());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -52,8 +50,8 @@ class NotificationTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getSubject());
-        self::assertEquals("TestSample", $obj->getNote());
+        self::assertEquals('TestSample', $obj->getSubject());
+        self::assertEquals('TestSample', $obj->getNote());
         self::assertEquals(true, $obj->getSendToMerchant());
     }
 }

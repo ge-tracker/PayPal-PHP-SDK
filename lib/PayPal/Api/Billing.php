@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * Billing instrument used to charge the payer.
  *
- * @package PayPal\Api
  *
  * @deprecated Used internally only.
  *
@@ -21,12 +20,13 @@ class Billing extends PayPalModel
      * Identifier of the instrument in PayPal Wallet
      *
      * @param string $billing_agreement_id
-     * 
+     *
      * @return $this
      */
     public function setBillingAgreementId($billing_agreement_id)
     {
         $this->billing_agreement_id = $billing_agreement_id;
+
         return $this;
     }
 
@@ -39,5 +39,4 @@ class Billing extends PayPalModel
     {
         return $this->billing_agreement_id;
     }
-
 }

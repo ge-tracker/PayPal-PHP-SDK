@@ -2,14 +2,12 @@
 
 namespace PayPal\Test\Api;
 
-use PayPal\Common\PayPalModel;
 use PayPal\Api\TemplateSettingsMetadata;
+use PayPal\Common\PayPalModel;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class TemplateSettingsMetadata
- *
- * @package PayPal\Test\Api
  */
 class TemplateSettingsMetadataTest extends TestCase
 {
@@ -31,7 +29,6 @@ class TemplateSettingsMetadataTest extends TestCase
         return new TemplateSettingsMetadata(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return TemplateSettingsMetadata
@@ -42,6 +39,7 @@ class TemplateSettingsMetadataTest extends TestCase
         self::assertNotNull($obj);
         self::assertNotNull($obj->getHidden());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 

@@ -13,7 +13,6 @@ use PayPal\Validation\UrlValidator;
  *
  * Detailed invoice information.
  *
- * @package PayPal\Api
  *
  * @property string id
  * @property string number
@@ -59,6 +58,7 @@ class Invoice extends PayPalResourceModel
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -82,6 +82,7 @@ class Invoice extends PayPalResourceModel
     public function setNumber($number)
     {
         $this->number = $number;
+
         return $this;
     }
 
@@ -105,6 +106,7 @@ class Invoice extends PayPalResourceModel
     public function setTemplateId($template_id)
     {
         $this->template_id = $template_id;
+
         return $this;
     }
 
@@ -128,6 +130,7 @@ class Invoice extends PayPalResourceModel
     public function setUri($uri)
     {
         $this->uri = $uri;
+
         return $this;
     }
 
@@ -152,6 +155,7 @@ class Invoice extends PayPalResourceModel
     public function setStatus($status)
     {
         $this->status = $status;
+
         return $this;
     }
 
@@ -175,6 +179,7 @@ class Invoice extends PayPalResourceModel
     public function setMerchantInfo($merchant_info)
     {
         $this->merchant_info = $merchant_info;
+
         return $this;
     }
 
@@ -198,6 +203,7 @@ class Invoice extends PayPalResourceModel
     public function setBillingInfo($billing_info)
     {
         $this->billing_info = $billing_info;
+
         return $this;
     }
 
@@ -220,11 +226,11 @@ class Invoice extends PayPalResourceModel
     public function addBillingInfo($billingInfo)
     {
         if (!$this->getBillingInfo()) {
-            return $this->setBillingInfo(array($billingInfo));
+            return $this->setBillingInfo([$billingInfo]);
         }
 
         return $this->setBillingInfo(
-            array_merge($this->getBillingInfo(), array($billingInfo))
+            array_merge($this->getBillingInfo(), [$billingInfo])
         );
     }
 
@@ -237,7 +243,7 @@ class Invoice extends PayPalResourceModel
     public function removeBillingInfo($billingInfo)
     {
         return $this->setBillingInfo(
-            array_diff($this->getBillingInfo(), array($billingInfo))
+            array_diff($this->getBillingInfo(), [$billingInfo])
         );
     }
 
@@ -251,6 +257,7 @@ class Invoice extends PayPalResourceModel
     public function setCcInfo($cc_info)
     {
         $this->cc_info = $cc_info;
+
         return $this;
     }
 
@@ -273,11 +280,11 @@ class Invoice extends PayPalResourceModel
     public function addCcInfo($participant)
     {
         if (!$this->getCcInfo()) {
-            return $this->setCcInfo(array($participant));
+            return $this->setCcInfo([$participant]);
         }
 
         return $this->setCcInfo(
-            array_merge($this->getCcInfo(), array($participant))
+            array_merge($this->getCcInfo(), [$participant])
         );
     }
 
@@ -290,7 +297,7 @@ class Invoice extends PayPalResourceModel
     public function removeCcInfo($participant)
     {
         return $this->setCcInfo(
-            array_diff($this->getCcInfo(), array($participant))
+            array_diff($this->getCcInfo(), [$participant])
         );
     }
 
@@ -304,6 +311,7 @@ class Invoice extends PayPalResourceModel
     public function setShippingInfo($shipping_info)
     {
         $this->shipping_info = $shipping_info;
+
         return $this;
     }
 
@@ -327,6 +335,7 @@ class Invoice extends PayPalResourceModel
     public function setItems($items)
     {
         $this->items = $items;
+
         return $this;
     }
 
@@ -349,11 +358,11 @@ class Invoice extends PayPalResourceModel
     public function addItem($invoiceItem)
     {
         if (!$this->getItems()) {
-            return $this->setItems(array($invoiceItem));
+            return $this->setItems([$invoiceItem]);
         }
 
         return $this->setItems(
-            array_merge($this->getItems(), array($invoiceItem))
+            array_merge($this->getItems(), [$invoiceItem])
         );
     }
 
@@ -366,7 +375,7 @@ class Invoice extends PayPalResourceModel
     public function removeItem($invoiceItem)
     {
         return $this->setItems(
-            array_diff($this->getItems(), array($invoiceItem))
+            array_diff($this->getItems(), [$invoiceItem])
         );
     }
 
@@ -380,6 +389,7 @@ class Invoice extends PayPalResourceModel
     public function setInvoiceDate($invoice_date)
     {
         $this->invoice_date = $invoice_date;
+
         return $this;
     }
 
@@ -403,6 +413,7 @@ class Invoice extends PayPalResourceModel
     public function setPaymentTerm($payment_term)
     {
         $this->payment_term = $payment_term;
+
         return $this;
     }
 
@@ -426,6 +437,7 @@ class Invoice extends PayPalResourceModel
     public function setReference($reference)
     {
         $this->reference = $reference;
+
         return $this;
     }
 
@@ -449,6 +461,7 @@ class Invoice extends PayPalResourceModel
     public function setDiscount($discount)
     {
         $this->discount = $discount;
+
         return $this;
     }
 
@@ -472,6 +485,7 @@ class Invoice extends PayPalResourceModel
     public function setShippingCost($shipping_cost)
     {
         $this->shipping_cost = $shipping_cost;
+
         return $this;
     }
 
@@ -495,6 +509,7 @@ class Invoice extends PayPalResourceModel
     public function setCustom($custom)
     {
         $this->custom = $custom;
+
         return $this;
     }
 
@@ -518,6 +533,7 @@ class Invoice extends PayPalResourceModel
     public function setAllowPartialPayment($allow_partial_payment)
     {
         $this->allow_partial_payment = $allow_partial_payment;
+
         return $this;
     }
 
@@ -541,6 +557,7 @@ class Invoice extends PayPalResourceModel
     public function setMinimumAmountDue($minimum_amount_due)
     {
         $this->minimum_amount_due = $minimum_amount_due;
+
         return $this;
     }
 
@@ -564,6 +581,7 @@ class Invoice extends PayPalResourceModel
     public function setTaxCalculatedAfterDiscount($tax_calculated_after_discount)
     {
         $this->tax_calculated_after_discount = $tax_calculated_after_discount;
+
         return $this;
     }
 
@@ -587,6 +605,7 @@ class Invoice extends PayPalResourceModel
     public function setTaxInclusive($tax_inclusive)
     {
         $this->tax_inclusive = $tax_inclusive;
+
         return $this;
     }
 
@@ -610,6 +629,7 @@ class Invoice extends PayPalResourceModel
     public function setTerms($terms)
     {
         $this->terms = $terms;
+
         return $this;
     }
 
@@ -633,6 +653,7 @@ class Invoice extends PayPalResourceModel
     public function setNote($note)
     {
         $this->note = $note;
+
         return $this;
     }
 
@@ -656,6 +677,7 @@ class Invoice extends PayPalResourceModel
     public function setMerchantMemo($merchant_memo)
     {
         $this->merchant_memo = $merchant_memo;
+
         return $this;
     }
 
@@ -678,8 +700,9 @@ class Invoice extends PayPalResourceModel
      */
     public function setLogoUrl($logo_url)
     {
-        UrlValidator::validate($logo_url, "LogoUrl");
+        UrlValidator::validate($logo_url, 'LogoUrl');
         $this->logo_url = $logo_url;
+
         return $this;
     }
 
@@ -703,6 +726,7 @@ class Invoice extends PayPalResourceModel
     public function setTotalAmount($total_amount)
     {
         $this->total_amount = $total_amount;
+
         return $this;
     }
 
@@ -726,6 +750,7 @@ class Invoice extends PayPalResourceModel
     public function setPayments($payments)
     {
         $this->payments = $payments;
+
         return $this;
     }
 
@@ -748,11 +773,11 @@ class Invoice extends PayPalResourceModel
     public function addPayment($paymentDetail)
     {
         if (!$this->getPayments()) {
-            return $this->setPayments(array($paymentDetail));
+            return $this->setPayments([$paymentDetail]);
         }
 
         return $this->setPayments(
-            array_merge($this->getPayments(), array($paymentDetail))
+            array_merge($this->getPayments(), [$paymentDetail])
         );
     }
 
@@ -765,7 +790,7 @@ class Invoice extends PayPalResourceModel
     public function removePayment($paymentDetail)
     {
         return $this->setPayments(
-            array_diff($this->getPayments(), array($paymentDetail))
+            array_diff($this->getPayments(), [$paymentDetail])
         );
     }
 
@@ -779,6 +804,7 @@ class Invoice extends PayPalResourceModel
     public function setRefunds($refunds)
     {
         $this->refunds = $refunds;
+
         return $this;
     }
 
@@ -801,11 +827,11 @@ class Invoice extends PayPalResourceModel
     public function addRefund($refundDetail)
     {
         if (!$this->getRefunds()) {
-            return $this->setRefunds(array($refundDetail));
+            return $this->setRefunds([$refundDetail]);
         }
 
         return $this->setRefunds(
-            array_merge($this->getRefunds(), array($refundDetail))
+            array_merge($this->getRefunds(), [$refundDetail])
         );
     }
 
@@ -818,7 +844,7 @@ class Invoice extends PayPalResourceModel
     public function removeRefund($refundDetail)
     {
         return $this->setRefunds(
-            array_diff($this->getRefunds(), array($refundDetail))
+            array_diff($this->getRefunds(), [$refundDetail])
         );
     }
 
@@ -832,6 +858,7 @@ class Invoice extends PayPalResourceModel
     public function setMetadata($metadata)
     {
         $this->metadata = $metadata;
+
         return $this;
     }
 
@@ -855,6 +882,7 @@ class Invoice extends PayPalResourceModel
     public function setAdditionalData($additional_data)
     {
         $this->additional_data = $additional_data;
+
         return $this;
     }
 
@@ -878,6 +906,7 @@ class Invoice extends PayPalResourceModel
     public function setPaidAmount($paid_amount)
     {
         $this->paid_amount = $paid_amount;
+
         return $this;
     }
 
@@ -901,6 +930,7 @@ class Invoice extends PayPalResourceModel
     public function setRefundedAmount($refunded_amount)
     {
         $this->refunded_amount = $refunded_amount;
+
         return $this;
     }
 
@@ -924,6 +954,7 @@ class Invoice extends PayPalResourceModel
     public function setAttachments($attachments)
     {
         $this->attachments = $attachments;
+
         return $this;
     }
 
@@ -946,11 +977,11 @@ class Invoice extends PayPalResourceModel
     public function addAttachment($fileAttachment)
     {
         if (!$this->getAttachments()) {
-            return $this->setAttachments(array($fileAttachment));
+            return $this->setAttachments([$fileAttachment]);
         }
 
         return $this->setAttachments(
-            array_merge($this->getAttachments(), array($fileAttachment))
+            array_merge($this->getAttachments(), [$fileAttachment])
         );
     }
 
@@ -963,7 +994,7 @@ class Invoice extends PayPalResourceModel
     public function removeAttachment($fileAttachment)
     {
         return $this->setAttachments(
-            array_diff($this->getAttachments(), array($fileAttachment))
+            array_diff($this->getAttachments(), [$fileAttachment])
         );
     }
 
@@ -978,14 +1009,15 @@ class Invoice extends PayPalResourceModel
     {
         $payLoad = $this->toJSON();
         $json = self::executeCall(
-            "/v1/invoicing/invoices",
-            "POST",
+            '/v1/invoicing/invoices',
+            'POST',
             $payLoad,
             null,
             $apiContext,
             $restCall
         );
         $this->fromJson($json);
+
         return $this;
     }
 
@@ -1002,8 +1034,8 @@ class Invoice extends PayPalResourceModel
         ArgumentValidator::validate($search, 'search');
         $payLoad = $search->toJSON();
         $json = self::executeCall(
-            "/v1/invoicing/search",
-            "POST",
+            '/v1/invoicing/search',
+            'POST',
             $payLoad,
             null,
             $apiContext,
@@ -1011,6 +1043,7 @@ class Invoice extends PayPalResourceModel
         );
         $ret = new InvoiceSearchResponse();
         $ret->fromJson($json);
+
         return $ret;
     }
 
@@ -1023,16 +1056,17 @@ class Invoice extends PayPalResourceModel
      */
     public function send($apiContext = null, $restCall = null)
     {
-        ArgumentValidator::validate($this->getId(), "Id");
-        $payLoad = "";
+        ArgumentValidator::validate($this->getId(), 'Id');
+        $payLoad = '';
         self::executeCall(
             "/v1/invoicing/invoices/{$this->getId()}/send",
-            "POST",
+            'POST',
             $payLoad,
             null,
             $apiContext,
             $restCall
         );
+
         return true;
     }
 
@@ -1046,17 +1080,18 @@ class Invoice extends PayPalResourceModel
      */
     public function remind($notification, $apiContext = null, $restCall = null)
     {
-        ArgumentValidator::validate($this->getId(), "Id");
+        ArgumentValidator::validate($this->getId(), 'Id');
         ArgumentValidator::validate($notification, 'notification');
         $payLoad = $notification->toJSON();
         self::executeCall(
             "/v1/invoicing/invoices/{$this->getId()}/remind",
-            "POST",
+            'POST',
             $payLoad,
             null,
             $apiContext,
             $restCall
         );
+
         return true;
     }
 
@@ -1070,17 +1105,18 @@ class Invoice extends PayPalResourceModel
      */
     public function cancel($cancelNotification, $apiContext = null, $restCall = null)
     {
-        ArgumentValidator::validate($this->getId(), "Id");
+        ArgumentValidator::validate($this->getId(), 'Id');
         ArgumentValidator::validate($cancelNotification, 'cancelNotification');
         $payLoad = $cancelNotification->toJSON();
         self::executeCall(
             "/v1/invoicing/invoices/{$this->getId()}/cancel",
-            "POST",
+            'POST',
             $payLoad,
             null,
             $apiContext,
             $restCall
         );
+
         return true;
     }
 
@@ -1094,17 +1130,18 @@ class Invoice extends PayPalResourceModel
      */
     public function recordPayment($paymentDetail, $apiContext = null, $restCall = null)
     {
-        ArgumentValidator::validate($this->getId(), "Id");
+        ArgumentValidator::validate($this->getId(), 'Id');
         ArgumentValidator::validate($paymentDetail, 'paymentDetail');
         $payLoad = $paymentDetail->toJSON();
         self::executeCall(
             "/v1/invoicing/invoices/{$this->getId()}/record-payment",
-            "POST",
+            'POST',
             $payLoad,
             null,
             $apiContext,
             $restCall
         );
+
         return true;
     }
 
@@ -1118,17 +1155,18 @@ class Invoice extends PayPalResourceModel
      */
     public function recordRefund($refundDetail, $apiContext = null, $restCall = null)
     {
-        ArgumentValidator::validate($this->getId(), "Id");
+        ArgumentValidator::validate($this->getId(), 'Id');
         ArgumentValidator::validate($refundDetail, 'refundDetail');
         $payLoad = $refundDetail->toJSON();
         self::executeCall(
             "/v1/invoicing/invoices/{$this->getId()}/record-refund",
-            "POST",
+            'POST',
             $payLoad,
             null,
             $apiContext,
             $restCall
         );
+
         return true;
     }
 
@@ -1143,10 +1181,10 @@ class Invoice extends PayPalResourceModel
     public static function get($invoiceId, $apiContext = null, $restCall = null)
     {
         ArgumentValidator::validate($invoiceId, 'invoiceId');
-        $payLoad = "";
+        $payLoad = '';
         $json = self::executeCall(
             "/v1/invoicing/invoices/$invoiceId",
-            "GET",
+            'GET',
             $payLoad,
             null,
             $apiContext,
@@ -1154,6 +1192,7 @@ class Invoice extends PayPalResourceModel
         );
         $ret = new self();
         $ret->fromJson($json);
+
         return $ret;
     }
 
@@ -1165,20 +1204,20 @@ class Invoice extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return InvoiceSearchResponse
      */
-    public static function getAll($params = array(), $apiContext = null, $restCall = null)
+    public static function getAll($params = [], $apiContext = null, $restCall = null)
     {
         ArgumentValidator::validate($params, 'params');
 
-        $allowedParams = array(
+        $allowedParams = [
             'page' => 1,
             'page_size' => 1,
-            'total_count_required' => 1
-        );
+            'total_count_required' => 1,
+        ];
 
-        $payLoad = "";
+        $payLoad = '';
         $json = self::executeCall(
-            "/v1/invoicing/invoices/?" . http_build_query(array_intersect_key($params, $allowedParams)),
-            "GET",
+            '/v1/invoicing/invoices/?' . http_build_query(array_intersect_key($params, $allowedParams)),
+            'GET',
             $payLoad,
             null,
             $apiContext,
@@ -1186,6 +1225,7 @@ class Invoice extends PayPalResourceModel
         );
         $ret = new InvoiceSearchResponse();
         $ret->fromJson($json);
+
         return $ret;
     }
 
@@ -1198,17 +1238,18 @@ class Invoice extends PayPalResourceModel
      */
     public function update($apiContext = null, $restCall = null)
     {
-        ArgumentValidator::validate($this->getId(), "Id");
+        ArgumentValidator::validate($this->getId(), 'Id');
         $payLoad = $this->toJSON();
         $json = self::executeCall(
             "/v1/invoicing/invoices/{$this->getId()}",
-            "PUT",
+            'PUT',
             $payLoad,
             null,
             $apiContext,
             $restCall
         );
         $this->fromJson($json);
+
         return $this;
     }
 
@@ -1221,16 +1262,17 @@ class Invoice extends PayPalResourceModel
      */
     public function delete($apiContext = null, $restCall = null)
     {
-        ArgumentValidator::validate($this->getId(), "Id");
-        $payLoad = "";
+        ArgumentValidator::validate($this->getId(), 'Id');
+        $payLoad = '';
         self::executeCall(
             "/v1/invoicing/invoices/{$this->getId()}",
-            "DELETE",
+            'DELETE',
             $payLoad,
             null,
             $apiContext,
             $restCall
         );
+
         return true;
     }
 
@@ -1243,17 +1285,18 @@ class Invoice extends PayPalResourceModel
      */
     public function deleteExternalPayment($transactionId, $apiContext = null, $restCall = null)
     {
-        ArgumentValidator::validate($this->getId(), "Id");
-        ArgumentValidator::validate($transactionId, "TransactionId");
-        $payLoad = "";
+        ArgumentValidator::validate($this->getId(), 'Id');
+        ArgumentValidator::validate($transactionId, 'TransactionId');
+        $payLoad = '';
         self::executeCall(
             "/v1/invoicing/invoices/{$this->getId()}/payment-records/{$transactionId}",
-            "DELETE",
+            'DELETE',
             $payLoad,
             null,
             $apiContext,
             $restCall
         );
+
         return true;
     }
 
@@ -1266,17 +1309,18 @@ class Invoice extends PayPalResourceModel
      */
     public function deleteExternalRefund($transactionId, $apiContext = null, $restCall = null)
     {
-        ArgumentValidator::validate($this->getId(), "Id");
-        ArgumentValidator::validate($transactionId, "TransactionId");
-        $payLoad = "";
+        ArgumentValidator::validate($this->getId(), 'Id');
+        ArgumentValidator::validate($transactionId, 'TransactionId');
+        $payLoad = '';
         self::executeCall(
             "/v1/invoicing/invoices/{$this->getId()}/refund-records/{$transactionId}",
-            "DELETE",
+            'DELETE',
             $payLoad,
             null,
             $apiContext,
             $restCall
         );
+
         return true;
     }
 
@@ -1289,21 +1333,21 @@ class Invoice extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return Image
      */
-    public static function qrCode($invoiceId, $params = array(), $apiContext = null, $restCall = null)
+    public static function qrCode($invoiceId, $params = [], $apiContext = null, $restCall = null)
     {
         ArgumentValidator::validate($invoiceId, 'invoiceId');
         ArgumentValidator::validate($params, 'params');
 
-        $allowedParams = array(
+        $allowedParams = [
             'width' => 1,
             'height' => 1,
-            'action' => 1
-        );
+            'action' => 1,
+        ];
 
-        $payLoad = "";
+        $payLoad = '';
         $json = self::executeCall(
             "/v1/invoicing/invoices/$invoiceId/qr-code?" . http_build_query(array_intersect_key($params, $allowedParams)),
-            "GET",
+            'GET',
             $payLoad,
             null,
             $apiContext,
@@ -1311,6 +1355,7 @@ class Invoice extends PayPalResourceModel
         );
         $ret = new Image();
         $ret->fromJson($json);
+
         return $ret;
     }
 
@@ -1323,10 +1368,10 @@ class Invoice extends PayPalResourceModel
      */
     public static function generateNumber($apiContext = null, $restCall = null)
     {
-        $payLoad = "";
+        $payLoad = '';
         $json = self::executeCall(
-            "/v1/invoicing/invoices/next-invoice-number",
-            "POST",
+            '/v1/invoicing/invoices/next-invoice-number',
+            'POST',
             $payLoad,
             null,
             $apiContext,
@@ -1334,7 +1379,7 @@ class Invoice extends PayPalResourceModel
         );
         $ret = new InvoiceNumber();
         $ret->fromJson($json);
+
         return $ret;
     }
-
 }

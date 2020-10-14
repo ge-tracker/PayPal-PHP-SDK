@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class FundingOption
- *
- * @package PayPal\Test\Api
  */
 class FundingOptionTest extends TestCase
 {
@@ -30,7 +28,6 @@ class FundingOptionTest extends TestCase
         return new FundingOption(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return FundingOption
@@ -46,6 +43,7 @@ class FundingOptionTest extends TestCase
         self::assertNotNull($obj->getInstallmentInfo());
         self::assertNotNull($obj->getLinks());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -55,7 +53,7 @@ class FundingOptionTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getId());
+        self::assertEquals('TestSample', $obj->getId());
         self::assertEquals($obj->getFundingSources(), FundingSourceTest::getObject());
         self::assertEquals($obj->getBackupFundingInstrument(), FundingInstrumentTest::getObject());
         self::assertEquals($obj->getCurrencyConversion(), CurrencyConversionTest::getObject());

@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class Cost
- *
- * @package PayPal\Test\Api
  */
 class CostTest extends TestCase
 {
@@ -18,7 +16,7 @@ class CostTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"percent":"12.34","amount":' .CurrencyTest::getJson() . '}';
+        return '{"percent":"12.34","amount":' . CurrencyTest::getJson() . '}';
     }
 
     /**
@@ -29,7 +27,6 @@ class CostTest extends TestCase
     {
         return new Cost(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -42,6 +39,7 @@ class CostTest extends TestCase
         self::assertNotNull($obj->getPercent());
         self::assertNotNull($obj->getAmount());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -51,7 +49,7 @@ class CostTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("12.34", $obj->getPercent());
+        self::assertEquals('12.34', $obj->getPercent());
         self::assertEquals($obj->getAmount(), CurrencyTest::getObject());
     }
 }

@@ -6,12 +6,9 @@ use Exception;
 
 /**
  * Class PayPalInvalidCredentialException
- *
- * @package PayPal\Exception
  */
 class PayPalInvalidCredentialException extends Exception
 {
-
     /**
      * Default Constructor
      *

@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class Tax
- *
- * @package PayPal\Test\Api
  */
 class TaxTest extends TestCase
 {
@@ -18,7 +16,7 @@ class TaxTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"id":"TestSample","name":"TestSample","percent":"12.34","amount":' .CurrencyTest::getJson() . '}';
+        return '{"id":"TestSample","name":"TestSample","percent":"12.34","amount":' . CurrencyTest::getJson() . '}';
     }
 
     /**
@@ -29,7 +27,6 @@ class TaxTest extends TestCase
     {
         return new Tax(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -44,6 +41,7 @@ class TaxTest extends TestCase
         self::assertNotNull($obj->getPercent());
         self::assertNotNull($obj->getAmount());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -53,9 +51,9 @@ class TaxTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getId());
-        self::assertEquals("TestSample", $obj->getName());
-        self::assertEquals("12.34", $obj->getPercent());
+        self::assertEquals('TestSample', $obj->getId());
+        self::assertEquals('TestSample', $obj->getName());
+        self::assertEquals('12.34', $obj->getPercent());
         self::assertEquals($obj->getAmount(), CurrencyTest::getObject());
     }
 }

@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class PaymentHistory
- *
- * @package PayPal\Test\Api
  */
 class PaymentHistoryTest extends TestCase
 {
@@ -30,7 +28,6 @@ class PaymentHistoryTest extends TestCase
         return new PaymentHistory(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return PaymentHistory
@@ -43,6 +40,7 @@ class PaymentHistoryTest extends TestCase
         self::assertNotNull($obj->getCount());
         self::assertNotNull($obj->getNextId());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -54,6 +52,6 @@ class PaymentHistoryTest extends TestCase
     {
         self::assertEquals($obj->getPayments(), PaymentTest::getObject());
         self::assertEquals(123, $obj->getCount());
-        self::assertEquals("TestSample", $obj->getNextId());
+        self::assertEquals('TestSample', $obj->getNextId());
     }
 }

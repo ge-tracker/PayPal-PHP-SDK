@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class HyperSchema
- *
- * @package PayPal\Test\Api
  */
 class HyperSchemaTest extends TestCase
 {
@@ -30,7 +28,6 @@ class HyperSchemaTest extends TestCase
         return new HyperSchema(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return HyperSchema
@@ -46,6 +43,7 @@ class HyperSchemaTest extends TestCase
         self::assertNotNull($obj->getPathStart());
         self::assertNotNull($obj->getMediaType());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -56,10 +54,10 @@ class HyperSchemaTest extends TestCase
     public function testGetters($obj)
     {
 //        self::assertEquals($obj->getLinks(), LinksTest::getObject());
-        self::assertEquals("TestSample", $obj->getFragmentResolution());
+        self::assertEquals('TestSample', $obj->getFragmentResolution());
         self::assertEquals(true, $obj->getReadonly());
-        self::assertEquals("TestSample", $obj->getContentEncoding());
-        self::assertEquals("TestSample", $obj->getPathStart());
-        self::assertEquals("TestSample", $obj->getMediaType());
+        self::assertEquals('TestSample', $obj->getContentEncoding());
+        self::assertEquals('TestSample', $obj->getPathStart());
+        self::assertEquals('TestSample', $obj->getMediaType());
     }
 }

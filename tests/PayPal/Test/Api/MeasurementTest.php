@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class Measurement
- *
- * @package PayPal\Test\Api
  */
 class MeasurementTest extends TestCase
 {
@@ -30,7 +28,6 @@ class MeasurementTest extends TestCase
         return new Measurement(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return Measurement
@@ -42,6 +39,7 @@ class MeasurementTest extends TestCase
         self::assertNotNull($obj->getValue());
         self::assertNotNull($obj->getUnit());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -51,7 +49,7 @@ class MeasurementTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getValue());
-        self::assertEquals("TestSample", $obj->getUnit());
+        self::assertEquals('TestSample', $obj->getValue());
+        self::assertEquals('TestSample', $obj->getUnit());
     }
 }

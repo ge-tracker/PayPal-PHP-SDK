@@ -1,10 +1,10 @@
 <?php
+
 use PayPal\Exception\PayPalMissingCredentialException;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for PayPalMissingCredentialException.
- *
  */
 class PayPalMissingCredentialExceptionTest extends TestCase
 {
@@ -30,8 +30,6 @@ class PayPalMissingCredentialExceptionTest extends TestCase
     {
     }
 
-    /**
-     */
     public function testErrorMessage()
     {
         $msg = $this->object->errorMessage();

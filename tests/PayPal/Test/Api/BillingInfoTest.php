@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class BillingInfo
- *
- * @package PayPal\Test\Api
  */
 class BillingInfoTest extends TestCase
 {
@@ -18,7 +16,7 @@ class BillingInfoTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"email":"TestSample","first_name":"TestSample","last_name":"TestSample","business_name":"TestSample","address":' .InvoiceAddressTest::getJson() . ',"language":"TestSample","additional_info":"TestSample","notification_channel":"TestSample","phone":' .PhoneTest::getJson() . '}';
+        return '{"email":"TestSample","first_name":"TestSample","last_name":"TestSample","business_name":"TestSample","address":' . InvoiceAddressTest::getJson() . ',"language":"TestSample","additional_info":"TestSample","notification_channel":"TestSample","phone":' . PhoneTest::getJson() . '}';
     }
 
     /**
@@ -29,7 +27,6 @@ class BillingInfoTest extends TestCase
     {
         return new BillingInfo(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -49,6 +46,7 @@ class BillingInfoTest extends TestCase
         self::assertNotNull($obj->getNotificationChannel());
         self::assertNotNull($obj->getPhone());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -58,14 +56,14 @@ class BillingInfoTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getEmail());
-        self::assertEquals("TestSample", $obj->getFirstName());
-        self::assertEquals("TestSample", $obj->getLastName());
-        self::assertEquals("TestSample", $obj->getBusinessName());
+        self::assertEquals('TestSample', $obj->getEmail());
+        self::assertEquals('TestSample', $obj->getFirstName());
+        self::assertEquals('TestSample', $obj->getLastName());
+        self::assertEquals('TestSample', $obj->getBusinessName());
         self::assertEquals($obj->getAddress(), InvoiceAddressTest::getObject());
-        self::assertEquals("TestSample", $obj->getLanguage());
-        self::assertEquals("TestSample", $obj->getAdditionalInfo());
-        self::assertEquals("TestSample", $obj->getNotificationChannel());
+        self::assertEquals('TestSample', $obj->getLanguage());
+        self::assertEquals('TestSample', $obj->getAdditionalInfo());
+        self::assertEquals('TestSample', $obj->getNotificationChannel());
         self::assertEquals($obj->getPhone(), PhoneTest::getObject());
     }
 }

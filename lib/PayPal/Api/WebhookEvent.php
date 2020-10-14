@@ -15,7 +15,6 @@ use PayPal\Validation\JsonValidator;
  *
  * A webhook event notification.
  *
- * @package PayPal\Api
  *
  * @property string id
  * @property string create_time
@@ -39,6 +38,7 @@ class WebhookEvent extends PayPalResourceModel
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -62,6 +62,7 @@ class WebhookEvent extends PayPalResourceModel
     public function setCreateTime($create_time)
     {
         $this->create_time = $create_time;
+
         return $this;
     }
 
@@ -85,6 +86,7 @@ class WebhookEvent extends PayPalResourceModel
     public function setResourceType($resource_type)
     {
         $this->resource_type = $resource_type;
+
         return $this;
     }
 
@@ -108,6 +110,7 @@ class WebhookEvent extends PayPalResourceModel
     public function setEventVersion($event_version)
     {
         $this->event_version = $event_version;
+
         return $this;
     }
 
@@ -131,6 +134,7 @@ class WebhookEvent extends PayPalResourceModel
     public function setEventType($event_type)
     {
         $this->event_type = $event_type;
+
         return $this;
     }
 
@@ -154,6 +158,7 @@ class WebhookEvent extends PayPalResourceModel
     public function setSummary($summary)
     {
         $this->summary = $summary;
+
         return $this;
     }
 
@@ -177,6 +182,7 @@ class WebhookEvent extends PayPalResourceModel
     public function setResource($resource)
     {
         $this->resource = $resource;
+
         return $this;
     }
 
@@ -209,23 +215,25 @@ class WebhookEvent extends PayPalResourceModel
      */
     public static function validateAndGetReceivedEvent($body, $apiContext = null, $restCall = null)
     {
-        if ($body == null | empty($body)){
-            throw new InvalidArgumentException("Body cannot be null or empty");
+        if ($body == null | empty($body)) {
+            throw new InvalidArgumentException('Body cannot be null or empty');
         }
         if (!JsonValidator::validate($body, true)) {
-            throw new InvalidArgumentException("Request Body is not a valid JSON.");
+            throw new InvalidArgumentException('Request Body is not a valid JSON.');
         }
         $object = new self($body);
         if ($object->getId() == null) {
-            throw new InvalidArgumentException("Id attribute not found in JSON. Possible reason could be invalid JSON Object");
+            throw new InvalidArgumentException('Id attribute not found in JSON. Possible reason could be invalid JSON Object');
         }
+
         try {
             return self::get($object->getId(), $apiContext, $restCall);
-        } catch(PayPalConnectionException $ex) {
+        } catch (PayPalConnectionException $ex) {
             if ($ex->getCode() == 404) {
                 // It means that the given webhook event Id is not found for this merchant.
-                throw new InvalidArgumentException("Webhook Event Id provided in the data is incorrect. This could happen if anyone other than PayPal is faking the incoming webhook data.");
+                throw new InvalidArgumentException('Webhook Event Id provided in the data is incorrect. This could happen if anyone other than PayPal is faking the incoming webhook data.');
             }
+
             throw $ex;
         }
     }
@@ -241,10 +249,10 @@ class WebhookEvent extends PayPalResourceModel
     public static function get($eventId, $apiContext = null, $restCall = null)
     {
         ArgumentValidator::validate($eventId, 'eventId');
-        $payLoad = "";
+        $payLoad = '';
         $json = self::executeCall(
             "/v1/notifications/webhooks-events/$eventId",
-            "GET",
+            'GET',
             $payLoad,
             null,
             $apiContext,
@@ -252,6 +260,7 @@ class WebhookEvent extends PayPalResourceModel
         );
         $ret = new self();
         $ret->fromJson($json);
+
         return $ret;
     }
 
@@ -264,17 +273,18 @@ class WebhookEvent extends PayPalResourceModel
      */
     public function resend($apiContext = null, $restCall = null)
     {
-        ArgumentValidator::validate($this->getId(), "Id");
-        $payLoad = "";
+        ArgumentValidator::validate($this->getId(), 'Id');
+        $payLoad = '';
         $json = self::executeCall(
             "/v1/notifications/webhooks-events/{$this->getId()}/resend",
-            "POST",
+            'POST',
             $payLoad,
             null,
             $apiContext,
             $restCall
         );
         $this->fromJson($json);
+
         return $this;
     }
 
@@ -289,17 +299,17 @@ class WebhookEvent extends PayPalResourceModel
     public static function all($params, $apiContext = null, $restCall = null)
     {
         ArgumentValidator::validate($params, 'params');
-        $payLoad = "";
-        $allowedParams = array(
-          'page_size' => 1,
-          'start_time' => 1,
-          'end_time' => 1,
-          'transaction_id' => 1,
-          'event_type' => 1,
-      );
+        $payLoad = '';
+        $allowedParams = [
+            'page_size' => 1,
+            'start_time' => 1,
+            'end_time' => 1,
+            'transaction_id' => 1,
+            'event_type' => 1,
+        ];
         $json = self::executeCall(
-            "/v1/notifications/webhooks-events" . "?" . http_build_query(array_intersect_key($params, $allowedParams)),
-            "GET",
+            '/v1/notifications/webhooks-events' . '?' . http_build_query(array_intersect_key($params, $allowedParams)),
+            'GET',
             $payLoad,
             null,
             $apiContext,
@@ -307,7 +317,7 @@ class WebhookEvent extends PayPalResourceModel
         );
         $ret = new WebhookEventList();
         $ret->fromJson($json);
+
         return $ret;
     }
-
 }

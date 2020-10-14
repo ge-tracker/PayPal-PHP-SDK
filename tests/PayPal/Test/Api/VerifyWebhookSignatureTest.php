@@ -2,18 +2,16 @@
 
 namespace PayPal\Test\Api;
 
-use PayPal\Common\PayPalResourceModel;
-use PayPal\Validation\ArgumentValidator;
-use PayPal\Api\VerifyWebhookSignatureResponse;
-use PayPal\Rest\ApiContext;
 use PayPal\Api\VerifyWebhookSignature;
-use PHPUnit\Framework\TestCase;
+use PayPal\Api\VerifyWebhookSignatureResponse;
+use PayPal\Common\PayPalResourceModel;
+use PayPal\Rest\ApiContext;
 use PayPal\Transport\PayPalRestCall;
+use PayPal\Validation\ArgumentValidator;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class VerifyWebhookSignature
- *
- * @package PayPal\Test\Api
  */
 class VerifyWebhookSignatureTest extends TestCase
 {
@@ -23,7 +21,7 @@ class VerifyWebhookSignatureTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"auth_algo":"TestSample","cert_url":"http://www.google.com","transmission_id":"TestSample","transmission_sig":"TestSample","transmission_time":"TestSample","webhook_id":"TestSample","webhook_event":' .WebhookEventTest::getJson() . '}';
+        return '{"auth_algo":"TestSample","cert_url":"http://www.google.com","transmission_id":"TestSample","transmission_sig":"TestSample","transmission_time":"TestSample","webhook_id":"TestSample","webhook_event":' . WebhookEventTest::getJson() . '}';
     }
 
     /**
@@ -34,7 +32,6 @@ class VerifyWebhookSignatureTest extends TestCase
     {
         return new VerifyWebhookSignature(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -52,6 +49,7 @@ class VerifyWebhookSignatureTest extends TestCase
         self::assertNotNull($obj->getWebhookId());
         self::assertNotNull($obj->getWebhookEvent());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -61,29 +59,30 @@ class VerifyWebhookSignatureTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getAuthAlgo());
-        self::assertEquals("http://www.google.com", $obj->getCertUrl());
-        self::assertEquals("TestSample", $obj->getTransmissionId());
-        self::assertEquals("TestSample", $obj->getTransmissionSig());
-        self::assertEquals("TestSample", $obj->getTransmissionTime());
-        self::assertEquals("TestSample", $obj->getWebhookId());
+        self::assertEquals('TestSample', $obj->getAuthAlgo());
+        self::assertEquals('http://www.google.com', $obj->getCertUrl());
+        self::assertEquals('TestSample', $obj->getTransmissionId());
+        self::assertEquals('TestSample', $obj->getTransmissionSig());
+        self::assertEquals('TestSample', $obj->getTransmissionTime());
+        self::assertEquals('TestSample', $obj->getWebhookId());
         self::assertEquals($obj->getWebhookEvent(), WebhookEventTest::getObject());
     }
 
     public function testUrlValidationForCertUrl()
     {
-        $this->expectExceptionMessage("CertUrl is not a fully qualified URL");
+        $this->expectExceptionMessage('CertUrl is not a fully qualified URL');
         $this->expectException(\InvalidArgumentException::class);
         $obj = new VerifyWebhookSignature();
         $obj->setCertUrl(null);
     }
 
-    public function testToJsonToIncludeRequestBodyAsWebhookEvent() {
+    public function testToJsonToIncludeRequestBodyAsWebhookEvent()
+    {
         $obj = new VerifyWebhookSignature();
         $requestBody = '{"id":"123", "links": [], "something": {}}';
         $obj->setRequestBody($requestBody);
 
-        self::assertEquals($obj->toJSON(), '{"webhook_event": ' . $requestBody .'}');
+        self::assertEquals($obj->toJSON(), '{"webhook_event": ' . $requestBody . '}');
     }
 
     /**
@@ -110,9 +109,10 @@ class VerifyWebhookSignatureTest extends TestCase
         $mockApiContext = $this->getMockBuilder('ApiContext')
                     ->disableOriginalConstructor()
                     ->getMock();
-        return array(
-            array($obj, $mockApiContext),
-            array($obj, null)
-        );
+
+        return [
+            [$obj, $mockApiContext],
+            [$obj, null],
+        ];
     }
 }

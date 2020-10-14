@@ -5,13 +5,10 @@ namespace PayPal\Common;
 /**
  * Class ArrayUtil
  * Util Class for Arrays
- *
- * @package PayPal\Common
  */
 class ArrayUtil
 {
     /**
-     *
      * @param array $arr
      * @return true if $arr is an associative array
      */
@@ -22,6 +19,7 @@ class ArrayUtil
                 return false;
             }
         }
+
         return true;
     }
 }

@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class Cost
- *
- * @package PayPal\Test\Api
  */
 class InvoiceNumberTest extends TestCase
 {
@@ -30,7 +28,6 @@ class InvoiceNumberTest extends TestCase
         return new InvoiceNumber(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return InvoiceNumber
@@ -41,6 +38,7 @@ class InvoiceNumberTest extends TestCase
         self::assertNotNull($obj);
         self::assertNotNull($obj->getNumber());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -50,6 +48,6 @@ class InvoiceNumberTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("1234", $obj->getNumber());
+        self::assertEquals('1234', $obj->getNumber());
     }
 }

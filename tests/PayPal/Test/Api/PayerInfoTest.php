@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class PayerInfo
- *
- * @package PayPal\Test\Api
  */
 class PayerInfoTest extends TestCase
 {
@@ -18,7 +16,7 @@ class PayerInfoTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"email":"TestSample","external_remember_me_id":"TestSample","buyer_account_number":"TestSample","salutation":"TestSample","first_name":"TestSample","middle_name":"TestSample","last_name":"TestSample","suffix":"TestSample","payer_id":"TestSample","phone":"TestSample","phone_type":"TestSample","birth_date":"TestSample","tax_id":"TestSample","tax_id_type":"TestSample","country_code":"TestSample","billing_address":' .AddressTest::getJson() . ',"shipping_address":' .ShippingAddressTest::getJson() . '}';
+        return '{"email":"TestSample","external_remember_me_id":"TestSample","buyer_account_number":"TestSample","salutation":"TestSample","first_name":"TestSample","middle_name":"TestSample","last_name":"TestSample","suffix":"TestSample","payer_id":"TestSample","phone":"TestSample","phone_type":"TestSample","birth_date":"TestSample","tax_id":"TestSample","tax_id_type":"TestSample","country_code":"TestSample","billing_address":' . AddressTest::getJson() . ',"shipping_address":' . ShippingAddressTest::getJson() . '}';
     }
 
     /**
@@ -29,7 +27,6 @@ class PayerInfoTest extends TestCase
     {
         return new PayerInfo(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -57,6 +54,7 @@ class PayerInfoTest extends TestCase
         self::assertNotNull($obj->getBillingAddress());
         self::assertNotNull($obj->getShippingAddress());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -66,21 +64,21 @@ class PayerInfoTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getEmail());
-        self::assertEquals("TestSample", $obj->getExternalRememberMeId());
-        self::assertEquals("TestSample", $obj->getBuyerAccountNumber());
-        self::assertEquals("TestSample", $obj->getSalutation());
-        self::assertEquals("TestSample", $obj->getFirstName());
-        self::assertEquals("TestSample", $obj->getMiddleName());
-        self::assertEquals("TestSample", $obj->getLastName());
-        self::assertEquals("TestSample", $obj->getSuffix());
-        self::assertEquals("TestSample", $obj->getPayerId());
-        self::assertEquals("TestSample", $obj->getPhone());
-        self::assertEquals("TestSample", $obj->getPhoneType());
-        self::assertEquals("TestSample", $obj->getBirthDate());
-        self::assertEquals("TestSample", $obj->getTaxId());
-        self::assertEquals("TestSample", $obj->getTaxIdType());
-        self::assertEquals("TestSample", $obj->getCountryCode());
+        self::assertEquals('TestSample', $obj->getEmail());
+        self::assertEquals('TestSample', $obj->getExternalRememberMeId());
+        self::assertEquals('TestSample', $obj->getBuyerAccountNumber());
+        self::assertEquals('TestSample', $obj->getSalutation());
+        self::assertEquals('TestSample', $obj->getFirstName());
+        self::assertEquals('TestSample', $obj->getMiddleName());
+        self::assertEquals('TestSample', $obj->getLastName());
+        self::assertEquals('TestSample', $obj->getSuffix());
+        self::assertEquals('TestSample', $obj->getPayerId());
+        self::assertEquals('TestSample', $obj->getPhone());
+        self::assertEquals('TestSample', $obj->getPhoneType());
+        self::assertEquals('TestSample', $obj->getBirthDate());
+        self::assertEquals('TestSample', $obj->getTaxId());
+        self::assertEquals('TestSample', $obj->getTaxIdType());
+        self::assertEquals('TestSample', $obj->getCountryCode());
         self::assertEquals($obj->getBillingAddress(), AddressTest::getObject());
         self::assertEquals($obj->getShippingAddress(), ShippingAddressTest::getObject());
     }

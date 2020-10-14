@@ -6,20 +6,17 @@ use PHPUnit\Framework\TestCase;
 class SimpleModelTestClass extends PayPalModel
 {
     /**
-     *
-     * @access public
      * @param string $field1
      * @return self
      */
     public function setField1($field1)
     {
         $this->field1 = $field1;
+
         return $this;
     }
 
     /**
-     *
-     * @access public
      * @return string
      */
     public function getField1()
@@ -28,20 +25,17 @@ class SimpleModelTestClass extends PayPalModel
     }
 
     /**
-     *
-     * @access public
      * @param string $field2
      * @return self
      */
     public function setField2($field2)
     {
         $this->field2 = $field2;
+
         return $this;
     }
 
     /**
-     *
-     * @access public
      * @return string
      */
     public function getField2()
@@ -50,24 +44,19 @@ class SimpleModelTestClass extends PayPalModel
     }
 }
 
-
 class ContainerModelTestClass extends PayPalModel
 {
-
     /**
-     *
-     * @access public
      * @param string $field1
      */
     public function setField1($field1)
     {
         $this->field1 = $field1;
+
         return $this;
     }
 
     /**
-     *
-     * @access public
      * @return string
      */
     public function getField1()
@@ -76,19 +65,16 @@ class ContainerModelTestClass extends PayPalModel
     }
 
     /**
-     *
-     * @access public
      * @param SimpleModelTestClass $field1
      */
     public function setNested1($nested1)
     {
         $this->nested1 = $nested1;
+
         return $this;
     }
 
     /**
-     *
-     * @access public
      * @return SimpleModelTestClass
      */
     public function getNested1()
@@ -99,10 +85,7 @@ class ContainerModelTestClass extends PayPalModel
 
 class ListModelTestClass extends PayPalModel
 {
-
     /**
-     *
-     * @access public
      * @param string $list1
      */
     public function setList1($list1)
@@ -111,8 +94,6 @@ class ListModelTestClass extends PayPalModel
     }
 
     /**
-     *
-     * @access public
      * @return string
      */
     public function getList1()
@@ -121,19 +102,16 @@ class ListModelTestClass extends PayPalModel
     }
 
     /**
-     *
-     * @access public
      * @param SimpleModelTestClass $list2 array of SimpleModelTestClass
      */
     public function setList2($list2)
     {
         $this->list2 = $list2;
+
         return $this;
     }
 
     /**
-     *
-     * @access public
      * @return SimpleModelTestClass array of SimpleModelTestClass
      */
     public function getList2()
@@ -144,7 +122,6 @@ class ListModelTestClass extends PayPalModel
 
 /**
  * Test class for PayPalModel.
- *
  */
 class PayPalModelTest extends TestCase
 {
@@ -164,13 +141,11 @@ class PayPalModelTest extends TestCase
     {
     }
 
-    /**
-     */
     public function testSimpleConversion()
     {
         $o = new SimpleModelTestClass();
         $o->setField1('value 1');
-        $o->setField2("value 2");
+        $o->setField2('value 2');
 
         self::assertEquals('{"field1":"value 1","field2":"value 2"}', $o->toJSON());
 
@@ -179,32 +154,30 @@ class PayPalModelTest extends TestCase
         self::assertEquals($o, $oCopy);
     }
 
-    /**
-     */
     public function testEmptyObject()
     {
         $child = new SimpleModelTestClass();
         $child->setField1(null);
 
         $parent = new ContainerModelTestClass();
-        $parent->setField1("parent");
+        $parent->setField1('parent');
         $parent->setNested1($child);
 
-        self::assertEquals('{"field1":"parent","nested1":{}}',
-            $parent->toJSON());
+        self::assertEquals(
+            '{"field1":"parent","nested1":{}}',
+            $parent->toJSON()
+        );
 
         $parentCopy = new ContainerModelTestClass();
         $parentCopy->fromJson($parent->toJSON());
         self::assertEquals($parent, $parentCopy);
     }
 
-    /**
-     */
     public function testSpecialChars()
     {
         $o = new SimpleModelTestClass();
         $o->setField1('value "1');
-        $o->setField2("value 2");
+        $o->setField2('value 2');
 
         self::assertEquals('{"field1":"value \"1","field2":"value 2"}', $o->toJSON());
 
@@ -213,41 +186,37 @@ class PayPalModelTest extends TestCase
         self::assertEquals($o, $oCopy);
     }
 
-
-    /**
-     */
     public function testNestedConversion()
     {
         $child = new SimpleModelTestClass();
         $child->setField1('value 1');
-        $child->setField2("value 2");
+        $child->setField2('value 2');
 
         $parent = new ContainerModelTestClass();
-        $parent->setField1("parent");
+        $parent->setField1('parent');
         $parent->setNested1($child);
 
-        self::assertEquals('{"field1":"parent","nested1":{"field1":"value 1","field2":"value 2"}}',
-            $parent->toJSON());
+        self::assertEquals(
+            '{"field1":"parent","nested1":{"field1":"value 1","field2":"value 2"}}',
+            $parent->toJSON()
+        );
 
         $parentCopy = new ContainerModelTestClass();
         $parentCopy->fromJson($parent->toJSON());
         self::assertEquals($parent, $parentCopy);
     }
 
-
-    /**
-     */
     public function testListConversion()
     {
         $c1 = new SimpleModelTestClass();
-        $c1->setField1("a")->setField2('value');
+        $c1->setField1('a')->setField2('value');
 
         $c2 = new SimpleModelTestClass();
-        $c1->setField1("another")->setField2('object');
+        $c1->setField1('another')->setField2('object');
 
         $parent = new ListModelTestClass();
-        $parent->setList1(array('simple', 'list', 'with', 'integer', 'keys'));
-        $parent->setList2(array($c1, $c2));
+        $parent->setList1(['simple', 'list', 'with', 'integer', 'keys']);
+        $parent->setList2([$c1, $c2]);
 
         $parentCopy = new ListModelTestClass();
         $parentCopy->fromJson($parent->toJSON());
@@ -256,14 +225,14 @@ class PayPalModelTest extends TestCase
 
     public function EmptyNullProvider()
     {
-        return array(
-            array(0, true),
-            array(null, false),
-            array("", true),
-            array("null", true),
-            array(-1, true),
-            array('', true)
-        );
+        return [
+            [0, true],
+            [null, false],
+            ['', true],
+            ['null', true],
+            [-1, true],
+            ['', true],
+        ];
     }
 
     /**
@@ -274,45 +243,45 @@ class PayPalModelTest extends TestCase
     public function testEmptyNullConversion($field2, $matches)
     {
         $c1 = new SimpleModelTestClass();
-        $c1->setField1("a")->setField2($field2);
-        self::assertNotSame(strpos($c1->toJSON(), "field2"), !$matches);
+        $c1->setField1('a')->setField2($field2);
+        self::assertNotSame(strpos($c1->toJSON(), 'field2'), !$matches);
     }
 
     public function getProvider()
     {
-        return array(
-            array('[[]]', 1, array(array())),
-            array('[{}]', 1, array(new PayPalModel())),
-            array('[{"id":"123"}]', 1, array(new PayPalModel(array('id' => '123')))),
-            array('{"id":"123"}', 1, array(new PayPalModel(array('id' => '123')))),
-            array('[]', 0, array()),
-            array('{}', 1, array(new PayPalModel())),
-            array(array(), 0, array()),
-            array(array("id" => "123"), 1, array(new PayPalModel(array('id' =>'123')))),
-            array(null, 0, null),
-            array('',0, array()),
-            array('[[], {"id":"123"}]', 2, array(array(), new PayPalModel(array("id"=> "123")))),
-            array('[{"id":"123"}, {"id":"321"}]', 2,
-                    array(
-                        new PayPalModel(array("id" => "123")),
-                        new PayPalModel(array("id" => "321"))
-                    )
-            ),
-            array(array(array("id" => "123"), array("id" => "321")), 2,
-                array(
-                    new PayPalModel(array("id" => "123")),
-                    new PayPalModel(array("id" => "321"))
-                )),
-            array(new PayPalModel('{"id": "123"}'), 1, array(new PayPalModel(array("id" => "123"))))
-        );
+        return [
+            ['[[]]', 1, [[]]],
+            ['[{}]', 1, [new PayPalModel()]],
+            ['[{"id":"123"}]', 1, [new PayPalModel(['id' => '123'])]],
+            ['{"id":"123"}', 1, [new PayPalModel(['id' => '123'])]],
+            ['[]', 0, []],
+            ['{}', 1, [new PayPalModel()]],
+            [[], 0, []],
+            [['id' => '123'], 1, [new PayPalModel(['id' =>'123'])]],
+            [null, 0, null],
+            ['', 0, []],
+            ['[[], {"id":"123"}]', 2, [[], new PayPalModel(['id'=> '123'])]],
+            ['[{"id":"123"}, {"id":"321"}]', 2,
+                [
+                    new PayPalModel(['id' => '123']),
+                    new PayPalModel(['id' => '321']),
+                ],
+            ],
+            [[['id' => '123'], ['id' => '321']], 2,
+                [
+                    new PayPalModel(['id' => '123']),
+                    new PayPalModel(['id' => '321']),
+                ], ],
+            [new PayPalModel('{"id": "123"}'), 1, [new PayPalModel(['id' => '123'])]],
+        ];
     }
 
     public function getInvalidProvider()
     {
-        return array(
-            array('{]'),
-            array('[{]')
-        );
+        return [
+            ['{]'],
+            ['[{]'],
+        ];
     }
 
     /**
@@ -341,7 +310,7 @@ class PayPalModelTest extends TestCase
      */
     public function testGetListInvalidInput($input)
     {
-        $this->expectExceptionMessage("Invalid JSON String");
+        $this->expectExceptionMessage('Invalid JSON String');
         $this->expectException(InvalidArgumentException::class);
         $result = PayPalModel::getList($input);
     }

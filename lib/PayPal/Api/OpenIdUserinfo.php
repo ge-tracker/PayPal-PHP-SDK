@@ -1,4 +1,5 @@
 <?php
+
 namespace PayPal\Api;
 
 use PayPal\Common\PayPalResourceModel;
@@ -33,7 +34,6 @@ use PayPal\Rest\ApiContext;
  */
 class OpenIdUserinfo extends PayPalResourceModel
 {
-
     /**
      * Subject - Identifier for the End-User at the Issuer.
      *
@@ -43,6 +43,7 @@ class OpenIdUserinfo extends PayPalResourceModel
     public function setUserId($user_id)
     {
         $this->user_id = $user_id;
+
         return $this;
     }
 
@@ -65,6 +66,7 @@ class OpenIdUserinfo extends PayPalResourceModel
     public function setSub($sub)
     {
         $this->sub = $sub;
+
         return $this;
     }
 
@@ -87,6 +89,7 @@ class OpenIdUserinfo extends PayPalResourceModel
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -109,6 +112,7 @@ class OpenIdUserinfo extends PayPalResourceModel
     public function setGivenName($given_name)
     {
         $this->given_name = $given_name;
+
         return $this;
     }
 
@@ -131,6 +135,7 @@ class OpenIdUserinfo extends PayPalResourceModel
     public function setFamilyName($family_name)
     {
         $this->family_name = $family_name;
+
         return $this;
     }
 
@@ -153,6 +158,7 @@ class OpenIdUserinfo extends PayPalResourceModel
     public function setMiddleName($middle_name)
     {
         $this->middle_name = $middle_name;
+
         return $this;
     }
 
@@ -175,6 +181,7 @@ class OpenIdUserinfo extends PayPalResourceModel
     public function setPicture($picture)
     {
         $this->picture = $picture;
+
         return $this;
     }
 
@@ -197,6 +204,7 @@ class OpenIdUserinfo extends PayPalResourceModel
     public function setEmail($email)
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -213,19 +221,20 @@ class OpenIdUserinfo extends PayPalResourceModel
     /**
      * True if the End-User's e-mail address has been verified; otherwise false.
      *
-     * @param boolean $email_verified
+     * @param bool $email_verified
      * @return self
      */
     public function setEmailVerified($email_verified)
     {
         $this->email_verified = $email_verified;
+
         return $this;
     }
 
     /**
      * True if the End-User's e-mail address has been verified; otherwise false.
      *
-     * @return boolean
+     * @return bool
      */
     public function getEmailVerified()
     {
@@ -241,6 +250,7 @@ class OpenIdUserinfo extends PayPalResourceModel
     public function setGender($gender)
     {
         $this->gender = $gender;
+
         return $this;
     }
 
@@ -263,6 +273,7 @@ class OpenIdUserinfo extends PayPalResourceModel
     public function setBirthday($birthday)
     {
         $this->birthday = $birthday;
+
         return $this;
     }
 
@@ -285,6 +296,7 @@ class OpenIdUserinfo extends PayPalResourceModel
     public function setZoneinfo($zoneinfo)
     {
         $this->zoneinfo = $zoneinfo;
+
         return $this;
     }
 
@@ -307,6 +319,7 @@ class OpenIdUserinfo extends PayPalResourceModel
     public function setLocale($locale)
     {
         $this->locale = $locale;
+
         return $this;
     }
 
@@ -329,6 +342,7 @@ class OpenIdUserinfo extends PayPalResourceModel
     public function setLanguage($language)
     {
         $this->language = $language;
+
         return $this;
     }
 
@@ -345,19 +359,20 @@ class OpenIdUserinfo extends PayPalResourceModel
     /**
      * End-User's verified status.
      *
-     * @param boolean $verified
+     * @param bool $verified
      * @return self
      */
     public function setVerified($verified)
     {
         $this->verified = $verified;
+
         return $this;
     }
 
     /**
      * End-User's verified status.
      *
-     * @return boolean
+     * @return bool
      */
     public function getVerified()
     {
@@ -373,6 +388,7 @@ class OpenIdUserinfo extends PayPalResourceModel
     public function setPhoneNumber($phone_number)
     {
         $this->phone_number = $phone_number;
+
         return $this;
     }
 
@@ -395,6 +411,7 @@ class OpenIdUserinfo extends PayPalResourceModel
     public function setAddress($address)
     {
         $this->address = $address;
+
         return $this;
     }
 
@@ -411,19 +428,20 @@ class OpenIdUserinfo extends PayPalResourceModel
     /**
      * Verified account status.
      *
-     * @param boolean $verified_account
+     * @param bool $verified_account
      * @return self
      */
     public function setVerifiedAccount($verified_account)
     {
         $this->verified_account = $verified_account;
+
         return $this;
     }
 
     /**
      * Verified account status.
      *
-     * @return boolean
+     * @return bool
      */
     public function getVerifiedAccount()
     {
@@ -439,6 +457,7 @@ class OpenIdUserinfo extends PayPalResourceModel
     public function setAccountType($account_type)
     {
         $this->account_type = $account_type;
+
         return $this;
     }
 
@@ -461,6 +480,7 @@ class OpenIdUserinfo extends PayPalResourceModel
     public function setAgeRange($age_range)
     {
         $this->age_range = $age_range;
+
         return $this;
     }
 
@@ -483,6 +503,7 @@ class OpenIdUserinfo extends PayPalResourceModel
     public function setPayerId($payer_id)
     {
         $this->payer_id = $payer_id;
+
         return $this;
     }
 
@@ -495,7 +516,6 @@ class OpenIdUserinfo extends PayPalResourceModel
     {
         return $this->payer_id;
     }
-
 
     /**
      * returns user details
@@ -510,24 +530,24 @@ class OpenIdUserinfo extends PayPalResourceModel
      */
     public static function getUserinfo($params, $apiContext = null, $restCall = null)
     {
-        static $allowedParams = array('schema' => 1);
+        static $allowedParams = ['schema' => 1];
 
-        $params = is_array($params)  ? $params : array();
+        $params = is_array($params) ? $params : [];
 
         if (!array_key_exists('schema', $params)) {
             $params['schema'] = 'openid';
         }
-        $requestUrl = "/v1/identity/openidconnect/userinfo?"
+        $requestUrl = '/v1/identity/openidconnect/userinfo?'
             . http_build_query(array_intersect_key($params, $allowedParams));
 
         $json = self::executeCall(
             $requestUrl,
-            "GET",
-            "",
-            array(
-                'Authorization' => "Bearer " . $params['access_token'],
-                'Content-Type' => 'x-www-form-urlencoded'
-            ),
+            'GET',
+            '',
+            [
+                'Authorization' => 'Bearer ' . $params['access_token'],
+                'Content-Type' => 'x-www-form-urlencoded',
+            ],
             $apiContext,
             $restCall
         );

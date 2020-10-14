@@ -2,14 +2,12 @@
 
 namespace PayPal\Test\Api;
 
-use PayPal\Common\PayPalModel;
 use PayPal\Api\PatchRequest;
+use PayPal\Common\PayPalModel;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class PatchRequest
- *
- * @package PayPal\Test\Api
  */
 class PatchRequestTest extends TestCase
 {
@@ -19,7 +17,7 @@ class PatchRequestTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"patches":' .PatchTest::getJson() . '}';
+        return '{"patches":' . PatchTest::getJson() . '}';
     }
 
     /**
@@ -31,7 +29,6 @@ class PatchRequestTest extends TestCase
         return new PatchRequest(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return PatchRequest
@@ -41,6 +38,7 @@ class PatchRequestTest extends TestCase
         $obj = new PatchRequest(self::getJson());
         self::assertNotNull($obj);
         self::assertNotNull($obj->getPatches());
+
         return $obj;
     }
 

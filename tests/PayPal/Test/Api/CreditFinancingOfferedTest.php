@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class CreditFinancingOffered
- *
- * @package PayPal\Test\Api
  */
 class CreditFinancingOfferedTest extends TestCase
 {
@@ -18,7 +16,7 @@ class CreditFinancingOfferedTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"total_cost":' .CurrencyTest::getJson() . ',"term":"12.34","monthly_payment":' .CurrencyTest::getJson() . ',"total_interest":' .CurrencyTest::getJson() . ',"payer_acceptance":true,"cart_amount_immutable":true}';
+        return '{"total_cost":' . CurrencyTest::getJson() . ',"term":"12.34","monthly_payment":' . CurrencyTest::getJson() . ',"total_interest":' . CurrencyTest::getJson() . ',"payer_acceptance":true,"cart_amount_immutable":true}';
     }
 
     /**
@@ -29,7 +27,6 @@ class CreditFinancingOfferedTest extends TestCase
     {
         return new CreditFinancingOffered(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -46,6 +43,7 @@ class CreditFinancingOfferedTest extends TestCase
         self::assertNotNull($obj->getPayerAcceptance());
         self::assertNotNull($obj->getCartAmountImmutable());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -56,7 +54,7 @@ class CreditFinancingOfferedTest extends TestCase
     public function testGetters($obj)
     {
         self::assertEquals($obj->getTotalCost(), CurrencyTest::getObject());
-        self::assertEquals("12.34", $obj->getTerm());
+        self::assertEquals('12.34', $obj->getTerm());
         self::assertEquals($obj->getMonthlyPayment(), CurrencyTest::getObject());
         self::assertEquals($obj->getTotalInterest(), CurrencyTest::getObject());
         self::assertEquals(true, $obj->getPayerAcceptance());

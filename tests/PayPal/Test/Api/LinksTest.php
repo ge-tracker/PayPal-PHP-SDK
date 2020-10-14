@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class Links
- *
- * @package PayPal\Test\Api
  */
 class LinksTest extends TestCase
 {
@@ -18,7 +16,7 @@ class LinksTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"href":"TestSample","rel":"TestSample","targetSchema":' .HyperSchemaTest::getJson() . ',"method":"TestSample","enctype":"TestSample","schema":' .HyperSchemaTest::getJson() . '}';
+        return '{"href":"TestSample","rel":"TestSample","targetSchema":' . HyperSchemaTest::getJson() . ',"method":"TestSample","enctype":"TestSample","schema":' . HyperSchemaTest::getJson() . '}';
     }
 
     /**
@@ -29,7 +27,6 @@ class LinksTest extends TestCase
     {
         return new Links(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -46,6 +43,7 @@ class LinksTest extends TestCase
         self::assertNotNull($obj->getEnctype());
         self::assertNotNull($obj->getSchema());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -55,11 +53,11 @@ class LinksTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getHref());
-        self::assertEquals("TestSample", $obj->getRel());
+        self::assertEquals('TestSample', $obj->getHref());
+        self::assertEquals('TestSample', $obj->getRel());
         self::assertEquals($obj->getTargetSchema(), HyperSchemaTest::getObject());
-        self::assertEquals("TestSample", $obj->getMethod());
-        self::assertEquals("TestSample", $obj->getEnctype());
+        self::assertEquals('TestSample', $obj->getMethod());
+        self::assertEquals('TestSample', $obj->getEnctype());
         self::assertEquals($obj->getSchema(), HyperSchemaTest::getObject());
     }
 }

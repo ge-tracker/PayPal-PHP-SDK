@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * Description of the current state of the agreement.
  *
- * @package PayPal\Api
  *
  * @property string note
  * @property \PayPal\Api\Currency amount
@@ -20,12 +19,13 @@ class AgreementStateDescriptor extends PayPalModel
      * Reason for changing the state of the agreement.
      *
      * @param string $note
-     * 
+     *
      * @return $this
      */
     public function setNote($note)
     {
         $this->note = $note;
+
         return $this;
     }
 
@@ -43,12 +43,13 @@ class AgreementStateDescriptor extends PayPalModel
      * The amount and currency of the agreement.
      *
      * @param \PayPal\Api\Currency $amount
-     * 
+     *
      * @return $this
      */
     public function setAmount($amount)
     {
         $this->amount = $amount;
+
         return $this;
     }
 
@@ -61,5 +62,4 @@ class AgreementStateDescriptor extends PayPalModel
     {
         return $this->amount;
     }
-
 }

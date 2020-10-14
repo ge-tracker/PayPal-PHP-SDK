@@ -1,4 +1,5 @@
 <?php
+
 namespace PayPal\Test\Api;
 
 use PayPal\Api\CreditCard;
@@ -7,20 +8,19 @@ use PHPUnit\Framework\TestCase;
 
 class CreditCardHistoryTest extends TestCase
 {
-
     private $cards;
 
-    public static $id = "id";
-    public static $validUntil = "2013-02-28T00:00:00Z";
-    public static $state = "created";
-    public static $payerId = "payer-id";
-    public static $cardType = "visa";
-    public static $cardNumber = "4417119669820331";
+    public static $id = 'id';
+    public static $validUntil = '2013-02-28T00:00:00Z';
+    public static $state = 'created';
+    public static $payerId = 'payer-id';
+    public static $cardType = 'visa';
+    public static $cardNumber = '4417119669820331';
     public static $expireMonth = 11;
-    public static $expireYear = "2019";
-    public static $cvv = "012";
-    public static $firstName = "V";
-    public static $lastName = "C";
+    public static $expireYear = '2019';
+    public static $cvv = '012';
+    public static $firstName = 'V';
+    public static $lastName = 'C';
 
     public static function createCreditCard()
     {
@@ -35,6 +35,7 @@ class CreditCardHistoryTest extends TestCase
         $card->setId(self::$id);
         $card->setValidUntil(self::$validUntil);
         $card->setState(self::$state);
+
         return $card;
     }
 
@@ -42,7 +43,7 @@ class CreditCardHistoryTest extends TestCase
     {
         $card = self::createCreditCard();
         $card->setBillingAddress(AddressTest::getObject());
-        $card->setLinks(array(LinksTest::getObject()));
+        $card->setLinks([LinksTest::getObject()]);
         $this->cards['full'] = $card;
 
         $card = self::createCreditCard();
@@ -52,17 +53,16 @@ class CreditCardHistoryTest extends TestCase
     public function testGetterSetters()
     {
         $cardHistory = new CreditCardHistory();
-        $cardHistory->setCreditCards(array($this->cards['partial'], $this->cards['full']));
+        $cardHistory->setCreditCards([$this->cards['partial'], $this->cards['full']]);
         $cardHistory->setCount(2);
 
         self::assertCount(2, $cardHistory->getCreditCards());
     }
 
-
     public function testSerializationDeserialization()
     {
         $cardHistory = new CreditCardHistory();
-        $cardHistory->setCreditCards(array($this->cards['partial'], $this->cards['full']));
+        $cardHistory->setCreditCards([$this->cards['partial'], $this->cards['full']]);
         $cardHistory->setCount(2);
 
         $cardHistoryCopy = new CreditCardHistory();

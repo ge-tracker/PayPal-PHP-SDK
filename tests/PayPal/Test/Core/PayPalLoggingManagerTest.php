@@ -1,10 +1,10 @@
 <?php
+
 use PayPal\Core\PayPalLoggingManager;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for PayPalLoggingManager.
- *
  */
 class PayPalLoggingManagerTest extends TestCase
 {
@@ -31,29 +31,21 @@ class PayPalLoggingManagerTest extends TestCase
     {
     }
 
-    /**
-     */
     public function testError()
     {
         $this->object->error('Test Error Message');
     }
 
-    /**
-     */
     public function testWarning()
     {
         $this->object->warning('Test Warning Message');
     }
 
-    /**
-     */
     public function testInfo()
     {
         $this->object->info('Test info Message');
     }
 
-    /**
-     */
     public function testFine()
     {
         $this->object->fine('Test fine Message');

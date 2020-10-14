@@ -2,10 +2,10 @@
 
 namespace PayPal\Api;
 
-use PayPal\Common\PayPalResourceModel;
-use PayPal\Validation\ArgumentValidator;
 use PayPal\Api\WebhookList;
+use PayPal\Common\PayPalResourceModel;
 use PayPal\Rest\ApiContext;
+use PayPal\Validation\ArgumentValidator;
 use PayPal\Validation\UrlValidator;
 
 /**
@@ -13,7 +13,6 @@ use PayPal\Validation\UrlValidator;
  *
  * One or more webhook objects.
  *
- * @package PayPal\Api
  *
  * @property string id
  * @property string url
@@ -31,6 +30,7 @@ class Webhook extends PayPalResourceModel
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -53,8 +53,9 @@ class Webhook extends PayPalResourceModel
      */
     public function setUrl($url)
     {
-        UrlValidator::validate($url, "Url");
+        UrlValidator::validate($url, 'Url');
         $this->url = $url;
+
         return $this;
     }
 
@@ -78,6 +79,7 @@ class Webhook extends PayPalResourceModel
     public function setEventTypes($event_types)
     {
         $this->event_types = $event_types;
+
         return $this;
     }
 
@@ -100,11 +102,11 @@ class Webhook extends PayPalResourceModel
     public function addEventType($webhookEventType)
     {
         if (!$this->getEventTypes()) {
-            return $this->setEventTypes(array($webhookEventType));
+            return $this->setEventTypes([$webhookEventType]);
         }
 
         return $this->setEventTypes(
-            array_merge($this->getEventTypes(), array($webhookEventType))
+            array_merge($this->getEventTypes(), [$webhookEventType])
         );
     }
 
@@ -117,7 +119,7 @@ class Webhook extends PayPalResourceModel
     public function removeEventType($webhookEventType)
     {
         return $this->setEventTypes(
-            array_diff($this->getEventTypes(), array($webhookEventType))
+            array_diff($this->getEventTypes(), [$webhookEventType])
         );
     }
 
@@ -132,14 +134,15 @@ class Webhook extends PayPalResourceModel
     {
         $payLoad = $this->toJSON();
         $json = self::executeCall(
-            "/v1/notifications/webhooks",
-            "POST",
+            '/v1/notifications/webhooks',
+            'POST',
             $payLoad,
             null,
             $apiContext,
             $restCall
         );
         $this->fromJson($json);
+
         return $this;
     }
 
@@ -154,10 +157,10 @@ class Webhook extends PayPalResourceModel
     public static function get($webhookId, $apiContext = null, $restCall = null)
     {
         ArgumentValidator::validate($webhookId, 'webhookId');
-        $payLoad = "";
+        $payLoad = '';
         $json = self::executeCall(
             "/v1/notifications/webhooks/$webhookId",
-            "GET",
+            'GET',
             $payLoad,
             null,
             $apiContext,
@@ -165,6 +168,7 @@ class Webhook extends PayPalResourceModel
         );
         $ret = new self();
         $ret->fromJson($json);
+
         return $ret;
     }
 
@@ -179,7 +183,7 @@ class Webhook extends PayPalResourceModel
      */
     public static function getAll($apiContext = null, $restCall = null)
     {
-        return self::getAllWithParams(array(), $apiContext, $restCall);
+        return self::getAllWithParams([], $apiContext, $restCall);
     }
 
     /**
@@ -190,16 +194,16 @@ class Webhook extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return WebhookList
      */
-    public static function getAllWithParams($params = array(), $apiContext = null, $restCall = null)
+    public static function getAllWithParams($params = [], $apiContext = null, $restCall = null)
     {
         ArgumentValidator::validate($params, 'params');
-        $payLoad = "";
-        $allowedParams = array(
+        $payLoad = '';
+        $allowedParams = [
             'anchor_type' => 1,
-        );
+        ];
         $json = self::executeCall(
-            "/v1/notifications/webhooks?" . http_build_query(array_intersect_key($params, $allowedParams)),
-            "GET",
+            '/v1/notifications/webhooks?' . http_build_query(array_intersect_key($params, $allowedParams)),
+            'GET',
             $payLoad,
             null,
             $apiContext,
@@ -207,6 +211,7 @@ class Webhook extends PayPalResourceModel
         );
         $ret = new WebhookList();
         $ret->fromJson($json);
+
         return $ret;
     }
 
@@ -220,18 +225,19 @@ class Webhook extends PayPalResourceModel
      */
     public function update($patchRequest, $apiContext = null, $restCall = null)
     {
-        ArgumentValidator::validate($this->getId(), "Id");
+        ArgumentValidator::validate($this->getId(), 'Id');
         ArgumentValidator::validate($patchRequest, 'patchRequest');
         $payLoad = $patchRequest->toJSON();
         $json = self::executeCall(
             "/v1/notifications/webhooks/{$this->getId()}",
-            "PATCH",
+            'PATCH',
             $payLoad,
             null,
             $apiContext,
             $restCall
         );
         $this->fromJson($json);
+
         return $this;
     }
 
@@ -244,17 +250,17 @@ class Webhook extends PayPalResourceModel
      */
     public function delete($apiContext = null, $restCall = null)
     {
-        ArgumentValidator::validate($this->getId(), "Id");
-        $payLoad = "";
+        ArgumentValidator::validate($this->getId(), 'Id');
+        $payLoad = '';
         self::executeCall(
             "/v1/notifications/webhooks/{$this->getId()}",
-            "DELETE",
+            'DELETE',
             $payLoad,
             null,
             $apiContext,
             $restCall
         );
+
         return true;
     }
-
 }

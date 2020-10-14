@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class Terms
- *
- * @package PayPal\Test\Api
  */
 class TermsTest extends TestCase
 {
@@ -18,7 +16,7 @@ class TermsTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"id":"TestSample","type":"TestSample","max_billing_amount":' .CurrencyTest::getJson() . ',"occurrences":"TestSample","amount_range":' .CurrencyTest::getJson() . ',"buyer_editable":"TestSample"}';
+        return '{"id":"TestSample","type":"TestSample","max_billing_amount":' . CurrencyTest::getJson() . ',"occurrences":"TestSample","amount_range":' . CurrencyTest::getJson() . ',"buyer_editable":"TestSample"}';
     }
 
     /**
@@ -29,7 +27,6 @@ class TermsTest extends TestCase
     {
         return new Terms(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -46,6 +43,7 @@ class TermsTest extends TestCase
         self::assertNotNull($obj->getAmountRange());
         self::assertNotNull($obj->getBuyerEditable());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -55,11 +53,11 @@ class TermsTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getId());
-        self::assertEquals("TestSample", $obj->getType());
+        self::assertEquals('TestSample', $obj->getId());
+        self::assertEquals('TestSample', $obj->getType());
         self::assertEquals($obj->getMaxBillingAmount(), CurrencyTest::getObject());
-        self::assertEquals("TestSample", $obj->getOccurrences());
+        self::assertEquals('TestSample', $obj->getOccurrences());
         self::assertEquals($obj->getAmountRange(), CurrencyTest::getObject());
-        self::assertEquals("TestSample", $obj->getBuyerEditable());
+        self::assertEquals('TestSample', $obj->getBuyerEditable());
     }
 }

@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class Payee
- *
- * @package PayPal\Test\Api
  */
 class PayeeTest extends TestCase
 {
@@ -18,7 +16,7 @@ class PayeeTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"email":"TestSample","merchant_id":"TestSample","first_name":"TestSample","last_name":"TestSample","account_number":"TestSample","phone":' .PhoneTest::getJson() . '}';
+        return '{"email":"TestSample","merchant_id":"TestSample","first_name":"TestSample","last_name":"TestSample","account_number":"TestSample","phone":' . PhoneTest::getJson() . '}';
     }
 
     /**
@@ -29,7 +27,6 @@ class PayeeTest extends TestCase
     {
         return new Payee(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -46,6 +43,7 @@ class PayeeTest extends TestCase
         self::assertNotNull($obj->getAccountNumber());
         self::assertNotNull($obj->getPhone());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -55,11 +53,11 @@ class PayeeTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getEmail());
-        self::assertEquals("TestSample", $obj->getMerchantId());
-        self::assertEquals("TestSample", $obj->getFirstName());
-        self::assertEquals("TestSample", $obj->getLastName());
-        self::assertEquals("TestSample", $obj->getAccountNumber());
+        self::assertEquals('TestSample', $obj->getEmail());
+        self::assertEquals('TestSample', $obj->getMerchantId());
+        self::assertEquals('TestSample', $obj->getFirstName());
+        self::assertEquals('TestSample', $obj->getLastName());
+        self::assertEquals('TestSample', $obj->getAccountNumber());
         self::assertEquals($obj->getPhone(), PhoneTest::getObject());
     }
 }

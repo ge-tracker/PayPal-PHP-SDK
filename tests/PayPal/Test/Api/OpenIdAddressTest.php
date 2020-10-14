@@ -1,4 +1,5 @@
 <?php
+
 namespace PayPal\Test\Api;
 
 use PayPal\Api\OpenIdAddress;
@@ -6,12 +7,10 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for OpenIdAddress.
- *
  */
 class OpenIdAddressTest extends TestCase
 {
-
-    /** @var  OpenIdAddress */
+    /** @var OpenIdAddress */
     private $addr;
 
     /**
@@ -29,20 +28,18 @@ class OpenIdAddressTest extends TestCase
      */
     protected function teatDown(): void
     {
-
     }
 
     public static function getTestData()
     {
         $addr = new OpenIdAddress();
-        $addr->setCountry("US")->setLocality("San Jose")
-                ->setPostalCode("95112")->setRegion("CA")
+        $addr->setCountry('US')->setLocality('San Jose')
+                ->setPostalCode('95112')->setRegion('CA')
                 ->setStreetAddress("1, North 1'st street");
+
         return $addr;
     }
 
-    /**
-     */
     public function testSerializationDeserialization()
     {
         $addrCopy = new OpenIdAddress();
@@ -50,5 +47,4 @@ class OpenIdAddressTest extends TestCase
 
         self::assertEquals($this->addr, $addrCopy);
     }
-
 }

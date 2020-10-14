@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * A resource representing a Payer that funds a payment.
  *
- * @package PayPal\Api
  *
  * @property string payment_method
  * @property string status
@@ -32,6 +31,7 @@ class Payer extends PayPalModel
     public function setPaymentMethod($payment_method)
     {
         $this->payment_method = $payment_method;
+
         return $this;
     }
 
@@ -56,6 +56,7 @@ class Payer extends PayPalModel
     public function setStatus($status)
     {
         $this->status = $status;
+
         return $this;
     }
 
@@ -80,6 +81,7 @@ class Payer extends PayPalModel
     public function setAccountType($account_type)
     {
         $this->account_type = $account_type;
+
         return $this;
     }
 
@@ -103,6 +105,7 @@ class Payer extends PayPalModel
     public function setAccountAge($account_age)
     {
         $this->account_age = $account_age;
+
         return $this;
     }
 
@@ -126,6 +129,7 @@ class Payer extends PayPalModel
     public function setFundingInstruments($funding_instruments)
     {
         $this->funding_instruments = $funding_instruments;
+
         return $this;
     }
 
@@ -148,11 +152,11 @@ class Payer extends PayPalModel
     public function addFundingInstrument($fundingInstrument)
     {
         if (!$this->getFundingInstruments()) {
-            return $this->setFundingInstruments(array($fundingInstrument));
+            return $this->setFundingInstruments([$fundingInstrument]);
         }
 
         return $this->setFundingInstruments(
-            array_merge($this->getFundingInstruments(), array($fundingInstrument))
+            array_merge($this->getFundingInstruments(), [$fundingInstrument])
         );
     }
 
@@ -165,7 +169,7 @@ class Payer extends PayPalModel
     public function removeFundingInstrument($fundingInstrument)
     {
         return $this->setFundingInstruments(
-            array_diff($this->getFundingInstruments(), array($fundingInstrument))
+            array_diff($this->getFundingInstruments(), [$fundingInstrument])
         );
     }
 
@@ -179,6 +183,7 @@ class Payer extends PayPalModel
     public function setFundingOptionId($funding_option_id)
     {
         $this->funding_option_id = $funding_option_id;
+
         return $this;
     }
 
@@ -202,6 +207,7 @@ class Payer extends PayPalModel
     public function setFundingOption($funding_option)
     {
         $this->funding_option = $funding_option;
+
         return $this;
     }
 
@@ -226,6 +232,7 @@ class Payer extends PayPalModel
     public function setExternalSelectedFundingInstrumentType($external_selected_funding_instrument_type)
     {
         $this->external_selected_funding_instrument_type = $external_selected_funding_instrument_type;
+
         return $this;
     }
 
@@ -249,6 +256,7 @@ class Payer extends PayPalModel
     public function setRelatedFundingOption($related_funding_option)
     {
         $this->related_funding_option = $related_funding_option;
+
         return $this;
     }
 
@@ -272,6 +280,7 @@ class Payer extends PayPalModel
     public function setPayerInfo($payer_info)
     {
         $this->payer_info = $payer_info;
+
         return $this;
     }
 
@@ -284,5 +293,4 @@ class Payer extends PayPalModel
     {
         return $this->payer_info;
     }
-
 }

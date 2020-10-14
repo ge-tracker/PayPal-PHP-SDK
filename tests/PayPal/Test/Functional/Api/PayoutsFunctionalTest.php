@@ -10,12 +10,9 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class Payouts
- *
- * @package PayPal\Test\Api
  */
 class PayoutsFunctionalTest extends TestCase
 {
-
     public $operation;
 
     public $response;
@@ -57,7 +54,7 @@ class PayoutsFunctionalTest extends TestCase
             $obj->getSenderBatchHeader()->setSenderBatchId(uniqid());
         }
         self::$batchId = $obj->getSenderBatchHeader()->getSenderBatchId();
-        $params = array('sync_mode' => 'true');
+        $params = ['sync_mode' => 'true'];
         $result = $obj->create($params, $this->apiContext, $this->mockPayPalRestCall);
         self::assertNotNull($result);
         self::assertEquals(self::$batchId, $result->getBatchHeader()->getSenderBatchHeader()->getSenderBatchId());
@@ -66,6 +63,7 @@ class PayoutsFunctionalTest extends TestCase
         self::assertGreaterThan(0, count($items));
         $item = $items[0];
         self::assertEquals('UNCLAIMED', $item->getTransactionStatus());
+
         return $result;
     }
 
@@ -80,6 +78,7 @@ class PayoutsFunctionalTest extends TestCase
         self::assertNotNull($result);
         self::assertNotNull($result->getBatchHeader()->getBatchStatus());
         self::assertEquals(self::$batchId, $result->getBatchHeader()->getSenderBatchHeader()->getSenderBatchId());
+
         return $result;
     }
 
@@ -111,6 +110,7 @@ class PayoutsFunctionalTest extends TestCase
         $item = $items[0];
         if ($item->getTransactionStatus() != 'UNCLAIMED') {
             self::markTestSkipped('Transaction status needs to be Unclaimed for this test ');
+
             return;
         }
         $result = PayoutItem::cancel($item->getPayoutItemId(), $this->apiContext, $this->mockPayPalRestCall);

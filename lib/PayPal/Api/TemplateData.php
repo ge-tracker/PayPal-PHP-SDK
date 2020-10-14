@@ -10,7 +10,6 @@ use PayPal\Validation\UrlValidator;
  *
  * Detailed template information.
  *
- * @package PayPal\Api
  *
  * @property \PayPal\Api\MerchantInfo merchant_info
  * @property \PayPal\Api\BillingInfo[] billing_info
@@ -45,6 +44,7 @@ class TemplateData extends PayPalModel
     public function setMerchantInfo($merchant_info)
     {
         $this->merchant_info = $merchant_info;
+
         return $this;
     }
 
@@ -68,6 +68,7 @@ class TemplateData extends PayPalModel
     public function setBillingInfo($billing_info)
     {
         $this->billing_info = $billing_info;
+
         return $this;
     }
 
@@ -90,11 +91,11 @@ class TemplateData extends PayPalModel
     public function addBillingInfo($billingInfo)
     {
         if (!$this->getBillingInfo()) {
-            return $this->setBillingInfo(array($billingInfo));
+            return $this->setBillingInfo([$billingInfo]);
         }
 
         return $this->setBillingInfo(
-            array_merge($this->getBillingInfo(), array($billingInfo))
+            array_merge($this->getBillingInfo(), [$billingInfo])
         );
     }
 
@@ -107,7 +108,7 @@ class TemplateData extends PayPalModel
     public function removeBillingInfo($billingInfo)
     {
         return $this->setBillingInfo(
-            array_diff($this->getBillingInfo(), array($billingInfo))
+            array_diff($this->getBillingInfo(), [$billingInfo])
         );
     }
 
@@ -121,6 +122,7 @@ class TemplateData extends PayPalModel
     public function setCcInfo($cc_info)
     {
         $this->cc_info = $cc_info;
+
         return $this;
     }
 
@@ -143,11 +145,11 @@ class TemplateData extends PayPalModel
     public function addCcInfo($email)
     {
         if (!$this->getCcInfo()) {
-            return $this->setCcInfo(array($email));
+            return $this->setCcInfo([$email]);
         }
 
         return $this->setCcInfo(
-            array_merge($this->getCcInfo(), array($email))
+            array_merge($this->getCcInfo(), [$email])
         );
     }
 
@@ -160,7 +162,7 @@ class TemplateData extends PayPalModel
     public function removeCcInfo($email)
     {
         return $this->setCcInfo(
-            array_diff($this->getCcInfo(), array($email))
+            array_diff($this->getCcInfo(), [$email])
         );
     }
 
@@ -174,6 +176,7 @@ class TemplateData extends PayPalModel
     public function setShippingInfo($shipping_info)
     {
         $this->shipping_info = $shipping_info;
+
         return $this;
     }
 
@@ -197,6 +200,7 @@ class TemplateData extends PayPalModel
     public function setItems($items)
     {
         $this->items = $items;
+
         return $this;
     }
 
@@ -219,11 +223,11 @@ class TemplateData extends PayPalModel
     public function addItem($invoiceItem)
     {
         if (!$this->getItems()) {
-            return $this->setItems(array($invoiceItem));
+            return $this->setItems([$invoiceItem]);
         }
 
         return $this->setItems(
-            array_merge($this->getItems(), array($invoiceItem))
+            array_merge($this->getItems(), [$invoiceItem])
         );
     }
 
@@ -236,7 +240,7 @@ class TemplateData extends PayPalModel
     public function removeItem($invoiceItem)
     {
         return $this->setItems(
-            array_diff($this->getItems(), array($invoiceItem))
+            array_diff($this->getItems(), [$invoiceItem])
         );
     }
 
@@ -250,6 +254,7 @@ class TemplateData extends PayPalModel
     public function setPaymentTerm($payment_term)
     {
         $this->payment_term = $payment_term;
+
         return $this;
     }
 
@@ -273,6 +278,7 @@ class TemplateData extends PayPalModel
     public function setReference($reference)
     {
         $this->reference = $reference;
+
         return $this;
     }
 
@@ -296,6 +302,7 @@ class TemplateData extends PayPalModel
     public function setDiscount($discount)
     {
         $this->discount = $discount;
+
         return $this;
     }
 
@@ -319,6 +326,7 @@ class TemplateData extends PayPalModel
     public function setShippingCost($shipping_cost)
     {
         $this->shipping_cost = $shipping_cost;
+
         return $this;
     }
 
@@ -342,6 +350,7 @@ class TemplateData extends PayPalModel
     public function setCustom($custom)
     {
         $this->custom = $custom;
+
         return $this;
     }
 
@@ -365,6 +374,7 @@ class TemplateData extends PayPalModel
     public function setAllowPartialPayment($allow_partial_payment)
     {
         $this->allow_partial_payment = $allow_partial_payment;
+
         return $this;
     }
 
@@ -388,6 +398,7 @@ class TemplateData extends PayPalModel
     public function setMinimumAmountDue($minimum_amount_due)
     {
         $this->minimum_amount_due = $minimum_amount_due;
+
         return $this;
     }
 
@@ -411,6 +422,7 @@ class TemplateData extends PayPalModel
     public function setTaxCalculatedAfterDiscount($tax_calculated_after_discount)
     {
         $this->tax_calculated_after_discount = $tax_calculated_after_discount;
+
         return $this;
     }
 
@@ -434,6 +446,7 @@ class TemplateData extends PayPalModel
     public function setTaxInclusive($tax_inclusive)
     {
         $this->tax_inclusive = $tax_inclusive;
+
         return $this;
     }
 
@@ -457,6 +470,7 @@ class TemplateData extends PayPalModel
     public function setTerms($terms)
     {
         $this->terms = $terms;
+
         return $this;
     }
 
@@ -480,6 +494,7 @@ class TemplateData extends PayPalModel
     public function setNote($note)
     {
         $this->note = $note;
+
         return $this;
     }
 
@@ -503,6 +518,7 @@ class TemplateData extends PayPalModel
     public function setMerchantMemo($merchant_memo)
     {
         $this->merchant_memo = $merchant_memo;
+
         return $this;
     }
 
@@ -525,8 +541,9 @@ class TemplateData extends PayPalModel
      */
     public function setLogoUrl($logo_url)
     {
-        UrlValidator::validate($logo_url, "LogoUrl");
+        UrlValidator::validate($logo_url, 'LogoUrl');
         $this->logo_url = $logo_url;
+
         return $this;
     }
 
@@ -550,6 +567,7 @@ class TemplateData extends PayPalModel
     public function setTotalAmount($total_amount)
     {
         $this->total_amount = $total_amount;
+
         return $this;
     }
 
@@ -573,6 +591,7 @@ class TemplateData extends PayPalModel
     public function setAttachments($attachments)
     {
         $this->attachments = $attachments;
+
         return $this;
     }
 
@@ -595,11 +614,11 @@ class TemplateData extends PayPalModel
     public function addAttachment($fileAttachment)
     {
         if (!$this->getAttachments()) {
-            return $this->setAttachments(array($fileAttachment));
+            return $this->setAttachments([$fileAttachment]);
         }
 
         return $this->setAttachments(
-            array_merge($this->getAttachments(), array($fileAttachment))
+            array_merge($this->getAttachments(), [$fileAttachment])
         );
     }
 
@@ -612,8 +631,7 @@ class TemplateData extends PayPalModel
     public function removeAttachment($fileAttachment)
     {
         return $this->setAttachments(
-            array_diff($this->getAttachments(), array($fileAttachment))
+            array_diff($this->getAttachments(), [$fileAttachment])
         );
     }
-
 }

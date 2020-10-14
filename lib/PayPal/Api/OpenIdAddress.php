@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * End-User's preferred address.
  *
- * @package PayPal\Api
  *
  * @property string street_address
  * @property string locality
@@ -28,6 +27,7 @@ class OpenIdAddress extends PayPalModel
     public function setStreetAddress($street_address)
     {
         $this->street_address = $street_address;
+
         return $this;
     }
 
@@ -50,6 +50,7 @@ class OpenIdAddress extends PayPalModel
     public function setLocality($locality)
     {
         $this->locality = $locality;
+
         return $this;
     }
 
@@ -72,6 +73,7 @@ class OpenIdAddress extends PayPalModel
     public function setRegion($region)
     {
         $this->region = $region;
+
         return $this;
     }
 
@@ -94,6 +96,7 @@ class OpenIdAddress extends PayPalModel
     public function setPostalCode($postal_code)
     {
         $this->postal_code = $postal_code;
+
         return $this;
     }
 
@@ -116,6 +119,7 @@ class OpenIdAddress extends PayPalModel
     public function setCountry($country)
     {
         $this->country = $country;
+
         return $this;
     }
 
@@ -128,6 +132,4 @@ class OpenIdAddress extends PayPalModel
     {
         return $this->country;
     }
-
-
 }

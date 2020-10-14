@@ -3,22 +3,20 @@
 namespace PayPal\Test\Core;
 
 use PayPal\Core\PayPalHttpConfig;
-use PHPUnit\Framework\TestCase;
 use PayPal\Exception\PayPalConfigurationException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for PayPalHttpConfigTest.
- *
  */
 class PayPalHttpConfigTest extends TestCase
 {
-
     protected $object;
 
-    private $config = array(
+    private $config = [
         'http.ConnectionTimeOut' => '30',
         'http.Retry' => '5',
-    );
+    ];
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -36,8 +34,6 @@ class PayPalHttpConfigTest extends TestCase
     {
     }
 
-    /**
-     */
     public function testHeaderFunctions()
     {
         $o = new PayPalHttpConfig();
@@ -62,12 +58,10 @@ class PayPalHttpConfigTest extends TestCase
         self::assertNull($o->getHeader('key2'));
     }
 
-    /**
-     */
     public function testCurlOpts()
     {
         $o = new PayPalHttpConfig();
-        $o->setCurlOptions(array('k' => 'v'));
+        $o->setCurlOptions(['k' => 'v']);
 
         $curlOpts = $o->getCurlOptions();
         self::assertCount(1, $curlOpts);
@@ -77,7 +71,7 @@ class PayPalHttpConfigTest extends TestCase
     public function testRemoveCurlOpts()
     {
         $o = new PayPalHttpConfig();
-        $o->setCurlOptions(array('k' => 'v'));
+        $o->setCurlOptions(['k' => 'v']);
         $curlOpts = $o->getCurlOptions();
         self::assertCount(1, $curlOpts);
         self::assertEquals('v', $curlOpts['k']);
@@ -87,8 +81,6 @@ class PayPalHttpConfigTest extends TestCase
         self::assertCount(0, $curlOpts);
     }
 
-    /**
-     */
     public function testUserAgent()
     {
         $ua = 'UAString';
@@ -99,8 +91,6 @@ class PayPalHttpConfigTest extends TestCase
         self::assertEquals($ua, $curlOpts[CURLOPT_USERAGENT]);
     }
 
-    /**
-     */
     public function testSSLOpts()
     {
         $sslCert = '../cacert.pem';
@@ -114,8 +104,6 @@ class PayPalHttpConfigTest extends TestCase
         self::assertEquals($sslPass, $curlOpts[CURLOPT_SSLCERTPASSWD]);
     }
 
-    /**
-     */
     public function testProxyOpts()
     {
         $proxy = 'http://me:secret@hostname:8081';

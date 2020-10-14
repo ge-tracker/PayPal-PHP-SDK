@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class ExtendedBankAccount
- *
- * @package PayPal\Test\Api
  */
 class ExtendedBankAccountTest extends TestCase
 {
@@ -30,7 +28,6 @@ class ExtendedBankAccountTest extends TestCase
         return new ExtendedBankAccount(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return ExtendedBankAccount
@@ -41,6 +38,7 @@ class ExtendedBankAccountTest extends TestCase
         self::assertNotNull($obj);
         self::assertNotNull($obj->getMandateReferenceNumber());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -50,6 +48,6 @@ class ExtendedBankAccountTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getMandateReferenceNumber());
+        self::assertEquals('TestSample', $obj->getMandateReferenceNumber());
     }
 }

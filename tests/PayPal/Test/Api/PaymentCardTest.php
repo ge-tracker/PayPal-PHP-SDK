@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class PaymentCard
- *
- * @package PayPal\Test\Api
  */
 class PaymentCardTest extends TestCase
 {
@@ -18,7 +16,7 @@ class PaymentCardTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"id":"TestSample","number":"TestSample","type":"TestSample","expire_month":"123","expire_year":"123","start_month":"TestSample","start_year":"TestSample","cvv2":"TestSample","first_name":"TestSample","last_name":"TestSample","billing_country":"TestSample","billing_address":' .AddressTest::getJson() . ',"external_customer_id":"TestSample","status":"TestSample","card_product_class":"TestSample","valid_until":"TestSample","issue_number":"TestSample","links":' .LinksTest::getJson() . '}';
+        return '{"id":"TestSample","number":"TestSample","type":"TestSample","expire_month":"123","expire_year":"123","start_month":"TestSample","start_year":"TestSample","cvv2":"TestSample","first_name":"TestSample","last_name":"TestSample","billing_country":"TestSample","billing_address":' . AddressTest::getJson() . ',"external_customer_id":"TestSample","status":"TestSample","card_product_class":"TestSample","valid_until":"TestSample","issue_number":"TestSample","links":' . LinksTest::getJson() . '}';
     }
 
     /**
@@ -29,7 +27,6 @@ class PaymentCardTest extends TestCase
     {
         return new PaymentCard(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -58,6 +55,7 @@ class PaymentCardTest extends TestCase
         self::assertNotNull($obj->getIssueNumber());
         self::assertNotNull($obj->getLinks());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -67,23 +65,23 @@ class PaymentCardTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getId());
-        self::assertEquals("TestSample", $obj->getNumber());
-        self::assertEquals("TestSample", $obj->getType());
-        self::assertEquals("123", $obj->getExpireMonth());
-        self::assertEquals("123", $obj->getExpireYear());
-        self::assertEquals("TestSample", $obj->getStartMonth());
-        self::assertEquals("TestSample", $obj->getStartYear());
-        self::assertEquals("TestSample", $obj->getCvv2());
-        self::assertEquals("TestSample", $obj->getFirstName());
-        self::assertEquals("TestSample", $obj->getLastName());
-        self::assertEquals("TestSample", $obj->getBillingCountry());
+        self::assertEquals('TestSample', $obj->getId());
+        self::assertEquals('TestSample', $obj->getNumber());
+        self::assertEquals('TestSample', $obj->getType());
+        self::assertEquals('123', $obj->getExpireMonth());
+        self::assertEquals('123', $obj->getExpireYear());
+        self::assertEquals('TestSample', $obj->getStartMonth());
+        self::assertEquals('TestSample', $obj->getStartYear());
+        self::assertEquals('TestSample', $obj->getCvv2());
+        self::assertEquals('TestSample', $obj->getFirstName());
+        self::assertEquals('TestSample', $obj->getLastName());
+        self::assertEquals('TestSample', $obj->getBillingCountry());
         self::assertEquals($obj->getBillingAddress(), AddressTest::getObject());
-        self::assertEquals("TestSample", $obj->getExternalCustomerId());
-        self::assertEquals("TestSample", $obj->getStatus());
-        self::assertEquals("TestSample", $obj->getCardProductClass());
-        self::assertEquals("TestSample", $obj->getValidUntil());
-        self::assertEquals("TestSample", $obj->getIssueNumber());
+        self::assertEquals('TestSample', $obj->getExternalCustomerId());
+        self::assertEquals('TestSample', $obj->getStatus());
+        self::assertEquals('TestSample', $obj->getCardProductClass());
+        self::assertEquals('TestSample', $obj->getValidUntil());
+        self::assertEquals('TestSample', $obj->getIssueNumber());
         self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 }

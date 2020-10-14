@@ -4,13 +4,11 @@ namespace PayPal\Test\Api;
 
 use PayPal\Api\Authorization;
 use PayPal\Api\Order;
-use PHPUnit\Framework\TestCase;
 use PayPal\Transport\PayPalRestCall;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class Order
- *
- * @package PayPal\Test\Api
  */
 class OrderTest extends TestCase
 {
@@ -20,7 +18,7 @@ class OrderTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"id":"TestSample","reference_id":"TestSample","amount":' .AmountTest::getJson() . ',"payment_mode":"TestSample","state":"TestSample","reason_code":"TestSample","pending_reason":"TestSample","protection_eligibility":"TestSample","protection_eligibility_type":"TestSample","parent_payment":"TestSample","fmf_details":' .FmfDetailsTest::getJson() . ',"create_time":"TestSample","update_time":"TestSample","links":' .LinksTest::getJson() . '}';
+        return '{"id":"TestSample","reference_id":"TestSample","amount":' . AmountTest::getJson() . ',"payment_mode":"TestSample","state":"TestSample","reason_code":"TestSample","pending_reason":"TestSample","protection_eligibility":"TestSample","protection_eligibility_type":"TestSample","parent_payment":"TestSample","fmf_details":' . FmfDetailsTest::getJson() . ',"create_time":"TestSample","update_time":"TestSample","links":' . LinksTest::getJson() . '}';
     }
 
     /**
@@ -31,7 +29,6 @@ class OrderTest extends TestCase
     {
         return new Order(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -56,6 +53,7 @@ class OrderTest extends TestCase
         self::assertNotNull($obj->getUpdateTime());
         self::assertNotNull($obj->getLinks());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -65,19 +63,19 @@ class OrderTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getId());
-        self::assertEquals("TestSample", $obj->getReferenceId());
+        self::assertEquals('TestSample', $obj->getId());
+        self::assertEquals('TestSample', $obj->getReferenceId());
         self::assertEquals($obj->getAmount(), AmountTest::getObject());
-        self::assertEquals("TestSample", $obj->getPaymentMode());
-        self::assertEquals("TestSample", $obj->getState());
-        self::assertEquals("TestSample", $obj->getReasonCode());
-        self::assertEquals("TestSample", $obj->getPendingReason());
-        self::assertEquals("TestSample", $obj->getProtectionEligibility());
-        self::assertEquals("TestSample", $obj->getProtectionEligibilityType());
-        self::assertEquals("TestSample", $obj->getParentPayment());
+        self::assertEquals('TestSample', $obj->getPaymentMode());
+        self::assertEquals('TestSample', $obj->getState());
+        self::assertEquals('TestSample', $obj->getReasonCode());
+        self::assertEquals('TestSample', $obj->getPendingReason());
+        self::assertEquals('TestSample', $obj->getProtectionEligibility());
+        self::assertEquals('TestSample', $obj->getProtectionEligibilityType());
+        self::assertEquals('TestSample', $obj->getParentPayment());
         self::assertEquals($obj->getFmfDetails(), FmfDetailsTest::getObject());
-        self::assertEquals("TestSample", $obj->getCreateTime());
-        self::assertEquals("TestSample", $obj->getUpdateTime());
+        self::assertEquals('TestSample', $obj->getCreateTime());
+        self::assertEquals('TestSample', $obj->getUpdateTime());
         self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 
@@ -95,9 +93,10 @@ class OrderTest extends TestCase
             ->method('execute')
             ->willReturn(self::getJson());
 
-        $result = $obj->get("orderId", $mockApiContext, $mockPPRestCall);
+        $result = $obj->get('orderId', $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param Order $obj
@@ -116,6 +115,7 @@ class OrderTest extends TestCase
         $result = $obj->capture($capture, $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param Order $obj
@@ -133,6 +133,7 @@ class OrderTest extends TestCase
         $result = $obj->void($mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param Order $obj
@@ -158,9 +159,10 @@ class OrderTest extends TestCase
         $mockApiContext = $this->getMockBuilder('ApiContext')
                     ->disableOriginalConstructor()
                     ->getMock();
-        return array(
-            array($obj, $mockApiContext),
-            array($obj, null)
-        );
+
+        return [
+            [$obj, $mockApiContext],
+            [$obj, null],
+        ];
     }
 }

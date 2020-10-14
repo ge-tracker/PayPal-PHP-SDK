@@ -3,14 +3,12 @@
 namespace PayPal\Test\Api;
 
 use PayPal\Api\PaymentInstruction;
+use PayPal\Transport\PayPalRestCall;
 use PayPal\Transport\PPRestCall;
 use PHPUnit\Framework\TestCase;
-use PayPal\Transport\PayPalRestCall;
 
 /**
  * Class PaymentInstruction
- *
- * @package PayPal\Test\Api
  */
 class PaymentInstructionTest extends TestCase
 {
@@ -20,7 +18,7 @@ class PaymentInstructionTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"reference_number":"TestSample","instruction_type":"TestSample","recipient_banking_instruction":' .RecipientBankingInstructionTest::getJson() . ',"amount":' .CurrencyTest::getJson() . ',"payment_due_date":"TestSample","note":"TestSample","links":' .LinksTest::getJson() . '}';
+        return '{"reference_number":"TestSample","instruction_type":"TestSample","recipient_banking_instruction":' . RecipientBankingInstructionTest::getJson() . ',"amount":' . CurrencyTest::getJson() . ',"payment_due_date":"TestSample","note":"TestSample","links":' . LinksTest::getJson() . '}';
     }
 
     /**
@@ -31,7 +29,6 @@ class PaymentInstructionTest extends TestCase
     {
         return new PaymentInstruction(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -49,6 +46,7 @@ class PaymentInstructionTest extends TestCase
         self::assertNotNull($obj->getNote());
         self::assertNotNull($obj->getLinks());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -58,12 +56,12 @@ class PaymentInstructionTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getReferenceNumber());
-        self::assertEquals("TestSample", $obj->getInstructionType());
+        self::assertEquals('TestSample', $obj->getReferenceNumber());
+        self::assertEquals('TestSample', $obj->getInstructionType());
         self::assertEquals($obj->getRecipientBankingInstruction(), RecipientBankingInstructionTest::getObject());
         self::assertEquals($obj->getAmount(), CurrencyTest::getObject());
-        self::assertEquals("TestSample", $obj->getPaymentDueDate());
-        self::assertEquals("TestSample", $obj->getNote());
+        self::assertEquals('TestSample', $obj->getPaymentDueDate());
+        self::assertEquals('TestSample', $obj->getNote());
         self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 
@@ -81,7 +79,7 @@ class PaymentInstructionTest extends TestCase
             ->method('execute')
             ->willReturn(self::getJson());
 
-        $result = $obj->get("paymentId", $mockApiContext, $mockPPRestCall);
+        $result = $obj->get('paymentId', $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
 
@@ -91,9 +89,10 @@ class PaymentInstructionTest extends TestCase
         $mockApiContext = $this->getMockBuilder('ApiContext')
                     ->disableOriginalConstructor()
                     ->getMock();
-        return array(
-            array($obj, $mockApiContext),
-            array($obj, null)
-        );
+
+        return [
+            [$obj, $mockApiContext],
+            [$obj, null],
+        ];
     }
 }

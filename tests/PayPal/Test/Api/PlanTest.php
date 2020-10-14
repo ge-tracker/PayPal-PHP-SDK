@@ -3,13 +3,11 @@
 namespace PayPal\Test\Api;
 
 use PayPal\Api\Plan;
-use PHPUnit\Framework\TestCase;
 use PayPal\Transport\PayPalRestCall;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class Plan
- *
- * @package PayPal\Test\Api
  */
 class PlanTest extends TestCase
 {
@@ -19,7 +17,7 @@ class PlanTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"id":"TestSample","name":"TestSample","description":"TestSample","type":"TestSample","state":"TestSample","create_time":"TestSample","update_time":"TestSample","payment_definitions":' .PaymentDefinitionTest::getJson() . ',"terms":' .TermsTest::getJson() . ',"merchant_preferences":' .MerchantPreferencesTest::getJson() . ',"links":' .LinksTest::getJson() . '}';
+        return '{"id":"TestSample","name":"TestSample","description":"TestSample","type":"TestSample","state":"TestSample","create_time":"TestSample","update_time":"TestSample","payment_definitions":' . PaymentDefinitionTest::getJson() . ',"terms":' . TermsTest::getJson() . ',"merchant_preferences":' . MerchantPreferencesTest::getJson() . ',"links":' . LinksTest::getJson() . '}';
     }
 
     /**
@@ -30,7 +28,6 @@ class PlanTest extends TestCase
     {
         return new Plan(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -52,6 +49,7 @@ class PlanTest extends TestCase
         self::assertNotNull($obj->getMerchantPreferences());
         self::assertNotNull($obj->getLinks());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -61,13 +59,13 @@ class PlanTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getId());
-        self::assertEquals("TestSample", $obj->getName());
-        self::assertEquals("TestSample", $obj->getDescription());
-        self::assertEquals("TestSample", $obj->getType());
-        self::assertEquals("TestSample", $obj->getState());
-        self::assertEquals("TestSample", $obj->getCreateTime());
-        self::assertEquals("TestSample", $obj->getUpdateTime());
+        self::assertEquals('TestSample', $obj->getId());
+        self::assertEquals('TestSample', $obj->getName());
+        self::assertEquals('TestSample', $obj->getDescription());
+        self::assertEquals('TestSample', $obj->getType());
+        self::assertEquals('TestSample', $obj->getState());
+        self::assertEquals('TestSample', $obj->getCreateTime());
+        self::assertEquals('TestSample', $obj->getUpdateTime());
         self::assertEquals($obj->getPaymentDefinitions(), PaymentDefinitionTest::getObject());
         self::assertEquals($obj->getTerms(), TermsTest::getObject());
         self::assertEquals($obj->getMerchantPreferences(), MerchantPreferencesTest::getObject());
@@ -88,9 +86,10 @@ class PlanTest extends TestCase
             ->method('execute')
             ->willReturn(self::getJson());
 
-        $result = $obj->get("planId", $mockApiContext, $mockPayPalRestCall);
+        $result = $obj->get('planId', $mockApiContext, $mockPayPalRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param Plan $obj
@@ -108,6 +107,7 @@ class PlanTest extends TestCase
         $result = $obj->create($mockApiContext, $mockPayPalRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param Plan $obj
@@ -126,6 +126,7 @@ class PlanTest extends TestCase
         $result = $obj->update($patchRequest, $mockApiContext, $mockPayPalRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param Plan $obj
@@ -152,9 +153,10 @@ class PlanTest extends TestCase
         $mockApiContext = $this->getMockBuilder('ApiContext')
                     ->disableOriginalConstructor()
                     ->getMock();
-        return array(
-            array($obj, $mockApiContext),
-            array($obj, null)
-        );
+
+        return [
+            [$obj, $mockApiContext],
+            [$obj, null],
+        ];
     }
 }

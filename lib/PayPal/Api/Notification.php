@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * Email/SMS notification.
  *
- * @package PayPal\Api
  *
  * @property string subject
  * @property string note
@@ -28,6 +27,7 @@ class Notification extends PayPalModel
     public function setSubject($subject)
     {
         $this->subject = $subject;
+
         return $this;
     }
 
@@ -51,6 +51,7 @@ class Notification extends PayPalModel
     public function setNote($note)
     {
         $this->note = $note;
+
         return $this;
     }
 
@@ -74,6 +75,7 @@ class Notification extends PayPalModel
     public function setSendToMerchant($send_to_merchant)
     {
         $this->send_to_merchant = $send_to_merchant;
+
         return $this;
     }
 
@@ -97,6 +99,7 @@ class Notification extends PayPalModel
     public function setCcEmails($cc_emails)
     {
         $this->cc_emails = $cc_emails;
+
         return $this;
     }
 
@@ -119,11 +122,11 @@ class Notification extends PayPalModel
     public function addCcEmail($string)
     {
         if (!$this->getCcEmails()) {
-            return $this->setCcEmails(array($string));
+            return $this->setCcEmails([$string]);
         }
 
         return $this->setCcEmails(
-            array_merge($this->getCcEmails(), array($string))
+            array_merge($this->getCcEmails(), [$string])
         );
     }
 
@@ -136,8 +139,7 @@ class Notification extends PayPalModel
     public function removeCcEmail($string)
     {
         return $this->setCcEmails(
-            array_diff($this->getCcEmails(), array($string))
+            array_diff($this->getCcEmails(), [$string])
         );
     }
-
 }

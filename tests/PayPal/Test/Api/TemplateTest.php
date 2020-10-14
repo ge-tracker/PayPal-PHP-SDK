@@ -2,14 +2,12 @@
 
 namespace PayPal\Test\Api;
 
-use PayPal\Common\PayPalModel;
 use PayPal\Api\Template;
+use PayPal\Common\PayPalModel;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class Template
- *
- * @package PayPal\Test\Api
  */
 class TemplateTest extends TestCase
 {
@@ -19,7 +17,7 @@ class TemplateTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"template_id":"TestSample","name":"TestSample","default":true,"template_data":' .TemplateDataTest::getJson() . ',"settings":' .TemplateSettingsTest::getJson() . ',"unit_of_measure":"TestSample","custom":true}';
+        return '{"template_id":"TestSample","name":"TestSample","default":true,"template_data":' . TemplateDataTest::getJson() . ',"settings":' . TemplateSettingsTest::getJson() . ',"unit_of_measure":"TestSample","custom":true}';
     }
 
     /**
@@ -30,7 +28,6 @@ class TemplateTest extends TestCase
     {
         return new Template(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -48,6 +45,7 @@ class TemplateTest extends TestCase
         self::assertNotNull($obj->getUnitOfMeasure());
         self::assertNotNull($obj->getCustom());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -57,12 +55,12 @@ class TemplateTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getTemplateId());
-        self::assertEquals("TestSample", $obj->getName());
+        self::assertEquals('TestSample', $obj->getTemplateId());
+        self::assertEquals('TestSample', $obj->getName());
         self::assertEquals(true, $obj->getDefault());
         self::assertEquals($obj->getTemplateData(), TemplateDataTest::getObject());
         self::assertEquals($obj->getSettings(), TemplateSettingsTest::getObject());
-        self::assertEquals("TestSample", $obj->getUnitOfMeasure());
+        self::assertEquals('TestSample', $obj->getUnitOfMeasure());
         self::assertEquals(true, $obj->getCustom());
     }
 }

@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class PayoutBatchHeader
- *
- * @package PayPal\Test\Api
  */
 class PayoutBatchHeaderTest extends TestCase
 {
@@ -18,7 +16,7 @@ class PayoutBatchHeaderTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"payout_batch_id":"TestSample","batch_status":"TestSample","time_created":"TestSample","time_completed":"TestSample","sender_batch_header":' .PayoutSenderBatchHeaderTest::getJson() . ',"amount":' .CurrencyTest::getJson() . ',"fees":' .CurrencyTest::getJson() . ',"errors":' .ErrorTest::getJson() . ',"links":' .LinksTest::getJson() . '}';
+        return '{"payout_batch_id":"TestSample","batch_status":"TestSample","time_created":"TestSample","time_completed":"TestSample","sender_batch_header":' . PayoutSenderBatchHeaderTest::getJson() . ',"amount":' . CurrencyTest::getJson() . ',"fees":' . CurrencyTest::getJson() . ',"errors":' . ErrorTest::getJson() . ',"links":' . LinksTest::getJson() . '}';
     }
 
     /**
@@ -29,7 +27,6 @@ class PayoutBatchHeaderTest extends TestCase
     {
         return new PayoutBatchHeader(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -49,6 +46,7 @@ class PayoutBatchHeaderTest extends TestCase
         self::assertNotNull($obj->getErrors());
         self::assertNotNull($obj->getLinks());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -58,10 +56,10 @@ class PayoutBatchHeaderTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getPayoutBatchId());
-        self::assertEquals("TestSample", $obj->getBatchStatus());
-        self::assertEquals("TestSample", $obj->getTimeCreated());
-        self::assertEquals("TestSample", $obj->getTimeCompleted());
+        self::assertEquals('TestSample', $obj->getPayoutBatchId());
+        self::assertEquals('TestSample', $obj->getBatchStatus());
+        self::assertEquals('TestSample', $obj->getTimeCreated());
+        self::assertEquals('TestSample', $obj->getTimeCompleted());
         self::assertEquals($obj->getSenderBatchHeader(), PayoutSenderBatchHeaderTest::getObject());
         self::assertEquals($obj->getAmount(), CurrencyTest::getObject());
         self::assertEquals($obj->getFees(), CurrencyTest::getObject());

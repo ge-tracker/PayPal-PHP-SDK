@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  *
  *
- * @package PayPal\Api
  *
  * @property \PayPal\Api\Links[] links
  * @property string fragmentResolution
@@ -30,6 +29,7 @@ class HyperSchema extends PayPalModel
     public function setLinks($links)
     {
         $this->links = $links;
+
         return $this;
     }
 
@@ -52,11 +52,11 @@ class HyperSchema extends PayPalModel
     public function addLink($links)
     {
         if (!$this->getLinks()) {
-            return $this->setLinks(array($links));
+            return $this->setLinks([$links]);
         }
 
         return $this->setLinks(
-            array_merge($this->getLinks(), array($links))
+            array_merge($this->getLinks(), [$links])
         );
     }
 
@@ -69,7 +69,7 @@ class HyperSchema extends PayPalModel
     public function removeLink($links)
     {
         return $this->setLinks(
-            array_diff($this->getLinks(), array($links))
+            array_diff($this->getLinks(), [$links])
         );
     }
 
@@ -83,6 +83,7 @@ class HyperSchema extends PayPalModel
     public function setFragmentResolution($fragmentResolution)
     {
         $this->fragmentResolution = $fragmentResolution;
+
         return $this;
     }
 
@@ -106,6 +107,7 @@ class HyperSchema extends PayPalModel
     public function setReadonly($readonly)
     {
         $this->readonly = $readonly;
+
         return $this;
     }
 
@@ -129,6 +131,7 @@ class HyperSchema extends PayPalModel
     public function setContentEncoding($contentEncoding)
     {
         $this->contentEncoding = $contentEncoding;
+
         return $this;
     }
 
@@ -152,6 +155,7 @@ class HyperSchema extends PayPalModel
     public function setPathStart($pathStart)
     {
         $this->pathStart = $pathStart;
+
         return $this;
     }
 
@@ -175,6 +179,7 @@ class HyperSchema extends PayPalModel
     public function setMediaType($mediaType)
     {
         $this->mediaType = $mediaType;
+
         return $this;
     }
 
@@ -187,5 +192,4 @@ class HyperSchema extends PayPalModel
     {
         return $this->mediaType;
     }
-
 }

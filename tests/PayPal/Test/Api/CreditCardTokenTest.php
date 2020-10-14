@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class CreditCardToken
- *
- * @package PayPal\Test\Api
  */
 class CreditCardTokenTest extends TestCase
 {
@@ -32,7 +30,6 @@ class CreditCardTokenTest extends TestCase
         return new CreditCardToken(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      *
@@ -49,6 +46,7 @@ class CreditCardTokenTest extends TestCase
         self::assertNotNull($obj->getExpireMonth());
         self::assertNotNull($obj->getExpireYear());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -58,10 +56,10 @@ class CreditCardTokenTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getCreditCardId());
-        self::assertEquals("TestSample", $obj->getPayerId());
-        self::assertEquals("TestSample", $obj->getLast4());
-        self::assertEquals("TestSample", $obj->getType());
+        self::assertEquals('TestSample', $obj->getCreditCardId());
+        self::assertEquals('TestSample', $obj->getPayerId());
+        self::assertEquals('TestSample', $obj->getLast4());
+        self::assertEquals('TestSample', $obj->getType());
         self::assertEquals(123, $obj->getExpireMonth());
         self::assertEquals(123, $obj->getExpireYear());
     }

@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class PrivateLabelCard
- *
- * @package PayPal\Test\Api
  */
 class PrivateLabelCardTest extends TestCase
 {
@@ -30,7 +28,6 @@ class PrivateLabelCardTest extends TestCase
         return new PrivateLabelCard(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return PrivateLabelCard
@@ -45,6 +42,7 @@ class PrivateLabelCardTest extends TestCase
         self::assertNotNull($obj->getIssuerName());
         self::assertNotNull($obj->getImageKey());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -54,10 +52,10 @@ class PrivateLabelCardTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getId());
-        self::assertEquals("TestSample", $obj->getCardNumber());
-        self::assertEquals("TestSample", $obj->getIssuerId());
-        self::assertEquals("TestSample", $obj->getIssuerName());
-        self::assertEquals("TestSample", $obj->getImageKey());
+        self::assertEquals('TestSample', $obj->getId());
+        self::assertEquals('TestSample', $obj->getCardNumber());
+        self::assertEquals('TestSample', $obj->getIssuerId());
+        self::assertEquals('TestSample', $obj->getIssuerName());
+        self::assertEquals('TestSample', $obj->getImageKey());
     }
 }

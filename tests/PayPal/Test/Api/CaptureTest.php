@@ -3,14 +3,12 @@
 namespace PayPal\Test\Api;
 
 use PayPal\Api\Capture;
+use PayPal\Transport\PayPalRestCall;
 use PayPal\Transport\PPRestCall;
 use PHPUnit\Framework\TestCase;
-use PayPal\Transport\PayPalRestCall;
 
 /**
  * Class Capture
- *
- * @package PayPal\Test\Api
  */
 class CaptureTest extends TestCase
 {
@@ -20,7 +18,7 @@ class CaptureTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"id":"TestSample","amount":' .AmountTest::getJson() . ',"is_final_capture":true,"state":"TestSample","reason_code":"TestSample","parent_payment":"TestSample","invoice_number":"TestSample","transaction_fee":' .CurrencyTest::getJson() . ',"create_time":"TestSample","update_time":"TestSample","links":' .LinksTest::getJson() . '}';
+        return '{"id":"TestSample","amount":' . AmountTest::getJson() . ',"is_final_capture":true,"state":"TestSample","reason_code":"TestSample","parent_payment":"TestSample","invoice_number":"TestSample","transaction_fee":' . CurrencyTest::getJson() . ',"create_time":"TestSample","update_time":"TestSample","links":' . LinksTest::getJson() . '}';
     }
 
     /**
@@ -31,7 +29,6 @@ class CaptureTest extends TestCase
     {
         return new Capture(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -53,6 +50,7 @@ class CaptureTest extends TestCase
         self::assertNotNull($obj->getUpdateTime());
         self::assertNotNull($obj->getLinks());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -62,16 +60,16 @@ class CaptureTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getId());
+        self::assertEquals('TestSample', $obj->getId());
         self::assertEquals($obj->getAmount(), AmountTest::getObject());
         self::assertEquals(true, $obj->getIsFinalCapture());
-        self::assertEquals("TestSample", $obj->getState());
-        self::assertEquals("TestSample", $obj->getReasonCode());
-        self::assertEquals("TestSample", $obj->getParentPayment());
-        self::assertEquals("TestSample", $obj->getInvoiceNumber());
+        self::assertEquals('TestSample', $obj->getState());
+        self::assertEquals('TestSample', $obj->getReasonCode());
+        self::assertEquals('TestSample', $obj->getParentPayment());
+        self::assertEquals('TestSample', $obj->getInvoiceNumber());
         self::assertEquals($obj->getTransactionFee(), CurrencyTest::getObject());
-        self::assertEquals("TestSample", $obj->getCreateTime());
-        self::assertEquals("TestSample", $obj->getUpdateTime());
+        self::assertEquals('TestSample', $obj->getCreateTime());
+        self::assertEquals('TestSample', $obj->getUpdateTime());
         self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 
@@ -89,9 +87,10 @@ class CaptureTest extends TestCase
             ->method('execute')
             ->willReturn(self::getJson());
 
-        $result = $obj->get("captureId", $mockApiContext, $mockPPRestCall);
+        $result = $obj->get('captureId', $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param Capture $obj
@@ -117,9 +116,10 @@ class CaptureTest extends TestCase
         $mockApiContext = $this->getMockBuilder('ApiContext')
                     ->disableOriginalConstructor()
                     ->getMock();
-        return array(
-            array($obj, $mockApiContext),
-            array($obj, null)
-        );
+
+        return [
+            [$obj, $mockApiContext],
+            [$obj, null],
+        ];
     }
 }

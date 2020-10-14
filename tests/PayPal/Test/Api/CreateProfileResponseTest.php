@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class CreateProfileResponse
- *
- * @package PayPal\Test\Api
  */
 class CreateProfileResponseTest extends TestCase
 {
@@ -30,7 +28,6 @@ class CreateProfileResponseTest extends TestCase
         return new CreateProfileResponse(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return CreateProfileResponse
@@ -41,6 +38,7 @@ class CreateProfileResponseTest extends TestCase
         self::assertNotNull($obj);
         self::assertNotNull($obj->getId());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -50,6 +48,6 @@ class CreateProfileResponseTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getId());
+        self::assertEquals('TestSample', $obj->getId());
     }
 }

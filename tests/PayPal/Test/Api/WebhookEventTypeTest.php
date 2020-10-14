@@ -2,18 +2,16 @@
 
 namespace PayPal\Test\Api;
 
-use PayPal\Common\PayPalResourceModel;
-use PayPal\Validation\ArgumentValidator;
-use PayPal\Api\WebhookEventTypeList;
-use PayPal\Rest\ApiContext;
 use PayPal\Api\WebhookEventType;
-use PHPUnit\Framework\TestCase;
+use PayPal\Api\WebhookEventTypeList;
+use PayPal\Common\PayPalResourceModel;
+use PayPal\Rest\ApiContext;
 use PayPal\Transport\PayPalRestCall;
+use PayPal\Validation\ArgumentValidator;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class WebhookEventType
- *
- * @package PayPal\Test\Api
  */
 class WebhookEventTypeTest extends TestCase
 {
@@ -35,7 +33,6 @@ class WebhookEventTypeTest extends TestCase
         return new WebhookEventType(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return WebhookEventType
@@ -48,6 +45,7 @@ class WebhookEventTypeTest extends TestCase
         self::assertNotNull($obj->getDescription());
         self::assertNotNull($obj->getStatus());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -57,9 +55,9 @@ class WebhookEventTypeTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getName());
-        self::assertEquals("TestSample", $obj->getDescription());
-        self::assertEquals("TestSample", $obj->getStatus());
+        self::assertEquals('TestSample', $obj->getName());
+        self::assertEquals('TestSample', $obj->getDescription());
+        self::assertEquals('TestSample', $obj->getStatus());
     }
 
     /**
@@ -76,9 +74,10 @@ class WebhookEventTypeTest extends TestCase
             ->method('execute')
             ->willReturn(WebhookEventTypeListTest::getJson());
 
-        $result = $obj->subscribedEventTypes("webhookId", $mockApiContext, $mockPPRestCall);
+        $result = $obj->subscribedEventTypes('webhookId', $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
+
     /**
      * @dataProvider mockProvider
      * @param WebhookEventType $obj
@@ -103,9 +102,10 @@ class WebhookEventTypeTest extends TestCase
         $mockApiContext = $this->getMockBuilder('ApiContext')
                     ->disableOriginalConstructor()
                     ->getMock();
-        return array(
-            array($obj, $mockApiContext),
-            array($obj, null)
-        );
+
+        return [
+            [$obj, $mockApiContext],
+            [$obj, null],
+        ];
     }
 }

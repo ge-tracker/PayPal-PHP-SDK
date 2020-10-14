@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class Presentation
- *
- * @package PayPal\Test\Api
  */
 class PresentationTest extends TestCase
 {
@@ -30,7 +28,6 @@ class PresentationTest extends TestCase
         return new Presentation(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return Presentation
@@ -45,6 +42,7 @@ class PresentationTest extends TestCase
         self::assertNotNull($obj->getReturnUrlLabel());
         self::assertNotNull($obj->getNoteToSellerLabel());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -54,12 +52,10 @@ class PresentationTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getBrandName());
-        self::assertEquals("TestSample", $obj->getLogoImage());
-        self::assertEquals("TestSample", $obj->getLocaleCode());
-        self::assertEquals("TestSample", $obj->getReturnUrlLabel());
-        self::assertEquals("TestSample", $obj->getNoteToSellerLabel());
+        self::assertEquals('TestSample', $obj->getBrandName());
+        self::assertEquals('TestSample', $obj->getLogoImage());
+        self::assertEquals('TestSample', $obj->getLocaleCode());
+        self::assertEquals('TestSample', $obj->getReturnUrlLabel());
+        self::assertEquals('TestSample', $obj->getNoteToSellerLabel());
     }
-
-
 }

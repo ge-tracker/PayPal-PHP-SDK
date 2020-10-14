@@ -12,7 +12,6 @@ use PayPal\Exception\PayPalConnectionException;
  */
 class PayPalHttpConnection
 {
-
     /**
      * @var PayPalHttpConfig
      */
@@ -28,7 +27,7 @@ class PayPalHttpConnection
     /**
      * @var array
      */
-    private $responseHeaders = array();
+    private $responseHeaders = [];
 
     /**
      * @var bool
@@ -44,8 +43,8 @@ class PayPalHttpConnection
      */
     public function __construct(PayPalHttpConfig $httpConfig, array $config)
     {
-        if (!function_exists("curl_init")) {
-            throw new PayPalConfigurationException("Curl module is not available on this system");
+        if (!function_exists('curl_init')) {
+            throw new PayPalConfigurationException('Curl module is not available on this system');
         }
         $this->httpConfig = $httpConfig;
         $this->logger = PayPalLoggingManager::getInstance(__CLASS__);
@@ -58,10 +57,11 @@ class PayPalHttpConnection
      */
     private function getHttpHeaders()
     {
-        $ret = array();
+        $ret = [];
         foreach ($this->httpConfig->getHeaders() as $k => $v) {
             $ret[] = "$k: $v";
         }
+
         return $ret;
     }
 
@@ -72,9 +72,11 @@ class PayPalHttpConnection
      * @param string $data
      * @return int
      */
-    protected function parseResponseHeaders($ch, $data) {
+    protected function parseResponseHeaders($ch, $data)
+    {
         if (!$this->skippedHttpStatusLine) {
             $this->skippedHttpStatusLine = true;
+
             return strlen($data);
         }
 
@@ -84,11 +86,11 @@ class PayPalHttpConnection
         }
 
         // Added condition to ignore extra header which dont have colon ( : )
-        if (strpos($trimmedData, ":") == false) {
+        if (strpos($trimmedData, ':') == false) {
             return strlen($data);
         }
 
-        [$key, $value] = explode(":", $trimmedData, 2);
+        [$key, $value] = explode(':', $trimmedData, 2);
 
         $key = trim($key);
         $value = trim($value);
@@ -105,19 +107,20 @@ class PayPalHttpConnection
         return strlen($data);
     }
 
-
     /**
      * Implodes a key/value array for printing.
      *
      * @param array $arr
      * @return string
      */
-    protected function implodeArray($arr) {
+    protected function implodeArray($arr)
+    {
         $retStr = '';
-        foreach($arr as $key => $value) {
+        foreach ($arr as $key => $value) {
             $retStr .= $key . ': ' . $value . ', ';
         }
         rtrim($retStr, ', ');
+
         return $retStr;
     }
 
@@ -150,11 +153,13 @@ class PayPalHttpConnection
             case 'POST':
                 curl_setopt($ch, CURLOPT_POST, true);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+
                 break;
             case 'PUT':
             case 'PATCH':
             case 'DELETE':
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+
                 break;
         }
 
@@ -163,9 +168,9 @@ class PayPalHttpConnection
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $this->httpConfig->getMethod());
         }
 
-        $this->responseHeaders = array();
+        $this->responseHeaders = [];
         $this->skippedHttpStatusLine = false;
-        curl_setopt($ch, CURLOPT_HEADERFUNCTION, array($this, 'parseResponseHeaders'));
+        curl_setopt($ch, CURLOPT_HEADERFUNCTION, [$this, 'parseResponseHeaders']);
 
         //Execute Curl Request
         $result = curl_exec($ch);
@@ -174,7 +179,7 @@ class PayPalHttpConnection
 
         //Retry if Certificate Exception
         if (curl_errno($ch) == 60) {
-            $this->logger->info("Invalid or no certificate authority found - Retrying using bundled CA certs file");
+            $this->logger->info('Invalid or no certificate authority found - Retrying using bundled CA certs file');
             curl_setopt($ch, CURLOPT_CAINFO, __DIR__ . '/cacert.pem');
             $result = curl_exec($ch);
             //Retrieve Response Status
@@ -189,13 +194,14 @@ class PayPalHttpConnection
                 curl_errno($ch)
             );
             curl_close($ch);
+
             throw $ex;
         }
 
         // Get Request and Response Headers
         $requestHeaders = curl_getinfo($ch, CURLINFO_HEADER_OUT);
-        $this->logger->debug("Request Headers \t: " . str_replace("\r\n", ", ", $requestHeaders));
-        $this->logger->debug(($data && $data != '' ? "Request Data\t\t: " . $data : "No Request Payload") . "\n" . str_repeat('-', 128) . "\n");
+        $this->logger->debug("Request Headers \t: " . str_replace("\r\n", ', ', $requestHeaders));
+        $this->logger->debug(($data && $data != '' ? "Request Data\t\t: " . $data : 'No Request Payload') . "\n" . str_repeat('-', 128) . "\n");
         $this->logger->info("Response Status \t: " . $httpStatus);
         $this->logger->debug("Response Headers\t: " . $this->implodeArray($this->responseHeaders));
 
@@ -212,10 +218,11 @@ class PayPalHttpConnection
             $ex->setData($result);
             $this->logger->error("Got Http response code $httpStatus when accessing {$this->httpConfig->getUrl()}. " . $result);
             $this->logger->debug("\n\n" . str_repeat('=', 128) . "\n");
+
             throw $ex;
         }
 
-        $this->logger->debug(($result && $result != '' ? "Response Data \t: " . $result : "No Response Body") . "\n\n" . str_repeat('=', 128) . "\n");
+        $this->logger->debug(($result && $result != '' ? "Response Data \t: " . $result : 'No Response Body') . "\n\n" . str_repeat('=', 128) . "\n");
 
         //Return result object
         return $result;

@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class FundingDetail
- *
- * @package PayPal\Test\Api
  */
 class FundingDetailTest extends TestCase
 {
@@ -30,7 +28,6 @@ class FundingDetailTest extends TestCase
         return new FundingDetail(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return FundingDetail
@@ -44,6 +41,7 @@ class FundingDetailTest extends TestCase
         self::assertNotNull($obj->getPaymentDebitDate());
         self::assertNotNull($obj->getProcessingType());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -53,9 +51,9 @@ class FundingDetailTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getClearingTime());
-        self::assertEquals("TestSample", $obj->getPaymentHoldDate());
-        self::assertEquals("TestSample", $obj->getPaymentDebitDate());
-        self::assertEquals("TestSample", $obj->getProcessingType());
+        self::assertEquals('TestSample', $obj->getClearingTime());
+        self::assertEquals('TestSample', $obj->getPaymentHoldDate());
+        self::assertEquals('TestSample', $obj->getPaymentDebitDate());
+        self::assertEquals('TestSample', $obj->getProcessingType());
     }
 }

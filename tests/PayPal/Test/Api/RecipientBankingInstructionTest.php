@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class RecipientBankingInstruction
- *
- * @package PayPal\Test\Api
  */
 class RecipientBankingInstructionTest extends TestCase
 {
@@ -30,7 +28,6 @@ class RecipientBankingInstructionTest extends TestCase
         return new RecipientBankingInstruction(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return RecipientBankingInstruction
@@ -46,6 +43,7 @@ class RecipientBankingInstructionTest extends TestCase
         self::assertNotNull($obj->getInternationalBankAccountNumber());
         self::assertNotNull($obj->getBankIdentifierCode());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -55,11 +53,11 @@ class RecipientBankingInstructionTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getBankName());
-        self::assertEquals("TestSample", $obj->getAccountHolderName());
-        self::assertEquals("TestSample", $obj->getAccountNumber());
-        self::assertEquals("TestSample", $obj->getRoutingNumber());
-        self::assertEquals("TestSample", $obj->getInternationalBankAccountNumber());
-        self::assertEquals("TestSample", $obj->getBankIdentifierCode());
+        self::assertEquals('TestSample', $obj->getBankName());
+        self::assertEquals('TestSample', $obj->getAccountHolderName());
+        self::assertEquals('TestSample', $obj->getAccountNumber());
+        self::assertEquals('TestSample', $obj->getRoutingNumber());
+        self::assertEquals('TestSample', $obj->getInternationalBankAccountNumber());
+        self::assertEquals('TestSample', $obj->getBankIdentifierCode());
     }
 }

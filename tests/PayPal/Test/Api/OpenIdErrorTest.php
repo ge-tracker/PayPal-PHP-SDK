@@ -7,12 +7,10 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for OpenIdError.
- *
  */
 class OpenIdErrorTest extends TestCase
 {
-
-    /** @var  OpenIdError */
+    /** @var OpenIdError */
     private $error;
 
     /**
@@ -35,8 +33,6 @@ class OpenIdErrorTest extends TestCase
     {
     }
 
-    /**
-     */
     public function testSerializationDeserialization()
     {
         $errorCopy = new OpenIdError();

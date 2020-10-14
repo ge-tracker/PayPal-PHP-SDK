@@ -11,7 +11,6 @@ use PayPal\Validation\ArgumentValidator;
  *
  * Contain details of how and when the payment should be made to PayPal in cases of manual bank transfer.
  *
- * @package PayPal\Api
  *
  * @property string                                  reference_number
  * @property string                                  instruction_type
@@ -33,6 +32,7 @@ class PaymentInstruction extends PayPalResourceModel
     public function setReferenceNumber($reference_number)
     {
         $this->reference_number = $reference_number;
+
         return $this;
     }
 
@@ -57,6 +57,7 @@ class PaymentInstruction extends PayPalResourceModel
     public function setInstructionType($instruction_type)
     {
         $this->instruction_type = $instruction_type;
+
         return $this;
     }
 
@@ -80,6 +81,7 @@ class PaymentInstruction extends PayPalResourceModel
     public function setRecipientBankingInstruction($recipient_banking_instruction)
     {
         $this->recipient_banking_instruction = $recipient_banking_instruction;
+
         return $this;
     }
 
@@ -103,6 +105,7 @@ class PaymentInstruction extends PayPalResourceModel
     public function setAmount($amount)
     {
         $this->amount = $amount;
+
         return $this;
     }
 
@@ -126,6 +129,7 @@ class PaymentInstruction extends PayPalResourceModel
     public function setPaymentDueDate($payment_due_date)
     {
         $this->payment_due_date = $payment_due_date;
+
         return $this;
     }
 
@@ -149,6 +153,7 @@ class PaymentInstruction extends PayPalResourceModel
     public function setNote($note)
     {
         $this->note = $note;
+
         return $this;
     }
 
@@ -173,10 +178,10 @@ class PaymentInstruction extends PayPalResourceModel
     public static function get($paymentId, $apiContext = null, $restCall = null)
     {
         ArgumentValidator::validate($paymentId, 'paymentId');
-        $payLoad = "";
+        $payLoad = '';
         $json = self::executeCall(
             "/v1/payments/payment/$paymentId/payment-instruction",
-            "GET",
+            'GET',
             $payLoad,
             null,
             $apiContext,
@@ -184,7 +189,7 @@ class PaymentInstruction extends PayPalResourceModel
         );
         $ret = new self();
         $ret->fromJson($json);
+
         return $ret;
     }
-
 }

@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * Each one representing a financial transaction (Sale, Authorization, Capture, Refund) related to the payment.
  *
- * @package PayPal\Api
  *
  * @property \PayPal\Api\Sale sale
  * @property \PayPal\Api\Authorization authorization
@@ -23,12 +22,13 @@ class RelatedResources extends PayPalModel
      * Sale transaction
      *
      * @param \PayPal\Api\Sale $sale
-     * 
+     *
      * @return $this
      */
     public function setSale($sale)
     {
         $this->sale = $sale;
+
         return $this;
     }
 
@@ -46,12 +46,13 @@ class RelatedResources extends PayPalModel
      * Authorization transaction
      *
      * @param \PayPal\Api\Authorization $authorization
-     * 
+     *
      * @return $this
      */
     public function setAuthorization($authorization)
     {
         $this->authorization = $authorization;
+
         return $this;
     }
 
@@ -69,12 +70,13 @@ class RelatedResources extends PayPalModel
      * Order transaction
      *
      * @param \PayPal\Api\Order $order
-     * 
+     *
      * @return $this
      */
     public function setOrder($order)
     {
         $this->order = $order;
+
         return $this;
     }
 
@@ -92,12 +94,13 @@ class RelatedResources extends PayPalModel
      * Capture transaction
      *
      * @param \PayPal\Api\Capture $capture
-     * 
+     *
      * @return $this
      */
     public function setCapture($capture)
     {
         $this->capture = $capture;
+
         return $this;
     }
 
@@ -115,12 +118,13 @@ class RelatedResources extends PayPalModel
      * Refund transaction
      *
      * @param \PayPal\Api\Refund $refund
-     * 
+     *
      * @return $this
      */
     public function setRefund($refund)
     {
         $this->refund = $refund;
+
         return $this;
     }
 
@@ -133,5 +137,4 @@ class RelatedResources extends PayPalModel
     {
         return $this->refund;
     }
-
 }

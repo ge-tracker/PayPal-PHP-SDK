@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * The verify webhook signature response.
  *
- * @package PayPal\Api
  *
  * @property string verification_status
  */
@@ -20,12 +19,13 @@ class VerifyWebhookSignatureResponse extends PayPalModel
      * Valid Values: ["SUCCESS", "FAILURE"]
      *
      * @param string $verification_status
-     * 
+     *
      * @return $this
      */
     public function setVerificationStatus($verification_status)
     {
         $this->verification_status = $verification_status;
+
         return $this;
     }
 
@@ -38,5 +38,4 @@ class VerifyWebhookSignatureResponse extends PayPalModel
     {
         return $this->verification_status;
     }
-
 }

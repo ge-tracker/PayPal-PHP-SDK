@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * Resource representing terms used by the plan.
  *
- * @package PayPal\Api
  *
  * @property string id
  * @property string type
@@ -24,12 +23,13 @@ class Terms extends PayPalModel
      * Identifier of the terms. 128 characters max.
      *
      * @param string $id
-     * 
+     *
      * @return $this
      */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -47,12 +47,13 @@ class Terms extends PayPalModel
      * Term type. Allowed values: `MONTHLY`, `WEEKLY`, `YEARLY`.
      *
      * @param string $type
-     * 
+     *
      * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -70,12 +71,13 @@ class Terms extends PayPalModel
      * Max Amount associated with this term.
      *
      * @param \PayPal\Api\Currency $max_billing_amount
-     * 
+     *
      * @return $this
      */
     public function setMaxBillingAmount($max_billing_amount)
     {
         $this->max_billing_amount = $max_billing_amount;
+
         return $this;
     }
 
@@ -93,12 +95,13 @@ class Terms extends PayPalModel
      * How many times money can be pulled during this term.
      *
      * @param string $occurrences
-     * 
+     *
      * @return $this
      */
     public function setOccurrences($occurrences)
     {
         $this->occurrences = $occurrences;
+
         return $this;
     }
 
@@ -116,12 +119,13 @@ class Terms extends PayPalModel
      * Amount_range associated with this term.
      *
      * @param \PayPal\Api\Currency $amount_range
-     * 
+     *
      * @return $this
      */
     public function setAmountRange($amount_range)
     {
         $this->amount_range = $amount_range;
+
         return $this;
     }
 
@@ -139,12 +143,13 @@ class Terms extends PayPalModel
      * Buyer's ability to edit the amount in this term.
      *
      * @param string $buyer_editable
-     * 
+     *
      * @return $this
      */
     public function setBuyerEditable($buyer_editable)
     {
         $this->buyer_editable = $buyer_editable;
+
         return $this;
     }
 
@@ -157,5 +162,4 @@ class Terms extends PayPalModel
     {
         return $this->buyer_editable;
     }
-
 }

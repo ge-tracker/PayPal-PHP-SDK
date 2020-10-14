@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class CreditCardList
- *
- * @package PayPal\Test\Api
  */
 class CreditCardListTest extends TestCase
 {
@@ -18,7 +16,7 @@ class CreditCardListTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"items":' .CreditCardTest::getJson() . ',"links":' .LinksTest::getJson() . ',"total_items":123,"total_pages":123}';
+        return '{"items":' . CreditCardTest::getJson() . ',"links":' . LinksTest::getJson() . ',"total_items":123,"total_pages":123}';
     }
 
     /**
@@ -29,7 +27,6 @@ class CreditCardListTest extends TestCase
     {
         return new CreditCardList(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -44,6 +41,7 @@ class CreditCardListTest extends TestCase
         self::assertNotNull($obj->getTotalItems());
         self::assertNotNull($obj->getTotalPages());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 

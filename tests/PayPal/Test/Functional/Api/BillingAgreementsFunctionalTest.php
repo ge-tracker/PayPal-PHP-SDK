@@ -13,12 +13,9 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class Billing Agreements
- *
- * @package PayPal\Test\Api
  */
 class BillingAgreementsFunctionalTest extends TestCase
 {
-
     public $operation;
 
     public $response;
@@ -66,6 +63,7 @@ class BillingAgreementsFunctionalTest extends TestCase
         $agreement->getPlan()->setId($plan->getId());
         $result = $agreement->create($this->apiContext, $this->mockPayPalRestCall);
         self::assertNotNull($result);
+
         return $result;
     }
 
@@ -86,6 +84,7 @@ class BillingAgreementsFunctionalTest extends TestCase
         self::assertNotNull($paymentToken);
         self::assertNotEmpty($paymentToken);
         $result = $agreement->execute($paymentToken, $this->apiContext, $this->mockPayPalRestCall);
+
         return $result;
     }
 
@@ -101,6 +100,7 @@ class BillingAgreementsFunctionalTest extends TestCase
         $agreement->getPlan()->setId($plan->getId());
         $result = $agreement->create($this->apiContext, $this->mockPayPalRestCall);
         self::assertNotNull($result);
+
         return $result;
     }
 
@@ -114,6 +114,7 @@ class BillingAgreementsFunctionalTest extends TestCase
         $result = Agreement::get($agreement->getId(), $this->apiContext, $this->mockPayPalRestCall);
         self::assertNotNull($result);
         self::assertEquals($agreement->getId(), $result->getId());
+
         return $result;
     }
 
@@ -129,7 +130,7 @@ class BillingAgreementsFunctionalTest extends TestCase
         $patch->setOp($request['op']);
         $patch->setPath($request['path']);
         $patch->setValue($request['value']);
-        $patches = array();
+        $patches = [];
         $patches[] = $patch;
         $patchRequest = new PatchRequest();
         $patchRequest->setPatches($patches);
@@ -148,6 +149,7 @@ class BillingAgreementsFunctionalTest extends TestCase
         $currency = new Currency($this->operation['request']['body']);
         $result = $agreement->setBalance($currency, $this->apiContext, $this->mockPayPalRestCall);
         self::assertTrue($result);
+
         return $agreement;
     }
 
@@ -162,6 +164,7 @@ class BillingAgreementsFunctionalTest extends TestCase
         $agreementStateDescriptor = new AgreementStateDescriptor($this->operation['request']['body']);
         $result = $agreement->billBalance($agreementStateDescriptor, $this->apiContext, $this->mockPayPalRestCall);
         self::assertTrue($result);
+
         return $agreement;
     }
 
@@ -172,7 +175,7 @@ class BillingAgreementsFunctionalTest extends TestCase
      */
     public function testGetTransactions($agreement)
     {
-        $params = array('start_date' => date('Y-m-d', strtotime('-15 years')), 'end_date' => date('Y-m-d', strtotime('+5 days')));
+        $params = ['start_date' => date('Y-m-d', strtotime('-15 years')), 'end_date' => date('Y-m-d', strtotime('+5 days'))];
         $result = Agreement::searchTransactions($agreement->getId(), $params, $this->apiContext, $this->mockPayPalRestCall);
         self::assertNotNull($result);
         self::assertIsArray($result->getAgreementTransactionList());
@@ -195,6 +198,7 @@ class BillingAgreementsFunctionalTest extends TestCase
         $get = $this->testGet($agreement);
         self::assertTrue($result);
         self::assertEquals('Suspended', $get->getState());
+
         return $get;
     }
 
@@ -211,6 +215,7 @@ class BillingAgreementsFunctionalTest extends TestCase
         $this->setupTest($this->getClassName(), 'testGet');
         $get = $this->testGet($agreement);
         self::assertEquals('Active', $get->getState());
+
         return $get;
     }
 
@@ -227,6 +232,7 @@ class BillingAgreementsFunctionalTest extends TestCase
         $this->setupTest($this->getClassName(), 'testGetCancelled');
         $get = $this->testGet($agreement);
         self::assertEquals('Cancelled', $get->getState());
+
         return $get;
     }
 }

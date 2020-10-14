@@ -7,24 +7,21 @@ namespace PayPal\Core;
  *
  * PayPalConfigManager loads the SDK configuration file and
  * hands out appropriate config params to other classes
- *
- * @package PayPal\Core
  */
 class PayPalConfigManager
 {
-
     /**
      * Configuration Options
      *
      * @var array
      */
-    private $configs = array(
-    );
+    private $configs = [
+    ];
 
     /**
      * Singleton Object
      *
-     * @var $this
+     * @var
      */
     private static $instance;
 
@@ -36,8 +33,10 @@ class PayPalConfigManager
         if (defined('PP_CONFIG_PATH')) {
             $configFile = constant('PP_CONFIG_PATH') . '/sdk_config.ini';
         } else {
-            $configFile = implode(DIRECTORY_SEPARATOR,
-                array(__DIR__, "..", "config", "sdk_config.ini"));
+            $configFile = implode(
+                DIRECTORY_SEPARATOR,
+                [__DIR__, '..', 'config', 'sdk_config.ini']
+            );
         }
         if (file_exists($configFile)) {
             $this->addConfigFromIni($configFile);
@@ -54,6 +53,7 @@ class PayPalConfigManager
         if (!isset(self::$instance)) {
             self::$instance = new self();
         }
+
         return self::$instance;
     }
 
@@ -68,6 +68,7 @@ class PayPalConfigManager
         if ($configs = parse_ini_file($fileName)) {
             $this->addConfigs($configs);
         }
+
         return $this;
     }
 
@@ -79,9 +80,10 @@ class PayPalConfigManager
      * @param array $configs
      * @return $this
      */
-    public function addConfigs($configs = array())
+    public function addConfigs($configs = [])
     {
         $this->configs = $configs + $this->configs;
+
         return $this;
     }
 
@@ -99,7 +101,7 @@ class PayPalConfigManager
             return $this->configs[$searchKey];
         }
 
-        $arr = array();
+        $arr = [];
         if ($searchKey !== '') {
             foreach ($this->configs as $k => $v) {
                 if (strstr($k, $searchKey)) {
@@ -124,18 +126,20 @@ class PayPalConfigManager
     public function getIniPrefix($userId = null)
     {
         if ($userId == null) {
-            $arr = array();
+            $arr = [];
             foreach ($this->configs as $key => $value) {
                 $pos = strpos($key, '.');
-                if (strpos($key, "acct") !== false) {
+                if (strpos($key, 'acct') !== false) {
                     $arr[] = substr($key, 0, $pos);
                 }
             }
+
             return array_unique($arr);
         }
 
         $iniPrefix = array_search($userId, $this->configs);
         $pos = strpos($iniPrefix, '.');
+
         return substr($iniPrefix, 0, $pos);
     }
 

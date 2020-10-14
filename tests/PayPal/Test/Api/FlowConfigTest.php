@@ -2,14 +2,12 @@
 
 namespace PayPal\Test\Api;
 
-use PayPal\Common\PayPalModel;
 use PayPal\Api\FlowConfig;
+use PayPal\Common\PayPalModel;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class FlowConfig
- *
- * @package PayPal\Test\Api
  */
 class FlowConfigTest extends TestCase
 {
@@ -31,7 +29,6 @@ class FlowConfigTest extends TestCase
         return new FlowConfig(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return FlowConfig
@@ -45,6 +42,7 @@ class FlowConfigTest extends TestCase
         self::assertNotNull($obj->getUserAction());
         self::assertNotNull($obj->getReturnUriHttpMethod());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -54,18 +52,17 @@ class FlowConfigTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getLandingPageType());
-        self::assertEquals("http://www.google.com", $obj->getBankTxnPendingUrl());
-        self::assertEquals("TestSample", $obj->getUserAction());
-        self::assertEquals("TestSample", $obj->getReturnUriHttpMethod());
+        self::assertEquals('TestSample', $obj->getLandingPageType());
+        self::assertEquals('http://www.google.com', $obj->getBankTxnPendingUrl());
+        self::assertEquals('TestSample', $obj->getUserAction());
+        self::assertEquals('TestSample', $obj->getReturnUriHttpMethod());
     }
 
     public function testUrlValidationForBankTxnPendingUrl()
     {
-        $this->expectExceptionMessage("BankTxnPendingUrl is not a fully qualified URL");
+        $this->expectExceptionMessage('BankTxnPendingUrl is not a fully qualified URL');
         $this->expectException(\InvalidArgumentException::class);
         $obj = new FlowConfig();
         $obj->setBankTxnPendingUrl(null);
     }
-
 }

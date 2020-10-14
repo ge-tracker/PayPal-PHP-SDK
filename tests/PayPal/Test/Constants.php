@@ -1,4 +1,5 @@
 <?php
+
 namespace PayPal\Test;
 
 class Constants

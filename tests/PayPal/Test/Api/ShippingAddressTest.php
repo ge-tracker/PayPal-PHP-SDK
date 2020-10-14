@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class ShippingAddress
- *
- * @package PayPal\Test\Api
  */
 class ShippingAddressTest extends TestCase
 {
@@ -30,7 +28,6 @@ class ShippingAddressTest extends TestCase
         return new ShippingAddress(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return ShippingAddress
@@ -43,6 +40,7 @@ class ShippingAddressTest extends TestCase
         self::assertNotNull($obj->getRecipientName());
         self::assertNotNull($obj->getDefaultAddress());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -52,8 +50,8 @@ class ShippingAddressTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getId());
-        self::assertEquals("TestSample", $obj->getRecipientName());
+        self::assertEquals('TestSample', $obj->getId());
+        self::assertEquals('TestSample', $obj->getRecipientName());
         self::assertEquals(true, $obj->getDefaultAddress());
     }
 }

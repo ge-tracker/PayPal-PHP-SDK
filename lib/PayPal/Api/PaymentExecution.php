@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * Let's you execute a PayPal Account based Payment resource with the payer_id obtained from web approval url.
  *
- * @package PayPal\Api
  *
  * @property string payer_id
  * @property \PayPal\Api\Transaction[] transactions
@@ -26,6 +25,7 @@ class PaymentExecution extends PayPalModel
     public function setPayerId($payer_id)
     {
         $this->payer_id = $payer_id;
+
         return $this;
     }
 
@@ -49,6 +49,7 @@ class PaymentExecution extends PayPalModel
     public function setCarrierAccountId($carrier_account_id)
     {
         $this->carrier_account_id = $carrier_account_id;
+
         return $this;
     }
 
@@ -72,6 +73,7 @@ class PaymentExecution extends PayPalModel
     public function setTransactions($transactions)
     {
         $this->transactions = $transactions;
+
         return $this;
     }
 
@@ -94,11 +96,11 @@ class PaymentExecution extends PayPalModel
     public function addTransaction($transaction)
     {
         if (!$this->getTransactions()) {
-            return $this->setTransactions(array($transaction));
+            return $this->setTransactions([$transaction]);
         }
 
         return $this->setTransactions(
-            array_merge($this->getTransactions(), array($transaction))
+            array_merge($this->getTransactions(), [$transaction])
         );
     }
 
@@ -111,8 +113,7 @@ class PaymentExecution extends PayPalModel
     public function removeTransaction($transaction)
     {
         return $this->setTransactions(
-            array_diff($this->getTransactions(), array($transaction))
+            array_diff($this->getTransactions(), [$transaction])
         );
     }
-
 }

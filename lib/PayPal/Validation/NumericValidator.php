@@ -6,12 +6,9 @@ use InvalidArgumentException;
 
 /**
  * Class NumericValidator
- *
- * @package PayPal\Validation
  */
 class NumericValidator
 {
-
     /**
      * Helper method for validating an argument if it is numeric
      *
@@ -24,6 +21,7 @@ class NumericValidator
         if (trim($argument) != null && !is_numeric($argument)) {
             throw new InvalidArgumentException("$argumentName is not a valid numeric value");
         }
+
         return true;
     }
 }

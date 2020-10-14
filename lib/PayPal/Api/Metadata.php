@@ -10,7 +10,6 @@ use PayPal\Validation\UrlValidator;
  *
  * Audit information for the resource.
  *
- * @package PayPal\Api
  *
  * @property string created_date
  * @property string created_by
@@ -29,12 +28,13 @@ class Metadata extends PayPalModel
      * The date and time when the resource was created.
      *
      * @param string $created_date
-     * 
+     *
      * @return $this
      */
     public function setCreatedDate($created_date)
     {
         $this->created_date = $created_date;
+
         return $this;
     }
 
@@ -52,12 +52,13 @@ class Metadata extends PayPalModel
      * The email address of the account that created the resource.
      *
      * @param string $created_by
-     * 
+     *
      * @return $this
      */
     public function setCreatedBy($created_by)
     {
         $this->created_by = $created_by;
+
         return $this;
     }
 
@@ -75,12 +76,13 @@ class Metadata extends PayPalModel
      * The date and time when the resource was cancelled.
      *
      * @param string $cancelled_date
-     * 
+     *
      * @return $this
      */
     public function setCancelledDate($cancelled_date)
     {
         $this->cancelled_date = $cancelled_date;
+
         return $this;
     }
 
@@ -98,12 +100,13 @@ class Metadata extends PayPalModel
      * The actor who cancelled the resource.
      *
      * @param string $cancelled_by
-     * 
+     *
      * @return $this
      */
     public function setCancelledBy($cancelled_by)
     {
         $this->cancelled_by = $cancelled_by;
+
         return $this;
     }
 
@@ -121,12 +124,13 @@ class Metadata extends PayPalModel
      * The date and time when the resource was last edited.
      *
      * @param string $last_updated_date
-     * 
+     *
      * @return $this
      */
     public function setLastUpdatedDate($last_updated_date)
     {
         $this->last_updated_date = $last_updated_date;
+
         return $this;
     }
 
@@ -144,12 +148,13 @@ class Metadata extends PayPalModel
      * The email address of the account that last edited the resource.
      *
      * @param string $last_updated_by
-     * 
+     *
      * @return $this
      */
     public function setLastUpdatedBy($last_updated_by)
     {
         $this->last_updated_by = $last_updated_by;
+
         return $this;
     }
 
@@ -167,12 +172,13 @@ class Metadata extends PayPalModel
      * The date and time when the resource was first sent.
      *
      * @param string $first_sent_date
-     * 
+     *
      * @return $this
      */
     public function setFirstSentDate($first_sent_date)
     {
         $this->first_sent_date = $first_sent_date;
+
         return $this;
     }
 
@@ -190,12 +196,13 @@ class Metadata extends PayPalModel
      * The date and time when the resource was last sent.
      *
      * @param string $last_sent_date
-     * 
+     *
      * @return $this
      */
     public function setLastSentDate($last_sent_date)
     {
         $this->last_sent_date = $last_sent_date;
+
         return $this;
     }
 
@@ -213,12 +220,13 @@ class Metadata extends PayPalModel
      * The email address of the account that last sent the resource.
      *
      * @param string $last_sent_by
-     * 
+     *
      * @return $this
      */
     public function setLastSentBy($last_sent_by)
     {
         $this->last_sent_by = $last_sent_by;
+
         return $this;
     }
 
@@ -241,8 +249,9 @@ class Metadata extends PayPalModel
      */
     public function setPayerViewUrl($payer_view_url)
     {
-        UrlValidator::validate($payer_view_url, "PayerViewUrl");
+        UrlValidator::validate($payer_view_url, 'PayerViewUrl');
         $this->payer_view_url = $payer_view_url;
+
         return $this;
     }
 
@@ -255,5 +264,4 @@ class Metadata extends PayPalModel
     {
         return $this->payer_view_url;
     }
-
 }

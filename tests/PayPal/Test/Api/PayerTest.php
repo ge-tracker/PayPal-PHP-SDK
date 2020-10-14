@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class Payer
- *
- * @package PayPal\Test\Api
  */
 class PayerTest extends TestCase
 {
@@ -18,7 +16,7 @@ class PayerTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"payment_method":"TestSample","status":"TestSample","account_type":"TestSample","account_age":"TestSample","funding_instruments":' .FundingInstrumentTest::getJson() . ',"funding_option_id":"TestSample","funding_option":' .FundingOptionTest::getJson() . ',"external_selected_funding_instrument_type":"TestSample","related_funding_option":' .FundingOptionTest::getJson() . ',"payer_info":' .PayerInfoTest::getJson() . '}';
+        return '{"payment_method":"TestSample","status":"TestSample","account_type":"TestSample","account_age":"TestSample","funding_instruments":' . FundingInstrumentTest::getJson() . ',"funding_option_id":"TestSample","funding_option":' . FundingOptionTest::getJson() . ',"external_selected_funding_instrument_type":"TestSample","related_funding_option":' . FundingOptionTest::getJson() . ',"payer_info":' . PayerInfoTest::getJson() . '}';
     }
 
     /**
@@ -29,7 +27,6 @@ class PayerTest extends TestCase
     {
         return new Payer(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -50,6 +47,7 @@ class PayerTest extends TestCase
         self::assertNotNull($obj->getRelatedFundingOption());
         self::assertNotNull($obj->getPayerInfo());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -59,14 +57,14 @@ class PayerTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getPaymentMethod());
-        self::assertEquals("TestSample", $obj->getStatus());
-        self::assertEquals("TestSample", $obj->getAccountType());
-        self::assertEquals("TestSample", $obj->getAccountAge());
+        self::assertEquals('TestSample', $obj->getPaymentMethod());
+        self::assertEquals('TestSample', $obj->getStatus());
+        self::assertEquals('TestSample', $obj->getAccountType());
+        self::assertEquals('TestSample', $obj->getAccountAge());
         self::assertEquals($obj->getFundingInstruments(), FundingInstrumentTest::getObject());
-        self::assertEquals("TestSample", $obj->getFundingOptionId());
+        self::assertEquals('TestSample', $obj->getFundingOptionId());
         self::assertEquals($obj->getFundingOption(), FundingOptionTest::getObject());
-        self::assertEquals("TestSample", $obj->getExternalSelectedFundingInstrumentType());
+        self::assertEquals('TestSample', $obj->getExternalSelectedFundingInstrumentType());
         self::assertEquals($obj->getRelatedFundingOption(), FundingOptionTest::getObject());
         self::assertEquals($obj->getPayerInfo(), PayerInfoTest::getObject());
     }

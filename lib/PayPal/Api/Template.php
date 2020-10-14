@@ -12,7 +12,6 @@ use PayPal\Validation\ArgumentValidator;
  *
  * Invoicing Template
  *
- * @package PayPal\Api
  *
  * @property string template_id
  * @property string name
@@ -34,6 +33,7 @@ class Template extends PayPalResourceModel
     public function setTemplateId($template_id)
     {
         $this->template_id = $template_id;
+
         return $this;
     }
 
@@ -57,6 +57,7 @@ class Template extends PayPalResourceModel
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -80,6 +81,7 @@ class Template extends PayPalResourceModel
     public function setDefault($default)
     {
         $this->default = $default;
+
         return $this;
     }
 
@@ -103,6 +105,7 @@ class Template extends PayPalResourceModel
     public function setTemplateData($template_data)
     {
         $this->template_data = $template_data;
+
         return $this;
     }
 
@@ -126,6 +129,7 @@ class Template extends PayPalResourceModel
     public function setSettings($settings)
     {
         $this->settings = $settings;
+
         return $this;
     }
 
@@ -148,11 +152,11 @@ class Template extends PayPalResourceModel
     public function addSetting($templateSettings)
     {
         if (!$this->getSettings()) {
-            return $this->setSettings(array($templateSettings));
+            return $this->setSettings([$templateSettings]);
         }
 
         return $this->setSettings(
-            array_merge($this->getSettings(), array($templateSettings))
+            array_merge($this->getSettings(), [$templateSettings])
         );
     }
 
@@ -165,7 +169,7 @@ class Template extends PayPalResourceModel
     public function removeSetting($templateSettings)
     {
         return $this->setSettings(
-            array_diff($this->getSettings(), array($templateSettings))
+            array_diff($this->getSettings(), [$templateSettings])
         );
     }
 
@@ -179,6 +183,7 @@ class Template extends PayPalResourceModel
     public function setUnitOfMeasure($unit_of_measure)
     {
         $this->unit_of_measure = $unit_of_measure;
+
         return $this;
     }
 
@@ -202,6 +207,7 @@ class Template extends PayPalResourceModel
     public function setCustom($custom)
     {
         $this->custom = $custom;
+
         return $this;
     }
 
@@ -226,10 +232,10 @@ class Template extends PayPalResourceModel
     public static function get($templateId, $apiContext = null, $restCall = null)
     {
         ArgumentValidator::validate($templateId, 'templateId');
-        $payLoad = "";
+        $payLoad = '';
         $json = self::executeCall(
             "/v1/invoicing/templates/$templateId",
-            "GET",
+            'GET',
             $payLoad,
             null,
             $apiContext,
@@ -237,6 +243,7 @@ class Template extends PayPalResourceModel
         );
         $ret = new self();
         $ret->fromJson($json);
+
         return $ret;
     }
 
@@ -249,16 +256,17 @@ class Template extends PayPalResourceModel
      */
     public function delete($apiContext = null, $restCall = null)
     {
-        ArgumentValidator::validate($this->getTemplateId(), "Id");
-        $payLoad = "";
+        ArgumentValidator::validate($this->getTemplateId(), 'Id');
+        $payLoad = '';
         self::executeCall(
             "/v1/invoicing/templates/{$this->getTemplateId()}",
-            "DELETE",
+            'DELETE',
             $payLoad,
             null,
             $apiContext,
             $restCall
         );
+
         return true;
     }
 
@@ -272,14 +280,15 @@ class Template extends PayPalResourceModel
     public function create($apiContext = null, $restCall = null)
     {
         $json = self::executeCall(
-            "/v1/invoicing/templates",
-            "POST",
+            '/v1/invoicing/templates',
+            'POST',
             $this->toJSON(),
             null,
             $apiContext,
             $restCall
         );
         $this->fromJson($json);
+
         return $this;
     }
 
@@ -292,18 +301,18 @@ class Template extends PayPalResourceModel
      */
     public function update($apiContext = null, $restCall = null)
     {
-        ArgumentValidator::validate($this->getTemplateId(), "Id");
+        ArgumentValidator::validate($this->getTemplateId(), 'Id');
         $payLoad = $this->toJSON();
         $json = self::executeCall(
             "/v1/invoicing/templates/{$this->getTemplateId()}",
-            "PUT",
+            'PUT',
             $payLoad,
             null,
             $apiContext,
             $restCall
         );
         $this->fromJson($json);
+
         return $this;
     }
-
 }

@@ -2,14 +2,12 @@
 
 namespace PayPal\Test\Api;
 
-use PayPal\Common\PayPalModel;
 use PayPal\Api\WebhookEventList;
+use PayPal\Common\PayPalModel;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class WebhookEventList
- *
- * @package PayPal\Test\Api
  */
 class WebhookEventListTest extends TestCase
 {
@@ -19,7 +17,7 @@ class WebhookEventListTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"events":' .WebhookEventTest::getJson() . ',"count":123,"links":' .LinksTest::getJson() . '}';
+        return '{"events":' . WebhookEventTest::getJson() . ',"count":123,"links":' . LinksTest::getJson() . '}';
     }
 
     /**
@@ -30,7 +28,6 @@ class WebhookEventListTest extends TestCase
     {
         return new WebhookEventList(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -44,6 +41,7 @@ class WebhookEventListTest extends TestCase
         self::assertNotNull($obj->getCount());
         self::assertNotNull($obj->getLinks());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -57,6 +55,4 @@ class WebhookEventListTest extends TestCase
         self::assertEquals(123, $obj->getCount());
         self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
-
-
 }

@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class RedirectUrls
- *
- * @package PayPal\Test\Api
  */
 class RedirectUrlsTest extends TestCase
 {
@@ -30,7 +28,6 @@ class RedirectUrlsTest extends TestCase
         return new RedirectUrls(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return RedirectUrls
@@ -42,6 +39,7 @@ class RedirectUrlsTest extends TestCase
         self::assertNotNull($obj->getReturnUrl());
         self::assertNotNull($obj->getCancelUrl());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -51,13 +49,13 @@ class RedirectUrlsTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("http://www.google.com", $obj->getReturnUrl());
-        self::assertEquals("http://www.google.com", $obj->getCancelUrl());
+        self::assertEquals('http://www.google.com', $obj->getReturnUrl());
+        self::assertEquals('http://www.google.com', $obj->getCancelUrl());
     }
 
     public function testUrlValidationForReturnUrl()
     {
-        $this->expectExceptionMessage("ReturnUrl is not a fully qualified URL");
+        $this->expectExceptionMessage('ReturnUrl is not a fully qualified URL');
         $this->expectException(\InvalidArgumentException::class);
         $obj = new RedirectUrls();
         $obj->setReturnUrl(null);
@@ -65,7 +63,7 @@ class RedirectUrlsTest extends TestCase
 
     public function testUrlValidationForCancelUrl()
     {
-        $this->expectExceptionMessage("CancelUrl is not a fully qualified URL");
+        $this->expectExceptionMessage('CancelUrl is not a fully qualified URL');
         $this->expectException(\InvalidArgumentException::class);
         $obj = new RedirectUrls();
         $obj->setCancelUrl(null);

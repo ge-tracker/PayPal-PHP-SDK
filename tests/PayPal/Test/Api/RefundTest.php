@@ -3,13 +3,11 @@
 namespace PayPal\Test\Api;
 
 use PayPal\Api\Refund;
-use PHPUnit\Framework\TestCase;
 use PayPal\Transport\PayPalRestCall;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class Refund
- *
- * @package PayPal\Test\Api
  */
 class RefundTest extends TestCase
 {
@@ -19,7 +17,7 @@ class RefundTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"id":"TestSample","amount":' .AmountTest::getJson() . ',"state":"TestSample","reason":"TestSample","invoice_number":"TestSample","sale_id":"TestSample","capture_id":"TestSample","parent_payment":"TestSample","description":"TestSample","create_time":"TestSample","update_time":"TestSample","reason_code":"TestSample","links":' .LinksTest::getJson() . '}';
+        return '{"id":"TestSample","amount":' . AmountTest::getJson() . ',"state":"TestSample","reason":"TestSample","invoice_number":"TestSample","sale_id":"TestSample","capture_id":"TestSample","parent_payment":"TestSample","description":"TestSample","create_time":"TestSample","update_time":"TestSample","reason_code":"TestSample","links":' . LinksTest::getJson() . '}';
     }
 
     /**
@@ -30,7 +28,6 @@ class RefundTest extends TestCase
     {
         return new Refund(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -54,6 +51,7 @@ class RefundTest extends TestCase
         self::assertNotNull($obj->getReasonCode());
         self::assertNotNull($obj->getLinks());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -63,18 +61,18 @@ class RefundTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getId());
+        self::assertEquals('TestSample', $obj->getId());
         self::assertEquals($obj->getAmount(), AmountTest::getObject());
-        self::assertEquals("TestSample", $obj->getState());
-        self::assertEquals("TestSample", $obj->getReason());
-        self::assertEquals("TestSample", $obj->getInvoiceNumber());
-        self::assertEquals("TestSample", $obj->getSaleId());
-        self::assertEquals("TestSample", $obj->getCaptureId());
-        self::assertEquals("TestSample", $obj->getParentPayment());
-        self::assertEquals("TestSample", $obj->getDescription());
-        self::assertEquals("TestSample", $obj->getCreateTime());
-        self::assertEquals("TestSample", $obj->getUpdateTime());
-        self::assertEquals("TestSample", $obj->getReasonCode());
+        self::assertEquals('TestSample', $obj->getState());
+        self::assertEquals('TestSample', $obj->getReason());
+        self::assertEquals('TestSample', $obj->getInvoiceNumber());
+        self::assertEquals('TestSample', $obj->getSaleId());
+        self::assertEquals('TestSample', $obj->getCaptureId());
+        self::assertEquals('TestSample', $obj->getParentPayment());
+        self::assertEquals('TestSample', $obj->getDescription());
+        self::assertEquals('TestSample', $obj->getCreateTime());
+        self::assertEquals('TestSample', $obj->getUpdateTime());
+        self::assertEquals('TestSample', $obj->getReasonCode());
         self::assertEquals($obj->getLinks(), LinksTest::getObject());
     }
 
@@ -92,7 +90,7 @@ class RefundTest extends TestCase
             ->method('execute')
             ->willReturn(self::getJson());
 
-        $result = $obj->get("refundId", $mockApiContext, $mockPPRestCall);
+        $result = $obj->get('refundId', $mockApiContext, $mockPPRestCall);
         self::assertNotNull($result);
     }
 
@@ -102,9 +100,10 @@ class RefundTest extends TestCase
         $mockApiContext = $this->getMockBuilder('ApiContext')
                     ->disableOriginalConstructor()
                     ->getMock();
-        return array(
-            array($obj, $mockApiContext),
-            array($obj, null)
-        );
+
+        return [
+            [$obj, $mockApiContext],
+            [$obj, null],
+        ];
     }
 }

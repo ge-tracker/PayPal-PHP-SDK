@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * A JSON patch request.
  *
- * @package PayPal\Api
  *
  * @property \PayPal\Api\Patch[] patches
  */
@@ -25,6 +24,7 @@ class PatchRequest extends PayPalModel
     public function setPatches($patches)
     {
         $this->patches = $patches;
+
         return $this;
     }
 
@@ -47,11 +47,11 @@ class PatchRequest extends PayPalModel
     public function addPatch($patch)
     {
         if (!$this->getPatches()) {
-            return $this->setPatches(array($patch));
+            return $this->setPatches([$patch]);
         }
 
         return $this->setPatches(
-            array_merge($this->getPatches(), array($patch))
+            array_merge($this->getPatches(), [$patch])
         );
     }
 
@@ -64,7 +64,7 @@ class PatchRequest extends PayPalModel
     public function removePatch($patch)
     {
         return $this->setPatches(
-            array_diff($this->getPatches(), array($patch))
+            array_diff($this->getPatches(), [$patch])
         );
     }
 
@@ -77,10 +77,11 @@ class PatchRequest extends PayPalModel
      */
     public function toJSON($options = 0)
     {
-        $json = array();
+        $json = [];
         foreach ($this->getPatches() as $patch) {
             $json[] = $patch->toArray();
         }
+
         return str_replace('\\/', '/', json_encode($json, $options));
     }
 }

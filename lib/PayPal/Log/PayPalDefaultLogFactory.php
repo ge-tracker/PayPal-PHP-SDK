@@ -8,8 +8,6 @@ use Psr\Log\LoggerInterface;
  * Class PayPalDefaultLogFactory
  *
  * This factory is the default implementation of Log factory.
- *
- * @package PayPal\Log
  */
 class PayPalDefaultLogFactory implements PayPalLogFactory
 {

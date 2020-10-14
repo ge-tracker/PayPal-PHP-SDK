@@ -12,7 +12,6 @@ use PayPal\Validation\ArgumentValidator;
  *
  * Payment web experience profile resource
  *
- * @package PayPal\Api
  *
  * @property string id
  * @property string name
@@ -33,6 +32,7 @@ class WebProfile extends PayPalResourceModel
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -56,6 +56,7 @@ class WebProfile extends PayPalResourceModel
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -79,6 +80,7 @@ class WebProfile extends PayPalResourceModel
     public function setTemporary($temporary)
     {
         $this->temporary = $temporary;
+
         return $this;
     }
 
@@ -102,6 +104,7 @@ class WebProfile extends PayPalResourceModel
     public function setFlowConfig($flow_config)
     {
         $this->flow_config = $flow_config;
+
         return $this;
     }
 
@@ -125,6 +128,7 @@ class WebProfile extends PayPalResourceModel
     public function setInputFields($input_fields)
     {
         $this->input_fields = $input_fields;
+
         return $this;
     }
 
@@ -148,6 +152,7 @@ class WebProfile extends PayPalResourceModel
     public function setPresentation($presentation)
     {
         $this->presentation = $presentation;
+
         return $this;
     }
 
@@ -172,8 +177,8 @@ class WebProfile extends PayPalResourceModel
     {
         $payLoad = $this->toJSON();
         $json = self::executeCall(
-            "/v1/payment-experience/web-profiles/",
-            "POST",
+            '/v1/payment-experience/web-profiles/',
+            'POST',
             $payLoad,
             null,
             $apiContext,
@@ -181,6 +186,7 @@ class WebProfile extends PayPalResourceModel
         );
         $ret = new CreateProfileResponse();
         $ret->fromJson($json);
+
         return $ret;
     }
 
@@ -193,16 +199,17 @@ class WebProfile extends PayPalResourceModel
      */
     public function update($apiContext = null, $restCall = null)
     {
-        ArgumentValidator::validate($this->getId(), "Id");
+        ArgumentValidator::validate($this->getId(), 'Id');
         $payLoad = $this->toJSON();
         self::executeCall(
             "/v1/payment-experience/web-profiles/{$this->getId()}",
-            "PUT",
+            'PUT',
             $payLoad,
             null,
             $apiContext,
             $restCall
         );
+
         return true;
     }
 
@@ -216,21 +223,22 @@ class WebProfile extends PayPalResourceModel
      */
     public function partial_update($patch, $apiContext = null, $restCall = null)
     {
-        ArgumentValidator::validate($this->getId(), "Id");
+        ArgumentValidator::validate($this->getId(), 'Id');
         ArgumentValidator::validate($patch, 'patch');
-        $payload = array();
+        $payload = [];
         foreach ($patch as $patchObject) {
             $payload[] = $patchObject->toArray();
         }
         $payLoad = json_encode($payload);
         self::executeCall(
             "/v1/payment-experience/web-profiles/{$this->getId()}",
-            "PATCH",
+            'PATCH',
             $payLoad,
             null,
             $apiContext,
             $restCall
         );
+
         return true;
     }
 
@@ -245,10 +253,10 @@ class WebProfile extends PayPalResourceModel
     public static function get($profileId, $apiContext = null, $restCall = null)
     {
         ArgumentValidator::validate($profileId, 'profileId');
-        $payLoad = "";
+        $payLoad = '';
         $json = self::executeCall(
             "/v1/payment-experience/web-profiles/$profileId",
-            "GET",
+            'GET',
             $payLoad,
             null,
             $apiContext,
@@ -256,6 +264,7 @@ class WebProfile extends PayPalResourceModel
         );
         $ret = new self();
         $ret->fromJson($json);
+
         return $ret;
     }
 
@@ -268,15 +277,16 @@ class WebProfile extends PayPalResourceModel
      */
     public static function get_list($apiContext = null, $restCall = null)
     {
-        $payLoad = "";
+        $payLoad = '';
         $json = self::executeCall(
-            "/v1/payment-experience/web-profiles/",
-            "GET",
+            '/v1/payment-experience/web-profiles/',
+            'GET',
             $payLoad,
             null,
             $apiContext,
             $restCall
         );
+
         return self::getList($json);
     }
 
@@ -289,17 +299,17 @@ class WebProfile extends PayPalResourceModel
      */
     public function delete($apiContext = null, $restCall = null)
     {
-        ArgumentValidator::validate($this->getId(), "Id");
-        $payLoad = "";
+        ArgumentValidator::validate($this->getId(), 'Id');
+        $payLoad = '';
         self::executeCall(
             "/v1/payment-experience/web-profiles/{$this->getId()}",
-            "DELETE",
+            'DELETE',
             $payLoad,
             null,
             $apiContext,
             $restCall
         );
+
         return true;
     }
-
 }

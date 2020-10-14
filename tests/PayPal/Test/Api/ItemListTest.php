@@ -8,8 +8,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class ItemList
- *
- * @package PayPal\Test\Api
  */
 class ItemListTest extends TestCase
 {
@@ -31,7 +29,6 @@ class ItemListTest extends TestCase
         return new ItemList(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return ItemList
@@ -45,6 +42,7 @@ class ItemListTest extends TestCase
         self::assertNotNull($obj->getShippingMethod());
         self::assertNotNull($obj->getShippingPhoneNumber());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -54,28 +52,28 @@ class ItemListTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals($obj->getItems(), array(ItemTest::getObject()));
+        self::assertEquals($obj->getItems(), [ItemTest::getObject()]);
         self::assertEquals($obj->getShippingAddress(), ShippingAddressTest::getObject());
-        self::assertEquals("TestSample", $obj->getShippingMethod());
-        self::assertEquals("TestSample", $obj->getShippingPhoneNumber());
+        self::assertEquals('TestSample', $obj->getShippingMethod());
+        self::assertEquals('TestSample', $obj->getShippingPhoneNumber());
     }
 
-	/**
+    /**
      * @depends testSerializationDeserialization
      * @param ItemList $obj
      */
     public function testAddRemove($obj)
     {
-		$item2 = new Item(ItemTest::getJSON());
-		$item2->setSku('TestSample2');
+        $item2 = new Item(ItemTest::getJSON());
+        $item2->setSku('TestSample2');
         $item3 = new Item(ItemTest::getJSON());
-		$item3->setSku('TestSample3');
-		$obj->addItem($item2);
-		$obj->addItem($item3);
-		self::assertCount(3, $obj->getItems());
-		$obj->removeItem($item2);
+        $item3->setSku('TestSample3');
+        $obj->addItem($item2);
+        $obj->addItem($item3);
+        self::assertCount(3, $obj->getItems());
+        $obj->removeItem($item2);
 
-		self::assertCount(2, $obj->getItems());
-		self::assertStringContainsString('"items":[', $obj->toJSON());
+        self::assertCount(2, $obj->getItems());
+        self::assertStringContainsString('"items":[', $obj->toJSON());
     }
 }

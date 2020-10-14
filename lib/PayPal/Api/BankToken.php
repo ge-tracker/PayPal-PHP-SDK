@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * A resource representing a bank that can be used to fund a payment.
  *
- * @package PayPal\Api
  *
  * @property string bank_id
  * @property string external_customer_id
@@ -21,12 +20,13 @@ class BankToken extends PayPalModel
      * ID of a previously saved Bank resource using /vault/bank API.
      *
      * @param string $bank_id
-     * 
+     *
      * @return $this
      */
     public function setBankId($bank_id)
     {
         $this->bank_id = $bank_id;
+
         return $this;
     }
 
@@ -44,12 +44,13 @@ class BankToken extends PayPalModel
      * The unique identifier of the payer used when saving this bank using /vault/bank API.
      *
      * @param string $external_customer_id
-     * 
+     *
      * @return $this
      */
     public function setExternalCustomerId($external_customer_id)
     {
         $this->external_customer_id = $external_customer_id;
+
         return $this;
     }
 
@@ -67,12 +68,13 @@ class BankToken extends PayPalModel
      * Identifier of the direct debit mandate to validate. Currently supported only for EU bank accounts(SEPA).
      *
      * @param string $mandate_reference_number
-     * 
+     *
      * @return $this
      */
     public function setMandateReferenceNumber($mandate_reference_number)
     {
         $this->mandate_reference_number = $mandate_reference_number;
+
         return $this;
     }
 
@@ -85,5 +87,4 @@ class BankToken extends PayPalModel
     {
         return $this->mandate_reference_number;
     }
-
 }

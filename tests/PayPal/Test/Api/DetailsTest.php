@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class Details
- *
- * @package PayPal\Test\Api
  */
 class DetailsTest extends TestCase
 {
@@ -32,7 +30,6 @@ class DetailsTest extends TestCase
         return new Details(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      *
@@ -51,6 +48,7 @@ class DetailsTest extends TestCase
         self::assertNotNull($obj->getGiftWrap());
         self::assertNotNull($obj->getFee());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -60,13 +58,13 @@ class DetailsTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("12.34", $obj->getSubtotal());
-        self::assertEquals("12.34", $obj->getShipping());
-        self::assertEquals("12.34", $obj->getTax());
-        self::assertEquals("12.34", $obj->getHandlingFee());
-        self::assertEquals("12.34", $obj->getShippingDiscount());
-        self::assertEquals("12.34", $obj->getInsurance());
-        self::assertEquals("12.34", $obj->getGiftWrap());
-        self::assertEquals("12.34", $obj->getFee());
+        self::assertEquals('12.34', $obj->getSubtotal());
+        self::assertEquals('12.34', $obj->getShipping());
+        self::assertEquals('12.34', $obj->getTax());
+        self::assertEquals('12.34', $obj->getHandlingFee());
+        self::assertEquals('12.34', $obj->getShippingDiscount());
+        self::assertEquals('12.34', $obj->getInsurance());
+        self::assertEquals('12.34', $obj->getGiftWrap());
+        self::assertEquals('12.34', $obj->getFee());
     }
 }

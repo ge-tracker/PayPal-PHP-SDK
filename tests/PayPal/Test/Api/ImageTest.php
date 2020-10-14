@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class Image
- *
- * @package PayPal\Test\Api
  */
 class ImageTest extends TestCase
 {
@@ -30,7 +28,6 @@ class ImageTest extends TestCase
         return new Image(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return Image
@@ -41,6 +38,7 @@ class ImageTest extends TestCase
         self::assertNotNull($obj);
         self::assertNotNull($obj->getImage());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -50,6 +48,6 @@ class ImageTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getImage());
+        self::assertEquals('TestSample', $obj->getImage());
     }
 }

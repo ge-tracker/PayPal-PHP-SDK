@@ -2,14 +2,12 @@
 
 namespace PayPal\Test\Api;
 
-use PayPal\Common\PayPalModel;
 use PayPal\Api\CartBase;
+use PayPal\Common\PayPalModel;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class CartBase
- *
- * @package PayPal\Test\Api
  */
 class CartBaseTest extends TestCase
 {
@@ -19,7 +17,7 @@ class CartBaseTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"reference_id":"TestSample","amount":' .AmountTest::getJson() . ',"payee":' .PayeeTest::getJson() . ',"description":"TestSample","note_to_payee":"TestSample","custom":"TestSample","invoice_number":"TestSample","purchase_order":"TestSample","soft_descriptor":"TestSample","soft_descriptor_city":"TestSample","payment_options":' .PaymentOptionsTest::getJson() . ',"item_list":' .ItemListTest::getJson() . ',"notify_url":"http://www.google.com","order_url":"http://www.google.com","external_funding":' .ExternalFundingTest::getJson() . ',"type":"TestSample"}';
+        return '{"reference_id":"TestSample","amount":' . AmountTest::getJson() . ',"payee":' . PayeeTest::getJson() . ',"description":"TestSample","note_to_payee":"TestSample","custom":"TestSample","invoice_number":"TestSample","purchase_order":"TestSample","soft_descriptor":"TestSample","soft_descriptor_city":"TestSample","payment_options":' . PaymentOptionsTest::getJson() . ',"item_list":' . ItemListTest::getJson() . ',"notify_url":"http://www.google.com","order_url":"http://www.google.com","external_funding":' . ExternalFundingTest::getJson() . ',"type":"TestSample"}';
     }
 
     /**
@@ -30,7 +28,6 @@ class CartBaseTest extends TestCase
     {
         return new CartBase(self::getJson());
     }
-
 
     /**
      * Tests for Serialization and Deserialization Issues
@@ -56,6 +53,7 @@ class CartBaseTest extends TestCase
         self::assertNotNull($obj->getOrderUrl());
         self::assertNotNull($obj->getExternalFunding());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -65,26 +63,26 @@ class CartBaseTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getReferenceId());
+        self::assertEquals('TestSample', $obj->getReferenceId());
         self::assertEquals($obj->getAmount(), AmountTest::getObject());
         self::assertEquals($obj->getPayee(), PayeeTest::getObject());
-        self::assertEquals("TestSample", $obj->getDescription());
-        self::assertEquals("TestSample", $obj->getNoteToPayee());
-        self::assertEquals("TestSample", $obj->getCustom());
-        self::assertEquals("TestSample", $obj->getInvoiceNumber());
-        self::assertEquals("TestSample", $obj->getPurchaseOrder());
-        self::assertEquals("TestSample", $obj->getSoftDescriptor());
-        self::assertEquals("TestSample", $obj->getSoftDescriptorCity());
+        self::assertEquals('TestSample', $obj->getDescription());
+        self::assertEquals('TestSample', $obj->getNoteToPayee());
+        self::assertEquals('TestSample', $obj->getCustom());
+        self::assertEquals('TestSample', $obj->getInvoiceNumber());
+        self::assertEquals('TestSample', $obj->getPurchaseOrder());
+        self::assertEquals('TestSample', $obj->getSoftDescriptor());
+        self::assertEquals('TestSample', $obj->getSoftDescriptorCity());
         self::assertEquals($obj->getPaymentOptions(), PaymentOptionsTest::getObject());
         self::assertEquals($obj->getItemList(), ItemListTest::getObject());
-        self::assertEquals("http://www.google.com", $obj->getNotifyUrl());
-        self::assertEquals("http://www.google.com", $obj->getOrderUrl());
+        self::assertEquals('http://www.google.com', $obj->getNotifyUrl());
+        self::assertEquals('http://www.google.com', $obj->getOrderUrl());
         self::assertEquals($obj->getExternalFunding(), ExternalFundingTest::getObject());
     }
 
     public function testUrlValidationForNotifyUrl()
     {
-        $this->expectExceptionMessage("NotifyUrl is not a fully qualified URL");
+        $this->expectExceptionMessage('NotifyUrl is not a fully qualified URL');
         $this->expectException(\InvalidArgumentException::class);
         $obj = new CartBase();
         $obj->setNotifyUrl(null);
@@ -92,7 +90,7 @@ class CartBaseTest extends TestCase
 
     public function testUrlValidationForOrderUrl()
     {
-        $this->expectExceptionMessage("OrderUrl is not a fully qualified URL");
+        $this->expectExceptionMessage('OrderUrl is not a fully qualified URL');
         $this->expectException(\InvalidArgumentException::class);
         $obj = new CartBase();
         $obj->setOrderUrl(null);

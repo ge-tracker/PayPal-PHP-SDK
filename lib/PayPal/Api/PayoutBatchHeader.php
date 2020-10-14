@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * Batch header resource.
  *
- * @package PayPal\Api
  *
  * @property string payout_batch_id
  * @property string batch_status
@@ -33,6 +32,7 @@ class PayoutBatchHeader extends PayPalModel
     public function setPayoutBatchId($payout_batch_id)
     {
         $this->payout_batch_id = $payout_batch_id;
+
         return $this;
     }
 
@@ -56,6 +56,7 @@ class PayoutBatchHeader extends PayPalModel
     public function setBatchStatus($batch_status)
     {
         $this->batch_status = $batch_status;
+
         return $this;
     }
 
@@ -79,6 +80,7 @@ class PayoutBatchHeader extends PayPalModel
     public function setTimeCreated($time_created)
     {
         $this->time_created = $time_created;
+
         return $this;
     }
 
@@ -102,6 +104,7 @@ class PayoutBatchHeader extends PayPalModel
     public function setTimeCompleted($time_completed)
     {
         $this->time_completed = $time_completed;
+
         return $this;
     }
 
@@ -125,6 +128,7 @@ class PayoutBatchHeader extends PayPalModel
     public function setSenderBatchHeader($sender_batch_header)
     {
         $this->sender_batch_header = $sender_batch_header;
+
         return $this;
     }
 
@@ -148,6 +152,7 @@ class PayoutBatchHeader extends PayPalModel
     public function setAmount($amount)
     {
         $this->amount = $amount;
+
         return $this;
     }
 
@@ -171,6 +176,7 @@ class PayoutBatchHeader extends PayPalModel
     public function setFees($fees)
     {
         $this->fees = $fees;
+
         return $this;
     }
 
@@ -194,6 +200,7 @@ class PayoutBatchHeader extends PayPalModel
     public function setErrors($errors)
     {
         $this->errors = $errors;
+
         return $this;
     }
 
@@ -217,6 +224,7 @@ class PayoutBatchHeader extends PayPalModel
     public function setLinks($links)
     {
         $this->links = $links;
+
         return $this;
     }
 
@@ -239,11 +247,11 @@ class PayoutBatchHeader extends PayPalModel
     public function addLink($links)
     {
         if (!$this->getLinks()) {
-            return $this->setLinks(array($links));
+            return $this->setLinks([$links]);
         }
 
         return $this->setLinks(
-            array_merge($this->getLinks(), array($links))
+            array_merge($this->getLinks(), [$links])
         );
     }
 
@@ -256,8 +264,7 @@ class PayoutBatchHeader extends PayPalModel
     public function removeLink($links)
     {
         return $this->setLinks(
-            array_diff($this->getLinks(), array($links))
+            array_diff($this->getLinks(), [$links])
         );
     }
-
 }

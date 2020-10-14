@@ -9,7 +9,6 @@ use PayPal\Common\PayPalModel;
  *
  * A list of Credit Card Resources
  *
- * @package PayPal\Api
  *
  * @property \PayPal\Api\CreditCard[] credit_cards
  * @property int count
@@ -26,7 +25,8 @@ class CreditCardHistory extends PayPalModel
      */
     public function setCreditCards($credit_cards)
     {
-        $this->{"credit-cards"} = $credit_cards;
+        $this->{'credit-cards'} = $credit_cards;
+
         return $this;
     }
 
@@ -37,20 +37,21 @@ class CreditCardHistory extends PayPalModel
      */
     public function getCreditCards()
     {
-        return $this->{"credit-cards"};
+        return $this->{'credit-cards'};
     }
 
     /**
      * Number of items returned in each range of results. Note that the last results range could have fewer items than the requested number of items.
-     * 
+     *
      *
      * @param int $count
-     * 
+     *
      * @return $this
      */
     public function setCount($count)
     {
         $this->count = $count;
+
         return $this;
     }
 
@@ -66,15 +67,16 @@ class CreditCardHistory extends PayPalModel
 
     /**
      * Identifier of the next element to get the next range of results.
-     * 
+     *
      *
      * @param string $next_id
-     * 
+     *
      * @return $this
      */
     public function setNextId($next_id)
     {
         $this->next_id = $next_id;
+
         return $this;
     }
 
@@ -87,5 +89,4 @@ class CreditCardHistory extends PayPalModel
     {
         return $this->next_id;
     }
-
 }

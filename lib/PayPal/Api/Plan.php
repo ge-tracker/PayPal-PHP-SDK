@@ -13,7 +13,6 @@ use PayPal\Validation\ArgumentValidator;
  *
  * Billing plan resource that will be used to create a billing agreement.
  *
- * @package PayPal\Api
  *
  * @property string id
  * @property string name
@@ -38,6 +37,7 @@ class Plan extends PayPalResourceModel
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -61,6 +61,7 @@ class Plan extends PayPalResourceModel
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -84,6 +85,7 @@ class Plan extends PayPalResourceModel
     public function setDescription($description)
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -107,6 +109,7 @@ class Plan extends PayPalResourceModel
     public function setType($type)
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -130,6 +133,7 @@ class Plan extends PayPalResourceModel
     public function setState($state)
     {
         $this->state = $state;
+
         return $this;
     }
 
@@ -153,6 +157,7 @@ class Plan extends PayPalResourceModel
     public function setCreateTime($create_time)
     {
         $this->create_time = $create_time;
+
         return $this;
     }
 
@@ -176,6 +181,7 @@ class Plan extends PayPalResourceModel
     public function setUpdateTime($update_time)
     {
         $this->update_time = $update_time;
+
         return $this;
     }
 
@@ -199,6 +205,7 @@ class Plan extends PayPalResourceModel
     public function setPaymentDefinitions($payment_definitions)
     {
         $this->payment_definitions = $payment_definitions;
+
         return $this;
     }
 
@@ -221,11 +228,11 @@ class Plan extends PayPalResourceModel
     public function addPaymentDefinition($paymentDefinition)
     {
         if (!$this->getPaymentDefinitions()) {
-            return $this->setPaymentDefinitions(array($paymentDefinition));
+            return $this->setPaymentDefinitions([$paymentDefinition]);
         }
 
         return $this->setPaymentDefinitions(
-            array_merge($this->getPaymentDefinitions(), array($paymentDefinition))
+            array_merge($this->getPaymentDefinitions(), [$paymentDefinition])
         );
     }
 
@@ -238,7 +245,7 @@ class Plan extends PayPalResourceModel
     public function removePaymentDefinition($paymentDefinition)
     {
         return $this->setPaymentDefinitions(
-            array_diff($this->getPaymentDefinitions(), array($paymentDefinition))
+            array_diff($this->getPaymentDefinitions(), [$paymentDefinition])
         );
     }
 
@@ -252,6 +259,7 @@ class Plan extends PayPalResourceModel
     public function setTerms($terms)
     {
         $this->terms = $terms;
+
         return $this;
     }
 
@@ -274,11 +282,11 @@ class Plan extends PayPalResourceModel
     public function addTerm($terms)
     {
         if (!$this->getTerms()) {
-            return $this->setTerms(array($terms));
+            return $this->setTerms([$terms]);
         }
 
         return $this->setTerms(
-            array_merge($this->getTerms(), array($terms))
+            array_merge($this->getTerms(), [$terms])
         );
     }
 
@@ -291,7 +299,7 @@ class Plan extends PayPalResourceModel
     public function removeTerm($terms)
     {
         return $this->setTerms(
-            array_diff($this->getTerms(), array($terms))
+            array_diff($this->getTerms(), [$terms])
         );
     }
 
@@ -305,6 +313,7 @@ class Plan extends PayPalResourceModel
     public function setMerchantPreferences($merchant_preferences)
     {
         $this->merchant_preferences = $merchant_preferences;
+
         return $this;
     }
 
@@ -329,10 +338,10 @@ class Plan extends PayPalResourceModel
     public static function get($planId, $apiContext = null, $restCall = null)
     {
         ArgumentValidator::validate($planId, 'planId');
-        $payLoad = "";
+        $payLoad = '';
         $json = self::executeCall(
             "/v1/payments/billing-plans/$planId",
-            "GET",
+            'GET',
             $payLoad,
             null,
             $apiContext,
@@ -340,6 +349,7 @@ class Plan extends PayPalResourceModel
         );
         $ret = new self();
         $ret->fromJson($json);
+
         return $ret;
     }
 
@@ -354,14 +364,15 @@ class Plan extends PayPalResourceModel
     {
         $payLoad = $this->toJSON();
         $json = self::executeCall(
-            "/v1/payments/billing-plans/",
-            "POST",
+            '/v1/payments/billing-plans/',
+            'POST',
             $payLoad,
             null,
             $apiContext,
             $restCall
         );
         $this->fromJson($json);
+
         return $this;
     }
 
@@ -375,17 +386,18 @@ class Plan extends PayPalResourceModel
      */
     public function update($patchRequest, $apiContext = null, $restCall = null)
     {
-        ArgumentValidator::validate($this->getId(), "Id");
+        ArgumentValidator::validate($this->getId(), 'Id');
         ArgumentValidator::validate($patchRequest, 'patchRequest');
         $payLoad = $patchRequest->toJSON();
         self::executeCall(
             "/v1/payments/billing-plans/{$this->getId()}",
-            "PATCH",
+            'PATCH',
             $payLoad,
             null,
             $apiContext,
             $restCall
         );
+
         return true;
     }
 
@@ -398,7 +410,7 @@ class Plan extends PayPalResourceModel
      */
     public function delete($apiContext = null, $restCall = null)
     {
-        ArgumentValidator::validate($this->getId(), "Id");
+        ArgumentValidator::validate($this->getId(), 'Id');
         $patchRequest = new PatchRequest();
         $patch = new Patch();
         $value = new PayPalModel('{
@@ -408,6 +420,7 @@ class Plan extends PayPalResourceModel
             ->setPath('/')
             ->setValue($value);
         $patchRequest->addPatch($patch);
+
         return $this->update($patchRequest, $apiContext, $restCall);
     }
 
@@ -422,16 +435,16 @@ class Plan extends PayPalResourceModel
     public static function all($params, $apiContext = null, $restCall = null)
     {
         ArgumentValidator::validate($params, 'params');
-        $payLoad = "";
-        $allowedParams = array(
+        $payLoad = '';
+        $allowedParams = [
             'page_size' => 1,
             'status' => 1,
             'page' => 1,
-            'total_required' => 1
-        );
+            'total_required' => 1,
+        ];
         $json = self::executeCall(
-            "/v1/payments/billing-plans/" . "?" . http_build_query(array_intersect_key($params, $allowedParams)),
-            "GET",
+            '/v1/payments/billing-plans/' . '?' . http_build_query(array_intersect_key($params, $allowedParams)),
+            'GET',
             $payLoad,
             null,
             $apiContext,
@@ -439,7 +452,7 @@ class Plan extends PayPalResourceModel
         );
         $ret = new PlanList();
         $ret->fromJson($json);
+
         return $ret;
     }
-
 }

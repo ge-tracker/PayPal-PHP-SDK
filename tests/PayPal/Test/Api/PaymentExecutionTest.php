@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class PaymentExecution
- *
- * @package PayPal\Test\Api
  */
 class PaymentExecutionTest extends TestCase
 {
@@ -30,7 +28,6 @@ class PaymentExecutionTest extends TestCase
         return new PaymentExecution(self::getJson());
     }
 
-
     /**
      * Tests for Serialization and Deserialization Issues
      * @return PaymentExecution
@@ -43,6 +40,7 @@ class PaymentExecutionTest extends TestCase
         self::assertNotNull($obj->getCarrierAccountId());
         self::assertNotNull($obj->getTransactions());
         self::assertEquals(self::getJson(), $obj->toJson());
+
         return $obj;
     }
 
@@ -52,8 +50,8 @@ class PaymentExecutionTest extends TestCase
      */
     public function testGetters($obj)
     {
-        self::assertEquals("TestSample", $obj->getPayerId());
-        self::assertEquals("TestSample", $obj->getCarrierAccountId());
-        self::assertEquals($obj->getTransactions(), array(TransactionTest::getObject()));
+        self::assertEquals('TestSample', $obj->getPayerId());
+        self::assertEquals('TestSample', $obj->getCarrierAccountId());
+        self::assertEquals($obj->getTransactions(), [TransactionTest::getObject()]);
     }
 }
