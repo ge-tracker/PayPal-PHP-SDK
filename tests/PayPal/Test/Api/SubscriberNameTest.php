@@ -3,7 +3,6 @@
 namespace PayPal\Test\Api;
 
 use PayPal\Api\SubscriberName;
-
 use PayPal\Transport\PayPalRestCall;
 use PHPUnit\Framework\TestCase;
 

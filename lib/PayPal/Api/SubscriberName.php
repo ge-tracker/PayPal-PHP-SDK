@@ -8,7 +8,6 @@ use PayPal\Rest\ApiContext;
 use PayPal\Transport\PayPalRestCall;
 use PayPal\Validation\ArgumentValidator;
 
-
 /**
  * Class SubscriberName
  *
@@ -16,7 +15,6 @@ use PayPal\Validation\ArgumentValidator;
  *
  * @property string given_name
  * @property string surname
- *
  */
 class SubscriberName extends PayPalResourceModel
 {

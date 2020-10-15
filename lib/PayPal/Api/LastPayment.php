@@ -11,7 +11,6 @@ use PayPal\Common\PayPalResourceModel;
  *
  * @property \PayPal\Api\CurrencyRest amount
  * @property string                   time
- *
  */
 class LastPayment extends PayPalResourceModel
 {

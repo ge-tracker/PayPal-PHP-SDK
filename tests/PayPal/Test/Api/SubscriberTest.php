@@ -3,8 +3,8 @@
 namespace PayPal\Test\Api;
 
 use PayPal\Api\Subscriber;
-use PayPal\Test\Api\SubscriptionShippingAddressTest;
 use PayPal\Test\Api\SubscriberNameTest;
+use PayPal\Test\Api\SubscriptionShippingAddressTest;
 use PayPal\Transport\PayPalRestCall;
 use PHPUnit\Framework\TestCase;
 

@@ -2,14 +2,14 @@
 
 namespace PayPal\Api;
 
+use PayPal\Api\CurrencyRest;
+use PayPal\Api\CycleExecutions;
+use PayPal\Api\LastPayment;
 use PayPal\Common\PayPalModel;
 use PayPal\Common\PayPalResourceModel;
 use PayPal\Rest\ApiContext;
 use PayPal\Transport\PayPalRestCall;
 use PayPal\Validation\ArgumentValidator;
-use PayPal\Api\CurrencyRest;
-use PayPal\Api\CycleExecutions;
-use PayPal\Api\LastPayment;
 
 /**
  * Class SubscriptionBillingInfo
@@ -20,8 +20,7 @@ use PayPal\Api\LastPayment;
  * @property \PayPal\Api\CycleExecutions[] cycle_executions
  * @property \PayPal\Api\LastPayment last_payment
  * @property string next_billing_time
- * @property integer failed_payments_count
- *
+ * @property int failed_payments_count
  */
 class SubscriptionBillingInfo extends PayPalResourceModel
 {
@@ -106,7 +105,7 @@ class SubscriptionBillingInfo extends PayPalResourceModel
     }
 
     /**
-     * @param integer $failed_payments_count
+     * @param int $failed_payments_count
      *
      * @return self
      */
@@ -118,7 +117,7 @@ class SubscriptionBillingInfo extends PayPalResourceModel
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getFailedPaymentsCount()
     {

@@ -8,18 +8,16 @@ use PayPal\Rest\ApiContext;
 use PayPal\Transport\PayPalRestCall;
 use PayPal\Validation\ArgumentValidator;
 
-
 /**
  * Class CycleExecutions
  *
  * Cycle execution resource that will be used to represent a billing cycle.
  *
  * @property string tenure_type
- * @property integer sequence
- * @property integer cycles_completed
- * @property integer cycles_remaining
- * @property integer total_cycles
- *
+ * @property int sequence
+ * @property int cycles_completed
+ * @property int cycles_remaining
+ * @property int total_cycles
  */
 class CycleExecutions extends PayPalResourceModel
 {
@@ -44,7 +42,7 @@ class CycleExecutions extends PayPalResourceModel
     }
 
     /**
-     * @param integer $sequence
+     * @param int $sequence
      *
      * @return self
      */
@@ -56,7 +54,7 @@ class CycleExecutions extends PayPalResourceModel
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getSequence()
     {
@@ -64,7 +62,7 @@ class CycleExecutions extends PayPalResourceModel
     }
 
     /**
-     * @param integer $cycles_completed
+     * @param int $cycles_completed
      *
      * @return self
      */
@@ -76,7 +74,7 @@ class CycleExecutions extends PayPalResourceModel
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getCyclesCompleted()
     {
@@ -84,7 +82,7 @@ class CycleExecutions extends PayPalResourceModel
     }
 
     /**
-     * @param integer $cycles_remaining
+     * @param int $cycles_remaining
      *
      * @return self
      */
@@ -96,7 +94,7 @@ class CycleExecutions extends PayPalResourceModel
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getCyclesRemaining()
     {
@@ -104,7 +102,7 @@ class CycleExecutions extends PayPalResourceModel
     }
 
     /**
-     * @param integer $total_cycles
+     * @param int $total_cycles
      *
      * @return self
      */
@@ -116,7 +114,7 @@ class CycleExecutions extends PayPalResourceModel
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getTotalCycles()
     {

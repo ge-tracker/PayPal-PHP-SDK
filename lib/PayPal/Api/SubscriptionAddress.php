@@ -8,7 +8,6 @@ use PayPal\Rest\ApiContext;
 use PayPal\Transport\PayPalRestCall;
 use PayPal\Validation\ArgumentValidator;
 
-
 /**
  * Class SubscriptionAddress
  *
@@ -20,7 +19,6 @@ use PayPal\Validation\ArgumentValidator;
  * @property string admin_area_2
  * @property string postal_code
  * @property string country_code
- *
  */
 class SubscriptionAddress extends PayPalResourceModel
 {

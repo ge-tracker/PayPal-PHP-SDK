@@ -2,13 +2,13 @@
 
 namespace PayPal\Api;
 
+use PayPal\Api\FullName;
+use PayPal\Api\SubscriptionAddress;
 use PayPal\Common\PayPalModel;
 use PayPal\Common\PayPalResourceModel;
 use PayPal\Rest\ApiContext;
 use PayPal\Transport\PayPalRestCall;
 use PayPal\Validation\ArgumentValidator;
-use PayPal\Api\FullName;
-use PayPal\Api\SubscriptionAddress;
 
 /**
  * Class SubscriptionShippingAddress
@@ -17,7 +17,6 @@ use PayPal\Api\SubscriptionAddress;
  *
  * @property \PayPal\Api\FullName name
  * @property \PayPal\Api\SubscriptionAddress address
- *
  */
 class SubscriptionShippingAddress extends PayPalResourceModel
 {

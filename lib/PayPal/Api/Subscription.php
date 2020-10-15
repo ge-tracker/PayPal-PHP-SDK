@@ -16,7 +16,7 @@ use PayPal\Validation\ArgumentValidator;
  * @property string                              id
  * @property string                              plan_id
  * @property string                              start_time
- * @property integer                             quantity
+ * @property int                             quantity
  * @property \PayPal\Api\CurrencyRest            shipping_amount
  * @property \PayPal\Api\Subscriber              subscriber
  * @property \PayPal\Api\SubscriptionBillingInfo billing_info
@@ -24,7 +24,6 @@ use PayPal\Validation\ArgumentValidator;
  * @property string                              update_time
  * @property string                              status
  * @property string                              status_update_time
- *
  */
 class Subscription extends PayPalResourceModel
 {
@@ -89,7 +88,7 @@ class Subscription extends PayPalResourceModel
     }
 
     /**
-     * @param integer $quantity
+     * @param int $quantity
      *
      * @return self
      */
@@ -101,7 +100,7 @@ class Subscription extends PayPalResourceModel
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getQuantity()
     {
