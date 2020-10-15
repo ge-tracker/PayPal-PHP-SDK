@@ -4,6 +4,10 @@ build
 phpunit.local.xml
 *.log
 .php_cs.cache
+api.stub.php
+tests/JamesAusten/Dev/*.stub.php
+tests/JamesAusten/Dev/Stubs/*
+!tests/JamesAusten/Dev/Stubs/.gitkeep
 
 # IDE
 .idea

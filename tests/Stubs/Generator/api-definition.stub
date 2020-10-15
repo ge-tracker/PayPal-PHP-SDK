@@ -1,0 +1,16 @@
+<?php
+
+$class = 'CycleExecutions';
+$description = 'Cycle execution resource that will be used to represent a billing cycle';
+
+$fields = [
+    'tenure_type'      => 'string',
+    'sequence'         => 'integer',
+    'cycles_completed' => 'integer',
+    'cycles_remaining' => 'integer',
+    'total_cycles'     => 'integer',
+    'billing_cycles'   => '\PayPal\Api\BillingCycles[]',
+    'payment_preferences' => 'PayPal\Api\PaymentPreferences',
+];
+
+$links = true;

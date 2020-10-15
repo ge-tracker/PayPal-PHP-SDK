@@ -1,0 +1,19 @@
+    /**
+     * @param {{FUNC_TYPE}} ${{FUNC_PARAM}}
+     *
+     * @return self
+     */
+    public function set{{FUNC_NAME}}(${{FUNC_PARAM}}): self
+    {
+        $this->{{FUNC_FIELD}} = ${{FUNC_PARAM}};
+
+        return $this;
+    }
+
+    /**
+     * @return {{FUNC_TYPE}}
+     */
+    public function get{{FUNC_NAME}}()
+    {
+        return $this->{{FUNC_FIELD}};
+    }

@@ -19,13 +19,6 @@
             <group>integration</group>
         </exclude>
     </groups>
-    <filter>
-        <whitelist>
-            <directory suffix=".php">./lib</directory>
-            <exclude>
-            </exclude>
-        </whitelist>
-    </filter>
     <logging>
         <log type="junit" target="build/junit.xml" logIncompleteSkipped="false" />
         <log type="coverage-html" target="build/coverage"/>

@@ -1,0 +1,57 @@
+<?php
+
+namespace PayPal\Test\Api;
+
+{{IMPORTS}}
+use PayPal\Transport\PayPalRestCall;
+use PHPUnit\Framework\TestCase;
+
+/**
+ * Class {{CLASS_NAME}}
+ */
+class {{CLASS_NAME}}Test extends TestCase
+{
+    /**
+     * Gets Json String of Object Plan
+     *
+     * @return string
+     */
+    public static function getJson()
+    {
+        return '{{JSON_STUB}}';
+    }
+
+    /**
+     * Gets Object Instance with Json data filled in
+     *
+     * @return {{CLASS_NAME}}
+     */
+    public static function getObject()
+    {
+        return new {{CLASS_NAME}}(self::getJson());
+    }
+
+    /**
+     * Tests for Serialization and Deserialization Issues
+     *
+     * @return {{CLASS_NAME}}
+     */
+    public function testSerializationDeserialization()
+    {
+        $obj = new {{CLASS_NAME}}(self::getJson());
+{{DESERIALISATION_STUBS}}
+        self::assertEquals(self::getJson(), $obj->toJson());
+
+        return $obj;
+    }
+
+    /**
+     * @depends testSerializationDeserialization
+     *
+     * @param {{CLASS_NAME}} $obj
+     */
+    public function testGetters($obj)
+    {
+{{GETTER_STUBS}}
+    }
+}

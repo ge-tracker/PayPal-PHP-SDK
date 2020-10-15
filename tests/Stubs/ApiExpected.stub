@@ -1,0 +1,168 @@
+<?php
+
+namespace PayPal\Api;
+
+use PayPal\Common\PayPalModel;
+use PayPal\Common\PayPalResourceModel;
+use PayPal\Rest\ApiContext;
+use PayPal\Transport\PayPalRestCall;
+use PayPal\Validation\ArgumentValidator;
+use PayPal\Api\BillingCycles;
+use PayPal\Api\PaymentPreferences;
+
+/**
+ * Class CycleExecutions
+ *
+ * Cycle execution resource that will be used to represent a billing cycle.
+ *
+ * @property string tenure_type
+ * @property integer sequence
+ * @property integer cycles_completed
+ * @property integer cycles_remaining
+ * @property integer total_cycles
+ * @property \PayPal\Api\BillingCycles[] billing_cycles
+ * @property \PayPal\Api\PaymentPreferences payment_preferences
+ *
+ */
+class CycleExecutions extends PayPalResourceModel
+{
+    /**
+     * @param string $tenure_type
+     *
+     * @return self
+     */
+    public function setTenureType($tenure_type): self
+    {
+        $this->tenure_type = $tenure_type;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTenureType()
+    {
+        return $this->tenure_type;
+    }
+
+    /**
+     * @param integer $sequence
+     *
+     * @return self
+     */
+    public function setSequence($sequence): self
+    {
+        $this->sequence = $sequence;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getSequence()
+    {
+        return $this->sequence;
+    }
+
+    /**
+     * @param integer $cycles_completed
+     *
+     * @return self
+     */
+    public function setCyclesCompleted($cycles_completed): self
+    {
+        $this->cycles_completed = $cycles_completed;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getCyclesCompleted()
+    {
+        return $this->cycles_completed;
+    }
+
+    /**
+     * @param integer $cycles_remaining
+     *
+     * @return self
+     */
+    public function setCyclesRemaining($cycles_remaining): self
+    {
+        $this->cycles_remaining = $cycles_remaining;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getCyclesRemaining()
+    {
+        return $this->cycles_remaining;
+    }
+
+    /**
+     * @param integer $total_cycles
+     *
+     * @return self
+     */
+    public function setTotalCycles($total_cycles): self
+    {
+        $this->total_cycles = $total_cycles;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getTotalCycles()
+    {
+        return $this->total_cycles;
+    }
+
+    /**
+     * @param \PayPal\Api\BillingCycles[] $billing_cycles
+     *
+     * @return self
+     */
+    public function setBillingCycles($billing_cycles): self
+    {
+        $this->billing_cycles = $billing_cycles;
+
+        return $this;
+    }
+
+    /**
+     * @return \PayPal\Api\BillingCycles[]
+     */
+    public function getBillingCycles()
+    {
+        return $this->billing_cycles;
+    }
+
+    /**
+     * @param \PayPal\Api\PaymentPreferences $payment_preferences
+     *
+     * @return self
+     */
+    public function setPaymentPreferences($payment_preferences): self
+    {
+        $this->payment_preferences = $payment_preferences;
+
+        return $this;
+    }
+
+    /**
+     * @return \PayPal\Api\PaymentPreferences
+     */
+    public function getPaymentPreferences()
+    {
+        return $this->payment_preferences;
+    }
+}
