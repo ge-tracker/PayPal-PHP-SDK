@@ -11,9 +11,9 @@ use PayPal\Common\PayPalModel;
  *
  *
  * @property \PayPal\Api\SubscriptionPlan[] plans
- * @property string total_items
- * @property string total_pages
- * @property \PayPal\Api\Links[] links
+ * @property string                         total_items
+ * @property string                         total_pages
+ * @property \PayPal\Api\Links[]            links
  */
 class SubscriptionPlanList extends PayPalModel
 {
@@ -45,6 +45,7 @@ class SubscriptionPlanList extends PayPalModel
      * Append Plans to the list.
      *
      * @param \PayPal\Api\SubscriptionPlan $plan
+     *
      * @return $this
      */
     public function addPlan($plan)
@@ -62,6 +63,7 @@ class SubscriptionPlanList extends PayPalModel
      * Remove Plans from the list.
      *
      * @param \PayPal\Api\SubscriptionPlan $plan
+     *
      * @return $this
      */
     public function removePlan($plan)
@@ -147,6 +149,7 @@ class SubscriptionPlanList extends PayPalModel
      * Append Links to the list.
      *
      * @param \PayPal\Api\Links $links
+     *
      * @return $this
      */
     public function addLink($links)
@@ -164,6 +167,7 @@ class SubscriptionPlanList extends PayPalModel
      * Remove Links from the list.
      *
      * @param \PayPal\Api\Links $links
+     *
      * @return $this
      */
     public function removeLink($links)
