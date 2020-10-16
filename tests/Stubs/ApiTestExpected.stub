@@ -5,6 +5,7 @@ namespace PayPal\Test\Api;
 use PayPal\Api\CycleExecutions;
 use PayPal\Test\Api\BillingCyclesTest;
 use PayPal\Test\Api\PaymentPreferencesTest;
+use PayPal\Test\Api\CurrencyRestTest;
 use PayPal\Transport\PayPalRestCall;
 use PHPUnit\Framework\TestCase;
 
@@ -20,7 +21,7 @@ class CycleExecutionsTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"tenure_type":"TestSample","sequence":"TestSample","cycles_completed":"TestSample","cycles_remaining":"TestSample","total_cycles":"TestSample","billing_cycles":' . BillingCyclesTest::getJson() . ',"payment_preferences":' . PaymentPreferencesTest::getJson() . ',"links":' . LinksTest::getJson() . '}';
+        return '{"tenure_type":"TestSample","sequence":"TestSample","cycles_completed":"TestSample","cycles_remaining":"TestSample","total_cycles":"TestSample","billing_cycles":' . BillingCyclesTest::getJson() . ',"payment_preferences":' . PaymentPreferencesTest::getJson() . ',"gross_amount":' . CurrencyRestTest::getJson() . ',"fee_amount":' . CurrencyRestTest::getJson() . ',"links":' . LinksTest::getJson() . '}';
     }
 
     /**
@@ -48,6 +49,8 @@ class CycleExecutionsTest extends TestCase
         self::assertNotNull($obj->getTotalCycles());
         self::assertNotNull($obj->getBillingCycles());
         self::assertNotNull($obj->getPaymentPreferences());
+        self::assertNotNull($obj->getGrossAmount());
+        self::assertNotNull($obj->getFeeAmount());
         self::assertEquals(self::getJson(), $obj->toJson());
 
         return $obj;
@@ -67,5 +70,7 @@ class CycleExecutionsTest extends TestCase
         self::assertEquals('TestSample', $obj->getTotalCycles());
         self::assertEquals($obj->getBillingCycles(), BillingCyclesTest::getObject());
         self::assertEquals($obj->getPaymentPreferences(), PaymentPreferencesTest::getObject());
+        self::assertEquals($obj->getGrossAmount(), CurrencyRestTest::getObject());
+        self::assertEquals($obj->getFeeAmount(), CurrencyRestTest::getObject());
     }
 }

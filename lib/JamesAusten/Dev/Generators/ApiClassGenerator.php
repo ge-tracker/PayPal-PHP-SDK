@@ -91,8 +91,10 @@ class ApiClassGenerator implements ApiClassGeneratorContract
     protected function imports(array $fields): string
     {
         $content = '';
+        $classImports = [];
 
         foreach ($fields as $field => $type) {
+            // Skip all primitive types
             if (($pos = strpos($type, '\\')) === false) {
                 continue;
             }
@@ -105,6 +107,12 @@ class ApiClassGenerator implements ApiClassGeneratorContract
             // Remove array definitions
             $type = str_replace('[]', '', $type);
 
+            // Once the type has been sanitized, check that it has not already been imported
+            if (in_array($type, $classImports, true)) {
+                continue;
+            }
+
+            $classImports[] = $type;
             $content .= sprintf("use %s;\n", $type);
         }
 

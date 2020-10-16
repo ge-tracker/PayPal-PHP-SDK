@@ -11,6 +11,8 @@ $fields = [
     'total_cycles'     => 'integer',
     'billing_cycles'   => '\PayPal\Api\BillingCycles[]',
     'payment_preferences' => 'PayPal\Api\PaymentPreferences',
+    'gross_amount' => \PayPal\Api\CurrencyRest::class,
+    'fee_amount' => \PayPal\Api\CurrencyRest::class,
 ];
 
 $links = true;

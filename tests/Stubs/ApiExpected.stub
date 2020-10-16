@@ -9,6 +9,7 @@ use PayPal\Transport\PayPalRestCall;
 use PayPal\Validation\ArgumentValidator;
 use PayPal\Api\BillingCycles;
 use PayPal\Api\PaymentPreferences;
+use PayPal\Api\CurrencyRest;
 
 /**
  * Class CycleExecutions
@@ -22,6 +23,8 @@ use PayPal\Api\PaymentPreferences;
  * @property integer total_cycles
  * @property \PayPal\Api\BillingCycles[] billing_cycles
  * @property \PayPal\Api\PaymentPreferences payment_preferences
+ * @property \PayPal\Api\CurrencyRest gross_amount
+ * @property \PayPal\Api\CurrencyRest fee_amount
  *
  */
 class CycleExecutions extends PayPalResourceModel
@@ -164,5 +167,45 @@ class CycleExecutions extends PayPalResourceModel
     public function getPaymentPreferences()
     {
         return $this->payment_preferences;
+    }
+
+    /**
+     * @param \PayPal\Api\CurrencyRest $gross_amount
+     *
+     * @return self
+     */
+    public function setGrossAmount($gross_amount): self
+    {
+        $this->gross_amount = $gross_amount;
+
+        return $this;
+    }
+
+    /**
+     * @return \PayPal\Api\CurrencyRest
+     */
+    public function getGrossAmount()
+    {
+        return $this->gross_amount;
+    }
+
+    /**
+     * @param \PayPal\Api\CurrencyRest $fee_amount
+     *
+     * @return self
+     */
+    public function setFeeAmount($fee_amount): self
+    {
+        $this->fee_amount = $fee_amount;
+
+        return $this;
+    }
+
+    /**
+     * @return \PayPal\Api\CurrencyRest
+     */
+    public function getFeeAmount()
+    {
+        return $this->fee_amount;
     }
 }
