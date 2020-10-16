@@ -442,8 +442,8 @@ class CreditCard extends PayPalResourceModel
     /**
      * Creates a new Credit Card Resource (aka Tokenize).
      *
-     * @param ApiContext     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall   is the Rest Call Service that is used to make rest calls
      * @return CreditCard
      */
     public function create($apiContext = null, $restCall = null)
@@ -466,8 +466,8 @@ class CreditCard extends PayPalResourceModel
      * Obtain the Credit Card resource for the given identifier.
      *
      * @param string         $creditCardId
-     * @param ApiContext     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall   is the Rest Call Service that is used to make rest calls
      * @return CreditCard
      */
     public static function get($creditCardId, $apiContext = null, $restCall = null)
@@ -491,8 +491,8 @@ class CreditCard extends PayPalResourceModel
     /**
      * Delete the Credit Card resource for the given identifier.
      *
-     * @param ApiContext     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall   is the Rest Call Service that is used to make rest calls
      * @return bool
      */
     public function delete($apiContext = null, $restCall = null)
@@ -515,8 +515,8 @@ class CreditCard extends PayPalResourceModel
      * Update information in a previously saved card. Only the modified fields need to be passed in the request.
      *
      * @param PatchRequest   $patchRequest
-     * @param ApiContext     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall   is the Rest Call Service that is used to make rest calls
      * @return CreditCard
      */
     public function update($patchRequest, $apiContext = null, $restCall = null)
@@ -541,8 +541,8 @@ class CreditCard extends PayPalResourceModel
      * Retrieves a list of Credit Card resources.
      *
      * @param array          $params
-     * @param ApiContext     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall   is the Rest Call Service that is used to make rest calls
      * @return CreditCardList
      */
     public static function all($params, $apiContext = null, $restCall = null)

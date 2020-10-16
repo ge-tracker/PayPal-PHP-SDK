@@ -250,9 +250,9 @@ class Subscription extends PayPalResourceModel
     /**
      * Retrieve the details for a particular subscription by passing the subscription ID to the request URI.
      *
-     * @param string         $subscriptionId
-     * @param ApiContext     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
+     * @param string              $subscriptionId
+     * @param ApiContext|null     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall   is the Rest Call Service that is used to make rest calls
      *
      * @return self
      */
@@ -277,8 +277,8 @@ class Subscription extends PayPalResourceModel
     /**
      * Create a new subscription by passing the details for the plan, including the plan name, description, and type, to the request URI.
      *
-     * @param ApiContext     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall   is the Rest Call Service that is used to make rest calls
      *
      * @return self
      */
@@ -301,9 +301,9 @@ class Subscription extends PayPalResourceModel
     /**
      * Replace specific fields within a subscription by passing the ID of the subscription to the request URI. In addition, pass a patch object in the request JSON that specifies the operation to perform, field to update, and new value for each update.
      *
-     * @param PatchRequest   $patchRequest
-     * @param ApiContext     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
+     * @param PatchRequest        $patchRequest
+     * @param ApiContext|null     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall   is the Rest Call Service that is used to make rest calls
      *
      * @return bool
      */
@@ -325,10 +325,97 @@ class Subscription extends PayPalResourceModel
     }
 
     /**
+     * Activate a subscription
+     *
+     * @param array               $params
+     * @param ApiContext|null     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall   is the Rest Call Service that is used to make rest calls
+     *
+     * @return bool
+     */
+    public function activate($params = [], $apiContext = null, $restCall = null)
+    {
+        ArgumentValidator::validate($this->getId(), 'Id');
+
+        $allowedParams = [
+            'reason' => 1,
+        ];
+
+        self::executeCall(
+            '/v1/billing/subscriptions/' . $this->getId() . '/activate',
+            'POST',
+            self::buildJsonPayload($params, $allowedParams),
+            null,
+            $apiContext,
+            $restCall
+        );
+
+        return true;
+    }
+
+    /**
+     * Suspend a subscription
+     *
+     * @param array               $params
+     * @param ApiContext|null     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall   is the Rest Call Service that is used to make rest calls
+     *
+     * @return bool
+     */
+    public function suspend(array $params = [], $apiContext = null, $restCall = null)
+    {
+        ArgumentValidator::validate($this->getId(), 'Id');
+
+        $allowedParams = [
+            'reason' => 1,
+        ];
+
+        self::executeCall(
+            '/v1/billing/subscriptions/' . $this->getId() . '/suspend',
+            'POST',
+            self::buildJsonPayload($params, $allowedParams),
+            null,
+            $apiContext,
+            $restCall
+        );
+
+        return true;
+    }
+
+    /**
+     * Cancel a subscription
+     *
+     * @param array               $params
+     * @param ApiContext|null     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall   is the Rest Call Service that is used to make rest calls
+     *
+     * @return bool
+     */
+    public function cancel(array $params = [], $apiContext = null, $restCall = null)
+    {
+        ArgumentValidator::validate($this->getId(), 'Id');
+
+        $allowedParams = [
+            'reason' => 1,
+        ];
+
+        self::executeCall(
+            '/v1/billing/subscriptions/' . $this->getId() . '/cancel',
+            'POST',
+            self::buildJsonPayload($params, $allowedParams),
+            null,
+            $apiContext,
+            $restCall
+        );
+
+        return true;
+    }
+
+    /**
      * Delete a subscription by passing the ID of the subscription to the request URI.
      *
-     * @param ApiContext     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall   is the Rest Call Service that is used to make rest calls
      *
      * @return bool
      */
@@ -349,33 +436,32 @@ class Subscription extends PayPalResourceModel
     }
 
     /**
-     * List subscriptions according to optional query string parameters specified.
+     * List transactions for subscription
      *
-     * @param array          $params
-     * @param ApiContext     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
+     * @param string              $startTime
+     * @param string              $endTime
+     * @param ApiContext|null     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall   is the Rest Call Service that is used to make rest calls
      *
-     * @return \PayPal\Api\SubscriptionPlanList
+     * @return \PayPal\Api\SubscriptionList
      */
-    public static function all($params, $apiContext = null, $restCall = null)
+    public function transactions(string $startTime, string $endTime, $apiContext = null, $restCall = null)
     {
-        ArgumentValidator::validate($params, 'params');
-        $payLoad = '';
-        $allowedParams = [
-            'page_size'      => 1,
-            'status'         => 1,
-            'page'           => 1,
-            'total_required' => 1,
-        ];
+        ArgumentValidator::validate($this->getId(), 'Id');
+
+        $allowedParams = ['start_time' => 1, 'end_time' => 1];
+        $params = ['start_time' => $startTime, 'end_time' => $endTime];
+
         $json = self::executeCall(
-            '/v1/billing/subscriptions/' . '?' . http_build_query(array_intersect_key($params, $allowedParams)),
+            self::buildUrl('/v1/billing/subscriptions/' . $this->getId() . '/transactions', $params, $allowedParams),
             'GET',
-            $payLoad,
+            '',
             null,
             $apiContext,
             $restCall
         );
-        $ret = new SubscriptionPlanList();
+
+        $ret = new SubscriptionList();
         $ret->fromJson($json);
 
         return $ret;

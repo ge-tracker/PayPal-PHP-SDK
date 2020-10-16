@@ -426,8 +426,8 @@ class Authorization extends PayPalResourceModel
      * Shows details for an authorization, by ID.
      *
      * @param string $authorizationId
-     * @param ApiContext $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall is the Rest Call Service that is used to make rest calls
      * @return Authorization
      */
     public static function get($authorizationId, $apiContext = null, $restCall = null)
@@ -452,8 +452,8 @@ class Authorization extends PayPalResourceModel
      * Captures and processes an authorization, by ID. To use this call, the original payment call must specify an intent of `authorize`.
      *
      * @param Capture $capture
-     * @param ApiContext $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall is the Rest Call Service that is used to make rest calls
      * @return Capture
      */
     public function capture($capture, $apiContext = null, $restCall = null)
@@ -478,8 +478,8 @@ class Authorization extends PayPalResourceModel
     /**
      * Voids, or cancels, an authorization, by ID. You cannot void a fully captured authorization.
      *
-     * @param ApiContext $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall is the Rest Call Service that is used to make rest calls
      * @return Authorization
      */
     public function void($apiContext = null, $restCall = null)
@@ -502,8 +502,8 @@ class Authorization extends PayPalResourceModel
     /**
      * Reauthorizes a PayPal account payment, by authorization ID. To ensure that funds are still available, reauthorize a payment after the initial three-day honor period. Supports only the `amount` request parameter.
      *
-     * @param ApiContext $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall is the Rest Call Service that is used to make rest calls
      * @return Authorization
      */
     public function reauthorize($apiContext = null, $restCall = null)

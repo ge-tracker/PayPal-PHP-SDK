@@ -524,8 +524,8 @@ class OpenIdUserinfo extends PayPalResourceModel
      * @method GET
      * @param array        $params     (allowed values are access_token)
      *                                 access_token - access token from the createFromAuthorizationCode / createFromRefreshToken calls
-     * @param ApiContext $apiContext Optional API Context
-     * @param PayPalRestCall $restCall
+     * @param ApiContext|null $apiContext Optional API Context
+     * @param PayPalRestCall|null $restCall
      * @return OpenIdUserinfo
      */
     public static function getUserinfo($params, $apiContext = null, $restCall = null)

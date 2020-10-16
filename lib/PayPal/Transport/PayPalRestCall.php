@@ -29,7 +29,7 @@ class PayPalRestCall
     /**
      * Default Constructor
      *
-     * @param ApiContext $apiContext
+     * @param ApiContext|null $apiContext
      */
     public function __construct(ApiContext $apiContext)
     {

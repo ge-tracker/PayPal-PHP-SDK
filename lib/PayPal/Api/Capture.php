@@ -273,8 +273,8 @@ class Capture extends PayPalResourceModel
      * Shows details for a captured payment, by ID.
      *
      * @param string $captureId
-     * @param ApiContext $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall is the Rest Call Service that is used to make rest calls
      * @return Capture
      */
     public static function get($captureId, $apiContext = null, $restCall = null)
@@ -300,8 +300,8 @@ class Capture extends PayPalResourceModel
      *
      * @deprecated Please use #refundCapturedPayment instead.
      * @param Refund         $refund
-     * @param ApiContext     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall   is the Rest Call Service that is used to make rest calls
      * @return Refund
      */
     public function refund($refund, $apiContext = null, $restCall = null)
@@ -327,8 +327,8 @@ class Capture extends PayPalResourceModel
      * Refunds a captured payment, by ID. Include an `amount` object in the JSON request body.
      *
      * @param RefundRequest $refundRequest
-     * @param ApiContext $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall is the Rest Call Service that is used to make rest calls
      * @return DetailedRefund
      */
     public function refundCapturedPayment($refundRequest, $apiContext = null, $restCall = null)

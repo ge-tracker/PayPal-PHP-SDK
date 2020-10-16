@@ -578,8 +578,8 @@ class Payment extends PayPalResourceModel
     /**
      * Creates and processes a payment. In the JSON request body, include a `payment` object with the intent, payer, and transactions. For PayPal payments, include redirect URLs in the `payment` object.
      *
-     * @param ApiContext $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall is the Rest Call Service that is used to make rest calls
      * @return Payment
      */
     public function create($apiContext = null, $restCall = null)
@@ -602,8 +602,8 @@ class Payment extends PayPalResourceModel
      * Shows details for a payment, by ID.
      *
      * @param string $paymentId
-     * @param ApiContext $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall is the Rest Call Service that is used to make rest calls
      * @return Payment
      */
     public static function get($paymentId, $apiContext = null, $restCall = null)
@@ -628,8 +628,8 @@ class Payment extends PayPalResourceModel
      * Partially updates a payment, by ID. You can update the amount, shipping address, invoice ID, and custom data. You cannot use patch after execute has been called.
      *
      * @param PatchRequest $patchRequest
-     * @param ApiContext $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall is the Rest Call Service that is used to make rest calls
      * @return bool
      */
     public function update($patchRequest, $apiContext = null, $restCall = null)
@@ -653,8 +653,8 @@ class Payment extends PayPalResourceModel
      * Executes, or completes, a PayPal payment that the payer has approved. You can optionally update selective payment information when you execute a payment.
      *
      * @param PaymentExecution $paymentExecution
-     * @param ApiContext $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall is the Rest Call Service that is used to make rest calls
      * @return Payment
      */
     public function execute($paymentExecution, $apiContext = null, $restCall = null)
@@ -679,8 +679,8 @@ class Payment extends PayPalResourceModel
      * List payments that were made to the merchant who issues the request. Payments can be in any state.
      *
      * @param array $params
-     * @param ApiContext $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall is the Rest Call Service that is used to make rest calls
      * @return PaymentHistory
      */
     public static function all($params, $apiContext = null, $restCall = null)

@@ -207,8 +207,8 @@ class WebhookEvent extends PayPalResourceModel
      * @deprecated Please use `VerifyWebhookSignature->post()` instead.
      *
      * @param string     $body
-     * @param ApiContext $apiContext
-     * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null $apiContext
+     * @param PayPalRestCall|null $restCall is the Rest Call Service that is used to make rest calls
      * @return WebhookEvent
      * @throws \InvalidArgumentException if input arguments are incorrect, or Id is not found.
      * @throws PayPalConnectionException if any exception from PayPal APIs other than not found is sent.
@@ -242,8 +242,8 @@ class WebhookEvent extends PayPalResourceModel
      * Retrieves the Webhooks event resource identified by event_id. Can be used to retrieve the payload for an event.
      *
      * @param string $eventId
-     * @param ApiContext $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall is the Rest Call Service that is used to make rest calls
      * @return WebhookEvent
      */
     public static function get($eventId, $apiContext = null, $restCall = null)
@@ -267,8 +267,8 @@ class WebhookEvent extends PayPalResourceModel
     /**
      * Resends a webhook event notification, by ID. Any pending notifications are not resent.
      *
-     * @param ApiContext $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall is the Rest Call Service that is used to make rest calls
      * @return WebhookEvent
      */
     public function resend($apiContext = null, $restCall = null)
@@ -292,8 +292,8 @@ class WebhookEvent extends PayPalResourceModel
      * Lists webhook event notifications. Use query parameters to filter the response.
      *
      * @param array $params
-     * @param ApiContext $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall is the Rest Call Service that is used to make rest calls
      * @return WebhookEventList
      */
     public static function all($params, $apiContext = null, $restCall = null)

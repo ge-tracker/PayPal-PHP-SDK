@@ -19,7 +19,7 @@ class OpenIdSession
      *                                  See https://developer.paypal.com/docs/integration/direct/log-in-with-paypal/detailed/#attributes for more
      * @param null $nonce
      * @param null $state
-     * @param ApiContext $apiContext Optional API Context
+     * @param ApiContext|null $apiContext Optional API Context
      * @return string Authorization URL
      */
     public static function getAuthorizationUrl($redirectUri, $scope, $clientId, $nonce = null, $state = null, $apiContext = null)
@@ -63,7 +63,7 @@ class OpenIdSession
      * @param string     $redirectUri   Uri on merchant website to where
      *                                  the user must be redirected to post logout
      * @param string     $idToken       id_token from the TokenInfo object
-     * @param ApiContext $apiContext    Optional API Context
+     * @param ApiContext|null $apiContext    Optional API Context
      * @return string logout URL
      */
     public static function getLogoutUrl($redirectUri, $idToken, $apiContext = null)

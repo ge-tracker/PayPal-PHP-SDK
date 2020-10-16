@@ -83,14 +83,60 @@ class PayPalResourceModel extends PayPalModel implements IResource
     }
 
     /**
+     * Build a query string parameter URL
+     *
+     * @param string $url
+     * @param array  $params
+     * @param array  $allowedParams
+     *
+     * @return string
+     */
+    protected static function buildUrl(string $url, array $params = [], array $allowedParams = []): string
+    {
+        return $url . '?' . http_build_query(array_intersect_key($params, $allowedParams));
+    }
+
+    /**
+     * Build a JSON payload
+     *
+     * @param array $params
+     * @param array $allowedParams
+     *
+     * @return string
+     */
+    protected static function buildJsonPayload(array $params, array $allowedParams = []): string
+    {
+        $filteredParams = array_intersect_key($params, $allowedParams);
+
+        return count($filteredParams) ? json_encode($filteredParams) : '';
+    }
+
+    /**
+     * Build required headers for a JSON payload.
+     *
+     * Code is terrible, but so is the rest of the SDK ¯\_(ツ)_/¯
+     *
+     * @param array $params
+     * @param array $allowedParams
+     *
+     * @return array|null
+     */
+    protected static function buildJsonPayloadHeaders(array $params, array $allowedParams = []): ?array
+    {
+        $payload = self::buildJsonPayload($params, $allowedParams);
+
+        return $payload === '' ? null : ['Content-Type' => 'application/json'];
+    }
+
+    /**
      * Execute SDK Call to Paypal services
      *
      * @param string      $url
      * @param string      $method
      * @param string      $payLoad
      * @param array $headers
-     * @param ApiContext      $apiContext
-     * @param PayPalRestCall      $restCall
+     * @param ApiContext|null      $apiContext
+     * @param PayPalRestCall|null      $restCall
      * @param array $handlers
      * @return string json response of the object
      */
@@ -108,7 +154,7 @@ class PayPalResourceModel extends PayPalModel implements IResource
      * Updates Access Token using long lived refresh token
      *
      * @param string|null $refreshToken
-     * @param ApiContext $apiContext
+     * @param ApiContext|null $apiContext
      * @return void
      */
     public function updateAccessToken($refreshToken, $apiContext)

@@ -244,8 +244,8 @@ class Templates extends PayPalResourceModel
      * @deprecated Please use `Template::get()` instead.
      * @see Template::get
      * @param string $templateId
-     * @param ApiContext $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall is the Rest Call Service that is used to make rest calls
      * @return Template
      */
     public static function get($templateId, $apiContext = null, $restCall = null)
@@ -270,8 +270,8 @@ class Templates extends PayPalResourceModel
      * Retrieves the template information of the merchant.
      *
      * @param array $params
-     * @param ApiContext $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall is the Rest Call Service that is used to make rest calls
      * @return Templates
      */
     public static function getAll($params = [], $apiContext = null, $restCall = null)

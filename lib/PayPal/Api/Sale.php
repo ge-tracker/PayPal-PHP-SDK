@@ -581,8 +581,8 @@ class Sale extends PayPalResourceModel
      * Shows details for a sale, by ID. Returns only sales that were created through the REST API.
      *
      * @param string $saleId
-     * @param ApiContext $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall is the Rest Call Service that is used to make rest calls
      * @return Sale
      */
     public static function get($saleId, $apiContext = null, $restCall = null)
@@ -608,8 +608,8 @@ class Sale extends PayPalResourceModel
      *
      * @deprecated Please use #refundSale instead.
      * @param Refund         $refund
-     * @param ApiContext     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall   is the Rest Call Service that is used to make rest calls
      * @return Refund
      */
     public function refund($refund, $apiContext = null, $restCall = null)
@@ -635,8 +635,8 @@ class Sale extends PayPalResourceModel
      * Refunds a sale, by ID. For a full refund, include an empty payload in the JSON request body. For a partial refund, include an `amount` object in the JSON request body.
      *
      * @param RefundRequest $refundRequest
-     * @param ApiContext $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall is the Rest Call Service that is used to make rest calls
      * @return DetailedRefund
      */
     public function refundSale($refundRequest, $apiContext = null, $restCall = null)

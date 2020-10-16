@@ -171,8 +171,8 @@ class PaymentInstruction extends PayPalResourceModel
      * Retrieve a payment instruction by passing the payment_id in the request URI. Use this request if you are implementing a solution that includes delayed payment like Pay Upon Invoice (PUI).
      *
      * @param string         $paymentId
-     * @param ApiContext     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall   is the Rest Call Service that is used to make rest calls
      * @return PaymentInstruction
      */
     public static function get($paymentId, $apiContext = null, $restCall = null)

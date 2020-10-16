@@ -296,8 +296,8 @@ class SubscriptionPlan extends PayPalResourceModel
      * Retrieve the details for a particular billing plan by passing the billing plan ID to the request URI.
      *
      * @param string         $planId
-     * @param ApiContext     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall   is the Rest Call Service that is used to make rest calls
      *
      * @return self
      */
@@ -322,8 +322,8 @@ class SubscriptionPlan extends PayPalResourceModel
     /**
      * Create a new billing plan by passing the details for the plan, including the plan name, description, and type, to the request URI.
      *
-     * @param ApiContext     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall   is the Rest Call Service that is used to make rest calls
      *
      * @return self
      */
@@ -347,8 +347,8 @@ class SubscriptionPlan extends PayPalResourceModel
      * Replace specific fields within a billing plan by passing the ID of the billing plan to the request URI. In addition, pass a patch object in the request JSON that specifies the operation to perform, field to update, and new value for each update.
      *
      * @param PatchRequest   $patchRequest
-     * @param ApiContext     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall   is the Rest Call Service that is used to make rest calls
      *
      * @return bool
      */
@@ -372,8 +372,8 @@ class SubscriptionPlan extends PayPalResourceModel
     /**
      * Delete a billing plan by passing the ID of the billing plan to the request URI.
      *
-     * @param ApiContext     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall   is the Rest Call Service that is used to make rest calls
      *
      * @return bool
      */
@@ -397,8 +397,8 @@ class SubscriptionPlan extends PayPalResourceModel
      * List billing plans according to optional query string parameters specified.
      *
      * @param array          $params
-     * @param ApiContext     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall   is the Rest Call Service that is used to make rest calls
      *
      * @return \PayPal\Api\SubscriptionPlanList
      */

@@ -220,8 +220,8 @@ class VerifyWebhookSignature extends PayPalResourceModel
     /**
      * Verifies a webhook signature.
      *
-     * @param ApiContext $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
-     * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
+     * @param ApiContext|null $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall|null $restCall is the Rest Call Service that is used to make rest calls
      * @return VerifyWebhookSignatureResponse
      */
     public function post($apiContext = null, $restCall = null)

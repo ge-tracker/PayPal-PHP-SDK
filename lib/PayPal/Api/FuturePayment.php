@@ -44,7 +44,7 @@ class FuturePayment extends Payment
      * Get a Refresh Token from Authorization Code
      *
      * @param $authorizationCode
-     * @param ApiContext $apiContext
+     * @param ApiContext|null $apiContext
      * @return string|null refresh token
      */
     public static function getRefreshToken($authorizationCode, $apiContext = null)

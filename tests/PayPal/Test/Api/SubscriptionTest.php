@@ -18,7 +18,7 @@ class SubscriptionTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"id":"TestSample","plan_id":"TestSample","start_time":"TestSample","quantity":"TestSample","shipping_amount":' . CurrencyRestTest::getJson() . ',"subscriber":' . SubscriberTest::getJson() . ',"billing_info":' . SubscriptionBillingInfoTest::getJson() . ',"create_time":"TestSample","update_time":"TestSample","status":"TestSample","status_update_time":"TestSample"}';
+        return '{"id":"TestSample","plan_id":"TestSample","start_time":"TestSample","quantity":"TestSample","shipping_amount":' . CurrencyRestTest::getJson() . ',"subscriber":' . SubscriberTest::getJson() . ',"billing_info":' . SubscriptionBillingInfoTest::getJson() . ',"create_time":"TestSample","update_time":"TestSample","status":"TestSample","status_update_time":"TestSample","links":' . LinksTest::getJson() . '}';
     }
 
     /**
@@ -138,7 +138,7 @@ class SubscriptionTest extends TestCase
      *
      * @param Subscription $obj
      */
-    public function testList($obj, $mockApiContext)
+    public function testActivate($obj, $mockApiContext)
     {
         $mockPayPalRestCall = $this->getMockBuilder(PayPalRestCall::class)
             ->disableOriginalConstructor()
@@ -146,9 +146,66 @@ class SubscriptionTest extends TestCase
 
         $mockPayPalRestCall->expects(self::any())
             ->method('execute')
-            ->willReturn(PlanListTest::getJson());
+            ->willReturn(true);
 
-        $result = $obj->all([], $mockApiContext, $mockPayPalRestCall);
+        $result = $obj->activate(['reason' => 'TestSample'], $mockApiContext, $mockPayPalRestCall);
+        self::assertNotNull($result);
+    }
+
+    /**
+     * @dataProvider mockProvider
+     *
+     * @param Subscription $obj
+     */
+    public function testSuspend($obj, $mockApiContext)
+    {
+        $mockPayPalRestCall = $this->getMockBuilder(PayPalRestCall::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $mockPayPalRestCall->expects(self::any())
+            ->method('execute')
+            ->willReturn(true);
+
+        $result = $obj->suspend(['reason' => 'TestSample'], $mockApiContext, $mockPayPalRestCall);
+        self::assertNotNull($result);
+    }
+
+    /**
+     * @dataProvider mockProvider
+     *
+     * @param Subscription $obj
+     */
+    public function testCancel($obj, $mockApiContext)
+    {
+        $mockPayPalRestCall = $this->getMockBuilder(PayPalRestCall::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $mockPayPalRestCall->expects(self::any())
+            ->method('execute')
+            ->willReturn(true);
+
+        $result = $obj->cancel(['reason' => 'TestSample'], $mockApiContext, $mockPayPalRestCall);
+        self::assertNotNull($result);
+    }
+
+    /**
+     * @dataProvider mockProvider
+     *
+     * @param Subscription $obj
+     */
+    public function testTransactions($obj, $mockApiContext)
+    {
+        $mockPayPalRestCall = $this->getMockBuilder(PayPalRestCall::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $mockPayPalRestCall->expects(self::any())
+            ->method('execute')
+            ->willReturn(SubscriptionListTest::getJson());
+
+        $result = $obj->transactions('2020-01-21T07:50:20.940Z', '2020-01-28T07:50:20.940Z', $mockApiContext, $mockPayPalRestCall);
         self::assertNotNull($result);
     }
 
