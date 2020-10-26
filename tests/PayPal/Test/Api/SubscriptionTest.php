@@ -18,7 +18,7 @@ class SubscriptionTest extends TestCase
      */
     public static function getJson()
     {
-        return '{"id":"TestSample","plan_id":"TestSample","start_time":"TestSample","quantity":"TestSample","shipping_amount":' . CurrencyRestTest::getJson() . ',"subscriber":' . SubscriberTest::getJson() . ',"billing_info":' . SubscriptionBillingInfoTest::getJson() . ',"create_time":"TestSample","update_time":"TestSample","status":"TestSample","status_update_time":"TestSample","links":' . LinksTest::getJson() . '}';
+        return '{"id":"TestSample","plan_id":"TestSample","start_time":"TestSample","quantity":"TestSample","shipping_amount":' . CurrencyRestTest::getJson() . ',"subscriber":' . SubscriberTest::getJson() . ',"billing_info":' . SubscriptionBillingInfoTest::getJson() . ',"create_time":"TestSample","update_time":"TestSample","status":"TestSample","status_update_time":"TestSample","custom_id":"TestSample","links":' . LinksTest::getJson() . '}';
     }
 
     /**
@@ -50,6 +50,7 @@ class SubscriptionTest extends TestCase
         self::assertNotNull($obj->getUpdateTime());
         self::assertNotNull($obj->getStatus());
         self::assertNotNull($obj->getStatusUpdateTime());
+        self::assertNotNull($obj->getCustomId());
         self::assertEquals(self::getJson(), $obj->toJson());
 
         return $obj;
@@ -73,6 +74,7 @@ class SubscriptionTest extends TestCase
         self::assertEquals('TestSample', $obj->getUpdateTime());
         self::assertEquals('TestSample', $obj->getStatus());
         self::assertEquals('TestSample', $obj->getStatusUpdateTime());
+        self::assertEquals('TestSample', $obj->getCustomId());
     }
 
     /**

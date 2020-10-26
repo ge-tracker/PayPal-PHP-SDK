@@ -16,7 +16,7 @@ use PayPal\Validation\ArgumentValidator;
  * @property string                              id
  * @property string                              plan_id
  * @property string                              start_time
- * @property int                             quantity
+ * @property int                                 quantity
  * @property \PayPal\Api\CurrencyRest            shipping_amount
  * @property \PayPal\Api\Subscriber              subscriber
  * @property \PayPal\Api\SubscriptionBillingInfo billing_info
@@ -24,6 +24,7 @@ use PayPal\Validation\ArgumentValidator;
  * @property string                              update_time
  * @property string                              status
  * @property string                              status_update_time
+ * @property string                              custom_id
  */
 class Subscription extends PayPalResourceModel
 {
@@ -245,6 +246,26 @@ class Subscription extends PayPalResourceModel
     public function getStatusUpdateTime()
     {
         return $this->status_update_time;
+    }
+
+    /**
+     * @param string $custom_id
+     *
+     * @return self
+     */
+    public function setCustomId($custom_id): self
+    {
+        $this->custom_id = $custom_id;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCustomId()
+    {
+        return $this->custom_id;
     }
 
     /**
