@@ -1,8 +1,43 @@
 PayPal PHP SDK release notes
 ============================
 
+1.17.0
+-----
+
+* Add Catalog Product API
+
+1.16.2
+-----
+
+* Add `custom_id` field to `Subscription`
+
+1.16.0 - 1.16.1
+-----
+
+* Add Subscription API
+
+1.15.3
+-----
+
+* Add `SubscriptionPlanList` class
+
+1.15.1 - 1.15.2
+-----
+
+* Update object references in tests and return values
+
+1.15.0
+-----
+
+* Apply general PHP inspections to tidy up the codebase
+* Upgrade to PHPUnit 9.3
+* Add Subscription Plans API
+
 1.14.0
 -----
+
+**This is the last official version by PayPal on 2019-01-04.**
+
 * Update sdk_config.ini log.LogLevel comments [#983](https://github.com/paypal/PayPal-PHP-SDK/pull/983).
 * Update RefundCapture.php [#998](https://github.com/paypal/PayPal-PHP-SDK/pull/998).
 * update readme for direct credit card restriction [#1019](https://github.com/paypal/PayPal-PHP-SDK/pull/1019).
