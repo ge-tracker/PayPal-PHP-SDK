@@ -7,7 +7,6 @@ use PayPal\Rest\ApiContext;
 use PayPal\Transport\PayPalRestCall;
 use PayPal\Validation\ArgumentValidator;
 
-
 /**
  * Class CatalogProduct
  *
@@ -22,7 +21,6 @@ use PayPal\Validation\ArgumentValidator;
  * @property string home_url
  * @property string create_time
  * @property string update_time
- *
  */
 class CatalogProduct extends PayPalResourceModel
 {

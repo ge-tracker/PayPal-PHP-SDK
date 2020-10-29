@@ -2,12 +2,12 @@
 
 namespace PayPal\Api;
 
+use PayPal\Api\CatalogProduct;
 use PayPal\Common\PayPalModel;
 use PayPal\Common\PayPalResourceModel;
 use PayPal\Rest\ApiContext;
 use PayPal\Transport\PayPalRestCall;
 use PayPal\Validation\ArgumentValidator;
-use PayPal\Api\CatalogProduct;
 
 /**
  * Class CatalogProductList
@@ -17,7 +17,6 @@ use PayPal\Api\CatalogProduct;
  * @property int total_items
  * @property int total_pages
  * @property \PayPal\Api\CatalogProduct[] products
- *
  */
 class CatalogProductList extends PayPalResourceModel
 {
